@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">powerstation</string>
+    <string name="error_gif">错误信息</string>
+
+    <string name="error_phone">手机号码格式不正确</string>
+    <string name="error_pwd"> 您设置的密码过于简单，请重新输入</string>
+
+    <string name="regist">Create account</string>
+    <string name="regist_username">User Name</string>
+    <string name="regist_email">E-Mail</string>
+    <string name="regist_code">Verification code</string>
+    <string name="regist_get_code">Get the code</string>
+    <string name="regist_enter_pwd">Enter password</string>
+    <string name="regist_confirm_pwd">Confirm password</string>
+
+</resources>

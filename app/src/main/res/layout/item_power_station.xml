@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/power_station_cover"
+        android:layout_width="@dimen/widget_size_56"
+        android:layout_height="80dp"
+        android:layout_marginRight="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_launcher_background" />
+
+
+    <TextView
+        android:id="@+id/power_station_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@+id/power_station_cover"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="Amerike Lifetime PV production"
+        android:textColor="@color/color_black" />
+
+    <TextView
+        android:id="@+id/power_station_day_key"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/power_station_title"
+        android:layout_toRightOf="@+id/power_station_cover"
+        android:text="Day PV production:" />
+
+    <TextView
+        android:id="@+id/power_station_day"
+        style="@style/ItemPowerStationMsg"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/power_station_title"
+        android:layout_toRightOf="@+id/power_station_day_key"
+        android:text="100KWH" />
+
+    <TextView
+        android:id="@+id/power_station_lifetime_key"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/power_station_day_key"
+        android:layout_toRightOf="@+id/power_station_cover"
+        android:text="Lifetime PV production:" />
+
+    <TextView
+        android:id="@+id/power_station_lifetime"
+        style="@style/ItemPowerStationMsg"
+        android:layout_below="@+id/power_station_day_key"
+        android:layout_toRightOf="@+id/power_station_lifetime_key"
+        android:text="100KWH" />
+
+    <TextView
+        android:id="@+id/power_station_rated_key"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/power_station_lifetime_key"
+        android:layout_toRightOf="@+id/power_station_cover"
+        android:text="PV Rated power:" />
+
+    <TextView
+        android:id="@+id/power_station_rated"
+        style="@style/ItemPowerStationMsg"
+        android:layout_below="@+id/power_station_lifetime_key"
+        android:layout_toRightOf="@+id/power_station_rated_key"
+        android:text="100KWH" />
+
+    <TextView
+        android:id="@+id/power_station_address"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/power_station_cover"
+        android:layout_marginTop="6dp"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:text="Lexington Avenue, 10th Floor, Room 202" />
+</RelativeLayout>

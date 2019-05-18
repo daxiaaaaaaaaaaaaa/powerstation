@@ -1,0 +1,216 @@
+apply plugin: 'com.android.application'
+repositories {
+    flatDir {
+        dir 'libs'
+    }
+}
+
+
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'power'
+            keyPassword '123456'
+            storeFile file('../power.jks')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'power'
+            keyPassword '123456'
+            storeFile file('../power.jks')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        //Annotation processors must be explicitly declared now.错误解决
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        applicationId "com.jilian.powerstation"
+        minSdkVersion 18
+        targetSdkVersion 28
+        versionCode 2
+        versionName "V1.0.2"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+//        ndk {
+//            // 设置支持的SO库架构
+//            abiFilters "armeabi-v7a", "x86", 'armeabi'
+//        }
+
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a,"x86"'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.jilian.powerstation",
+                JPUSH_APPKEY : "1405c20621535db4ae914e00", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileOptions {
+        encoding "UTF-8"
+        //如果第二步设置的是GBK,这里就是GBK，如果第二步设置的是UTF-8这里就是UTF-8
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+
+
+}
+
+dependencies {
+    def lifecycle_version = "1.1.1"
+    def room_version = "1.1.1"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:multidex:1.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.google.android:flexbox:0.3.0'
+
+    //Rxlifecycle
+    implementation 'com.trello:rxlifecycle:0.3.1'
+    implementation 'com.trello:rxlifecycle-components:0.3.1'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.+'
+    implementation 'com.jaeger.statusbarutil:library:1.4.0'
+    implementation 'com.zhihu.android:matisse:0.5.0-alpha4'
+    implementation 'com.squareup.okio:okio:1.5.0'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.+'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.+'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.+'
+    implementation 'com.squareup.retrofit2:retrofit:2.+'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.+'
+    implementation 'com.squareup.retrofit2:converter-gson:2.+'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+    implementation 'com.facebook.stetho:stetho:1.4.2'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+
+    // 依赖以下两个库，会自动引用基础库与Android库
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+    implementation 'com.jakewharton.rxbinding:rxbinding:1.+'
+
+    // Lifecycles, LiveData 和 ViewModel
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
+
+    // optional - ReactiveStreams support for LiveData
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+
+    // optional - RxJava support for Room
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    //进度框
+    implementation 'com.wang.avi:library:2.1.3'
+
+    //地址选择器
+    implementation 'liji.library.dev:citypickerview:3.1.13'
+
+    //时间选择器
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7'
+
+    //没有使用特殊Header，可以不加这行
+    implementation 'com.android.support:design:28.0.+'
+    compile 'com.tamic:browse:1.0.0'
+    compile 'com.tencent.bugly:crashreport:latest.release'
+
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+
+    //浏览图片的框架
+
+    //    compile 'com.github.chrisbanes:PhotoView:1.2.6'
+    compile 'com.orhanobut:logger:2.2.0'
+    compile 'com.alibaba:fastjson:+'
+
+    //滑动删除的list
+    compile 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    implementation 'com.jwenfeng.library:PullToDetails:1.0.0'
+
+    //视频播放的库
+    implementation 'cn.jzvd:jiaozivideoplayer:6.4.1'
+
+    //    implementation project(':videoplayerlibrary')
+
+    //引入rxJava
+    compile 'io.reactivex.rxjava2:rxjava:2.1.8'
+
+    //引入rxAndroid
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //引入rxJava适配器，方便rxJava与retrofit的结合
+
+    //引入J神的rxrelay2，出现异常仍然可以处理
+    compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+
+    //lombok
+    provided 'org.projectlombok:lombok:1.16.18'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.google.dagger:dagger:2.7'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+    implementation files('libs/core-3.0.0.jar')
+    compile project(':magicindicator')
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/httpmime-4.1.2.jar')
+    implementation files('libs/IndoorscapeAlbumPlugin.jar')
+
+    //修改状态栏字体相关
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    //极光
+    compile 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
+    compile 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+
+}

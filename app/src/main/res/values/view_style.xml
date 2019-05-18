@@ -1,0 +1,56 @@
+<resources>
+    <!--输入框默认-->
+    <style name="EtitTextDefult">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">@dimen/widget_size_45</item>
+        <item name="android:background">@drawable/shape_e3e3e3_dark_5</item>
+    </style>
+    <!--注册界面-->
+
+    <style name="ButtonDefult" parent="EtitTextDefult">
+        <item name="android:layout_marginLeft">@dimen/widget_size_30</item>
+        <item name="android:layout_marginRight">@dimen/widget_size_30</item>
+        <item name="android:background">@drawable/shape_btn_dark</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--注册界面-->
+    <style name="RegistDefult" parent="EtitTextDefult">
+        <item name="android:layout_marginLeft">@dimen/widget_size_30</item>
+        <item name="android:layout_marginRight">@dimen/widget_size_30</item>
+        <item name="android:layout_marginTop">@dimen/widget_size_20</item>
+    </style>
+
+    <!--分我的电站item-->
+    <style name="ItemPowerStationKey">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">20dp</item>
+    </style>
+    <style name="ItemPowerStationMsg">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_height">20dp</item>
+    </style>
+
+    <!--分割线-->
+    <style name="LineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.8dp</item>
+        <item name="android:background">@color/color_line</item>
+    </style>
+    <style name="LineVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+</resources>

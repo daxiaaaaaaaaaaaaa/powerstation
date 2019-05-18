@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <external-path
+        name="my_images"
+        path="Pictures"/>
+    <external-path
+        name="app_file"
+        path="Download"/>
+    <external-files-path
+        name="app_file_path"
+        path="Download" />
+    <!--融云相关-->
+    <external-path
+        name="rc_external_path"
+        path="." />
+    <root-path
+        name="rc_root_path"
+        path="" />
+</resources>

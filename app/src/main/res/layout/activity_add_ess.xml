@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:orientation="vertical"
+    tools:context=".modul.activity.AddESSActivity">
+
+    <include layout="@layout/layout_title" />
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_marginTop="@dimen/widget_size_20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/add_ess_serial_key"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_45"
+            android:gravity="center_vertical"
+            android:text="Serial Number" />
+
+        <TextView
+            android:id="@+id/add_ess_serial"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_toRightOf="@+id/add_ess_serial_key"
+            android:gravity="center_vertical|right"
+            android:text="Serial Number" />
+
+        <View
+            android:id="@+id/add_ess_line"
+            style="@style/LineHorizontal"
+            android:layout_below="@+id/add_ess_serial"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:id="@+id/add_ess_name_key"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_below="@+id/add_ess_line"
+            android:gravity="center_vertical"
+            android:text="Name my ESS" />
+
+        <EditText
+            android:id="@+id/add_ess_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_toRightOf="@+id/add_ess_name_key"
+            android:background="@null"
+            android:gravity="center_vertical|right" />
+    </RelativeLayout>
+
+    <View style="@style/LineHorizontal" />
+
+
+    <TextView
+        android:id="@+id/tv_regist"
+        style="@style/ButtonDefult"
+        android:layout_marginTop="@dimen/widget_size_30"
+        android:enabled="false"
+        android:text="@string/regist" />
+
+</LinearLayout>

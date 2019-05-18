@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sr_no_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srlEnableAutoLoadMore="false"
+    android:visibility="gone"
+    app:srlEnableLoadMore="true"
+    app:srlPrimaryColor="@color/color_main_title">
+
+    <com.scwang.smartrefresh.header.WaterDropHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_no_data"
+            android:layout_width="115dp"
+            android:layout_height="88dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/image_no_data"/>
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_no_data"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="暂无数据"
+            android:textColor="#989898"/>
+    </RelativeLayout>
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+

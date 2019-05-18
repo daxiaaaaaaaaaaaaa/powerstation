@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#99c2c8</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#303030</color>
+    <color name="color_yello">#F15A22</color>
+
+
+
+    <color name="color_tap_select">#53CAC3</color>
+    <color name="color_tap_normal">#AAAEB9</color>
+    <color name="color_text">#333333</color>
+    <color name="color_text_two">#666666</color>
+    <color name="color_text_dark">#999999</color>
+    <color name="color_text_hint">#a5a5a5</color>
+
+    <color name="color_progress_normal">#f2f2f2</color>
+    <color name="color_progress_finish">#65c1c9</color>
+    <color name="color_layout_bg">#e0e0e0</color>
+    <color name="textColorHint">#CFCFCF</color>
+    <color name="colorBackgroundDark">#e0e0e0</color>
+    <color name="color_transt">#00000000</color>
+    <color name="translucent_background">#80000000</color>
+
+
+    <color name="color_main_title">#65C1C9</color>
+    <color name="color_main_title_dark">#B2E0E4</color>
+
+    <color name="color_line">#e6e6e6</color>
+    <color name="color_background">#F2F2F2</color>
+    <color name="color_hint">#a5a5a5</color>
+    <color name="color_main_select">#65C1C9</color>
+    <color name="color_main_unselect">#999999</color>
+    <color name="press">#e8e8e8</color>
+
+    <color name="color_red">#FF0000</color>
+
+    <color name="color_btn_deful">#D24F5F</color>
+    <color name="color_edittext_bg">#E3E3E3</color>
+
+</resources>
