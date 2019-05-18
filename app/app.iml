@@ -84,23 +84,41 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/build-info" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-verifier" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-apk" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/multi-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/processing-tools" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/splits-support" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-solver:1.0.2@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\app\powerstation\app\libs\BaiduLBS_Android.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:localbroadcastmanager-28.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-28.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton.rxbinding:rxbinding-1.0.1" level="project" />
@@ -108,8 +126,8 @@
     <orderEntry type="library" name="Gradle: com.android.support:cardview-v7-28.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.stetho:stetho-okhttp3-1.4.2" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:drawerlayout-28.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\a\powerstation\app\libs\BaiduLBS_Android.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\app\powerstation\app\libs\httpmime-4.1.2.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:versionedparcelable-28.0.0" level="project" />
@@ -117,9 +135,7 @@
     <orderEntry type="library" name="Gradle: com.contrarywind:Android-PickerView-4.1.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support:multidex-instrumentation-1.0.2" level="project" />
     <orderEntry type="library" name="Gradle: org.greenrobot:eventbus:3.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\a\powerstation\app\libs\IndoorscapeAlbumPlugin.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\a\powerstation\app\libs\httpmime-4.1.2.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.16.18@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: it.sephiroth.android.library.imagezoom:library-1.0.4" level="project" />
@@ -129,8 +145,8 @@
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:converter-scalars:2.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.zhihu.android:matisse-0.5.0-alpha4" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common-java8:1.1.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\app\powerstation\app\libs\core-3.0.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.14.1@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\a\powerstation\app\libs\core-3.0.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.jaeger.statusbarutil:library-1.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.tamic:browse-1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.tencent.bugly:crashreport-3.0.0" level="project" />
@@ -176,7 +192,6 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-28.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton:butterknife-8.5.1" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:coordinatorlayout-28.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\a\powerstation\app\libs\MiPush_SDK_Client_3_6_9.jar:unspecified@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support:multidex-1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:multidex-1.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.google.dagger:dagger:2.7@jar" level="project" />
@@ -204,6 +219,7 @@
     <orderEntry type="library" name="Gradle: com.jwenfeng.library:PullToDetails-1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:collections:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton.rxrelay2:rxrelay:2.0.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\app\powerstation\app\libs\MiPush_SDK_Client_3_6_9.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:asynclayoutinflater-28.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.tbruyelle.rxpermissions:rxpermissions-0.7.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat-28.0.0" level="project" />
@@ -213,6 +229,7 @@
     <orderEntry type="library" name="Gradle: android.arch.persistence:db-1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.trello.rxlifecycle2:rxlifecycle-navi-2.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.2@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:D.\app_work_space\app\powerstation\app\libs\IndoorscapeAlbumPlugin.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: cn.jiguang.sdk:jcore-2.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-28.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.scwang.smartrefresh:SmartRefreshLayout-1.1.0-alpha-7" level="project" />
