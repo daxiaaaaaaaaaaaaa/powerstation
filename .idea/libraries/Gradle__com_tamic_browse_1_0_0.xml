@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.tamic:browse-1.0.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/browse-1.0.0.aar/978884695903b00cae9595485a745a68/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/browse-1.0.0.aar/978884695903b00cae9595485a745a68/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tamic/browse/1.0.0/c10531dc93f9c2198ad95b8f77a54cfc236816d6/browse-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,826 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+MERGED from [com.tamic:browse:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\browse-1.0.0.aar\978884695903b00cae9595485a745a68\AndroidManifest.xml:2:1-16:12
+MERGED from [com.tencent.bugly:crashreport:3.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\crashreport-3.0.0.aar\41ae41f1dda9b7b5cebc86be0b967221\AndroidManifest.xml:2:1-9:12
+MERGED from [com.tencent.bugly:nativecrashreport:3.6.0.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\nativecrashreport-3.6.0.1.aar\b01723dc403483d9661a07ee65c2f459\AndroidManifest.xml:2:1-9:12
+MERGED from [com.orhanobut:logger:2.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\logger-2.2.0.aar\e89e57ec1227eded969453b90d9a902c\AndroidManifest.xml:2:1-8:12
+MERGED from [com.yanzhenjie:recyclerview-swipe:1.1.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\recyclerview-swipe-1.1.4.aar\947ecef15dd588a69db6fe06bb5e8fa7\AndroidManifest.xml:17:1-25:12
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-components:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-components-2.1.0.aar\3a82beeef1e34dbbd0721661f1dfc19e\AndroidManifest.xml:13:1-19:12
+MERGED from [android.arch.persistence.room:rxjava2:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxjava2-1.1.1.aar\4c582446611a02f5b8f3365221f07d38\AndroidManifest.xml:17:1-22:12
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-navi-2.1.0.aar\4e62b4acbd3081cf9c92c8c158506203\AndroidManifest.xml:13:1-19:12
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-android:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-android-2.1.0.aar\b5a4e02f8d4f831097965637edff472b\AndroidManifest.xml:13:1-19:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxandroid-2.1.1.aar\c35d181f17648b3f32a885ab3da6b0c4\AndroidManifest.xml:15:1-20:12
+MERGED from [:magicindicator] D:\app_work_space\app\powerstation\magicindicator\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:2:1-133:12
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jcore-2.0.0.aar\3159ce9d67d957b9c66b6d3faf642c72\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\906bb8cc4cff41c8ec11835e333a5bd4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.trello:rxlifecycle-components:0.3.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-components-0.3.1.aar\14bd24180668ef5efa59d603ac432190\AndroidManifest.xml:13:1-19:12
+MERGED from [com.jaeger.statusbarutil:library:1.4.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.4.0.aar\c16f009a858eda3b5fa6409b49968f7b\AndroidManifest.xml:2:1-13:12
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:17:1-33:12
+MERGED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:2:1-37:12
+MERGED from [com.jwenfeng.library:PullToDetails:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\PullToDetails-1.0.0.aar\e918a0022f5a32ca76d3b18fdc890f9c\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:design:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a5563f0a06ccf48cf629ae1a92726137\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\ca13a67f8385fd1d5bdaec2cd1273fb9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\18a869d88de203aa1395f2c14ab7392c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1dcda5246e549088e513520c0a48e980\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android:flexbox:0.3.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\flexbox-0.3.0.aar\223a29c41372fbd83134c7d6d4431d3d\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\f8cbe711660d9e86e89bf3164547ccf0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.jakewharton:butterknife:8.5.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\butterknife-8.5.1.aar\6dbf619e6832303a5cf952745edfd9f9\AndroidManifest.xml:2:1-7:12
+MERGED from [com.trello:rxlifecycle:0.3.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-0.3.1.aar\04cd7510b80380afc0059a25f84feff6\AndroidManifest.xml:13:1-19:12
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.4.2.aar\a51d40afc56c5a5c7f53fed6d5c25372\AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.stetho:stetho:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-1.4.2.aar\195df95f028003854b746a3af9c859d9\AndroidManifest.xml:2:1-13:12
+MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:2:1-17:12
+MERGED from [com.jakewharton.rxbinding:rxbinding:1.0.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxbinding-1.0.1.aar\ff57e43d6026a97a50930f610628cbdc\AndroidManifest.xml:2:1-8:12
+MERGED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:17:1-30:12
+MERGED from [android.arch.lifecycle:reactivestreams:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\reactivestreams-1.1.1.aar\02b3de2361668779e09d5fcc92b6e3a6\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence.room:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a196af16ab996dbba20d18919d972081\AndroidManifest.xml:17:1-22:12
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-2.1.3.aar\6f4b4c029764473d2b5bbe6710530a17\AndroidManifest.xml:2:1-11:12
+MERGED from [com.contrarywind:Android-PickerView:4.1.6] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\Android-PickerView-4.1.6.aar\bb4d15492661ab5425c1af330351cb50\AndroidManifest.xml:2:1-11:12
+MERGED from [com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshLayout-1.1.0-alpha-7.aar\4abc3db1969d450aa40ff2a3af139dd1\AndroidManifest.xml:2:1-17:12
+MERGED from [com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshHeader-1.1.0-alpha-7.aar\30d7594b38f2ed640fd1952e2541bfbf\AndroidManifest.xml:2:1-17:12
+MERGED from [cn.jzvd:jiaozivideoplayer:6.4.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jiaozivideoplayer-6.4.1.aar\7ddfcf3ab300f015fb4a66387ccd6030\AndroidManifest.xml:2:1-13:12
+MERGED from [com.trello.navi2:navi:2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\navi-2.0.aar\a3012ac72ee2ffca0f4f11d459d10a0c\AndroidManifest.xml:2:1-8:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\d79ffc1b2185c6c4a8f314f6972dc225\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\10f51b053e71e002ec80f2f91bce17db\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\927e48cac866d9ffcbf66236fd86f7c1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\79cf625d1a71343853ce200011eeb868\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\d02a13cbcd436257e38eecd6cec087d6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\346cbd52ea0c2b14611c56e00d49aec2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\e1dcf09d4070add6fcaced2069df7422\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\db02501577b339034b7e7c6cef747a21\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\3f9363f8898d4f8eb2104729b5997a93\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d6e9fd8217ebfd65ef5a484e9f97cc83\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\bde95e6fb4c778670274b4001f8428a3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\7bd5d0ac6fdcb9cca0ab1650b61cbe00\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\6028b73ac575a526709a65730709b2df\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\404ce845c9a459b45c155c357231521d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\595ca7d3a14fe7acbe6fa8bc3cf585ad\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\25b24aa33f18b0d3a64c013b536b8131\AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e63d62660a3b03b0bc8cfb4320d60a32\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\8082c1effa786ede467c643f7b8f5bdc\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\81b78f6a847287e58e7cfdc851112ca2\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c35dc2c765992a491580800612073f3b\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\b5010de8cd5cfe3e692e45ebc5f108ad\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db-framework:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\db-framework-1.1.1.aar\8a8ee79656cfbb7edb4b5f2f19ae44c0\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\db-1.1.1.aar\bba8dece2590889b79ed9cb706ed809b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\fd7515eb997ca9f0f79e4419dab7ca6f\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\6dc772767504174e4171260ab89fff34\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\eb6736723e9042b0b49f9e284dcb8a3c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\917fd6344a3130acb611e654f9fbf458\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\383a53217bb1c414daadb8cbad992960\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\814fbb5d8ce3944fa273611deef9d905\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b5b73d92e4e4f28050140cb0c83a6f43\AndroidManifest.xml:17:1-22:12
+MERGED from [com.yanzhenjie:loading:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\loading-1.0.2.aar\46ab0804408ec965aeb807c9aaeff2fd\AndroidManifest.xml:17:1-25:12
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxandroid-1.2.1.aar\a4d68a5a0350ae6cdd4d6e75994e8a89\AndroidManifest.xml:15:1-21:12
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.4.aar\75ed9daee960850591829fc81fc3294c\AndroidManifest.xml:1:106-7:12
+MERGED from [com.contrarywind:wheelview:4.0.8] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\wheelview-4.0.8.aar\faef71e57378098ff0ed70549d7cf3f8\AndroidManifest.xml:2:1-17:12
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.2.aar\77c47d2faa1208405254d33a49c1e79c\AndroidManifest.xml:1:116-8:12
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+	package
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:3:5-38
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:1-143:12
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:5:5-83
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:5:22-80
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:6:5-81
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:20:5-81
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:20:5-81
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:24:5-81
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:24:5-81
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:6:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:7:5-80
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:21:5-80
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:21:5-80
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:25:5-80
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:25:5-80
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:7:22-77
+uses-permission#android.permission.INTERNET
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:8:5-67
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:18:5-67
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:18:5-67
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:8:22-64
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:9:5-79
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:34:5-79
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:34:5-79
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:9:22-76
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:10:5-76
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:31:5-76
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:31:5-76
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:10:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:11:5-79
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:24:5-79
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:24:5-79
+MERGED from [cn.jzvd:jiaozivideoplayer:6.4.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jiaozivideoplayer-6.4.1.aar\7ddfcf3ab300f015fb4a66387ccd6030\AndroidManifest.xml:11:5-79
+MERGED from [cn.jzvd:jiaozivideoplayer:6.4.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jiaozivideoplayer-6.4.1.aar\7ddfcf3ab300f015fb4a66387ccd6030\AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:11:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:12:5-76
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:25:5-76
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:25:5-76
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:12:22-73
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:14:5-75
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:19:5-75
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:19:5-75
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:14:22-72
+uses-permission#android.permission.GET_TASKS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:21:5-68
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:21:22-65
+uses-permission#android.permission.CAMERA
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:22:5-65
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:22:22-62
+uses-permission#android.permission.ACCESS_LOCATION_EXTRA_COMMANDS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:23:5-89
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:33:5-89
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:33:5-89
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:23:22-86
+uses-permission#android.permission.CALL_PHONE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:25:5-69
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:25:22-66
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:26:5-81
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:30:5-81
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:30:5-81
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:26:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:27:5-79
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:32:5-79
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:32:5-79
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:27:22-76
+uses-permission#android.permission.BODY_SENSORS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:28:5-71
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:28:22-68
+uses-permission#android.permission.BAIDU_LOCATION_SERVICE
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:29:5-81
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:29:22-78
+uses-permission#android.permission.ACCES_MOCK_LOCATION
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:33:5-78
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:33:22-75
+uses-permission#com.android.launcher.permission.READ_SETTINGS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:35:5-85
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:35:22-82
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:36:5-68
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:36:22-65
+uses-permission#android.permission.ACCESS_GPS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:39:5-69
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:39:22-66
+uses-permission#android.permission.BROADCAST_STICKY
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:42:5-75
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:42:22-72
+uses-permission#android.permission.PROCESS_OUTGOING_CALLS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:43:5-81
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:43:22-78
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:45:5-80
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:45:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:46:5-71
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:46:22-68
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:56:5-78
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:29:5-78
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:29:5-78
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:56:22-75
+application
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:62:5-141:19
+MERGED from [com.tamic:browse:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\browse-1.0.0.aar\978884695903b00cae9595485a745a68\AndroidManifest.xml:11:5-14:19
+MERGED from [com.tamic:browse:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\browse-1.0.0.aar\978884695903b00cae9595485a745a68\AndroidManifest.xml:11:5-14:19
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:36:5-131:19
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:36:5-131:19
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jcore-2.0.0.aar\3159ce9d67d957b9c66b6d3faf642c72\AndroidManifest.xml:11:5-12:19
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jcore-2.0.0.aar\3159ce9d67d957b9c66b6d3faf642c72\AndroidManifest.xml:11:5-12:19
+MERGED from [com.jaeger.statusbarutil:library:1.4.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.4.0.aar\c16f009a858eda3b5fa6409b49968f7b\AndroidManifest.xml:11:5-20
+MERGED from [com.jaeger.statusbarutil:library:1.4.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.4.0.aar\c16f009a858eda3b5fa6409b49968f7b\AndroidManifest.xml:11:5-20
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:27:5-31:19
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:27:5-31:19
+MERGED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:11:5-35:19
+MERGED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:11:5-35:19
+MERGED from [com.android.support:design:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a5563f0a06ccf48cf629ae1a92726137\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a5563f0a06ccf48cf629ae1a92726137\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1dcda5246e549088e513520c0a48e980\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1dcda5246e549088e513520c0a48e980\AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.4.2.aar\a51d40afc56c5a5c7f53fed6d5c25372\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.4.2.aar\a51d40afc56c5a5c7f53fed6d5c25372\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-1.4.2.aar\195df95f028003854b746a3af9c859d9\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-1.4.2.aar\195df95f028003854b746a3af9c859d9\AndroidManifest.xml:11:5-20
+MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:10:5-15:19
+MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:10:5-15:19
+MERGED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:22:5-28:19
+MERGED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:22:5-28:19
+MERGED from [com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshLayout-1.1.0-alpha-7.aar\4abc3db1969d450aa40ff2a3af139dd1\AndroidManifest.xml:11:5-15:19
+MERGED from [com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshLayout-1.1.0-alpha-7.aar\4abc3db1969d450aa40ff2a3af139dd1\AndroidManifest.xml:11:5-15:19
+MERGED from [com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshHeader-1.1.0-alpha-7.aar\30d7594b38f2ed640fd1952e2541bfbf\AndroidManifest.xml:11:5-15:19
+MERGED from [com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshHeader-1.1.0-alpha-7.aar\30d7594b38f2ed640fd1952e2541bfbf\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\25b24aa33f18b0d3a64c013b536b8131\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\25b24aa33f18b0d3a64c013b536b8131\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\fd7515eb997ca9f0f79e4419dab7ca6f\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\fd7515eb997ca9f0f79e4419dab7ca6f\AndroidManifest.xml:22:5-23:19
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.4.aar\75ed9daee960850591829fc81fc3294c\AndroidManifest.xml:5:5-19
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.4.aar\75ed9daee960850591829fc81fc3294c\AndroidManifest.xml:5:5-19
+MERGED from [com.contrarywind:wheelview:4.0.8] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\wheelview-4.0.8.aar\faef71e57378098ff0ed70549d7cf3f8\AndroidManifest.xml:11:5-15:19
+MERGED from [com.contrarywind:wheelview:4.0.8] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\wheelview-4.0.8.aar\faef71e57378098ff0ed70549d7cf3f8\AndroidManifest.xml:11:5-15:19
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.2.aar\77c47d2faa1208405254d33a49c1e79c\AndroidManifest.xml:5:5-6:19
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.2.aar\77c47d2faa1208405254d33a49c1e79c\AndroidManifest.xml:5:5-6:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\25b24aa33f18b0d3a64c013b536b8131\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:68:9-35
+	android:label
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:66:9-41
+	android:roundIcon
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:67:9-54
+	android:icon
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:65:9-43
+	android:allowBackup
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:64:9-35
+	android:theme
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:69:9-40
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:63:9-38
+activity#com.jilian.powerstation.modul.activity.BaseMainActivity
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:70:9-78
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:70:19-66
+activity#com.jilian.powerstation.modul.activity.AddESSActivity
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:71:9-67
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:71:19-64
+activity#com.jilian.powerstation.modul.activity.RegistActivity
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:72:9-67
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:72:19-64
+activity#com.jilian.powerstation.modul.activity.LoginActivity
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:73:9-84:20
+	android:screenOrientation
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:76:13-49
+	android:windowSoftInputMode
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:78:13-54
+	android:configChanges
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:75:13-43
+	android:theme
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:77:13-43
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:74:13-57
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:79:13-83:29
+action#android.intent.action.MAIN
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:80:17-69
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:80:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:82:17-77
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:82:27-74
+provider#android.support.v4.content.FileProvider
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:85:9-93:20
+	android:grantUriPermissions
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:89:13-47
+	android:authorities
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:87:13-71
+	android:exported
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:88:13-37
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:86:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:90:13-92:54
+	android:resource
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:92:17-51
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:91:17-67
+service#com.baidu.location.f
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:95:9-98:41
+	android:process
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:98:13-38
+	android:enabled
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:97:13-35
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:96:13-48
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:100:9-102:64
+	android:value
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:102:13-61
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:101:13-52
+meta-data#BUGLY_APPID
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:103:9-105:68
+	android:value
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:105:13-65
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:104:13-39
+meta-data#BUGLY_APP_VERSION
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:116:9-118:37
+	android:value
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:118:13-34
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:117:13-45
+meta-data#BUGLY_APP_CHANNEL
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:119:9-121:37
+	android:value
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:121:13-34
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:120:13-45
+meta-data#BUGLY_ENABLE_DEBUG
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:122:9-124:37
+	android:value
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:124:13-34
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:123:13-46
+activity#com.jilian.powerstation.wxapi.WXPayEntryActivity
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:126:9-132:69
+	android:screenOrientation
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:131:13-49
+	android:launchMode
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:130:13-43
+	android:exported
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:129:13-36
+	android:configChanges
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:128:13-74
+	android:theme
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:132:13-66
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:127:13-53
+service#com.jilian.powerstation.MyService
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:134:9-140:19
+	android:process
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:136:13-40
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:135:13-38
+intent-filter#action:name:cn.jiguang.user.service.action
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:137:13-139:29
+action#cn.jiguang.user.service.action
+ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:138:17-73
+	android:name
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml:138:25-70
+uses-sdk
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+MERGED from [com.tamic:browse:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\browse-1.0.0.aar\978884695903b00cae9595485a745a68\AndroidManifest.xml:7:5-9:41
+MERGED from [com.tamic:browse:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\browse-1.0.0.aar\978884695903b00cae9595485a745a68\AndroidManifest.xml:7:5-9:41
+MERGED from [com.tencent.bugly:crashreport:3.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\crashreport-3.0.0.aar\41ae41f1dda9b7b5cebc86be0b967221\AndroidManifest.xml:5:5-7:41
+MERGED from [com.tencent.bugly:crashreport:3.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\crashreport-3.0.0.aar\41ae41f1dda9b7b5cebc86be0b967221\AndroidManifest.xml:5:5-7:41
+MERGED from [com.tencent.bugly:nativecrashreport:3.6.0.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\nativecrashreport-3.6.0.1.aar\b01723dc403483d9661a07ee65c2f459\AndroidManifest.xml:5:5-7:41
+MERGED from [com.tencent.bugly:nativecrashreport:3.6.0.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\nativecrashreport-3.6.0.1.aar\b01723dc403483d9661a07ee65c2f459\AndroidManifest.xml:5:5-7:41
+MERGED from [com.orhanobut:logger:2.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\logger-2.2.0.aar\e89e57ec1227eded969453b90d9a902c\AndroidManifest.xml:6:5-43
+MERGED from [com.orhanobut:logger:2.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\logger-2.2.0.aar\e89e57ec1227eded969453b90d9a902c\AndroidManifest.xml:6:5-43
+MERGED from [com.yanzhenjie:recyclerview-swipe:1.1.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\recyclerview-swipe-1.1.4.aar\947ecef15dd588a69db6fe06bb5e8fa7\AndroidManifest.xml:21:5-23:41
+MERGED from [com.yanzhenjie:recyclerview-swipe:1.1.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\recyclerview-swipe-1.1.4.aar\947ecef15dd588a69db6fe06bb5e8fa7\AndroidManifest.xml:21:5-23:41
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-components:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-components-2.1.0.aar\3a82beeef1e34dbbd0721661f1dfc19e\AndroidManifest.xml:17:5-44
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-components:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-components-2.1.0.aar\3a82beeef1e34dbbd0721661f1dfc19e\AndroidManifest.xml:17:5-44
+MERGED from [android.arch.persistence.room:rxjava2:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxjava2-1.1.1.aar\4c582446611a02f5b8f3365221f07d38\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:rxjava2:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxjava2-1.1.1.aar\4c582446611a02f5b8f3365221f07d38\AndroidManifest.xml:20:5-44
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-navi-2.1.0.aar\4e62b4acbd3081cf9c92c8c158506203\AndroidManifest.xml:17:5-44
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-navi-2.1.0.aar\4e62b4acbd3081cf9c92c8c158506203\AndroidManifest.xml:17:5-44
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-android:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-android-2.1.0.aar\b5a4e02f8d4f831097965637edff472b\AndroidManifest.xml:17:5-44
+MERGED from [com.trello.rxlifecycle2:rxlifecycle-android:2.1.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-android-2.1.0.aar\b5a4e02f8d4f831097965637edff472b\AndroidManifest.xml:17:5-44
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxandroid-2.1.1.aar\c35d181f17648b3f32a885ab3da6b0c4\AndroidManifest.xml:18:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxandroid-2.1.1.aar\c35d181f17648b3f32a885ab3da6b0c4\AndroidManifest.xml:18:5-43
+MERGED from [:magicindicator] D:\app_work_space\app\powerstation\magicindicator\build\intermediates\manifests\full\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:magicindicator] D:\app_work_space\app\powerstation\magicindicator\build\intermediates\manifests\full\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jcore-2.0.0.aar\3159ce9d67d957b9c66b6d3faf642c72\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jiguang.sdk:jcore:2.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jcore-2.0.0.aar\3159ce9d67d957b9c66b6d3faf642c72\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\906bb8cc4cff41c8ec11835e333a5bd4\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\906bb8cc4cff41c8ec11835e333a5bd4\AndroidManifest.xml:20:5-43
+MERGED from [com.trello:rxlifecycle-components:0.3.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-components-0.3.1.aar\14bd24180668ef5efa59d603ac432190\AndroidManifest.xml:17:5-44
+MERGED from [com.trello:rxlifecycle-components:0.3.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-components-0.3.1.aar\14bd24180668ef5efa59d603ac432190\AndroidManifest.xml:17:5-44
+MERGED from [com.jaeger.statusbarutil:library:1.4.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.4.0.aar\c16f009a858eda3b5fa6409b49968f7b\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jaeger.statusbarutil:library:1.4.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.4.0.aar\c16f009a858eda3b5fa6409b49968f7b\AndroidManifest.xml:7:5-9:41
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:20:5-22:41
+MERGED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:20:5-22:41
+MERGED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:7:5-9:41
+MERGED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jwenfeng.library:PullToDetails:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\PullToDetails-1.0.0.aar\e918a0022f5a32ca76d3b18fdc890f9c\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jwenfeng.library:PullToDetails:1.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\PullToDetails-1.0.0.aar\e918a0022f5a32ca76d3b18fdc890f9c\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a5563f0a06ccf48cf629ae1a92726137\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\a5563f0a06ccf48cf629ae1a92726137\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\ca13a67f8385fd1d5bdaec2cd1273fb9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\ca13a67f8385fd1d5bdaec2cd1273fb9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\18a869d88de203aa1395f2c14ab7392c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\18a869d88de203aa1395f2c14ab7392c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1dcda5246e549088e513520c0a48e980\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\1dcda5246e549088e513520c0a48e980\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android:flexbox:0.3.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\flexbox-0.3.0.aar\223a29c41372fbd83134c7d6d4431d3d\AndroidManifest.xml:23:5-25:41
+MERGED from [com.google.android:flexbox:0.3.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\flexbox-0.3.0.aar\223a29c41372fbd83134c7d6d4431d3d\AndroidManifest.xml:23:5-25:41
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\f8cbe711660d9e86e89bf3164547ccf0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\f8cbe711660d9e86e89bf3164547ccf0\AndroidManifest.xml:20:5-44
+MERGED from [com.jakewharton:butterknife:8.5.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\butterknife-8.5.1.aar\6dbf619e6832303a5cf952745edfd9f9\AndroidManifest.xml:5:5-43
+MERGED from [com.jakewharton:butterknife:8.5.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\butterknife-8.5.1.aar\6dbf619e6832303a5cf952745edfd9f9\AndroidManifest.xml:5:5-43
+MERGED from [com.trello:rxlifecycle:0.3.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-0.3.1.aar\04cd7510b80380afc0059a25f84feff6\AndroidManifest.xml:17:5-44
+MERGED from [com.trello:rxlifecycle:0.3.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxlifecycle-0.3.1.aar\04cd7510b80380afc0059a25f84feff6\AndroidManifest.xml:17:5-44
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.4.2.aar\a51d40afc56c5a5c7f53fed6d5c25372\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.4.2.aar\a51d40afc56c5a5c7f53fed6d5c25372\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.stetho:stetho:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-1.4.2.aar\195df95f028003854b746a3af9c859d9\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.stetho:stetho:1.4.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\stetho-1.4.2.aar\195df95f028003854b746a3af9c859d9\AndroidManifest.xml:7:5-9:41
+MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:6:5-8:41
+MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:6:5-8:41
+MERGED from [com.jakewharton.rxbinding:rxbinding:1.0.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxbinding-1.0.1.aar\ff57e43d6026a97a50930f610628cbdc\AndroidManifest.xml:6:5-44
+MERGED from [com.jakewharton.rxbinding:rxbinding:1.0.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxbinding-1.0.1.aar\ff57e43d6026a97a50930f610628cbdc\AndroidManifest.xml:6:5-44
+MERGED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:reactivestreams:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\reactivestreams-1.1.1.aar\02b3de2361668779e09d5fcc92b6e3a6\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:reactivestreams:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\reactivestreams-1.1.1.aar\02b3de2361668779e09d5fcc92b6e3a6\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a196af16ab996dbba20d18919d972081\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\a196af16ab996dbba20d18919d972081\AndroidManifest.xml:20:5-44
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-2.1.3.aar\6f4b4c029764473d2b5bbe6710530a17\AndroidManifest.xml:7:5-9:41
+MERGED from [com.wang.avi:library:2.1.3] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-2.1.3.aar\6f4b4c029764473d2b5bbe6710530a17\AndroidManifest.xml:7:5-9:41
+MERGED from [com.contrarywind:Android-PickerView:4.1.6] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\Android-PickerView-4.1.6.aar\bb4d15492661ab5425c1af330351cb50\AndroidManifest.xml:7:5-9:41
+MERGED from [com.contrarywind:Android-PickerView:4.1.6] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\Android-PickerView-4.1.6.aar\bb4d15492661ab5425c1af330351cb50\AndroidManifest.xml:7:5-9:41
+MERGED from [com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshLayout-1.1.0-alpha-7.aar\4abc3db1969d450aa40ff2a3af139dd1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshLayout-1.1.0-alpha-7.aar\4abc3db1969d450aa40ff2a3af139dd1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshHeader-1.1.0-alpha-7.aar\30d7594b38f2ed640fd1952e2541bfbf\AndroidManifest.xml:7:5-9:41
+MERGED from [com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\SmartRefreshHeader-1.1.0-alpha-7.aar\30d7594b38f2ed640fd1952e2541bfbf\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jzvd:jiaozivideoplayer:6.4.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jiaozivideoplayer-6.4.1.aar\7ddfcf3ab300f015fb4a66387ccd6030\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.jzvd:jiaozivideoplayer:6.4.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jiaozivideoplayer-6.4.1.aar\7ddfcf3ab300f015fb4a66387ccd6030\AndroidManifest.xml:7:5-9:41
+MERGED from [com.trello.navi2:navi:2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\navi-2.0.aar\a3012ac72ee2ffca0f4f11d459d10a0c\AndroidManifest.xml:6:5-44
+MERGED from [com.trello.navi2:navi:2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\navi-2.0.aar\a3012ac72ee2ffca0f4f11d459d10a0c\AndroidManifest.xml:6:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\d79ffc1b2185c6c4a8f314f6972dc225\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\d79ffc1b2185c6c4a8f314f6972dc225\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\10f51b053e71e002ec80f2f91bce17db\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\10f51b053e71e002ec80f2f91bce17db\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\927e48cac866d9ffcbf66236fd86f7c1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\927e48cac866d9ffcbf66236fd86f7c1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\79cf625d1a71343853ce200011eeb868\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\79cf625d1a71343853ce200011eeb868\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\d02a13cbcd436257e38eecd6cec087d6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\d02a13cbcd436257e38eecd6cec087d6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\346cbd52ea0c2b14611c56e00d49aec2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\346cbd52ea0c2b14611c56e00d49aec2\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\e1dcf09d4070add6fcaced2069df7422\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\e1dcf09d4070add6fcaced2069df7422\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\db02501577b339034b7e7c6cef747a21\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\db02501577b339034b7e7c6cef747a21\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\3f9363f8898d4f8eb2104729b5997a93\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\3f9363f8898d4f8eb2104729b5997a93\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d6e9fd8217ebfd65ef5a484e9f97cc83\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\d6e9fd8217ebfd65ef5a484e9f97cc83\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\bde95e6fb4c778670274b4001f8428a3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\bde95e6fb4c778670274b4001f8428a3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\7bd5d0ac6fdcb9cca0ab1650b61cbe00\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\7bd5d0ac6fdcb9cca0ab1650b61cbe00\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\6028b73ac575a526709a65730709b2df\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\6028b73ac575a526709a65730709b2df\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\404ce845c9a459b45c155c357231521d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\404ce845c9a459b45c155c357231521d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\595ca7d3a14fe7acbe6fa8bc3cf585ad\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\595ca7d3a14fe7acbe6fa8bc3cf585ad\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\25b24aa33f18b0d3a64c013b536b8131\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\25b24aa33f18b0d3a64c013b536b8131\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e63d62660a3b03b0bc8cfb4320d60a32\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e63d62660a3b03b0bc8cfb4320d60a32\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\8082c1effa786ede467c643f7b8f5bdc\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\8082c1effa786ede467c643f7b8f5bdc\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\81b78f6a847287e58e7cfdc851112ca2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\81b78f6a847287e58e7cfdc851112ca2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c35dc2c765992a491580800612073f3b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\c35dc2c765992a491580800612073f3b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\b5010de8cd5cfe3e692e45ebc5f108ad\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\b5010de8cd5cfe3e692e45ebc5f108ad\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\db-framework-1.1.1.aar\8a8ee79656cfbb7edb4b5f2f19ae44c0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\db-framework-1.1.1.aar\8a8ee79656cfbb7edb4b5f2f19ae44c0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\db-1.1.1.aar\bba8dece2590889b79ed9cb706ed809b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\db-1.1.1.aar\bba8dece2590889b79ed9cb706ed809b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\fd7515eb997ca9f0f79e4419dab7ca6f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\fd7515eb997ca9f0f79e4419dab7ca6f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\6dc772767504174e4171260ab89fff34\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\6dc772767504174e4171260ab89fff34\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\eb6736723e9042b0b49f9e284dcb8a3c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\eb6736723e9042b0b49f9e284dcb8a3c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\917fd6344a3130acb611e654f9fbf458\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\917fd6344a3130acb611e654f9fbf458\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\383a53217bb1c414daadb8cbad992960\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\383a53217bb1c414daadb8cbad992960\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\814fbb5d8ce3944fa273611deef9d905\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\814fbb5d8ce3944fa273611deef9d905\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b5b73d92e4e4f28050140cb0c83a6f43\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\b5b73d92e4e4f28050140cb0c83a6f43\AndroidManifest.xml:20:5-44
+MERGED from [com.yanzhenjie:loading:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\loading-1.0.2.aar\46ab0804408ec965aeb807c9aaeff2fd\AndroidManifest.xml:21:5-23:41
+MERGED from [com.yanzhenjie:loading:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\loading-1.0.2.aar\46ab0804408ec965aeb807c9aaeff2fd\AndroidManifest.xml:21:5-23:41
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxandroid-1.2.1.aar\a4d68a5a0350ae6cdd4d6e75994e8a89\AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxandroid-1.2.1.aar\a4d68a5a0350ae6cdd4d6e75994e8a89\AndroidManifest.xml:19:5-43
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.4.aar\75ed9daee960850591829fc81fc3294c\AndroidManifest.xml:3:5-72
+MERGED from [it.sephiroth.android.library.imagezoom:library:1.0.4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.4.aar\75ed9daee960850591829fc81fc3294c\AndroidManifest.xml:3:5-72
+MERGED from [com.contrarywind:wheelview:4.0.8] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\wheelview-4.0.8.aar\faef71e57378098ff0ed70549d7cf3f8\AndroidManifest.xml:7:5-9:41
+MERGED from [com.contrarywind:wheelview:4.0.8] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\wheelview-4.0.8.aar\faef71e57378098ff0ed70549d7cf3f8\AndroidManifest.xml:7:5-9:41
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.2.aar\77c47d2faa1208405254d33a49c1e79c\AndroidManifest.xml:3:5-72
+MERGED from [it.sephiroth.android.library.easing:library:1.0.2] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\library-1.0.2.aar\77c47d2faa1208405254d33a49c1e79c\AndroidManifest.xml:3:5-72
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		ADDED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+		INJECTED from D:\app_work_space\app\powerstation\app\src\main\AndroidManifest.xml
+permission#${JPUSH_PKGNAME}.permission.JPUSH_MESSAGE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:11:5-13:47
+	android:protectionLevel
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:13:9-44
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:12:9-65
+permission#com.jilian.powerstation.permission.JPUSH_MESSAGE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:11:5-13:47
+	android:protectionLevel
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:13:9-44
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:12:9-65
+uses-permission#${JPUSH_PKGNAME}.permission.JPUSH_MESSAGE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:16:22-78
+uses-permission#com.jilian.powerstation.permission.JPUSH_MESSAGE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:16:5-81
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:16:22-78
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:17:5-79
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:17:22-76
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:22:5-73
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:22:22-70
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:23:5-84
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:23:22-81
+uses-permission#android.permission.VIBRATE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:28:5-66
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:28:22-63
+activity#cn.jpush.android.ui.PopWinActivity
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:39:9-42:52
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:41:13-37
+	android:theme
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:42:13-49
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:40:13-62
+activity#cn.jpush.android.ui.PushActivity
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:45:9-56:20
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:48:13-37
+	android:configChanges
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:47:13-63
+	android:theme
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:49:13-60
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:46:13-60
+intent-filter#action:name:cn.jpush.android.ui.PushActivity+category:name:${JPUSH_PKGNAME}+category:name:android.intent.category.DEFAULT
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:50:13-55:29
+intent-filter#action:name:cn.jpush.android.ui.PushActivity+category:name:android.intent.category.DEFAULT+category:name:com.jilian.powerstation
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:50:13-55:29
+action#cn.jpush.android.ui.PushActivity
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:51:17-75
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:51:25-72
+category#android.intent.category.DEFAULT
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:53:17-76
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:53:27-73
+category#${JPUSH_PKGNAME}
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:54:17-61
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:54:27-58
+category#com.jilian.powerstation
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:54:17-61
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:54:27-58
+service#cn.jpush.android.service.PushService
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:59:9-70:19
+	android:process
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:63:13-40
+	android:enabled
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:61:13-35
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:62:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:60:13-64
+intent-filter#action:name:cn.jpush.android.intent.PUSH_TIME+action:name:cn.jpush.android.intent.PushService+action:name:cn.jpush.android.intent.REGISTER+action:name:cn.jpush.android.intent.REPORT
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:64:13-69:29
+action#cn.jpush.android.intent.REGISTER
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:65:17-75
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:65:25-72
+action#cn.jpush.android.intent.REPORT
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:66:17-73
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:66:25-70
+action#cn.jpush.android.intent.PushService
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:67:17-78
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:67:25-75
+action#cn.jpush.android.intent.PUSH_TIME
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:68:17-76
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:68:25-73
+service#cn.jpush.android.service.DaemonService
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:74:9-83:19
+	android:enabled
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:76:13-35
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:77:13-36
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:75:13-66
+intent-filter#action:name:cn.jpush.android.intent.DaemonService+category:name:${JPUSH_PKGNAME}
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:78:13-82:29
+intent-filter#action:name:cn.jpush.android.intent.DaemonService+category:name:com.jilian.powerstation
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:78:13-82:29
+action#cn.jpush.android.intent.DaemonService
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:79:17-80
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:79:25-77
+receiver#cn.jpush.android.service.PushReceiver
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:86:9-105:20
+	android:enabled
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:88:13-35
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:89:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:87:13-65
+intent-filter#action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+category:name:${JPUSH_PKGNAME}
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:90:13-93:29
+	android:priority
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:90:28-51
+intent-filter#action:name:cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY+category:name:com.jilian.powerstation
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:90:13-93:29
+	android:priority
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:90:28-51
+action#cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:91:17-94
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:91:25-91
+intent-filter#action:name:android.intent.action.USER_PRESENT+action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:94:13-97:29
+action#android.intent.action.USER_PRESENT
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:95:17-77
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:95:25-74
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:96:17-79
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:96:25-76
+intent-filter#action:name:android.intent.action.PACKAGE_ADDED+action:name:android.intent.action.PACKAGE_REMOVED+data:scheme:package
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:99:13-104:29
+action#android.intent.action.PACKAGE_ADDED
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:100:17-78
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:100:25-75
+action#android.intent.action.PACKAGE_REMOVED
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:101:17-80
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:101:25-77
+data
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:103:17-50
+	android:scheme
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:103:23-47
+receiver#cn.jpush.android.service.AlarmReceiver
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:108:9-110:40
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:110:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:109:13-66
+provider#cn.jpush.android.service.DataProvider
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:112:9-116:43
+	android:process
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:116:13-40
+	android:authorities
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:114:13-64
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:115:13-37
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:113:13-65
+provider#cn.jpush.android.service.DownloadProvider
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:118:9-121:39
+	android:authorities
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:120:13-68
+	android:exported
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:121:13-36
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:119:13-69
+meta-data#JPUSH_CHANNEL
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:124:9-126:48
+	android:value
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:126:13-45
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:125:13-41
+meta-data#JPUSH_APPKEY
+ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:127:9-129:47
+	android:value
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:129:13-44
+	android:name
+		ADDED from [cn.jiguang.sdk:jpush:3.2.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\jpush-3.2.0.aar\d92732f6bda1d97066152fbd1bea54e0\AndroidManifest.xml:128:13-40
+activity#com.zhihu.matisse.ui.MatisseActivity
+ADDED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:28:9-73
+	android:name
+		ADDED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:28:19-70
+activity#com.zhihu.matisse.internal.ui.AlbumPreviewActivity
+ADDED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:29:9-87
+	android:name
+		ADDED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:29:19-84
+activity#com.zhihu.matisse.internal.ui.SelectedPreviewActivity
+ADDED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:30:9-90
+	android:name
+		ADDED from [com.zhihu.android:matisse:0.5.0-alpha4] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\matisse-0.5.0-alpha4.aar\4074747376f6116acf5a199f0c2e2db3\AndroidManifest.xml:30:19-87
+activity#com.lljjcoder.style.citylist.CityListSelectActivity
+ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:15:9-19:20
+	android:screenOrientation
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:17:13-49
+	android:windowSoftInputMode
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:18:13-71
+	android:name
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:16:13-79
+activity#com.lljjcoder.style.citythreelist.ProvinceActivity
+ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:20:9-24:20
+	android:screenOrientation
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:22:13-49
+	android:windowSoftInputMode
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:23:13-71
+	android:name
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:21:13-78
+activity#com.lljjcoder.style.citythreelist.CityActivity
+ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:25:9-29:20
+	android:screenOrientation
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:27:13-49
+	android:windowSoftInputMode
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:28:13-71
+	android:name
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:26:13-74
+activity#com.lljjcoder.style.citythreelist.AreaActivity
+ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:30:9-34:20
+	android:screenOrientation
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:32:13-49
+	android:windowSoftInputMode
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:33:13-71
+	android:name
+		ADDED from [liji.library.dev:citypickerview:3.1.13] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\citypickerview-3.1.13.aar\f1895cadda92f171d2b8c03a84e4f427\AndroidManifest.xml:31:13-74
+activity#com.tbruyelle.rxpermissions.ShadowActivity
+ADDED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:11:9-14:75
+	android:launchMode
+		ADDED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:13:13-43
+	android:theme
+		ADDED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:14:13-72
+	android:name
+		ADDED from [com.tbruyelle.rxpermissions:rxpermissions:0.7.0] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\rxpermissions-0.7.0.aar\db37aedbc583fd65dd3810501d80759a\AndroidManifest.xml:12:13-70
+provider#android.arch.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:25:13-68
+	android:multiprocess
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] C:\Users\mayn\.gradle\caches\transforms-1\files-1.1\extensions-1.1.1.aar\1703562769e7ef44a1267d4b4428b49b\AndroidManifest.xml:24:13-83

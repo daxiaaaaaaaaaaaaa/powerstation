@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml:1:1-58
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml:1:1-58
+	package
+		ADDED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml:1:11-55
+		INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml:1:1-58
+uses-sdk
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+		ADDED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+		ADDED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
+		INJECTED from I:\AA\new\water\magicindicator\src\main\AndroidManifest.xml
