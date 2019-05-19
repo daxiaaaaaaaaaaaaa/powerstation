@@ -5,12 +5,27 @@
     <string name="error_phone">手机号码格式不正确</string>
     <string name="error_pwd"> 您设置的密码过于简单，请重新输入</string>
 
+    <string name="string_email">E-Mail</string>
+    <string name="string_verification_code">Verification code</string>
+    <string name="string_get_code">Get the code</string>
+    <string name="string_next">Next</string>
+
+
+    <!--RegistActivity-->
     <string name="regist">Create account</string>
     <string name="regist_username">User Name</string>
-    <string name="regist_email">E-Mail</string>
-    <string name="regist_code">Verification code</string>
-    <string name="regist_get_code">Get the code</string>
     <string name="regist_enter_pwd">Enter password</string>
     <string name="regist_confirm_pwd">Confirm password</string>
 
+    <!--LoginActivity-->
+    <string name="login_submit">Login</string>
+    <string name="login_password">Password</string>
+    <string name="login_forgot_pwd">Forget Password?</string>
+    <string name="login_register">Register</string>
+    <string name="login_demo_mode">Demo Mode</string>
+    <string name="login_local_mode">Local Mode</string>
+    <!--ForgetPasswordActivity-->
+    <string name="forget_password_reset">Reset password</string>
+    <string name="forget_password_enter">New password</string>
+    <string name="forget_password_confirm">Confirm new password</string>
 </resources>

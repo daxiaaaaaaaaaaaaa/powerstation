@@ -7,9 +7,12 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_height">@dimen/widget_size_45</item>
         <item name="android:background">@drawable/shape_e3e3e3_dark_5</item>
+        <item name="android:textColor">@color/color_text</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textColorHint">@color/color_text_hint</item>
     </style>
-    <!--注册界面-->
 
+    <!--按钮默认样式-->
     <style name="ButtonDefult" parent="EtitTextDefult">
         <item name="android:layout_marginLeft">@dimen/widget_size_30</item>
         <item name="android:layout_marginRight">@dimen/widget_size_30</item>
@@ -19,12 +22,30 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <!--注册界面-->
-    <style name="RegistDefult" parent="EtitTextDefult">
+    <!--分割线-->
+    <style name="LineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.8dp</item>
+        <item name="android:background">@color/color_line</item>
+    </style>
+
+    <style name="LineVertical">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--默认带有间距-->
+    <style name="EtitTextMargin" parent="EtitTextDefult">
         <item name="android:layout_marginLeft">@dimen/widget_size_30</item>
         <item name="android:layout_marginRight">@dimen/widget_size_30</item>
         <item name="android:layout_marginTop">@dimen/widget_size_20</item>
     </style>
+
+    <!-- *************************************************  -->
+
+    <!--注册界面-->
+    <style name="RegistDefult" parent="EtitTextMargin"></style>
 
     <!--分我的电站item-->
     <style name="ItemPowerStationKey">
@@ -33,6 +54,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_height">20dp</item>
     </style>
+
     <style name="ItemPowerStationMsg">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">10sp</item>
@@ -41,16 +63,26 @@
         <item name="android:layout_height">20dp</item>
     </style>
 
-    <!--分割线-->
-    <style name="LineHorizontal">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.8dp</item>
-        <item name="android:background">@color/color_line</item>
-    </style>
-    <style name="LineVertical">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:gravity">center_vertical</item>
+    <!--登陆界面-->
+    <style name="LoginDefult" parent="EtitTextMargin"></style>
+
+    <style name="LoginBtton" parent="ButtonDefult">
+        <item name="android:layout_marginLeft">@dimen/widget_size_30</item>
+        <item name="android:layout_marginRight">@dimen/widget_size_30</item>
+        <item name="android:layout_marginTop">@dimen/widget_size_20</item>
     </style>
 
+    <!---->
+
+    <style name="UserInfoText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/widget_size_45</item>
+        <item name="android:drawableRight">@drawable/ic_keyboard_arrow_right_black_24dp</item>
+        <item name="android:drawablePadding">@dimen/widget_size_16</item>
+        <item name="android:paddingLeft">@dimen/widget_size_16</item>
+        <item name="android:paddingRight">@dimen/widget_size_8</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 </resources>

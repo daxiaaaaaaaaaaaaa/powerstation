@@ -17,7 +17,7 @@
     <EditText
 
         style="@style/RegistDefult"
-        android:hint="@string/regist_email" />
+        android:hint="@string/string_email" />
 
     <LinearLayout style="@style/RegistDefult">
 
@@ -26,13 +26,13 @@
             android:layout_height="@dimen/widget_size_43"
             android:layout_weight="1"
             android:background="@color/white"
-            android:hint="@string/regist_code" />
+            android:hint="@string/string_verification_code" />
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/regist_get_code"
+            android:text="@string/string_get_code"
             android:textColor="@color/liji_c_blue" />
     </LinearLayout>
 

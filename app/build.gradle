@@ -6,7 +6,6 @@ repositories {
 }
 
 
-
 android {
     signingConfigs {
         release {
@@ -45,7 +44,6 @@ android {
     }
 
 
-
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
@@ -71,9 +69,9 @@ android {
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.jilian.powerstation",
+                JPUSH_PKGNAME: "com.jilian.powerstation",
                 JPUSH_APPKEY : "1405c20621535db4ae914e00", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
     sourceSets {
@@ -87,7 +85,6 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-
 
 
 }
@@ -159,22 +156,22 @@ dependencies {
 
     //没有使用特殊Header，可以不加这行
     implementation 'com.android.support:design:28.0.+'
-    compile 'com.tamic:browse:1.0.0'
-    compile 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tamic:browse:1.0.0'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
 
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
 
     //浏览图片的框架
 
     //    compile 'com.github.chrisbanes:PhotoView:1.2.6'
-    compile 'com.orhanobut:logger:2.2.0'
-    compile 'com.alibaba:fastjson:+'
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'com.alibaba:fastjson:+'
 
     //滑动删除的list
-    compile 'com.yanzhenjie:recyclerview-swipe:1.1.4'
+    implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
     implementation 'com.jwenfeng.library:PullToDetails:1.0.0'
 
     //视频播放的库
@@ -183,20 +180,20 @@ dependencies {
     //    implementation project(':videoplayerlibrary')
 
     //引入rxJava
-    compile 'io.reactivex.rxjava2:rxjava:2.1.8'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
 
     //引入rxAndroid
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
     //引入rxJava适配器，方便rxJava与retrofit的结合
 
     //引入J神的rxrelay2，出现异常仍然可以处理
-    compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
 
     //lombok
     provided 'org.projectlombok:lombok:1.16.18'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
-    compile 'com.google.dagger:dagger:2.7'
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.google.dagger:dagger:2.7'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
     implementation files('libs/core-3.0.0.jar')
     compile project(':magicindicator')
@@ -205,12 +202,12 @@ dependencies {
     implementation files('libs/IndoorscapeAlbumPlugin.jar')
 
     //修改状态栏字体相关
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
     //极光
-    compile 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
-    compile 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+    implementation 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 
 }

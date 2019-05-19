@@ -35,8 +35,8 @@ public class LoginActivity extends CommonActivity {
     private RelativeLayout rlCancel;
     private ClearEditText etPhone;
     private ClearEditText etPwd;
-    private RelativeLayout rlEye;
-    private ImageView ivEye;
+//    private RelativeLayout rlEye;
+//    private ImageView ivEye;
     private TextView tvLoginRegister;
     private TextView tvLoginForgetPwd;
     private TextView tvLogin;
@@ -71,8 +71,8 @@ public class LoginActivity extends CommonActivity {
         rlCancel = (RelativeLayout) findViewById(R.id.rl_cancel);
         etPhone = (ClearEditText) findViewById(R.id.et_phone);
         etPwd = (ClearEditText) findViewById(R.id.et_pwd);
-        rlEye = (RelativeLayout) findViewById(R.id.rl_eye);
-        ivEye = (ImageView) findViewById(R.id.iv_eye);
+//        rlEye = (RelativeLayout) findViewById(R.id.rl_eye);
+//        ivEye = (ImageView) findViewById(R.id.iv_eye);
         tvLoginRegister = (TextView) findViewById(R.id.tv_login_register);
         tvLoginForgetPwd = (TextView) findViewById(R.id.tv_login_forget_pwd);
         tvLogin = (TextView) findViewById(R.id.tv_login);
@@ -151,24 +151,24 @@ public class LoginActivity extends CommonActivity {
             }
         });
 
-        rlEye.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!mbDisplayFlg) {
-                    // display password text, for example "123456"
-                    etPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    ivEye.setImageResource(R.drawable.image_login_open);
-                } else {
-                    // hide password, display "."
-                    etPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    ivEye.setImageResource(R.drawable.image_login_close);
-                }
-                etPwd.setSelection(etPwd.getText().toString().length());//将光标移至文字末尾
-                mbDisplayFlg = !mbDisplayFlg;
-                etPwd.postInvalidate();
-
-            }
-        });
+//        rlEye.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (!mbDisplayFlg) {
+//                    // display password text, for example "123456"
+//                    etPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//                    ivEye.setImageResource(R.drawable.image_login_open);
+//                } else {
+//                    // hide password, display "."
+//                    etPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//                    ivEye.setImageResource(R.drawable.image_login_close);
+//                }
+//                etPwd.setSelection(etPwd.getText().toString().length());//将光标移至文字末尾
+//                mbDisplayFlg = !mbDisplayFlg;
+//                etPwd.postInvalidate();
+//
+//            }
+//        });
 
         tvLoginForgetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
