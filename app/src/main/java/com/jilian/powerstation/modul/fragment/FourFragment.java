@@ -1,4 +1,4 @@
-package com.jilian.powerstation.modul.activity;
+package com.jilian.powerstation.modul.fragment;
 
 
 import android.os.Bundle;

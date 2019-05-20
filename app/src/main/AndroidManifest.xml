@@ -67,13 +67,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modul.activity.UserInfoActivity"></activity>
+        <activity android:name=".modul.activity.StationDetailActivity"></activity>
+        <activity android:name=".modul.activity.UserInfoActivity" />
         <activity android:name=".modul.activity.ForgetPasswordActivity" />
-        <activity android:name=".modul.activity.BaseMainActivity" />
+        <activity android:name=".modul.activity.LoginActivity" />
         <activity android:name=".modul.activity.AddESSActivity" />
         <activity android:name=".modul.activity.RegistActivity" />
         <activity
-            android:name=".modul.activity.LoginActivity"
+            android:name=".modul.activity.BaseMainActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/Welcome"

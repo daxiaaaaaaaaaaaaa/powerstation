@@ -209,4 +209,8 @@ dependencies {
     implementation 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
     implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 
+
+    //图表mp
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+
 }

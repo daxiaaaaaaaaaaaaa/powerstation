@@ -1,12 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:gravity="center"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".modul.fragment.FiveFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_200"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/user_info_"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/widget_size_5"
+            android:src="@drawable/ic_demo"
+            android:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/user_info_cover"
+            android:layout_width="@dimen/widget_size_60"
+            android:layout_height="@dimen/widget_size_60"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/font_size_8"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/user_info_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/user_info_cover"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="Jonhn"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/user_info_editor"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/user_info_id"
+            android:layout_toRightOf="@+id/user_info_name"
+            android:padding="@dimen/widget_size_5"
+            android:src="@drawable/ic_demo"
+            android:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/user_info_id"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/user_info_name"
+            android:gravity="center"
+            android:text="jonhn-209909109"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
     <TextView
-        android:textSize="@dimen/font_size_20"
-        android:layout_gravity="center"
-        android:text="第五个"
+        style="@style/UserInfoText"
+        android:drawableLeft="@drawable/ic_demo"
+        android:text="Change Site" />
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_marginLeft="@dimen/widget_size_16"
+        android:layout_marginRight="@dimen/widget_size_16" />
+
+    <TextView
+        style="@style/UserInfoText"
+        android:drawableLeft="@drawable/ic_demo"
+        android:text="Change password" />
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_marginLeft="@dimen/widget_size_16"
+        android:layout_marginRight="@dimen/widget_size_16" />
+
+    <TextView
+        style="@style/UserInfoText"
+        android:drawableLeft="@drawable/ic_demo"
+        android:text="About" />
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_marginLeft="@dimen/widget_size_16"
+        android:layout_marginRight="@dimen/widget_size_16" />
+
+
+    <TextView
+        android:id="@+id/user_logout"
+        style="@style/ButtonDefult"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="@dimen/widget_size_50"
+        android:layout_marginRight="@dimen/widget_size_20"
+        android:drawableLeft="@drawable/ic_demo"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/white"
+        android:gravity="center_vertical"
+
+        android:text="Login Out" />
 </LinearLayout>

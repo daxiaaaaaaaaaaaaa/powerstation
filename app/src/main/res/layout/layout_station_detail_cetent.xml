@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_line"
+        android:orientation="vertical"
+        android:padding="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/DetalItemBackground"
+                android:background="@color/color_transt"
+                android:textSize="@dimen/font_size_10"
+                android:text="PV1 information"/>
+            <TextView
+                style="@style/DetalItemBackground"
+                android:background="@color/color_transt"
+                android:textSize="@dimen/font_size_10"
+                android:text="PV2 information"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <RelativeLayout style="@style/DetalItemBackground">
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_toLeftOf="@+id/detail_voltage1"
+                    android:text="PV1 input voltage (V):" />
+
+                <TextView
+                    android:id="@+id/detail_voltage1"
+                    style="@style/DetalItemRight"
+                    android:layout_alignParentRight="true"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_voltage1"
+                    android:layout_toLeftOf="@+id/detail_current1"
+                    android:text="PV1 input current (A):" />
+
+                <TextView
+                    android:id="@+id/detail_current1"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_voltage1"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_current1"
+                    android:layout_toLeftOf="@+id/detail_current1"
+                    android:text="PV1 input power (W):" />
+
+                <TextView
+                    android:id="@+id/detail_power1"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_current1"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_power1"
+                    android:layout_toLeftOf="@+id/detail_current1"
+                    android:text="PV1 Yield (kWh):" />
+
+                <TextView
+                    android:id="@+id/detail_yield1"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_power1"
+                    android:text="0" />
+
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/DetalItemBackground">
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_toLeftOf="@+id/detail_voltage2"
+                    android:text="PV2 input voltage (V):" />
+
+                <TextView
+                    android:id="@+id/detail_voltage2"
+                    style="@style/DetalItemRight"
+                    android:layout_alignParentRight="true"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_voltage2"
+                    android:layout_toLeftOf="@+id/detail_current2"
+                    android:text="PV2 input current (A):" />
+
+                <TextView
+                    android:id="@+id/detail_current2"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_voltage2"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_current2"
+                    android:layout_toLeftOf="@+id/detail_current2"
+                    android:text="PV2 input power (W):" />
+
+                <TextView
+                    android:id="@+id/detail_power2"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_current2"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_power2"
+                    android:layout_toLeftOf="@+id/detail_current2"
+                    android:text="PV2 Yield (kWh):" />
+
+                <TextView
+                    android:id="@+id/detail_yield2"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_power2"
+                    android:text="0" />
+
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/DetalItemBackground"
+                android:background="@color/color_transt"
+                android:textSize="@dimen/font_size_10"
+                android:text="Yield information"/>
+            <TextView
+                style="@style/DetalItemBackground"
+                android:background="@color/color_transt"
+                android:textSize="@dimen/font_size_10"
+                android:text="EPS information"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <RelativeLayout
+                style="@style/DetalItemBackground"
+                android:layout_height="116dp">
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_toLeftOf="@+id/detail_feed"
+                    android:text="Yield of Feed in grid (kWh):" />
+
+                <TextView
+                    android:id="@+id/detail_feed"
+                    style="@style/DetalItemRight"
+                    android:layout_alignParentRight="true"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_feed"
+                    android:layout_toLeftOf="@+id/detail_consume"
+                    android:text="Yield of Consume grid (kWh):" />
+
+                <TextView
+                    android:id="@+id/detail_consume"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_feed"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_consume"
+                    android:layout_toLeftOf="@+id/detail_load_voltage"
+                    android:text="Load voltage (kWh):" />
+
+                <TextView
+                    android:id="@+id/detail_load_voltage"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_consume"
+                    android:text="0" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/DetalItemBackground"
+                android:layout_height="116dp">
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_toLeftOf="@+id/detail_eps_voltage"
+                    android:text="EPS output voltage (V):" />
+
+                <TextView
+                    android:id="@+id/detail_eps_voltage"
+                    style="@style/DetalItemRight"
+                    android:layout_alignParentRight="true"
+                    android:text="10" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_eps_voltage"
+                    android:layout_toLeftOf="@+id/detail_eps_current"
+                    android:text="EPS output current (A):" />
+
+                <TextView
+                    android:id="@+id/detail_eps_current"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_eps_voltage"
+                    android:text="20" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_eps_current"
+                    android:layout_toLeftOf="@+id/detail_eps_current"
+                    android:text="EPS output frequency (Hz):" />
+
+                <TextView
+                    android:id="@+id/detail_eps_frequency"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_eps_current"
+                    android:text="30" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_eps_frequency"
+                    android:layout_toLeftOf="@+id/detail_eps_current"
+                    android:text="EPS output power (kWh):" />
+
+                <TextView
+                    android:id="@+id/detail_eps_power"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_eps_frequency"
+                    android:text="40" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/DetalItemBackground"
+                android:background="@color/color_transt"
+                android:textSize="@dimen/font_size_10"
+                android:text="Grid information"/>
+            <TextView
+                style="@style/DetalItemBackground"
+                android:background="@color/color_transt"
+                android:textSize="@dimen/font_size_10"
+                android:text=""/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout style="@style/DetalItemBackground">
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_toLeftOf="@+id/detail_consume_voltage"
+                    android:text="Grid voltage (V):" />
+
+                <TextView
+                    android:id="@+id/detail_consume_voltage"
+                    style="@style/DetalItemRight"
+                    android:layout_alignParentRight="true"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_consume_voltage"
+                    android:layout_toLeftOf="@+id/detail_consume_current"
+                    android:text="Grid current (A):" />
+
+                <TextView
+                    android:id="@+id/detail_consume_current"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_consume_voltage"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_consume_current"
+                    android:layout_toLeftOf="@+id/detail_consume_frequnc"
+                    android:text="Grid Frequency (Hz):" />
+
+                <TextView
+                    android:id="@+id/detail_consume_frequnc"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_consume_current"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_consume_frequnc"
+                    android:layout_toLeftOf="@+id/detail_consume_power"
+                    android:text="Grid power (W):" />
+
+                <TextView
+                    android:id="@+id/detail_consume_power"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_consume_frequnc"
+                    android:text="0" />
+
+                <TextView
+                    style="@style/DetalItemLeft"
+                    android:layout_below="@+id/detail_consume_power"
+                    android:layout_toLeftOf="@+id/detail_load_power"
+                    android:text="Load power (W):" />
+
+                <TextView
+                    android:id="@+id/detail_load_power"
+                    style="@style/DetalItemRight"
+                    android:layout_below="@+id/detail_consume_power"
+                    android:text="0" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</merge>

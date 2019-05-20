@@ -1,11 +1,15 @@
-package com.jilian.powerstation.modul.activity;
+package com.jilian.powerstation.modul.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.modul.activity.BaseMainActivity;
+import com.jilian.powerstation.modul.activity.RegistActivity;
+import com.jilian.powerstation.modul.activity.StationDetailActivity;
 
 
 public class FiveFragment extends BaseFragment  {
@@ -30,7 +34,12 @@ public class FiveFragment extends BaseFragment  {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
+        view.findViewById(R.id.user_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), StationDetailActivity.class));
+            }
+        });
     }
 
     @Override

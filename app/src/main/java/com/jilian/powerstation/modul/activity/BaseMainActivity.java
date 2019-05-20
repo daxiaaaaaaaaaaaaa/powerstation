@@ -1,6 +1,5 @@
 package com.jilian.powerstation.modul.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -16,7 +15,6 @@ import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.CommonViewPagerAdapter;
-import com.jilian.powerstation.modul.activity.LoginActivity;
 import com.jilian.powerstation.modul.fragment.FiveFragment;
 import com.jilian.powerstation.modul.fragment.FourFragment;
 import com.jilian.powerstation.modul.fragment.OneFragment;
@@ -30,7 +28,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class BaseMainActivity extends BaseActivity {
+public class BaseMainActivity extends BaseActivity {
     private List<Fragment> mFragmentList;
     private OneFragment oneFragment;
     private TwoFragment twoFragment;
@@ -58,13 +56,18 @@ public abstract class BaseMainActivity extends BaseActivity {
 
 
     @Override
+    protected void createViewModel() {
+
+    }
+
+    @Override
     public int intiLayout() {
         return R.layout.activity_main;
     }
 
     @Override
     public void initView() {
-        MyApplication.clearSpecifyActivities(new Class[]{WelcomeActivity.class});
+//        MyApplication.clearSpecifyActivities(new Class[]{WelcomeActivity.class});
         viewPager = (NoScrollViewPager) findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(5);
 //        viewPager.setScanScroll(false);

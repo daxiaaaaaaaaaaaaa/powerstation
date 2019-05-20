@@ -73,7 +73,6 @@
     </style>
 
     <!---->
-
     <style name="UserInfoText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/widget_size_45</item>
@@ -84,5 +83,32 @@
         <item name="android:textSize">@dimen/font_size_16</item>
         <item name="android:textColor">@color/color_black</item>
         <item name="android:gravity">center_vertical</item>
+    </style>
+    <!--StationDetailActivity-->
+    <style name="DetalItemRight">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="DetalItemLeft">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:layout_marginRight">3dp</item>
+    </style>
+
+    <style name="DetalItemBackground">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:background">@drawable/shape_e3e3e3_dark_5</item>
     </style>
 </resources>

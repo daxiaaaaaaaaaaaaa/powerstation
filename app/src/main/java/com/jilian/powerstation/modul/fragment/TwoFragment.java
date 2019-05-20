@@ -1,17 +1,14 @@
-package com.jilian.powerstation.modul.activity;
+package com.jilian.powerstation.modul.fragment;
 
 
 import android.os.Bundle;
-
 import android.view.View;
-
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
 
 
-
-public class OneFragment extends BaseFragment  {
+public class TwoFragment extends BaseFragment  {
 
 
 
@@ -28,7 +25,7 @@ public class OneFragment extends BaseFragment  {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_one;
+        return R.layout.fragment_two;
     }
 
     @Override
@@ -38,7 +35,7 @@ public class OneFragment extends BaseFragment  {
 
     @Override
     protected void initData() {
-
+        
     }
 
     @Override
