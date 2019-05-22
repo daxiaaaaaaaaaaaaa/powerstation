@@ -111,4 +111,13 @@
         <item name="android:layout_marginLeft">2dp</item>
         <item name="android:background">@drawable/shape_e3e3e3_dark_5</item>
     </style>
+    <!--BatteryDetailActivity-->
+
+    <style name="DetalItemRight11" parent="DetalItemRight">
+        <item name="android:textSize">@dimen/font_size_11</item>
+    </style>
+
+    <style name="DetalItemLeft11" parent="DetalItemLeft">
+        <item name="android:textSize">@dimen/font_size_11</item>
+    </style>
 </resources>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_line"
+    android:orientation="vertical"
+    tools:context=".modul.activity.BatteryDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_title" />
+
+        <View style="@style/LineHorizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/widget_size_16">
+
+            <ImageView
+                android:id="@+id/detail_station_cover"
+                android:layout_width="@dimen/widget_size_60"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginRight="8dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/detail_station_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_30"
+                android:layout_toRightOf="@+id/detail_station_cover"
+                android:text="name"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:id="@+id/detail_updata_time_key"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/widget_size_20"
+                android:layout_below="@+id/detail_station_name"
+                android:layout_toRightOf="@+id/detail_station_cover"
+                android:text="Updata time:"
+                android:textSize="@dimen/font_size_10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/widget_size_20"
+                android:layout_below="@+id/detail_station_name"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/detail_updata_time_key"
+                android:text="2014.09.02"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_size_10" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/DetalItemBackground"
+            android:layout_marginLeft="@dimen/widget_size_8"
+            android:layout_marginTop="@dimen/widget_size_12"
+            android:layout_marginRight="@dimen/widget_size_8"
+            android:layout_marginBottom="@dimen/widget_size_12">
+
+            <TextView
+                style="@style/DetalItemLeft11"
+                android:layout_toLeftOf="@+id/detail_voltage1"
+                android:text="Battery voltage（V）：" />
+
+            <TextView
+                android:id="@+id/detail_voltage"
+                style="@style/DetalItemRight11"
+                android:layout_alignParentRight="true"
+                android:text="0" />
+
+            <TextView
+                style="@style/DetalItemLeft11"
+                android:layout_below="@+id/detail_voltage"
+                android:layout_toLeftOf="@+id/detail_current"
+                android:text="Battery current（A）：" />
+
+            <TextView
+                android:id="@+id/detail_current"
+                style="@style/DetalItemRight11"
+                android:layout_below="@+id/detail_voltage"
+                android:text="0" />
+
+            <TextView
+                style="@style/DetalItemLeft11"
+                android:layout_below="@+id/detail_current"
+                android:layout_toLeftOf="@+id/detail_power"
+                android:text="Battery power（W）：" />
+
+            <TextView
+                android:id="@+id/detail_power"
+                style="@style/DetalItemRight11"
+                android:layout_below="@+id/detail_current"
+                android:text="0" />
+
+            <TextView
+                style="@style/DetalItemLeft11"
+                android:layout_below="@+id/detail_power"
+                android:layout_toLeftOf="@+id/detail_temperatu"
+                android:text="Average Battery Temperatu（℃）：" />
+
+            <TextView
+                android:id="@+id/detail_temperatu"
+                style="@style/DetalItemRight11"
+                android:layout_below="@+id/detail_power"
+                android:text="0" />
+
+
+            <TextView
+                style="@style/DetalItemLeft11"
+                android:layout_below="@+id/detail_temperatu"
+                android:layout_toLeftOf="@+id/detail_temperature"
+                android:text="Maximum temperature of battery（℃）：" />
+
+            <TextView
+                android:id="@+id/detail_temperature"
+                style="@style/DetalItemRight11"
+                android:layout_below="@+id/detail_temperatu"
+                android:text="0" />
+
+            <TextView
+                style="@style/DetalItemLeft11"
+                android:layout_below="@+id/detail_temperature"
+                android:layout_toLeftOf="@+id/detail_current1"
+                android:text="BatterySOC（%）：" />
+
+            <TextView
+                android:id="@+id/detail_soc"
+                style="@style/DetalItemRight11"
+                android:layout_below="@+id/detail_temperature"
+                android:text="0" />
+        </RelativeLayout>
+
+        <include layout="@layout/layout_linechar" />
+    </LinearLayout>
+</ScrollView>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_line"
     android:orientation="vertical"
     tools:context=".modul.activity.StationDetailActivity">
 
@@ -12,14 +13,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <include layout="@layout/layout_title" />
 
         <View style="@style/LineHorizontal" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/widget_size_16">
 
             <ImageView
                 android:id="@+id/detail_station_cover"
@@ -60,10 +62,6 @@
 
         <include layout="@layout/layout_station_detail_cetent" />
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true" />
+        <include layout="@layout/layout_linechar" />
     </LinearLayout>
 </ScrollView>

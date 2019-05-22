@@ -67,7 +67,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modul.activity.StationDetailActivity"></activity>
+        <activity android:name=".modul.activity.IntelligentDeviceActivity"></activity>
+        <activity android:name=".modul.activity.BatteryDetailActivity" />
+        <activity android:name=".modul.activity.StationDetailActivity" />
         <activity android:name=".modul.activity.UserInfoActivity" />
         <activity android:name=".modul.activity.ForgetPasswordActivity" />
         <activity android:name=".modul.activity.LoginActivity" />

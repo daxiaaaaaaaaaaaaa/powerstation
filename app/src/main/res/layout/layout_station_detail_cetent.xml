@@ -4,7 +4,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_line"
         android:orientation="vertical"
         android:padding="5dp">
         <LinearLayout
@@ -25,8 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-
-
             <RelativeLayout style="@style/DetalItemBackground">
 
                 <TextView
@@ -261,7 +258,9 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/widget_size_16"
+            >
 
             <RelativeLayout style="@style/DetalItemBackground">
 
