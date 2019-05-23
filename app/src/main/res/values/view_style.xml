@@ -30,9 +30,9 @@
     </style>
 
     <style name="LineVertical">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">0.8dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_line</item>
     </style>
 
     <!--默认带有间距-->
@@ -118,6 +118,19 @@
     </style>
 
     <style name="DetalItemLeft11" parent="DetalItemLeft">
-        <item name="android:textSize">@dimen/font_size_11</item>
+    <item name="android:textSize">@dimen/font_size_11</item>
+</style>
+
+    <style name="StationItemTitle" parent="DetalItemLeft">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:layout_marginLeft">@dimen/widget_size_12</item>
+        <item name="android:layout_marginRight">@dimen/widget_size_12</item>
+        <item name="android:layout_marginTop">@dimen/widget_size_12</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/font_size_10</item>
+        <item name="android:textColor">#ff747474</item>
     </style>
+
 </resources>

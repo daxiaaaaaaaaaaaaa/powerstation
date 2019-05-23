@@ -1,12 +1,419 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:gravity="center"
-              android:layout_height="match_parent">
-<TextView
-    android:textSize="@dimen/font_size_20"
-    android:layout_gravity="center"
-    android:text="第一个"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_200"
+        android:layout_margin="15dp"
+        android:background="@drawable/share_main_bg"
+        android:padding="@dimen/widget_size_12">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_station_11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#222222"
+                android:text="Good air"
+                android:textSize="@dimen/font_size_10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#222222"
+                android:text="Good air"
+                android:textSize="@dimen/font_size_10" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:paddingRight="@dimen/widget_size_16">
+
+            <ImageView
+                android:id="@+id/img_station_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_station_1" />
+
+            <ImageView
+                android:id="@+id/img_station_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_station_2" />
+
+            <ImageView
+                android:id="@+id/img_station_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_station_3" />
+
+            <ImageView
+                android:id="@+id/img_station_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_station_4" />
+
+            <ImageView
+                android:id="@+id/img_station_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/img_station_4"
+                android:layout_marginRight="@dimen/widget_size_16"
+                android:layout_marginBottom="@dimen/widget_size_16"
+                android:layout_toRightOf="@+id/img_station_3"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_station_5" />
+
+            <ImageView
+                android:id="@+id/img_station_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/img_station_2"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:layout_marginBottom="@dimen/widget_size_16"
+                android:layout_toLeftOf="@+id/img_station_1"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_station_6" />
+
+            <ImageView
+                android:id="@+id/img_station_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/img_station_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:layout_marginTop="@dimen/widget_size_16"
+                android:layout_marginRight="@dimen/widget_size_16"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_station_7" />
+
+            <ImageView
+                android:id="@+id/img_station_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/img_station_1"
+                android:layout_toRightOf="@+id/img_station_2"
+                android:src="@drawable/ic_station_8" />
+
+            <ImageView
+                android:id="@+id/img_station_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/img_station_4"
+                android:layout_toRightOf="@+id/img_station_1"
+                android:src="@drawable/ic_station_9" />
+
+            <ImageView
+                android:id="@+id/img_station_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/img_station_3"
+                android:layout_below="@+id/img_station_1"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_station_10" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/share_main_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StationItemTitle"
+                    android:drawableLeft="@drawable/ic_station_produce"
+                    android:text="Day self-consumption" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_number_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="3dp"
+                        android:text="93"
+                        android:textColor="#ff222222"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_number_1"
+                        android:layout_marginBottom="6dp"
+                        android:layout_toRightOf="@+id/tv_number_1"
+                        android:text="%"
+                        android:textColor="#ff222222"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                style="@style/LineVertical"
+                android:layout_marginTop="@dimen/widget_size_12" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StationItemTitle"
+                    android:drawableLeft="@drawable/ic_station_produce"
+                    android:text="Day self-consumption" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_number_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="3dp"
+                        android:text="93"
+                        android:textColor="#ff222222"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_number_2"
+                        android:layout_marginBottom="6dp"
+                        android:layout_toRightOf="@+id/tv_number_2"
+                        android:text="%"
+                        android:textColor="#ff222222"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_12"
+            android:layout_marginRight="@dimen/widget_size_12" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StationItemTitle"
+                    android:drawableLeft="@drawable/ic_station_produce"
+                    android:text="Day self-consumption" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_number_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="3dp"
+                        android:text="93"
+                        android:textColor="#ff222222"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_number_3"
+                        android:layout_marginBottom="6dp"
+                        android:layout_toRightOf="@+id/tv_number_3"
+                        android:text="%"
+                        android:textColor="#ff222222"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                style="@style/LineVertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StationItemTitle"
+                    android:drawableLeft="@drawable/ic_station_produce"
+                    android:text="Day self-consumption" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_number_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="3dp"
+                        android:text="93"
+                        android:textColor="#ff222222"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_number_4"
+                        android:layout_marginBottom="6dp"
+                        android:layout_toRightOf="@+id/tv_number_4"
+                        android:text="%"
+                        android:textColor="#ff222222"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_12"
+            android:layout_marginRight="@dimen/widget_size_12" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StationItemTitle"
+                    android:drawableLeft="@drawable/ic_station_produce"
+                    android:text="Day self-consumption" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_number_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="3dp"
+                        android:text="93"
+                        android:textColor="#ff222222"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_number_5"
+                        android:layout_marginBottom="6dp"
+                        android:layout_toRightOf="@+id/tv_number_5"
+                        android:text="%"
+                        android:textColor="#ff222222"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                style="@style/LineVertical"
+                android:layout_marginBottom="@dimen/widget_size_12" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StationItemTitle"
+                    android:drawableLeft="@drawable/ic_station_produce"
+                    android:text="Day self-consumption" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_number_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="3dp"
+                        android:text="93"
+                        android:textColor="#ff222222"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_number_6"
+                        android:layout_marginBottom="6dp"
+                        android:layout_toRightOf="@+id/tv_number_6"
+                        android:text="%"
+                        android:textColor="#ff222222"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>
