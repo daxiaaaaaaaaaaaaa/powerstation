@@ -67,16 +67,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modul.activity.IntelligentDeviceActivity"></activity>
-        <activity android:name=".modul.activity.BatteryDetailActivity" />
-        <activity android:name=".modul.activity.StationDetailActivity" />
-        <activity android:name=".modul.activity.UserInfoActivity" />
-        <activity android:name=".modul.activity.ForgetPasswordActivity" />
-        <activity android:name=".modul.activity.LoginActivity" />
-        <activity android:name=".modul.activity.AddESSActivity" />
-        <activity android:name=".modul.activity.RegistActivity" />
         <activity
-            android:name=".modul.activity.BaseMainActivity"
+            android:name=".modul.activity.WelcomeActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"
             android:theme="@style/Welcome"
@@ -86,7 +78,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 兼容7.0 -->
+        </activity>
+        <activity android:name=".modul.activity.IntelligentDeviceActivity"></activity>
+        <activity android:name=".modul.activity.BatteryDetailActivity" />
+        <activity android:name=".modul.activity.StationDetailActivity" />
+        <activity android:name=".modul.activity.UserInfoActivity" />
+        <activity android:name=".modul.activity.ForgetPasswordActivity" />
+        <activity android:name=".modul.activity.LoginActivity" />
+        <activity android:name=".modul.activity.AddESSActivity" />
+        <activity android:name=".modul.activity.RegistActivity" />
+        <activity android:name=".modul.activity.MainActivity"/>
+
+
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jilian.powerstation.fileprovider"
