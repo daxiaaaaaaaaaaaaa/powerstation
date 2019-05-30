@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:gravity="center"
-              android:layout_height="match_parent">
-    <TextView
-        android:textSize="@dimen/font_size_20"
-        android:layout_gravity="center"
-        android:text="第二个"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <View style="@style/LineHorizontal" />
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:visibility="visible" />
+
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.jilian.powerstation.modul.fragment.SiteFourFargement"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

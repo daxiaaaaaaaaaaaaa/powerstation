@@ -97,7 +97,7 @@ public class LoginActivity extends CommonActivity {
             @Override
             public void onClick(View view) {
 //                login();
-                startActivity(new Intent(LoginActivity.this,AddESSActivity.class));
+                startActivity(new Intent(LoginActivity.this,EssListActivity.class));
             }
         });
         tvLoginRegister.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +173,7 @@ public class LoginActivity extends CommonActivity {
         tvLoginForgetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(LoginActivity.this,ForgetPasswordActivity.class));
             }
         });
 

@@ -1,5 +1,7 @@
 package com.jilian.powerstation.modul.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.modul.adapter.PageAdapter;
@@ -24,6 +27,18 @@ public class IntelligentDeviceActivity extends BaseActivity {
     ViewPager viewPager;
     List<Fragment> mlist;
     PageAdapter adapter;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MyApplication.addActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyApplication.removeActivity(this);
+    }
     @Override
     protected void createViewModel() {
 

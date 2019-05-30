@@ -52,7 +52,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">10sp</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_height">@dimen/widget_size_20</item>
     </style>
 
     <style name="ItemPowerStationMsg">
@@ -118,8 +118,8 @@
     </style>
 
     <style name="DetalItemLeft11" parent="DetalItemLeft">
-    <item name="android:textSize">@dimen/font_size_11</item>
-</style>
+        <item name="android:textSize">@dimen/font_size_11</item>
+    </style>
 
     <style name="StationItemTitle" parent="DetalItemLeft">
         <item name="android:layout_width">wrap_content</item>
@@ -131,6 +131,15 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/font_size_10</item>
         <item name="android:textColor">#ff747474</item>
+    </style>
+    <!--SiteActivity下的fragment-->
+    <style name="SiteTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/widget_size_3</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textColor">@color/color_black</item>
     </style>
 
 </resources>

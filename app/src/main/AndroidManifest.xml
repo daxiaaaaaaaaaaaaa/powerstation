@@ -67,6 +67,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".modul.activity.EssListActivity"></activity>
         <activity
             android:name=".modul.activity.WelcomeActivity"
             android:configChanges="locale"
@@ -79,7 +80,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modul.activity.IntelligentDeviceActivity"></activity>
+        <activity android:name=".modul.activity.IntelligentDeviceActivity" />
         <activity android:name=".modul.activity.BatteryDetailActivity" />
         <activity android:name=".modul.activity.StationDetailActivity" />
         <activity android:name=".modul.activity.UserInfoActivity" />
@@ -87,9 +88,7 @@
         <activity android:name=".modul.activity.LoginActivity" />
         <activity android:name=".modul.activity.AddESSActivity" />
         <activity android:name=".modul.activity.RegistActivity" />
-        <activity android:name=".modul.activity.MainActivity"/>
-
-
+        <activity android:name=".modul.activity.MainActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

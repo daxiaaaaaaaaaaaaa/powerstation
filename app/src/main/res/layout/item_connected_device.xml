@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/connected_device_cover"
+        android:layout_width="@dimen/widget_size_80"
+        android:layout_height="@dimen/widget_size_80"
+        android:layout_marginRight="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_launcher_background" />
+
+
+    <TextView
+        android:id="@+id/connected_device_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_20"
+        android:layout_toRightOf="@+id/connected_device_cover"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="Amerike Lifetime PV production"
+        android:textColor="@color/color_black" />
+
+    <TextView
+        android:id="@+id/connected_device_day_key"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/connected_device_title"
+        android:layout_toRightOf="@+id/connected_device_cover"
+        android:text="Day PV production:" />
+
+    <TextView
+        android:id="@+id/connected_device_day"
+        style="@style/ItemPowerStationMsg"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/connected_device_title"
+        android:layout_toRightOf="@+id/connected_device_day_key"
+        android:text="100KWH" />
+
+    <TextView
+        android:id="@+id/connected_device_lifetime_key"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/connected_device_day_key"
+        android:layout_toRightOf="@+id/connected_device_cover"
+        android:text="Lifetime PV production:" />
+
+    <TextView
+        android:id="@+id/connected_device_lifetime"
+        style="@style/ItemPowerStationMsg"
+        android:layout_below="@+id/connected_device_day_key"
+        android:layout_toRightOf="@+id/connected_device_lifetime_key"
+        android:text="100KWH" />
+
+    <TextView
+        android:id="@+id/connected_device_rated_key"
+        style="@style/ItemPowerStationKey"
+        android:layout_below="@+id/connected_device_lifetime_key"
+        android:layout_toRightOf="@+id/connected_device_cover"
+        android:text="PV Rated power:" />
+
+    <TextView
+        android:id="@+id/connected_device_rated"
+        style="@style/ItemPowerStationMsg"
+        android:layout_below="@+id/connected_device_lifetime_key"
+        android:layout_toRightOf="@+id/connected_device_rated_key"
+        android:text="100KWH" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/connected_device_address"-->
+        <!--style="@style/ItemPowerStationKey"-->
+        <!--android:layout_below="@+id/connected_device_cover"-->
+        <!--android:layout_marginTop="6dp"-->
+        <!--android:drawableLeft="@drawable/ic_location_on_black_24dp"-->
+        <!--android:text="Lexington Avenue, 10th Floor, Room 202" />-->
+</RelativeLayout>
