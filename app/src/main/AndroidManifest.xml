@@ -83,7 +83,6 @@
         <activity android:name=".modul.activity.IntelligentDeviceActivity" />
         <activity android:name=".modul.activity.BatteryDetailActivity" />
         <activity android:name=".modul.activity.StationDetailActivity" />
-        <activity android:name=".modul.activity.UserInfoActivity" />
         <activity android:name=".modul.activity.ForgetPasswordActivity" />
         <activity android:name=".modul.activity.LoginActivity" />
         <activity android:name=".modul.activity.AddESSActivity" />

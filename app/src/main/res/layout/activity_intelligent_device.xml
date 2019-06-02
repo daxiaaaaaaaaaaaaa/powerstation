@@ -10,12 +10,12 @@
     <include layout="@layout/layout_title" />
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout"
+        android:id="@+id/device_tablayout"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewpage"
+        android:id="@+id/device_viewpage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

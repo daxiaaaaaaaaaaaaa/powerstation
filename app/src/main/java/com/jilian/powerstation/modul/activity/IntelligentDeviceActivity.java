@@ -4,29 +4,30 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
-import com.jilian.powerstation.modul.adapter.PageAdapter;
+import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
 import com.jilian.powerstation.modul.fragment.OneFragment;
 import com.jilian.powerstation.modul.fragment.ThreeFragment;
 import com.jilian.powerstation.modul.fragment.TwoFragment;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 智能设备详情
+ */
 public class IntelligentDeviceActivity extends BaseActivity {
 
     TabLayout tablayout;
     ViewPager viewPager;
     List<Fragment> mlist;
-    PageAdapter adapter;
+    FragmentPagerAdapter adapter;
+    ArrayList<String> mTitle = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class IntelligentDeviceActivity extends BaseActivity {
         super.onDestroy();
         MyApplication.removeActivity(this);
     }
+
     @Override
     protected void createViewModel() {
 
@@ -51,80 +53,45 @@ public class IntelligentDeviceActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        tablayout = findViewById(R.id.tablayout);
-        viewPager = findViewById(R.id.viewpage);
-        mlist = new ArrayList<>();
+        tablayout = findViewById(R.id.device_tablayout);
+        viewPager = findViewById(R.id.device_viewpage);
+        initViewpage();
+        initTab();
+    }
+
+    public void initViewpage() {
         mlist.add(new OneFragment());
         mlist.add(new TwoFragment());
         mlist.add(new ThreeFragment());
-        adapter = new PageAdapter(getSupportFragmentManager(),mlist);
-        //设置TabLayout的模式
-        tablayout.setTabMode(TabLayout.MODE_FIXED);
-        tablayout.addTab(tablayout.newTab().setText("00122"));
-        tablayout.addTab(tablayout.newTab().setText("00122"));
-        tablayout.addTab(tablayout.newTab().setText("00122"));
+
+        adapter = new CinemaTabAdapter(getSupportFragmentManager(), mlist, mTitle);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tablayout));
-        //viewpager加载adapter
         viewPager.setAdapter(adapter);
-        //TabLayout加载viewpager
-        tablayout.setupWithViewPager(viewPager);
-        setTabWidth(tablayout,10);
     }
+
+    public void initTab() {
+        mTitle.add("1111");
+        mTitle.add("2222");
+        mTitle.add("3333");
+        mTitle.add("4444");
+
+        tablayout.addTab(tablayout.newTab().setText(mTitle.get(0)));
+        tablayout.addTab(tablayout.newTab().setText(mTitle.get(1)));
+        tablayout.addTab(tablayout.newTab().setText(mTitle.get(2)));
+        tablayout.addTab(tablayout.newTab().setText(mTitle.get(3)));
+
+        tablayout.setTabMode(TabLayout.MODE_FIXED);
+        tablayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来。
+    }
+
     @Override
     public void initData() {
 
     }
+
     @Override
     public void initListener() {
 
     }
 
-    public  void setTabWidth(final TabLayout tabLayout, final int padding){
-        tabLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //拿到tabLayout的mTabStrip属性
-                    LinearLayout mTabStrip = (LinearLayout) tabLayout.getChildAt(0);
-
-
-
-                    for (int i = 0; i < mTabStrip.getChildCount(); i++) {
-                        View tabView = mTabStrip.getChildAt(i);
-
-                        //拿到tabView的mTextView属性  tab的字数不固定一定用反射取mTextView
-                        Field mTextViewField = tabView.getClass().getDeclaredField("mTextView");
-                        mTextViewField.setAccessible(true);
-
-                        TextView mTextView = (TextView) mTextViewField.get(tabView);
-
-                        tabView.setPadding(0, 0, 0, 0);
-
-                        //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
-                        int width = 0;
-                        width = mTextView.getWidth();
-                        if (width == 0) {
-                            mTextView.measure(0, 0);
-                            width = mTextView.getMeasuredWidth();
-                        }
-
-                        //设置tab左右间距 注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
-                        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
-                        params.width = width ;
-                        params.leftMargin = padding;
-                        params.rightMargin = padding;
-                        tabView.setLayoutParams(params);
-
-                        tabView.invalidate();
-                    }
-
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-    }
 }

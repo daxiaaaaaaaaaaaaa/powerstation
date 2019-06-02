@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_220">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_47"
+            android:layout_marginTop="@dimen/widget_size_12"
+            android:background="@drawable/selector_site_card_address"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:paddingRight="@dimen/widget_size_16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/font_size_8"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/ic_address_red"
+                android:drawablePadding="@dimen/widget_size_6"
+                android:text="Batiment 2, 1900 rue CopyBatiment 2, 1900 rue CopyBatiment 2, 1900 rue Copy"
+                android:textColor="#ffd24f60"
+                android:textSize="@dimen/widget_size_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_weather_red"
+                android:drawablePadding="@dimen/widget_size_6"
+                android:text="24°C"
+                android:textColor="#ffd24f60"
+                android:textSize="@dimen/font_size_19" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/widget_size_12"
+            android:background="@drawable/selector_site_card_bg"
+            android:orientation="vertical"
+            android:padding="@dimen/widget_size_10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/widget_size_10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_16"
+                        android:layout_marginBottom="@dimen/widget_size_8"
+                        android:text="Site name:"
+                        android:textSize="@dimen/font_size_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Battersea Power Station,UK"
+                        android:textColor="#ff222222"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/widget_size_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_16"
+                        android:layout_marginBottom="@dimen/widget_size_8"
+                        android:text="Device Name："
+                        android:textSize="@dimen/font_size_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Battersea Power Station,UK"
+                        android:textColor="#ff222222"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/widget_size_10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_16"
+                        android:layout_marginBottom="@dimen/widget_size_8"
+                        android:text="Site specification："
+                        android:textSize="@dimen/font_size_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="XX"
+                        android:textColor="#ff222222"
+                        android:textSize="@dimen/font_size_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/widget_size_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_16"
+                        android:layout_marginBottom="@dimen/widget_size_8"
+                        android:text="Total Yield(KWh)："
+                        android:textSize="@dimen/font_size_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3000kWh"
+                        android:textColor="#ff222222"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/widget_size_10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_16"
+                        android:layout_marginBottom="@dimen/widget_size_8"
+                        android:text="Firmware version："
+                        android:textSize="@dimen/font_size_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/ic_updata_version"
+                        android:drawablePadding="@dimen/widget_size_5"
+                        android:text="V1.0"
+                        android:textColor="#ff222222"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/widget_size_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_16"
+                        android:layout_marginBottom="@dimen/widget_size_8"
+                        android:text="Online time："
+                        android:textSize="@dimen/font_size_11" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019/04/07 14:00"
+                        android:textColor="#ff222222"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/widget_size_16"
+                    android:layout_marginBottom="@dimen/widget_size_8"
+                    android:text="Site introduction："
+                    android:textSize="@dimen/font_size_11" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Battersea Power Station,UK"
+                    android:textColor="#ff222222"
+                    android:textSize="@dimen/font_size_16" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

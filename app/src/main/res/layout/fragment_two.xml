@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
+    <View
+        style="@style/LineHorizontal"/>
 
-    <View style="@style/LineHorizontal" />
-
-    <android.support.design.widget.TabLayout
+    <include layout="@layout/layout_date_title"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:visibility="visible" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/widget_size_16"/>
 
-    <fragment
-        android:id="@+id/fragment1"
-        android:name="com.jilian.powerstation.modul.fragment.SiteFourFargement"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_two"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 </LinearLayout>

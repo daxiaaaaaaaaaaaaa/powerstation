@@ -142,4 +142,14 @@
         <item name="android:textColor">@color/color_black</item>
     </style>
 
+    <!-- TabLayout主题-->
+    <style name="TabLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="tabIndicatorColor">@color/colorPrimary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabTextColor">@color/text_color_02</item>
+    </style>
+
 </resources>

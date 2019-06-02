@@ -103,9 +103,9 @@ public abstract class BaseMainActivity extends BaseActivity {
         mFragmentList.add(threeFragment);
         mFragmentList.add(fourFragment);
         mFragmentList.add(fiveFragment);
+
         mainTapPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
         viewPager.setAdapter(mainTapPagerAdapter);
-
 
     }
 

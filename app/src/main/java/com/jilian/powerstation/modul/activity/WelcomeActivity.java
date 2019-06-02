@@ -13,7 +13,7 @@ public class WelcomeActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this,EssListActivity.class));
         MyApplication.addActivity(this);
 
     }

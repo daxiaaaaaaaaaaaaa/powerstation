@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/widget_size_16"
+        android:paddingRight="@dimen/widget_size_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Site Operating Mode"
+            android:textColor="@color/color_black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/ic_right"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical|right"
+            android:text="Spontaneous use" />
+    </LinearLayout>
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_marginLeft="@dimen/widget_size_15" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/widget_size_16"
+        android:paddingRight="@dimen/widget_size_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Please input limit SOC"
+            android:textColor="@color/color_black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical|right"
+            android:text="%"
+            android:textColor="@color/color_black" />
+    </LinearLayout>
+</LinearLayout>

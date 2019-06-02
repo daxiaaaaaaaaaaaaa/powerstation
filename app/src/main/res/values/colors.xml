@@ -41,4 +41,10 @@
     <color name="color_btn_deful">#D24F5F</color>
     <color name="color_edittext_bg">#E3E3E3</color>
 
+    <color name="color_chart_defult">#66F1F0F0</color>
+    <color name="color_chart_one">#3D7FCC</color>
+    <color name="color_chart_two">#F8DC29</color>
+    <color name="color_chart_three">#84CE62</color>
+    <color name="color_chart_four">#E24926</color>
+
 </resources>

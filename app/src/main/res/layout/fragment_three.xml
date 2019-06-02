@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:gravity="center"
-              android:layout_height="match_parent">
-    <TextView
-        android:textSize="@dimen/font_size_20"
-        android:layout_gravity="center"
-        android:text="第三个"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title" />
+
+    <View style="@style/LineHorizontal" />
+
+    <RadioGroup
+        android:id="@+id/rg_three_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_30"
+        android:layout_margin="@dimen/widget_size_16"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_three_view1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:checked="true"
+            android:text="Connected device"
+            android:textColor="@color/color_radiobutton_text_defult"
+            android:textSize="@dimen/font_size_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/rb_three_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:text="Site setting"
+            android:textColor="@color/color_radiobutton_text_defult"
+            android:textSize="@dimen/font_size_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/rb_three_view3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:text="Site card"
+            android:textColor="@color/color_radiobutton_text_defult"
+            android:textSize="@dimen/font_size_15" />
+    </RadioGroup>
+
+    <View
+        style="@style/LineHorizontal"
+        android:layout_height="@dimen/widget_size_20" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_three"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 </LinearLayout>
