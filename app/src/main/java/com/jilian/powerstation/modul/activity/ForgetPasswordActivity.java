@@ -6,9 +6,10 @@ import android.os.Bundle;
 
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.CommonActivity;
 
-public class ForgetPasswordActivity extends CommonActivity {
+public class ForgetPasswordActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class ForgetPasswordActivity extends CommonActivity {
 
     @Override
     public void initView() {
-
+        setNormalTitle("Forget password", v -> finish());
     }
 
     @Override

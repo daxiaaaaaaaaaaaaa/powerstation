@@ -8,6 +8,7 @@ import android.view.View;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.modul.activity.StationDetailActivity;
+import com.jilian.powerstation.utils.StatusBarUtil;
 
 
 public class FiveFragment extends BaseFragment  {
@@ -16,7 +17,8 @@ public class FiveFragment extends BaseFragment  {
 
     @Override
     protected void loadData() {
-
+        //根据状态栏颜色来决定状态栏文字用黑色还是白色
+        StatusBarUtil.setStatusBarMode(getmActivity(), false, R.color.colorPrimary);
     }
 
 
@@ -43,7 +45,7 @@ public class FiveFragment extends BaseFragment  {
 
     @Override
     protected void initData() {
-        
+
     }
 
     @Override

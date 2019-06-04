@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.utils.StatusBarUtil;
 
 
 public class FourFragment extends BaseFragment  {
@@ -14,7 +15,7 @@ public class FourFragment extends BaseFragment  {
 
     @Override
     protected void loadData() {
-
+        StatusBarUtil.setStatusBarMode(getmActivity(), true, R.color.white);
     }
 
 
@@ -35,7 +36,7 @@ public class FourFragment extends BaseFragment  {
 
     @Override
     protected void initData() {
-        
+        StatusBarUtil.setStatusBarMode(getmActivity(), true, R.color.white);
     }
 
     @Override

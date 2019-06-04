@@ -50,8 +50,15 @@ public class EssListActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        setNormalTitle("My ESS", v -> finish());
+        setrightImageOne(R.drawable.image_scane, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EssListActivity.this, ScanActivity.class);
+                startActivityForResult(intent, 1001);
+            }
+        });
         mRecycle = findViewById(R.id.rv_ess_list);
-
         iniRecycle();
     }
 
@@ -61,13 +68,13 @@ public class EssListActivity extends BaseActivity {
         mDatas.add(new ESSDto());
         adapter = new ESSListAdapter(mDatas, this);
         mRecycle.setLayoutManager(new LinearLayoutManager(this));
-        mRecycle.addItemDecoration(new DividerItemDecoration(this,1));
+        mRecycle.addItemDecoration(new DividerItemDecoration(this, 1));
         mRecycle.setAdapter(adapter);
 
         adapter.setItemListener(new OnRecycleItemListener() {
             @Override
             public void OnItemClick(View view, int position) {
-                startActivity(new Intent(EssListActivity.this,MainActivity.class));
+                startActivity(new Intent(EssListActivity.this, MainActivity.class));
             }
         });
     }

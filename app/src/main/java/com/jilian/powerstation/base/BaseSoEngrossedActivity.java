@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jilian.powerstation.Constant;
-import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.dialog.LoadingDialog;
@@ -29,13 +28,14 @@ import com.lljjcoder.citywheel.CityConfig;
 import com.lljjcoder.style.citypickerview.CityPickerView;
 
 /**
- * Activity 基类3
+ * Activity 基类
+ * 沉侵状态栏
  *
  * @author weishixiong
  * @Time 2018-03-16
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseSoEngrossedActivity extends AppCompatActivity {
     /***封装toast对象**/
     private static Toast toast;
     /***获取TAG的activity名称**/
@@ -73,8 +73,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (AndroidWorkaround.checkDeviceHasNavigationBar(this)) {
             AndroidWorkaround.assistActivity(findViewById(android.R.id.content));
         }
-        //根据状态栏颜色来决定状态栏文字用黑色还是白色
-        StatusBarUtil.setStatusBarMode(this, true, R.color.white);
+
 
     }
     public LoginDto getLoginDto(){

@@ -6,7 +6,6 @@
     android:orientation="vertical"
 
     >
-
     <com.jilian.powerstation.views.NoScrollViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -41,7 +40,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_home_selected"/>
+                android:src="@drawable/image_tab_one"/>
 
             <TextView
                 android:id="@+id/tv_one"
@@ -50,8 +49,8 @@
                 android:layout_below="@+id/iv_one"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="首页"
-                android:textColor="#c71233"
+                android:text="Home"
+                android:textColor="#D24F60"
                 android:textSize="12sp"/>
 
         </RelativeLayout>
@@ -69,7 +68,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_type_unselect"/>
+                android:src="@drawable/image_tab_two_un"/>
 
             <TextView
                 android:id="@+id/tv_two"
@@ -78,8 +77,8 @@
                 android:layout_below="@+id/iv_two"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="分类"
-                android:textColor="@color/color_main_unselect"
+                android:text="Report"
+                android:textColor="#222222"
                 android:textSize="12sp"/>
 
         </RelativeLayout>
@@ -89,7 +88,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:orientation="vertical">
 
             <ImageView
@@ -97,7 +96,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_circle_unselect"/>
+                android:src="@drawable/image_tab_three_un"/>
 
             <TextView
                 android:id="@+id/tv_three"
@@ -106,8 +105,8 @@
                 android:layout_below="@+id/iv_three"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="朋友圈"
-                android:textColor="@color/color_main_unselect"
+                android:text="Configuration"
+                android:textColor="#222222"
                 android:textSize="12sp"/>
 
         </RelativeLayout>
@@ -125,7 +124,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_shopping_unselect"/>
+                android:src="@drawable/image_tab_four_un"/>
 
             <TextView
                 android:id="@+id/tv_four"
@@ -134,8 +133,8 @@
                 android:layout_below="@+id/iv_four"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="购物车"
-                android:textColor="@color/color_main_unselect"
+                android:text="data"
+                android:textColor="#222222"
                 android:textSize="12sp"/>
 
         </RelativeLayout>
@@ -153,7 +152,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_my_unselect"/>
+                android:src="@drawable/image_tab_five_un"/>
 
             <TextView
                 android:id="@+id/tv_five"
@@ -162,8 +161,8 @@
                 android:layout_below="@+id/iv_five"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="我的"
-                android:textColor="@color/color_main_unselect"
+                android:text="My"
+                android:textColor="#222222"
                 android:textSize="12sp"/>
 
         </RelativeLayout>

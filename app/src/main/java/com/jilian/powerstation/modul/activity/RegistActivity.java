@@ -7,10 +7,11 @@ import android.view.View;
 
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.BaseMainActivity;
 import com.jilian.powerstation.base.CommonActivity;
 
-public class RegistActivity extends CommonActivity {
+public class RegistActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class RegistActivity extends CommonActivity {
 
     @Override
     public void initView() {
+        setNormalTitle("Register", v -> finish());
      findViewById(R.id.tv_regist).setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {

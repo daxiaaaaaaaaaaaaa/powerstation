@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".modul.activity.RegistActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
+              tools:context=".modul.activity.RegistActivity">
 
-    <include layout="@layout/layout_title" />
+    <include layout="@layout/layout_title"/>
 
     <EditText
         style="@style/RegistDefult"
         android:layout_marginTop="@dimen/widget_size_36"
-        android:hint="@string/regist_username" />
+        android:hint="@string/regist_username"/>
 
     <EditText
 
         style="@style/RegistDefult"
-        android:hint="@string/string_email" />
+        android:hint="@string/string_email"/>
 
     <LinearLayout style="@style/RegistDefult">
 
@@ -26,29 +26,29 @@
             android:layout_height="@dimen/widget_size_43"
             android:layout_weight="1"
             android:background="@color/white"
-            android:hint="@string/string_verification_code" />
+            android:hint="@string/string_verification_code"/>
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/string_get_code"
-            android:textColor="@color/liji_c_blue" />
+            android:textColor="@color/liji_c_blue"/>
     </LinearLayout>
 
     <EditText
         style="@style/RegistDefult"
-        android:hint="@string/regist_enter_pwd" />
+        android:hint="@string/regist_enter_pwd"/>
 
     <EditText
         style="@style/RegistDefult"
-        android:hint="@string/regist_confirm_pwd" />
+        android:hint="@string/regist_confirm_pwd"/>
 
     <TextView
         android:id="@+id/tv_regist"
         style="@style/ButtonDefult"
-        android:enabled="true"
         android:layout_marginTop="@dimen/widget_size_30"
-        android:text="@string/regist" />
+        android:enabled="true"
+        android:text="@string/regist"/>
 
 </LinearLayout>

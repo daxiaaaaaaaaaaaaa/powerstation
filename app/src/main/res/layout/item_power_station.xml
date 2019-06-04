@@ -6,15 +6,16 @@
 
     <ImageView
         android:id="@+id/power_station_cover"
-        android:layout_width="@dimen/widget_size_56"
-        android:layout_height="80dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="@dimen/widget_size_80"
+        android:layout_height="@dimen/widget_size_80"
+        android:layout_marginRight="@dimen/widget_size_12"
         android:adjustViewBounds="true"
         android:scaleType="center"
         android:src="@drawable/ic_launcher_background" />
 
 
     <TextView
+        android:textSize="@dimen/font_size_15"
         android:id="@+id/power_station_title"
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -25,6 +26,7 @@
         android:textColor="@color/color_black" />
 
     <TextView
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_day_key"
         style="@style/ItemPowerStationKey"
         android:layout_below="@+id/power_station_title"
@@ -32,6 +34,7 @@
         android:text="Day PV production:" />
 
     <TextView
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_day"
         style="@style/ItemPowerStationMsg"
         android:layout_width="match_parent"
@@ -40,6 +43,8 @@
         android:text="100KWH" />
 
     <TextView
+
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_lifetime_key"
         style="@style/ItemPowerStationKey"
         android:layout_below="@+id/power_station_day_key"
@@ -47,6 +52,7 @@
         android:text="Lifetime PV production:" />
 
     <TextView
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_lifetime"
         style="@style/ItemPowerStationMsg"
         android:layout_below="@+id/power_station_day_key"
@@ -54,6 +60,7 @@
         android:text="100KWH" />
 
     <TextView
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_rated_key"
         style="@style/ItemPowerStationKey"
         android:layout_below="@+id/power_station_lifetime_key"
@@ -61,6 +68,7 @@
         android:text="PV Rated power:" />
 
     <TextView
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_rated"
         style="@style/ItemPowerStationMsg"
         android:layout_below="@+id/power_station_lifetime_key"
@@ -68,6 +76,7 @@
         android:text="100KWH" />
 
     <TextView
+        android:textSize="@dimen/font_size_12"
         android:id="@+id/power_station_address"
         style="@style/ItemPowerStationKey"
         android:layout_below="@+id/power_station_cover"

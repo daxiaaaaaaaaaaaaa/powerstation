@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.modul.adapter.PageAdapter;
+import com.jilian.powerstation.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class TwoFragment extends BaseFragment  {
 
     @Override
     protected void loadData() {
-
+        StatusBarUtil.setStatusBarMode(getmActivity(), true, R.color.white);
     }
 
 

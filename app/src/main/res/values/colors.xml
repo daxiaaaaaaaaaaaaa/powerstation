@@ -23,7 +23,7 @@
     <color name="textColorHint">#CFCFCF</color>
     <color name="colorBackgroundDark">#e0e0e0</color>
     <color name="color_transt">#00000000</color>
-    <color name="translucent_background">#80000000</color>
+    <color name="translucent_background">#00000000</color>
 
 
     <color name="color_main_title">#FFFFFF</color>
@@ -32,7 +32,7 @@
     <color name="color_line">#e6e6e6</color>
     <color name="color_background">#F2F2F2</color>
     <color name="color_hint">#a5a5a5</color>
-    <color name="color_main_select">#65C1C9</color>
+    <color name="color_main_select">#FFFFFF</color>
     <color name="color_main_unselect">#999999</color>
     <color name="press">#e8e8e8</color>
 

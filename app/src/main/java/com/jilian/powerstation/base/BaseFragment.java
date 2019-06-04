@@ -65,6 +65,69 @@ public abstract class BaseFragment extends Fragment {
         }
     }
     /**
+     * 设置右边图片
+     **/
+    public void setrightImageOne(int resource, View.OnClickListener listener) {
+        ImageView imageView = (ImageView) view.findViewById(R.id.iv_right_one);
+        imageView.setImageResource(resource);
+        imageView.setOnClickListener(listener);
+        imageView.setVisibility(View.VISIBLE);
+
+    }
+    /**
+     * 设置右边图片
+     **/
+    public void setrightImageTwo(int resource, View.OnClickListener listener) {
+        ImageView imageView = (ImageView) view.findViewById(R.id.iv_right_two);
+        imageView.setImageResource(resource);
+        imageView.setOnClickListener(listener);
+        imageView.setVisibility(View.VISIBLE);
+
+    }
+    public void setNormalTitle(String title, View.OnClickListener backListener) {
+        setCenterTitle(title, "#000000");
+        setleftImage(R.drawable.image_back, true, backListener);
+        setTitleBg(R.color.white);
+    }
+    /**
+     * 设置背景图片
+     **/
+    public void setTitleBg(int color) {
+        LinearLayout lLtitle = (LinearLayout) view.findViewById(R.id.ll_title);
+        lLtitle.setBackgroundResource(color);
+
+    }
+    /**
+     * 设置左边图片
+     **/
+    public void setleftImage(int resource, boolean isfinish, View.OnClickListener listener) {
+        ImageView imageView = (ImageView) view.findViewById(R.id.iv_left_text);
+        imageView.setImageResource(resource);
+        imageView.setVisibility(View.VISIBLE);
+        if (isfinish) {
+            view.findViewById(R.id.v_back).setVisibility(View.VISIBLE);
+            imageView.setOnClickListener(listener);
+        } else {
+            view. findViewById(R.id.v_back).setVisibility(View.GONE);
+
+        }
+
+    }
+    /**
+     * 设置中间标题
+     **/
+    public void setCenterTitle(String text, String color) {
+        TextView textView = (TextView) view.findViewById(R.id.tv_title);
+        if (!TextUtils.isEmpty(color)) {
+            textView.setTextColor(Color.parseColor(color));
+        }
+        textView.setText(text);
+        textView.setVisibility(View.VISIBLE);
+
+
+    }
+
+    /**
      * 视图是否已经对用户可见，系统的方法
      */
     @Override

@@ -13,8 +13,8 @@
         android:layout_weight="1">
 
         <ImageView
-            android:layout_width="@dimen/widget_size_85"
-            android:layout_height="@dimen/widget_size_85"
+            android:layout_width="@dimen/widget_size_250"
+            android:layout_height="@dimen/widget_size_100"
             android:layout_centerInParent="true"
             android:src="@drawable/image_login_logo" />
 
@@ -45,12 +45,14 @@
             android:id="@+id/et_phone"
             style="@style/LoginDefult"
             android:hint="@string/string_email"
+            android:layout_height="@dimen/widget_size_49"
             android:maxLength="11" />
 
         <com.jilian.powerstation.views.ClearEditText
             android:id="@+id/et_pwd"
             style="@style/LoginDefult"
             android:hint="@string/login_password"
+            android:layout_height="@dimen/widget_size_49"
             android:inputType="textPassword" />
 
         <RelativeLayout
@@ -84,7 +86,9 @@
         <TextView
             android:id="@+id/tv_login"
             style="@style/LoginBtton"
-            android:enabled="false"
+            android:textSize="@dimen/font_size_16"
+            android:layout_height="@dimen/widget_size_49"
+            android:background="@drawable/shape_btn_login_normal"
             android:text="@string/login_submit"/>
 
         <RelativeLayout
@@ -100,7 +104,7 @@
                 android:layout_marginBottom="12dp"
                 android:text="@string/login_local_mode"
                 android:textColor="@color/liji_c_blue"
-                android:textSize="@dimen/font_size_14" />
+                android:textSize="@dimen/font_size_15" />
 
             <TextView
                 android:id="@+id/login_demo_mode"
@@ -111,7 +115,7 @@
                 android:layout_marginBottom="12dp"
                 android:text="@string/login_demo_mode"
                 android:textColor="@color/liji_c_blue"
-                android:textSize="@dimen/font_size_14" />
+                android:textSize="@dimen/font_size_15" />
         </RelativeLayout>
     </LinearLayout>
 

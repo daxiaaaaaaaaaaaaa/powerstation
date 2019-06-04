@@ -5,7 +5,7 @@
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_height">@dimen/widget_size_45</item>
+        <item name="android:layout_height">@dimen/widget_size_49</item>
         <item name="android:background">@drawable/shape_e3e3e3_dark_5</item>
         <item name="android:textColor">@color/color_text</item>
         <item name="android:textSize">@dimen/font_size_16</item>
@@ -74,13 +74,14 @@
 
     <!---->
     <style name="UserInfoText">
+
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/widget_size_45</item>
+        <item name="android:layout_height">@dimen/widget_size_59</item>
         <item name="android:drawableRight">@drawable/ic_right</item>
         <item name="android:drawablePadding">@dimen/widget_size_10</item>
         <item name="android:paddingLeft">@dimen/widget_size_16</item>
         <item name="android:paddingRight">@dimen/widget_size_16</item>
-        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
         <item name="android:textColor">@color/color_black</item>
         <item name="android:gravity">center_vertical</item>
     </style>

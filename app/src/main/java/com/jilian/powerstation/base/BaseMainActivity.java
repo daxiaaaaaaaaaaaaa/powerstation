@@ -3,7 +3,6 @@ package com.jilian.powerstation.base;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,22 +10,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
-import com.jilian.powerstation.base.BaseActivity;
-import com.jilian.powerstation.base.CommonViewPagerAdapter;
 import com.jilian.powerstation.modul.fragment.FiveFragment;
 import com.jilian.powerstation.modul.fragment.FourFragment;
 import com.jilian.powerstation.modul.fragment.OneFragment;
 import com.jilian.powerstation.modul.fragment.ThreeFragment;
 import com.jilian.powerstation.modul.fragment.TwoFragment;
-import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public abstract class BaseMainActivity extends BaseActivity {
     private List<Fragment> mFragmentList;
@@ -106,8 +99,11 @@ public abstract class BaseMainActivity extends BaseActivity {
 
         mainTapPagerAdapter = new CommonViewPagerAdapter(getSupportFragmentManager(), mFragmentList);
         viewPager.setAdapter(mainTapPagerAdapter);
+        init();
 
     }
+
+    protected abstract void init();
 
 
     @Override
@@ -122,88 +118,90 @@ public abstract class BaseMainActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        ivOne.setImageResource(R.drawable.image_home_selected);
-                        tvOne.setTextColor(Color.parseColor("#c71233"));
+                        ivOne.setImageResource(R.drawable.image_tab_one);
+                        tvOne.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivTwo.setImageResource(R.drawable.image_type_unselect);
-                        tvTwo.setTextColor(Color.parseColor("#999999"));
+                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_circle_unselect);
-                        tvThree.setTextColor(Color.parseColor("#999999"));
+                        ivThree.setImageResource(R.drawable.image_tab_three_un);
+                        tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_shopping_unselect);
-                        tvFour.setTextColor(Color.parseColor("#999999"));
+                        ivFour.setImageResource(R.drawable.image_tab_four_un);
+                        tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_my_unselect);
-                        tvFive.setTextColor(Color.parseColor("#999999"));
+                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        tvFive.setTextColor(Color.parseColor("#222222"));
                         break;
                     case 1:
 
-                        ivOne.setImageResource(R.drawable.image_home_unselecte);
-                        tvOne.setTextColor(Color.parseColor("#999999"));
 
-                        ivTwo.setImageResource(R.drawable.image_type_select);
-                        tvTwo.setTextColor(Color.parseColor("#c71233"));
+                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_circle_unselect);
-                        tvThree.setTextColor(Color.parseColor("#999999"));
+                        ivTwo.setImageResource(R.drawable.image_tab_two);
+                        tvTwo.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivFour.setImageResource(R.drawable.image_shopping_unselect);
-                        tvFour.setTextColor(Color.parseColor("#999999"));
+                        ivThree.setImageResource(R.drawable.image_tab_three_un);
+                        tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_my_unselect);
-                        tvFive.setTextColor(Color.parseColor("#999999"));
+                        ivFour.setImageResource(R.drawable.image_tab_four_un);
+                        tvFour.setTextColor(Color.parseColor("#222222"));
+
+                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        tvFive.setTextColor(Color.parseColor("#222222"));
+
 
                         break;
                     case 2:
 
-                        ivOne.setImageResource(R.drawable.image_home_unselecte);
-                        tvOne.setTextColor(Color.parseColor("#999999"));
+                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_type_unselect);
-                        tvTwo.setTextColor(Color.parseColor("#999999"));
+                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_circle_select);
-                        tvThree.setTextColor(Color.parseColor("#c71233"));
+                        ivThree.setImageResource(R.drawable.image_tab_three);
+                        tvThree.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivFour.setImageResource(R.drawable.image_shopping_unselect);
-                        tvFour.setTextColor(Color.parseColor("#999999"));
+                        ivFour.setImageResource(R.drawable.image_tab_four_un);
+                        tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_my_unselect);
-                        tvFive.setTextColor(Color.parseColor("#999999"));
+                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        tvFive.setTextColor(Color.parseColor("#222222"));
 
                         break;
                     case 3:
-                        ivOne.setImageResource(R.drawable.image_home_unselecte);
-                        tvOne.setTextColor(Color.parseColor("#999999"));
+                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_type_unselect);
-                        tvTwo.setTextColor(Color.parseColor("#999999"));
+                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_circle_unselect);
-                        tvThree.setTextColor(Color.parseColor("#999999"));
+                        ivThree.setImageResource(R.drawable.image_tab_three);
+                        tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_shopping_select);
-                        tvFour.setTextColor(Color.parseColor("#c71233"));
+                        ivFour.setImageResource(R.drawable.image_tab_four);
+                        tvFour.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivFive.setImageResource(R.drawable.image_my_unselect);
-                        tvFive.setTextColor(Color.parseColor("#999999"));
+                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        tvFive.setTextColor(Color.parseColor("#222222"));
                         break;
                     case 4:
-                        ivOne.setImageResource(R.drawable.image_home_unselecte);
-                        tvOne.setTextColor(Color.parseColor("#999999"));
+                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_type_unselect);
-                        tvTwo.setTextColor(Color.parseColor("#999999"));
+                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_circle_unselect);
-                        tvThree.setTextColor(Color.parseColor("#999999"));
+                        ivThree.setImageResource(R.drawable.image_tab_three);
+                        tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_shopping_unselect);
-                        tvFour.setTextColor(Color.parseColor("#999999"));
+                        ivFour.setImageResource(R.drawable.image_tab_four);
+                        tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_my_select);
-                        tvFive.setTextColor(Color.parseColor("#c71233"));
+                        ivFive.setImageResource(R.drawable.image_tab_five);
+                        tvFive.setTextColor(Color.parseColor("#D24F60"));
                         break;
                 }
             }
@@ -247,42 +245,6 @@ public abstract class BaseMainActivity extends BaseActivity {
         });
     }
 
-    /**
-     * 菜单、返回键响应
-     */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            exitBy2Click(); //调用双击退出函数
-            return false;
-        }
-        return true;
-    }
 
-    /**
-     * 双击退出函数
-     */
-    private static Boolean isExit = false;
-
-    /**
-     * 退出应用程序
-     */
-    private void exitBy2Click() {
-        Timer tExit = null;
-        if (!isExit) {
-            isExit = true; // 准备退出
-            ToastUitl.showImageToastTips("再按一次退出程序");
-            tExit = new Timer();
-            tExit.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    isExit = false; // 取消退出
-                }
-            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
-
-        } else {
-            System.exit(0);
-        }
-    }
 
 }

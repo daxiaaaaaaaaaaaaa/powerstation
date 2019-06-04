@@ -2,6 +2,7 @@ package com.jilian.powerstation.modul.activity;
 
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.CommonActivity;
 import com.jilian.powerstation.common.dto.LoginDto;
@@ -31,7 +33,7 @@ import com.jilian.powerstation.views.ClearEditText;
  * 2019-03-17
  *
  */
-public class LoginActivity extends CommonActivity {
+public class LoginActivity extends BaseActivity {
     private RelativeLayout rlCancel;
     private ClearEditText etPhone;
     private ClearEditText etPwd;
@@ -76,6 +78,7 @@ public class LoginActivity extends CommonActivity {
         tvLoginRegister = (TextView) findViewById(R.id.tv_login_register);
         tvLoginForgetPwd = (TextView) findViewById(R.id.tv_login_forget_pwd);
         tvLogin = (TextView) findViewById(R.id.tv_login);
+        tvLoginForgetPwd.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG ); //下划线
     }
 
     @Override
@@ -151,24 +154,7 @@ public class LoginActivity extends CommonActivity {
             }
         });
 
-//        rlEye.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (!mbDisplayFlg) {
-//                    // display password text, for example "123456"
-//                    etPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-//                    ivEye.setImageResource(R.drawable.image_login_open);
-//                } else {
-//                    // hide password, display "."
-//                    etPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//                    ivEye.setImageResource(R.drawable.image_login_close);
-//                }
-//                etPwd.setSelection(etPwd.getText().toString().length());//将光标移至文字末尾
-//                mbDisplayFlg = !mbDisplayFlg;
-//                etPwd.postInvalidate();
-//
-//            }
-//        });
+
 
         tvLoginForgetPwd.setOnClickListener(new View.OnClickListener() {
             @Override

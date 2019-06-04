@@ -88,6 +88,7 @@
         <activity android:name=".modul.activity.AddESSActivity" />
         <activity android:name=".modul.activity.RegistActivity" />
         <activity android:name=".modul.activity.MainActivity" />
+        <activity android:name=".modul.activity.ScanActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
