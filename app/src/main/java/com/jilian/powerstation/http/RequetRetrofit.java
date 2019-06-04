@@ -52,7 +52,8 @@ public class RequetRetrofit {
                     .writeTimeout(Constant.Server.TIME_OUT, TimeUnit.SECONDS)
                     .addNetworkInterceptor(new StethoInterceptor())
                     //token拦截器
-                    .addInterceptor(new ReceivedTokenInterceptor()) //这部分
+                    .addInterceptor(new ReceivedCookiesInterceptor()) //这部分
+                    .addInterceptor(new AddCookiesInterceptor()) //这部分
                     .build();
         }
 
