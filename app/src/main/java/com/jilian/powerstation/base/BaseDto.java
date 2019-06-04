@@ -20,7 +20,7 @@ public class BaseDto<T> implements Serializable{
     private T data;
 
     public boolean isSuccess() {
-        return code == 200;
+        return code == 100;
     }
     public boolean isLogOut(){
         return code==10010;

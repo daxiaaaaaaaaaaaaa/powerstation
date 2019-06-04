@@ -13,12 +13,12 @@ public class Constant {
      * 请求后台的所有API接口都在这里配置;统一管理
      */
     public static class Server {
-        public final static int SUCCESS_CODE = 200;
+        public final static int SUCCESS_CODE = 100;
         //服务器超时时间 16 秒
         public final static int TIME_OUT = 16;
 
         public final static int LOG_OUT_CODE = 10010;
-        public static String BASE_URL = "http://47.92.121.124:9010/";
+        public static String BASE_URL = "http://218.17.28.106:2222/";
     }
 
     /**
@@ -27,6 +27,7 @@ public class Constant {
     public static class SP_VALUE {
 
         public static final String SP = "sp";//sp
+        public static final String TOKEN = "token";//token
         public static final String SESSION_ID = "session_id";//
         public static final String LOGIN_DTO = "LOGIN_DTO";//登录实体key
     }

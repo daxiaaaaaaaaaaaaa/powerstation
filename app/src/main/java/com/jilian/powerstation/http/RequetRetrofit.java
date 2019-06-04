@@ -51,7 +51,7 @@ public class RequetRetrofit {
                     .addNetworkInterceptor(new StethoInterceptor())
                     //sessionId 拦截器
                     .addInterceptor(new AddCookiesInterceptor()) //这部分
-                    .addInterceptor(new ReceivedCookiesInterceptor()) //这部分
+                   // .addInterceptor(new ReceivedCookiesInterceptor()) //这部分
                     //如果HTTPS 需要证书 就打开这部分
                     //.hostnameVerifier(new SafeHostnameVerifier())
                   //  .sslSocketFactory(CcsApplication.getSslSocket(),new SafeTrustManager())

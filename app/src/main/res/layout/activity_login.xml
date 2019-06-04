@@ -42,11 +42,11 @@
 
 
         <com.jilian.powerstation.views.ClearEditText
-            android:id="@+id/et_phone"
+            android:id="@+id/et_mail"
             style="@style/LoginDefult"
             android:hint="@string/string_email"
             android:layout_height="@dimen/widget_size_49"
-            android:maxLength="11" />
+             />
 
         <com.jilian.powerstation.views.ClearEditText
             android:id="@+id/et_pwd"
@@ -84,11 +84,12 @@
         </RelativeLayout>
 
         <TextView
+            android:enabled="false"
             android:id="@+id/tv_login"
             style="@style/LoginBtton"
             android:textSize="@dimen/font_size_16"
             android:layout_height="@dimen/widget_size_49"
-            android:background="@drawable/shape_btn_login_normal"
+            android:background="@drawable/shape_btn_login_dark"
             android:text="@string/login_submit"/>
 
         <RelativeLayout

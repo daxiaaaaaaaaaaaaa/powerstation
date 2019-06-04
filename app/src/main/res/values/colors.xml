@@ -26,8 +26,11 @@
     <color name="translucent_background">#00000000</color>
 
 
-    <color name="color_main_title">#FFFFFF</color>
-    <color name="color_main_title_dark">#B2E0E4</color>
+    <color name="color_main_title">#c71233</color>
+
+    <color name="color_blue">#3298DB</color>
+
+    <color name="color_blue_dark">#3298DB</color>
 
     <color name="color_line">#e6e6e6</color>
     <color name="color_background">#F2F2F2</color>
