@@ -2,8 +2,11 @@ package com.jilian.powerstation.api;
 
 
 import com.jilian.powerstation.base.BaseDto;
+import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 
@@ -35,13 +38,9 @@ public interface ApiService {
     @POST("/HESS_SCADA/app/user/getVerificationCode.app")
     Flowable<BaseDto<BaseResultDto>> getVerificationCode(@Body UserInfoVo vo);
 
-
-
-
     /**
      * 登录
      * post
-     * 表单提交
      *
      * @param vo
      * @return
@@ -49,7 +48,21 @@ public interface ApiService {
     @POST("/HESS_SCADA/app/user/login.app")
     Flowable<BaseDto<LoginDto>> login(@Body UserInfoVo vo);
 
+    /**
+     * 忘记密码确认更改
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/forgetAndResetPassword.app")
+    Flowable<BaseDto> forgetAndResetPassword(@Body ForgetVo vo);
 
+    /**
+     * 电站列表
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/getPowerList.app")
+    Flowable<BaseDto<PowerListDto>> getPowerList(@Body BaseVo vo);
 
 }
 

@@ -65,7 +65,11 @@ public class LoginActivity extends BaseActivity {
     protected void createViewModel() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
     }
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        MyApplication.clearSpecifyActivities(new Class[]{WelcomeActivity.class});
+    }
     @Override
     public int intiLayout() {
         return R.layout.activity_login;

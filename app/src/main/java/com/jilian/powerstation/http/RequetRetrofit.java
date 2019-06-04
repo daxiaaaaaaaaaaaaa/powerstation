@@ -8,6 +8,8 @@ import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.api.ApiService;
 import com.jilian.powerstation.interceptor.AddCookiesInterceptor;
 import com.jilian.powerstation.interceptor.ReceivedCookiesInterceptor;
+import com.jilian.powerstation.interceptor.ReceivedTokenInterceptor;
+import com.jilian.powerstation.interceptor.TokenInterceptor;
 
 
 import java.util.concurrent.TimeUnit;
@@ -23,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RequetRetrofit {
     private static final String TAG = "RequetRetrofit";
-     /**
+    /**
      * 创建okhttp相关对象
      */
     private static OkHttpClient okHttpClient;
@@ -49,13 +51,8 @@ public class RequetRetrofit {
                     .readTimeout(Constant.Server.TIME_OUT, TimeUnit.SECONDS)
                     .writeTimeout(Constant.Server.TIME_OUT, TimeUnit.SECONDS)
                     .addNetworkInterceptor(new StethoInterceptor())
-                    //sessionId 拦截器
-                    .addInterceptor(new AddCookiesInterceptor()) //这部分
-                   // .addInterceptor(new ReceivedCookiesInterceptor()) //这部分
-                    //如果HTTPS 需要证书 就打开这部分
-                    //.hostnameVerifier(new SafeHostnameVerifier())
-                  //  .sslSocketFactory(CcsApplication.getSslSocket(),new SafeTrustManager())
-                    //
+                    //token拦截器
+                    .addInterceptor(new ReceivedTokenInterceptor()) //这部分
                     .build();
         }
 
@@ -69,7 +66,6 @@ public class RequetRetrofit {
         }
         return retrofit.create(ApiService.class);
     }
-
 
 
 }

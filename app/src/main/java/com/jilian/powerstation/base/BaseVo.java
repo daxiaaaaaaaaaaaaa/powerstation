@@ -8,6 +8,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BaseVo implements Serializable {
-    private Integer pageNum;
-    private Integer pageSize;
+    private Integer page;//开始页数
+    private Integer rows;//每页记录数
 }

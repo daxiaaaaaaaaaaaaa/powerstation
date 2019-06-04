@@ -5,8 +5,11 @@ import android.util.Log;
 
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseViewModel;
+import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 import com.jilian.powerstation.factory.Factoty;
@@ -38,8 +41,14 @@ public class UserViewModel extends BaseViewModel {
      * 登陆
      */
     private LiveData<BaseDto<LoginDto>> loginliveData;
-
-
+    /**
+     * 修改密码
+     */
+    private LiveData<BaseDto> forgetliveData;
+    /**
+     * 我的电站列表
+     */
+    private LiveData<BaseDto<PowerListDto>> powerListliveData;
     /**
      * 注册
      *
@@ -53,7 +62,7 @@ public class UserViewModel extends BaseViewModel {
         vo.setAccountName(accountName);
         vo.setAccountEmail(accountEmail);
         vo.setVerCode(verCode);
-        vo.setAccountPwd(accountPwd);
+        vo.setAccountPwd(Md5Util.getMd5(accountPwd));
         addUserliveData = Factoty.getRepository(UserRepository.class).addUserInfo(vo);
     }
 
@@ -82,6 +91,38 @@ public class UserViewModel extends BaseViewModel {
         Log.e(TAG, "login: "+ Md5Util.getMd5(accountPwd));
         loginliveData = Factoty.getRepository(UserRepository.class).login(vo);
     }
+
+    /**
+     *
+     * @param accountEmail
+     * @param newPassword
+     * @param verCode
+     */
+    public void forgetAndResetPassword(String accountEmail, String verCode,String newPassword) {
+        ForgetVo vo = new ForgetVo();
+        vo.setAccountEmail(accountEmail);
+        vo.setNewPassword(Md5Util.getMd5(newPassword));
+        vo.setVerCode(verCode);
+        Log.e(TAG, "login: "+ Md5Util.getMd5(newPassword));
+        forgetliveData = Factoty.getRepository(UserRepository.class).forgetAndResetPassword(vo);
+    }
+
+    /**
+     * 我的电站列表
+     * @param page
+     * @param rows
+     */
+    public void getPowerList(Integer page, Integer rows) {
+        BaseVo vo = new BaseVo();
+        vo.setPage(page);
+        vo.setRows(rows);
+        powerListliveData = Factoty.getRepository(UserRepository.class).getPowerList(vo);
+    }
+
+
+
+
+
 
 
 }

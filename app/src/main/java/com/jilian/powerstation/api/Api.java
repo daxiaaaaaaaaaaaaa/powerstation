@@ -2,8 +2,11 @@ package com.jilian.powerstation.api;
 
 
 import com.jilian.powerstation.base.BaseDto;
+import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 import com.jilian.powerstation.http.RequetRetrofit;
@@ -41,6 +44,26 @@ public class Api {
     public static Flowable<BaseDto<LoginDto>> login(UserInfoVo vo) {
         return RequetRetrofit.getInstance().login(vo);
     }
+    /**
+     * 忘记密码确认更改
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto> forgetAndResetPassword(ForgetVo vo) {
+        return RequetRetrofit.getInstance().forgetAndResetPassword(vo);
+    }
+
+    /**
+     * 我的电站列表
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<PowerListDto>> getPowerList(BaseVo vo) {
+        return RequetRetrofit.getInstance().getPowerList(vo);
+    }
+
+
+
 
 
 

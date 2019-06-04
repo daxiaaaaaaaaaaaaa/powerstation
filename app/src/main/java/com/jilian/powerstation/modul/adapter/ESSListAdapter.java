@@ -10,39 +10,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jilian.powerstation.R;
-import com.jilian.powerstation.common.dto.ESSDto;
-import com.jilian.powerstation.listener.OnRecycleItemListener;
+import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.listener.CustomItemClickListener;
 
 import java.util.List;
 
-public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ESSListHolder> {
+public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ViewHolder> {
 
-    private List<ESSDto> mDatas;
-    private Context context;
-    private OnRecycleItemListener itemListener;
-
-
-    public ESSListAdapter(List<ESSDto> mDatas, Context context) {
+    private List<PowerDto> mDatas;
+    private Context mContext;
+    private CustomItemClickListener listener;
+    public ESSListAdapter(List<PowerDto> mDatas, Context context, CustomItemClickListener listener) {
         this.mDatas = mDatas;
-        this.context = context;
+        this.mContext = context;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
-    public ESSListHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ESSListHolder(LayoutInflater.from(context).inflate(R.layout.item_power_station, viewGroup, false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_power_station, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view, listener);
+        return viewHolder;
+
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ESSListHolder essListHolder, int i) {
-        essListHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (itemListener != null) {
-                    itemListener.OnItemClick(v, i);
-                }
-            }
-        });
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+
 
     }
 
@@ -51,11 +48,8 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ESSListH
         return mDatas.size();
     }
 
-    public void setItemListener(OnRecycleItemListener itemListener) {
-        this.itemListener = itemListener;
-    }
 
-    class ESSListHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
         private TextView powerToday;//当天发电
@@ -64,13 +58,19 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ESSListH
         private TextView address;
         private ImageView cover;
 
-        public ESSListHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final CustomItemClickListener listener) {
             super(itemView);
             name = itemView.findViewById(R.id.power_station_title);
             powerTotal = itemView.findViewById(R.id.power_station_day);
             rated = itemView.findViewById(R.id.power_station_rated);
             address = itemView.findViewById(R.id.power_station_lifetime);
             cover = itemView.findViewById(R.id.power_station_cover);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(itemView, getAdapterPosition());
+                }
+            });
         }
     }
 }
