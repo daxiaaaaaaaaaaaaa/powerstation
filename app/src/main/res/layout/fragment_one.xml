@@ -33,7 +33,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_station_11" />
+                        android:src="@drawable/image_station_11" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -61,14 +61,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/ic_station_1" />
+                        android:src="@drawable/image_station_1" />
 
                     <ImageView
                         android:id="@+id/img_station_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_station_2" />
+                        android:src="@drawable/image_station_2" />
 
                     <ImageView
                         android:id="@+id/img_station_3"
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/ic_station_3" />
+                        android:src="@drawable/image_station_3" />
 
                     <ImageView
                         android:id="@+id/img_station_4"
@@ -84,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_station_4" />
+                        android:src="@drawable/image_station_4" />
 
                     <ImageView
                         android:id="@+id/img_station_5"
@@ -95,7 +95,7 @@
                         android:layout_marginBottom="@dimen/widget_size_16"
                         android:layout_toRightOf="@+id/img_station_3"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_station_5" />
+                        android:src="@drawable/image_station_5" />
 
                     <ImageView
                         android:id="@+id/img_station_6"
@@ -106,7 +106,7 @@
                         android:layout_marginBottom="@dimen/widget_size_16"
                         android:layout_toLeftOf="@+id/img_station_1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_station_6" />
+                        android:src="@drawable/image_station_6" />
 
                     <ImageView
                         android:id="@+id/img_station_7"
@@ -119,7 +119,7 @@
                         android:layout_marginRight="@dimen/widget_size_16"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_station_7" />
+                        android:src="@drawable/image_station_7" />
 
                     <ImageView
                         android:id="@+id/img_station_8"
@@ -128,7 +128,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/img_station_1"
                         android:layout_toRightOf="@+id/img_station_2"
-                        android:src="@drawable/ic_station_8" />
+                        android:src="@drawable/image_station_8" />
 
                     <ImageView
                         android:id="@+id/img_station_9"
@@ -137,7 +137,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@+id/img_station_4"
                         android:layout_toRightOf="@+id/img_station_1"
-                        android:src="@drawable/ic_station_9" />
+                        android:src="@drawable/image_station_9" />
 
                     <ImageView
                         android:id="@+id/img_station_10"
@@ -146,7 +146,7 @@
                         android:layout_above="@+id/img_station_3"
                         android:layout_below="@+id/img_station_1"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/ic_station_10" />
+                        android:src="@drawable/image_station_10" />
                 </RelativeLayout>
 
             </RelativeLayout>

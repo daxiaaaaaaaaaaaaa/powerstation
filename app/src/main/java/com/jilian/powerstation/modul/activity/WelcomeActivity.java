@@ -44,7 +44,7 @@ public class WelcomeActivity extends FragmentActivity {
     }
 
     private void goToMain() {
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this,MainActivity.class));
     }
 
 

@@ -176,10 +176,10 @@ public class LoginActivity extends BaseActivity {
      */
     private void login() {
         //校验邮箱
-//        if(!Utils.checkPhoneNo(etMail.getText().toString())){
-//            ToastUitl.showImageToastTips(getResources().getString(R.string.error_phone));
-//            return;
-//        }
+////        if(!Utils.checkPhoneNo(etMail.getText().toString())){
+////            ToastUitl.showImageToastTips(getResources().getString(R.string.error_phone));
+////            return;
+////        }
         showLoadingDialog();
         tvLogin.setEnabled(false);
         userViewModel.login(etMail.getText().toString(), etPwd.getText().toString());

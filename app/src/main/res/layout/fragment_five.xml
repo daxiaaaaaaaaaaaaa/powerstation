@@ -79,7 +79,7 @@
 
     <TextView
         style="@style/UserInfoText"
-        android:drawableLeft="@drawable/ic_chang_site"
+        android:drawableLeft="@drawable/image_chang_site"
         android:text="Change Site" />
 
     <View
@@ -120,7 +120,7 @@
         android:paddingLeft="@dimen/widget_size_20"
         android:layout_marginTop="@dimen/widget_size_60"
         android:layout_marginRight="@dimen/widget_size_20"
-        android:drawableLeft="@drawable/ic_logout"
+        android:drawableLeft="@drawable/image_logout"
         android:drawablePadding="8dp"
         android:drawableTint="@color/white"
         android:gravity="center_vertical"
