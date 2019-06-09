@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/item_cover"
+        android:layout_width="@dimen/widget_size_80"
+        android:layout_height="@dimen/widget_size_80"
+        android:layout_marginRight="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_launcher_background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_80"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_20"
+            android:layout_toRightOf="@+id/connected_device_cover"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="Amerike Lifetime PV production"
+            android:textColor="@color/color_black" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_item_msg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_item_msg1"
+                style="@style/ItemPowerStationKey"
+                android:layout_below="@+id/connected_device_title"
+                android:layout_toRightOf="@+id/connected_device_cover"
+                android:text="Day PV production:" />
+
+            <TextView
+                android:id="@+id/tv_item_value1"
+                style="@style/ItemPowerStationMsg"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/connected_device_title"
+                android:layout_toRightOf="@+id/connected_device_day_key"
+                android:text="100KWH" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_item_msg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_item_msg2"
+                style="@style/ItemPowerStationKey"
+                android:layout_below="@+id/connected_device_day_key"
+                android:layout_toRightOf="@+id/connected_device_cover"
+                android:text="Lifetime PV production:" />
+
+            <TextView
+                android:id="@+id/tv_item_value2"
+                style="@style/ItemPowerStationMsg"
+                android:layout_below="@+id/connected_device_day_key"
+                android:layout_toRightOf="@+id/connected_device_lifetime_key"
+                android:text="100KWH" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_item_msg3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_item_msg3"
+                style="@style/ItemPowerStationKey"
+                android:layout_below="@+id/connected_device_lifetime_key"
+                android:layout_toRightOf="@+id/connected_device_cover"
+                android:text="PV Rated power:" />
+
+            <TextView
+                android:id="@+id/tv_item_value3"
+                style="@style/ItemPowerStationMsg"
+                android:layout_below="@+id/connected_device_lifetime_key"
+                android:layout_toRightOf="@+id/connected_device_rated_key"
+                android:text="100KWH" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

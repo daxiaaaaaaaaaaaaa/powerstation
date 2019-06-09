@@ -5,9 +5,10 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/smart_recycle"
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/widget_size_15"
-        android:background="@color/white" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/widget_size_5"
+        android:layout_marginRight="@dimen/widget_size_5" />
+
 </LinearLayout>

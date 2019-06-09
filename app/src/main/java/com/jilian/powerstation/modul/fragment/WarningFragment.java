@@ -2,10 +2,15 @@ package com.jilian.powerstation.modul.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RadioGroup;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
@@ -13,6 +18,8 @@ import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
+import com.jilian.powerstation.modul.adapter.PageAdapter;
+import com.jilian.powerstation.modul.adapter.WarningAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +30,15 @@ import java.util.List;
  * Discrebe: 智能设备列表
  */
 public class WarningFragment extends BaseFragment {
-    private List<ESSDto> mDatas;
-    private ConnectedsAdapter adapter;
-    private RecyclerView mRecycle;
+
+    private RadioGroup radioGroup;
+    private ViewPager viewPager;
+    private InverterWarningFragment inverterWarningFragment;
+    private BatteryWarningFragment batteryWarningFragment;
+    private SmartWarningFragment smartWarningFragment;
+
+    FragmentPagerAdapter adapter;
+    ArrayList<Fragment> fragments = new ArrayList<>();
 
     @Override
     protected void loadData() {
@@ -44,8 +57,25 @@ public class WarningFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        mRecycle = view.findViewById(R.id.rv_list);
-        iniRecycle();
+        viewPager = view.findViewById(R.id.warning_viewpage);
+        radioGroup = view.findViewById(R.id.rg_date);
+        initViewpage();
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_view1:
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.rb_view2:
+                        viewPager.setCurrentItem(1);
+                        break;
+                    case R.id.rb_view3:
+                        viewPager.setCurrentItem(2);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -58,20 +88,15 @@ public class WarningFragment extends BaseFragment {
 
     }
 
-    private void iniRecycle() {
-        mDatas = new ArrayList<>();
-        mDatas.add(new ESSDto());
-        mDatas.add(new ESSDto());
-        adapter = new ConnectedsAdapter(mDatas, getContext());
-        mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(),1));
-        mRecycle.setAdapter(adapter);
 
-        adapter.setItemListener(new OnRecycleItemListener() {
-            @Override
-            public void OnItemClick(View view, int position) {
-                startActivity(new Intent(getContext(), MainActivity.class));
-            }
-        });
+    public void initViewpage() {
+        inverterWarningFragment = new InverterWarningFragment();
+        batteryWarningFragment = new BatteryWarningFragment();
+        smartWarningFragment = new SmartWarningFragment();
+        fragments.add(inverterWarningFragment);
+        fragments.add(batteryWarningFragment);
+        fragments.add(smartWarningFragment);
+        adapter = new PageAdapter(getFragmentManager(), fragments);
+        viewPager.setAdapter(adapter);
     }
 }

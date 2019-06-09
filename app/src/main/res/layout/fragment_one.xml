@@ -18,7 +18,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_size_200"
+                android:layout_height="@dimen/widget_size_250"
                 android:layout_margin="15dp"
                 android:background="@drawable/share_main_bg"
                 android:padding="@dimen/widget_size_12">

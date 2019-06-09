@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/color_F2F2F2"
     android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
 
-    <View style="@style/LineHorizontal" />
-
     <RadioGroup
         android:id="@+id/rg_three_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/widget_size_30"
-        android:layout_margin="@dimen/widget_size_16"
-        android:orientation="horizontal">
+        android:background="@color/white"
+        android:layout_height="@dimen/widget_size_45"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/widget_size_15"
+        android:paddingLeft="@dimen/widget_size_15"
+        android:paddingRight="@dimen/widget_size_15">
 
         <RadioButton
             android:id="@+id/rb_three_view1"
@@ -56,14 +57,10 @@
             android:textSize="@dimen/font_size_15" />
     </RadioGroup>
 
-    <View
-        style="@style/LineHorizontal"
-        android:layout_height="@dimen/widget_size_20" />
-
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_three"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     </android.support.v4.view.ViewPager>
 </LinearLayout>

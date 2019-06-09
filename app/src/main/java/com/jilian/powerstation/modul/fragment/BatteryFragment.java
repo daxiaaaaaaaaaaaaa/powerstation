@@ -13,6 +13,7 @@ import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
+import com.jilian.powerstation.modul.adapter.DataAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.List;
  */
 public class BatteryFragment extends BaseFragment {
     private List<ESSDto> mDatas;
-    private ConnectedsAdapter adapter;
+    private DataAdapter adapter;
     private RecyclerView mRecycle;
 
     @Override
@@ -62,7 +63,7 @@ public class BatteryFragment extends BaseFragment {
         mDatas = new ArrayList<>();
         mDatas.add(new ESSDto());
         mDatas.add(new ESSDto());
-        adapter = new ConnectedsAdapter(mDatas, getContext());
+        adapter = new DataAdapter(mDatas, getContext(),1);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycle.addItemDecoration(new DividerItemDecoration(getContext(),1));
         mRecycle.setAdapter(adapter);

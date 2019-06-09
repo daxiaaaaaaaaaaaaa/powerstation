@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rg_date"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/share_date_title_bg"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/rb_view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_30"
+        android:layout_weight="1"
+        android:background="@drawable/selector_radiobutton_bg"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:text="Inverter Warning"
+        android:textColor="@color/color_radiobutton_text" />
+
+    <RadioButton
+        android:id="@+id/rb_view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_30"
+        android:layout_weight="1"
+        android:background="@drawable/selector_radiobutton_bg"
+        android:button="@null"
+        android:gravity="center"
+        android:text="Battery alarm"
+        android:textColor="@color/color_radiobutton_text" />
+
+    <RadioButton
+        android:id="@+id/rb_view3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_30"
+        android:layout_weight="1"
+        android:background="@drawable/selector_radiobutton_bg"
+        android:button="@null"
+        android:gravity="center"
+        android:text="Equipment alarm"
+        android:textColor="@color/color_radiobutton_text" />
+</RadioGroup>

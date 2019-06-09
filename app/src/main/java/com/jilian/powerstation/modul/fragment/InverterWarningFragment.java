@@ -12,10 +12,13 @@ import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.MainActivity;
-import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
 import com.jilian.powerstation.modul.adapter.DataAdapter;
+import com.jilian.powerstation.modul.adapter.WarningAdapter;
+import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.views.RecyclerViewSpacesItemDecoration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,9 +26,9 @@ import java.util.List;
  * <p>
  * Discrebe: 智能设备列表
  */
-public class SmartFragment extends BaseFragment {
+public class InverterWarningFragment extends BaseFragment {
     private List<ESSDto> mDatas;
-    private DataAdapter adapter;
+    private WarningAdapter adapter;
     private RecyclerView mRecycle;
 
     @Override
@@ -40,12 +43,12 @@ public class SmartFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_smart;
+        return R.layout.fragment_warning_inverter;
     }
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        mRecycle = view.findViewById(R.id.smart_recycle);
+        mRecycle = view.findViewById(R.id.rv_list);
         iniRecycle();
     }
 
@@ -63,9 +66,11 @@ public class SmartFragment extends BaseFragment {
         mDatas = new ArrayList<>();
         mDatas.add(new ESSDto());
         mDatas.add(new ESSDto());
-        adapter = new DataAdapter(mDatas, getContext(),2);
+        adapter = new WarningAdapter(mDatas, getContext());
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(),1));
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put(RecyclerViewSpacesItemDecoration.BOTTOM_DECORATION, DisplayUtil.dip2px(getContext(), 15));//下间距
+        mRecycle.addItemDecoration(new RecyclerViewSpacesItemDecoration(map));
         mRecycle.setAdapter(adapter);
 
         adapter.setItemListener(new OnRecycleItemListener() {

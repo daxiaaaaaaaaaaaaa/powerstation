@@ -45,7 +45,6 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
     private SmartRefreshLayout srHasData;
     private SmartRefreshLayout srNoData;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

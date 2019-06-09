@@ -154,11 +154,37 @@
         <item name="tabTextColor">@color/text_color_02</item>
     </style>
 
-    <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
+    <style name="TabLayoutTextStyle">
+
         <item name="android:textSize">@dimen/font_size_15</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/color_main_button</item>
         <item name="textAllCaps">false</item>
+    </style>
+
+    <!-- SiteSetting-->
+    <style name="SiteTextValueStytle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
+        <item name="android:textColor">#222222</item>
+    </style>
+
+    <style name="SiteTextTimeStytle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">@dimen/widget_size_8</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
+        <item name="android:textColor">#222222</item>
+    </style>
+    <style name="SiteEditTextStytle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">@dimen/widget_size_8</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textSize">@dimen/font_size_15</item>
     </style>
 
 </resources>

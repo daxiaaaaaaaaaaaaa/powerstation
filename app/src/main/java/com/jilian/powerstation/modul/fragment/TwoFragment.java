@@ -53,6 +53,19 @@ public class TwoFragment extends BaseFragment  {
     protected void initView(View view, Bundle savedInstanceState) {
         viewPager = view.findViewById(R.id.vp_two);
         radioGroup = view.findViewById(R.id.rg_date);
+        setNormalTitle("Site Name", v -> getActivity().finish());
+        setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        setrightImageTwo(R.drawable.image_right_two, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

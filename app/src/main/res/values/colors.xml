@@ -49,5 +49,6 @@
     <color name="color_chart_two">#F8DC29</color>
     <color name="color_chart_three">#84CE62</color>
     <color name="color_chart_four">#E24926</color>
+    <color name="color_F2F2F2">#F2F2F2</color>
 
 </resources>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_F2F2F2"
     android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
@@ -10,8 +11,12 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/four_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:tabTextAppearance="@style/TabLayoutTextStyle" />
+        android:layout_height="@dimen/widget_size_45"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/transparent"
+        app:tabSelectedTextColor="@color/color_btn_deful"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="#747474" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/four_viewPager"
