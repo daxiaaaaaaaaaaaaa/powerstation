@@ -29,7 +29,11 @@ public class BatteryDetailActivity extends BaseActivity {
     protected void createViewModel() {
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+    }
     @Override
     public int intiLayout() {
         return R.layout.activity_battery_detail;

@@ -11,7 +11,7 @@ import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-public class ScanActivity  extends BaseSoEngrossedActivity {
+public class ScanActivity extends BaseSoEngrossedActivity {
     @Override
     protected void createViewModel() {
 
@@ -22,11 +22,13 @@ public class ScanActivity  extends BaseSoEngrossedActivity {
 
         return R.layout.activity_scan;
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         MyApplication.clearSpecifyActivities(new Class[]{WelcomeActivity.class});
     }
+
     @Override
     public void initView() {
         setTranslTitle("Scan QR code", v -> finish());
@@ -41,21 +43,20 @@ public class ScanActivity  extends BaseSoEngrossedActivity {
         captureFragment.setAnalyzeCallback(analyzeCallback);
         /**
          * 替换我们的扫描控件
-         */ getSupportFragmentManager().beginTransaction().replace(R.id.fl_my_container, captureFragment).commit();
+         */
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_my_container, captureFragment).commit();
     }
+
     /**
      * 二维码解析回调函数
      */
     CodeUtils.AnalyzeCallback analyzeCallback = new CodeUtils.AnalyzeCallback() {
         @Override
         public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
-            Intent resultIntent = new Intent();
-            Bundle bundle = new Bundle();
-            bundle.putInt(CodeUtils.RESULT_TYPE, CodeUtils.RESULT_SUCCESS);
-            bundle.putString(CodeUtils.RESULT_STRING, result);
-            resultIntent.putExtras(bundle);
-            ScanActivity.this.setResult(RESULT_OK, resultIntent);
-            ScanActivity.this.finish();
+            Intent resultIntent = new Intent(ScanActivity.this, AddESSActivity.class);
+            resultIntent.putExtra(CodeUtils.RESULT_STRING, result);
+            startActivity(resultIntent);
+            finish();
         }
 
         @Override
@@ -69,6 +70,7 @@ public class ScanActivity  extends BaseSoEngrossedActivity {
             ScanActivity.this.finish();
         }
     };
+
     @Override
     public void initData() {
 

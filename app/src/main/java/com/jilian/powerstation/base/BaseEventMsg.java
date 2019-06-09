@@ -2,6 +2,8 @@ package com.jilian.powerstation.base;
 
 
 
+import com.jilian.powerstation.common.event.AddPowersEvent;
+
 import java.io.Serializable;
 
 import lombok.Data;
@@ -13,5 +15,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BaseEventMsg implements Serializable {
+
+    private AddPowersEvent addPowersEvent;
+
 
 }

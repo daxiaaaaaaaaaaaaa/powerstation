@@ -16,9 +16,11 @@ import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.BaseDto;
+import com.jilian.powerstation.base.BaseEventMsg;
 import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.event.RxBus;
 import com.jilian.powerstation.listener.CustomItemClickListener;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.adapter.ESSListAdapter;
@@ -51,6 +53,12 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        MyApplication.clearSpecifyActivities(new Class[]{WelcomeActivity.class});
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         MyApplication.removeActivity(this);
@@ -73,7 +81,7 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EssListActivity.this, ScanActivity.class);
-                startActivityForResult(intent, 1001);
+                startActivity(intent);
             }
         });
         mRecycle = findViewById(R.id.rv_ess_list);
@@ -100,6 +108,23 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
 
     @Override
     public void initListener() {
+        RxBus.getInstance().toObservable().map(
+                new io.reactivex.functions.Function<Object, BaseEventMsg>() {
+                    @Override
+                    public BaseEventMsg apply(Object o) throws Exception {
+                        return (BaseEventMsg) o;
+                    }
+                }).subscribe(new io.reactivex.functions.Consumer<BaseEventMsg>() {
+            @Override
+            public void accept(BaseEventMsg o) throws Exception {
+                if (o != null && o.getAddPowersEvent() != null) {
+                    if(o.getAddPowersEvent().getCode()==200){
+                        getPowerList();
+                    }
+                }
+
+            }
+        });
         srHasData.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {

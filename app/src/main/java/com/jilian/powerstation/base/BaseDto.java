@@ -23,7 +23,7 @@ public class BaseDto<T> implements Serializable{
         return code == 100;
     }
     public boolean isLogOut(){
-        return code==10010;
+        return code==102;
     }
 
     public int getCode() {

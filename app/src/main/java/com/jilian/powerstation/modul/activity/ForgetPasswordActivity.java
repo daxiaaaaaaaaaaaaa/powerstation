@@ -245,6 +245,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                                 time = Integer.parseInt(dto.getData().getResult()) * 60;
                                 //设置手机号可编辑
                                 etEmail.setEnabled(true);
+
                                 //恢复图标
                                 etEmail.setClearIconVisible(true);
                             } else {

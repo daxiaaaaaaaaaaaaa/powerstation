@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 
+import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.utils.PermissionsObserver;
+import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.ToastUitl;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
@@ -44,7 +47,21 @@ public class WelcomeActivity extends FragmentActivity {
     }
 
     private void goToMain() {
-        startActivity(new Intent(this,MainActivity.class));
+
+        //判断 session是否存在
+        String cookieStr = SPUtil.getData(Constant.SP_VALUE.SP, Constant.SP_VALUE.SESSION_ID, String.class, null);
+        //如果 session 不存在 则需要登录
+        if (TextUtils.isEmpty(cookieStr) || !cookieStr.contains("JSESSIONID" +
+                "")) {
+            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        }
+        //已经登录
+        else {
+            startActivity(new Intent(this,EssListActivity.class));
+
+        }
+
+
     }
 
 

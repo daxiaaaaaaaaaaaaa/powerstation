@@ -8,8 +8,6 @@ import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.api.ApiService;
 import com.jilian.powerstation.interceptor.AddCookiesInterceptor;
 import com.jilian.powerstation.interceptor.ReceivedCookiesInterceptor;
-import com.jilian.powerstation.interceptor.ReceivedTokenInterceptor;
-import com.jilian.powerstation.interceptor.TokenInterceptor;
 
 
 import java.util.concurrent.TimeUnit;
