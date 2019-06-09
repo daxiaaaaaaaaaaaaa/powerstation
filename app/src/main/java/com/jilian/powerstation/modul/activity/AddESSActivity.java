@@ -101,6 +101,7 @@ public class AddESSActivity extends BaseActivity {
                     BaseEventMsg baseEventMsg = new BaseEventMsg();
                     baseEventMsg.setAddPowersEvent(event);
                     RxBus.getInstance().post(baseEventMsg);
+                    finish();
                 } else {
                     ToastUitl.showImageToastSuccess(baseDto.getMsg());
                 }

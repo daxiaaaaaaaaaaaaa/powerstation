@@ -5,6 +5,7 @@
     android:padding="16dp">
 
     <ImageView
+
         android:id="@+id/power_station_cover"
         android:layout_width="@dimen/widget_size_80"
         android:layout_height="@dimen/widget_size_80"
