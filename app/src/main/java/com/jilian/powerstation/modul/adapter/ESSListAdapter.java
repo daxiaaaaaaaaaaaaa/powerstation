@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
@@ -20,6 +21,7 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ViewHold
     private List<PowerDto> mDatas;
     private Context mContext;
     private CustomItemClickListener listener;
+
     public ESSListAdapter(List<PowerDto> mDatas, Context context, CustomItemClickListener listener) {
         this.mDatas = mDatas;
         this.mContext = context;
@@ -38,8 +40,18 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.name.setText(mDatas.get(position).getPowerName());//电站名称
+        holder.powerToday.setText(mDatas.get(position).getToDayQuantity());//当天发电
+        holder.powerTotal.setText(mDatas.get(position).getTotalQuantity());//总共发电
+        holder.rated.setText(mDatas.get(position).getRatedPower());//光伏额定功率
+        holder.address.setText(mDatas.get(position).getPowerAddress());//地址
 
+        Glide.with(mContext).
+                load(mDatas.get(position).getPowerImg()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
+                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
+                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
+                .into(holder.cover);//在RequestBuilder 中使用自定义的ImageViewTarge
 
     }
 
@@ -51,7 +63,7 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView name;
+        private TextView name;//名字
         private TextView powerToday;//当天发电
         private TextView powerTotal;//总共发电
         private TextView rated;//光伏功率
@@ -61,9 +73,10 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ViewHold
         public ViewHolder(@NonNull View itemView, final CustomItemClickListener listener) {
             super(itemView);
             name = itemView.findViewById(R.id.power_station_title);
-            powerTotal = itemView.findViewById(R.id.power_station_day);
+            powerToday = (TextView) itemView.findViewById(R.id.power_station_day);
+            powerTotal = itemView.findViewById(R.id.power_station_lifetime);
             rated = itemView.findViewById(R.id.power_station_rated);
-            address = itemView.findViewById(R.id.power_station_lifetime);
+            address = itemView.findViewById(R.id.power_station_address);
             cover = itemView.findViewById(R.id.power_station_cover);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
