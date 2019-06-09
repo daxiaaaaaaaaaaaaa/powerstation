@@ -95,7 +95,7 @@ public class ClearEditText extends AppCompatEditText implements
      * 设置清除图标的显示与隐藏，调用setCompoundDrawables为EditText绘制上去
      * @param visible
      */
-    public void setClearIconVisible(boolean visible) {
+    protected void setClearIconVisible(boolean visible) { 
         Drawable right = visible ? mClearDrawable : null; 
         setCompoundDrawables(getCompoundDrawables()[0], 
                 getCompoundDrawables()[1], right, getCompoundDrawables()[3]); 

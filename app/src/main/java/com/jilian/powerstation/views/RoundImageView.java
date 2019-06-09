@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.jilian.powerstation.R;
 
-
 public class RoundImageView extends android.support.v7.widget.AppCompatImageView {
     int radius;
     float width,height;

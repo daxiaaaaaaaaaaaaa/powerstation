@@ -21,7 +21,6 @@ import android.widget.RelativeLayout;
 
 import com.jilian.powerstation.R;
 
-
 /**
  * Created by kangkanger on 2018/12/11.
  */
