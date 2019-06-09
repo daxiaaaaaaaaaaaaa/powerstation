@@ -6,14 +6,18 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
 import com.jilian.powerstation.modul.fragment.OneFragment;
+import com.jilian.powerstation.modul.fragment.OneIntelligentFragmen;
 import com.jilian.powerstation.modul.fragment.ThreeFragment;
+import com.jilian.powerstation.modul.fragment.ThreeIntelligentFragmen;
 import com.jilian.powerstation.modul.fragment.TwoFragment;
+import com.jilian.powerstation.modul.fragment.TwoIntelligentFragmen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,14 +59,22 @@ public class IntelligentDeviceActivity extends BaseActivity {
     public void initView() {
         tablayout = findViewById(R.id.device_tablayout);
         viewPager = findViewById(R.id.device_viewpage);
-        initViewpage();
         initTab();
+        initViewpage();
+        setNormalTitle("Site Name", v -> finish());
+        setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public void initViewpage() {
-        mlist.add(new OneFragment());
-        mlist.add(new TwoFragment());
-        mlist.add(new ThreeFragment());
+        mlist = new ArrayList<>();
+        mlist.add(new OneIntelligentFragmen());
+        mlist.add(new TwoIntelligentFragmen());
+        mlist.add(new ThreeIntelligentFragmen());
 
         adapter = new CinemaTabAdapter(getSupportFragmentManager(), mlist, mTitle);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tablayout));
@@ -70,15 +82,13 @@ public class IntelligentDeviceActivity extends BaseActivity {
     }
 
     public void initTab() {
-        mTitle.add("1111");
-        mTitle.add("2222");
-        mTitle.add("3333");
-        mTitle.add("4444");
+        mTitle.add("Daily");
+        mTitle.add("Month");
+        mTitle.add("Year");
 
         tablayout.addTab(tablayout.newTab().setText(mTitle.get(0)));
         tablayout.addTab(tablayout.newTab().setText(mTitle.get(1)));
         tablayout.addTab(tablayout.newTab().setText(mTitle.get(2)));
-        tablayout.addTab(tablayout.newTab().setText(mTitle.get(3)));
 
         tablayout.setTabMode(TabLayout.MODE_FIXED);
         tablayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来。
@@ -93,5 +103,6 @@ public class IntelligentDeviceActivity extends BaseActivity {
     public void initListener() {
 
     }
+
 
 }

@@ -53,7 +53,7 @@ public class WelcomeActivity extends FragmentActivity {
         //如果 session 不存在 则需要登录
         if (TextUtils.isEmpty(cookieStr) || !cookieStr.contains("JSESSIONID" +
                 "")) {
-            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         }
         //已经登录
         else {

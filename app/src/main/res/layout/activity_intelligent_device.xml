@@ -9,10 +9,16 @@
 
     <include layout="@layout/layout_title" />
 
+    <View style="@style/LineHorizontal" />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/device_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="@dimen/widget_size_50"
+        android:background="@color/white"
+        app:tabSelectedTextColor="@color/color_btn_deful"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="#747474" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/device_viewpage"

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.dto.ESSDto;
-import com.jilian.powerstation.listener.OnRecycleItemListener;
+import com.jilian.powerstation.listener.CustomItemClickListener;
 
 import java.util.List;
 
@@ -23,20 +23,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ESSListHolder>
 
     private List<ESSDto> mDatas;
     private Context context;
-    private OnRecycleItemListener itemListener;
+    private CustomItemClickListener listener;
 
     int type = 0; // 是调试列表的 0:Inverter  1:Battery 2:Smart
 
-    public DataAdapter(List<ESSDto> mDatas, Context context, int type) {
+    public DataAdapter(List<ESSDto> mDatas, Context context, int type,CustomItemClickListener listener) {
         this.mDatas = mDatas;
         this.context = context;
+        this.listener = listener;
         this.type = type;
     }
 
     @NonNull
     @Override
     public ESSListHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new ESSListHolder(LayoutInflater.from(context).inflate(R.layout.item_data, viewGroup, false));
+        return new ESSListHolder(LayoutInflater.from(context).inflate(R.layout.item_data, viewGroup, false),listener);
     }
 
     @Override
@@ -68,24 +69,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ESSListHolder>
                 essListHolder.tvMsg1.setText("working condition: ");
                 break;
         }
-        essListHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (itemListener != null) {
-                    itemListener.OnItemClick(v, i);
-                }
-            }
-        });
 
     }
 
     @Override
     public int getItemCount() {
         return mDatas.size();
-    }
-
-    public void setItemListener(OnRecycleItemListener itemListener) {
-        this.itemListener = itemListener;
     }
 
     class ESSListHolder extends RecyclerView.ViewHolder {
@@ -104,7 +93,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ESSListHolder>
         private LinearLayout llMsg2;//
         private LinearLayout llMsg3;//
 
-        public ESSListHolder(@NonNull View itemView) {
+        public ESSListHolder(@NonNull View itemView,CustomItemClickListener listener) {
             super(itemView);
 
             imgCover = itemView.findViewById(R.id.item_cover);
@@ -122,6 +111,15 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ESSListHolder>
             llMsg1 = itemView.findViewById(R.id.ll_item_msg1);
             llMsg2 = itemView.findViewById(R.id.ll_item_msg2);
             llMsg3 = itemView.findViewById(R.id.ll_item_msg3);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener!=null){
+                        listener.onItemClick(v,getAdapterPosition());
+                    }
+                }
+            });
+
 
         }
     }

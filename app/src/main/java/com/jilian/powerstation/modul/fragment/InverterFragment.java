@@ -10,7 +10,10 @@ import android.view.View;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ESSDto;
+import com.jilian.powerstation.listener.CustomItemClickListener;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
+import com.jilian.powerstation.modul.activity.BatteryDetailActivity;
+import com.jilian.powerstation.modul.activity.IntelligentDeviceActivity;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
 import com.jilian.powerstation.modul.adapter.DataAdapter;
@@ -23,7 +26,7 @@ import java.util.List;
  * <p>
  * Discrebe: 智能设备列表
  */
-public class InverterFragment extends BaseFragment {
+public class InverterFragment extends BaseFragment implements CustomItemClickListener {
     private List<ESSDto> mDatas;
     private DataAdapter adapter;
     private RecyclerView mRecycle;
@@ -63,16 +66,14 @@ public class InverterFragment extends BaseFragment {
         mDatas = new ArrayList<>();
         mDatas.add(new ESSDto());
         mDatas.add(new ESSDto());
-        adapter = new DataAdapter(mDatas, getContext(),0);
+        adapter = new DataAdapter(mDatas, getContext(), 0, this);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(),1));
+        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(), 1));
         mRecycle.setAdapter(adapter);
+    }
 
-        adapter.setItemListener(new OnRecycleItemListener() {
-            @Override
-            public void OnItemClick(View view, int position) {
-                startActivity(new Intent(getContext(), MainActivity.class));
-            }
-        });
+    @Override
+    public void onItemClick(View view, int position) {
+        startActivity(new Intent(getActivity(), IntelligentDeviceActivity.class));
     }
 }

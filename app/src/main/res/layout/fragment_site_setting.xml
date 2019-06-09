@@ -126,6 +126,7 @@
                     android:text="End time:" />
 
                 <TextView
+                    style="@style/SiteTextTimeStytle"
                     android:id="@+id/tv_site_endtime1"
                     android:text="00:00" />
             </LinearLayout>

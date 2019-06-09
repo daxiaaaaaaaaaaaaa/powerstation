@@ -1,11 +1,9 @@
-package com.jilian.powerstation.modul.activity;
+package com.jilian.powerstation.modul.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -20,31 +18,25 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
-import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
-import com.jilian.powerstation.base.BaseActivity;
+import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.views.TMarket;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 电池详情
+ * Created by cxz on 2019/6/9
+ * <p>
+ * Discrebe:
  */
-public class BatteryDetailActivity extends BaseActivity {
+public class ThreeIntelligentFragmen extends BaseFragment {
+
     private LineChart lc;
     TMarket tMarket = new TMarket();
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        MyApplication.addActivity(this);
-    }
+    protected void loadData() {
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        MyApplication.removeActivity(this);
     }
 
     @Override
@@ -53,27 +45,14 @@ public class BatteryDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
+    protected int getLayoutId() {
+        return R.layout.fragment_intelligent_three;
     }
 
     @Override
-    public int intiLayout() {
-        return R.layout.activity_battery_detail;
-    }
-
-    @Override
-    public void initView() {
-        lc = findViewById(R.id.lineChart);
+    protected void initView(View view, Bundle savedInstanceState) {
+        lc = view.findViewById(R.id.lineChart);
         lc.setMarker(tMarket);
-        setNormalTitle("Site Name", v -> finish());
-        setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         lc.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -86,8 +65,9 @@ public class BatteryDetailActivity extends BaseActivity {
         });
     }
 
+
     @Override
-    public void initData() {
+    protected void initData() {
         // 设置上下左右偏移量
         lc.setExtraOffsets(24f, 24f, 24f, 0f);
         lc.animateXY(3000, 3000); // XY动画
@@ -95,6 +75,11 @@ public class BatteryDetailActivity extends BaseActivity {
         setYAxis(); // 设置Y轴
         setXAxis(); // 设置X轴
         setData();
+
+    }
+
+    @Override
+    protected void initListener() {
 
     }
 
@@ -172,7 +157,7 @@ public class BatteryDetailActivity extends BaseActivity {
                     yVals1.add(new Entry(23f, 3f));
                     yVals1.add(new Entry(28f, 11f));
                     yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("123", yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
+                    lineDataSet = setChartData("123",yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
 
                     break;
                 case 1:
@@ -182,7 +167,7 @@ public class BatteryDetailActivity extends BaseActivity {
                     yVals1.add(new Entry(23f, 3f));
                     yVals1.add(new Entry(28f, 13f));
                     yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("1233", yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
+                    lineDataSet = setChartData("1233",yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
                     break;
                 case 2:
                     yVals1.add(new Entry(20f, 0f));
@@ -191,7 +176,7 @@ public class BatteryDetailActivity extends BaseActivity {
                     yVals1.add(new Entry(28f, 5f));
                     yVals1.add(new Entry(29f, 22));
                     yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("12223", yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
+                    lineDataSet = setChartData("12223",yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
                     break;
                 case 3:
                     yVals1.add(new Entry(0f, 0f));
@@ -202,7 +187,7 @@ public class BatteryDetailActivity extends BaseActivity {
                     yVals1.add(new Entry(20f, 4f));
                     yVals1.add(new Entry(24f, 3f));
                     yVals1.add(new Entry(26f, 0f));
-                    lineDataSet = setChartData("我认为", yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
+                    lineDataSet = setChartData("我认为",yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
                     break;
             }
             lineData.addDataSet(lineDataSet);
@@ -214,7 +199,7 @@ public class BatteryDetailActivity extends BaseActivity {
         lc.invalidate();
     }
 
-    public LineDataSet setChartData(String name, List<Entry> yVals1, int color, int fillColor) {
+    public LineDataSet setChartData(String name,List<Entry> yVals1, int color, int fillColor) {
         // 1.获取一或多组Entry对象集合的数据
         // 模拟数据1
 
@@ -222,7 +207,7 @@ public class BatteryDetailActivity extends BaseActivity {
         LineDataSet lineDataSet1 = new LineDataSet(yVals1, name);
         lineDataSet1.setDrawCircles(false);// 不绘制圆点
         lineDataSet1.setDrawCircleHole(false); // 不绘制圆洞，即为实心圆点
-        lineDataSet1.setColor(getResources().getColor(color)); // 设置为红色
+        lineDataSet1.setColor(getContext().getResources().getColor(color)); // 设置为红色
         lineDataSet1.setMode(LineDataSet.Mode.CUBIC_BEZIER); // 设置为贝塞尔曲线
         lineDataSet1.setCubicIntensity(0.15f); // 强度
         lineDataSet1.setCircleColor(Color.RED); // 设置圆点为颜色
@@ -234,7 +219,7 @@ public class BatteryDetailActivity extends BaseActivity {
         //设置曲线图渐填充渐变色
         if (Utils.getSDKInt() >= 18) {
             // fill drawable only supported on api level 18 and above
-            Drawable drawable = ContextCompat.getDrawable(this, fillColor);
+            Drawable drawable = ContextCompat.getDrawable(getActivity(), fillColor);
             drawable.setAlpha(160);
             lineDataSet1.setFillDrawable(drawable);
         } else {
@@ -242,11 +227,6 @@ public class BatteryDetailActivity extends BaseActivity {
         }
         return lineDataSet1;
 
-
-    }
-
-    @Override
-    public void initListener() {
 
     }
 }
