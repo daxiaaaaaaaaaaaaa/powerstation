@@ -96,7 +96,7 @@
                     style="@style/SiteTextValueStytle"
                     android:text="Charging power" />
 
-                <TextView
+                <EditText
                     android:id="@+id/et_site_value1"
                     style="@style/SiteEditTextStytle"
                     android:hint="Please input power" />

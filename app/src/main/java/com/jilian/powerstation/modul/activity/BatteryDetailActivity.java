@@ -227,7 +227,7 @@ public class BatteryDetailActivity extends BaseActivity {
         lineDataSet1.setCubicIntensity(0.15f); // 强度
         lineDataSet1.setCircleColor(Color.RED); // 设置圆点为颜色
         lineDataSet1.setCircleRadius(0f);
-        lineDataSet1.setLineWidth(3f); // 设置线宽为2
+        lineDataSet1.setLineWidth(2f); // 设置线宽为2
 
         lineDataSet1.setDrawFilled(true); // 启用填充
         lineDataSet1.setFillAlpha(95); // 透明度

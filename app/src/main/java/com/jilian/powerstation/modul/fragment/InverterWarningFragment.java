@@ -12,6 +12,7 @@ import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.MainActivity;
+import com.jilian.powerstation.modul.activity.WarningDetailActivity;
 import com.jilian.powerstation.modul.adapter.DataAdapter;
 import com.jilian.powerstation.modul.adapter.WarningAdapter;
 import com.jilian.powerstation.utils.DisplayUtil;
@@ -76,7 +77,7 @@ public class InverterWarningFragment extends BaseFragment {
         adapter.setItemListener(new OnRecycleItemListener() {
             @Override
             public void OnItemClick(View view, int position) {
-                startActivity(new Intent(getContext(), MainActivity.class));
+                startActivity(new Intent(getContext(), WarningDetailActivity.class));
             }
         });
     }

@@ -164,7 +164,7 @@
     <style name="SiteTextValueStytle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">@dimen/font_size_15</item>
         <item name="android:textColor">#222222</item>
     </style>
@@ -181,7 +181,6 @@
     <style name="SiteEditTextStytle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:padding">@dimen/widget_size_8</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:gravity">center_vertical|right</item>
         <item name="android:textSize">@dimen/font_size_15</item>

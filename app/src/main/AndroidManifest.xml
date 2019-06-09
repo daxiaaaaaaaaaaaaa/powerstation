@@ -67,7 +67,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".modul.activity.EssListActivity"></activity>
+        <activity android:name=".modul.activity.IntelligentDetailActivity"></activity>
+        <activity android:name=".modul.activity.WarningDetailActivity" />
+        <activity android:name=".modul.activity.EssListActivity" />
         <activity
             android:name=".modul.activity.WelcomeActivity"
             android:configChanges="locale"
@@ -88,7 +90,7 @@
         <activity android:name=".modul.activity.AddESSActivity" />
         <activity android:name=".modul.activity.RegistActivity" />
         <activity android:name=".modul.activity.MainActivity" />
-        <activity android:name=".modul.activity.ScanActivity"/>
+        <activity android:name=".modul.activity.ScanActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

@@ -13,6 +13,7 @@ import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.BatteryDetailActivity;
+import com.jilian.powerstation.modul.activity.IntelligentDetailActivity;
 import com.jilian.powerstation.modul.activity.IntelligentDeviceActivity;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
@@ -74,6 +75,6 @@ public class InverterFragment extends BaseFragment implements CustomItemClickLis
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), IntelligentDeviceActivity.class));
+        startActivity(new Intent(getActivity(), IntelligentDetailActivity.class));
     }
 }

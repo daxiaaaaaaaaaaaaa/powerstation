@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F2F2F2"
+    android:orientation="vertical"
+    tools:context=".modul.activity.IntelligentDetailActivity">
+
+    <include layout="@layout/layout_title" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_warning1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_size_15"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/LineHorizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:paddingLeft="@dimen/widget_size_15"
+            android:gravity="center_vertical"
+            android:paddingRight="@dimen/widget_size_15">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="Device switch"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/font_size_16" />
+
+            <ImageView
+                android:id="@+id/img_switch"
+                android:layout_width="@dimen/widget_size_53"
+                android:layout_height="@dimen/font_size_35"
+                android:src="@drawable/image_switch"/>
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:paddingLeft="@dimen/widget_size_15"
+            android:paddingRight="@dimen/widget_size_15">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="Start time"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_intellgent1"
+                style="@style/SiteEditTextStytle"
+                android:drawableRight="@drawable/image_right"
+                android:drawablePadding="8dp"
+                android:text="2019／01／01 12:00"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:paddingLeft="@dimen/widget_size_15"
+            android:paddingRight="@dimen/widget_size_15">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="End time"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_intellgent2"
+                style="@style/SiteEditTextStytle"
+                android:drawableRight="@drawable/image_right"
+                android:drawablePadding="8dp"
+                android:text="2019／01／01 12:00"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <View style="@style/LineHorizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_site1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_size_15"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/LineHorizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:paddingLeft="@dimen/widget_size_15"
+            android:paddingRight="@dimen/widget_size_15">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="Operating state"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_intellgent3"
+                style="@style/SiteEditTextStytle"
+                android:text="work"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:paddingLeft="@dimen/widget_size_15"
+            android:paddingRight="@dimen/widget_size_15">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="Current power"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_intellgent4"
+                style="@style/SiteEditTextStytle"
+                android:text="20 W"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:paddingLeft="@dimen/widget_size_15"
+            android:paddingRight="@dimen/widget_size_15">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="Total consumption"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_intellgent5"
+                style="@style/SiteEditTextStytle"
+                android:text="10 kWh"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <View style="@style/LineHorizontal" />
+    </LinearLayout>
+</LinearLayout>

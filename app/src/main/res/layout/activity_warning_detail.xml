@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F2F2F2"
+    android:orientation="vertical"
+    tools:context=".modul.activity.WarningDetailActivity">
+
+    <include layout="@layout/layout_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_18"
+        android:layout_marginLeft="@dimen/widget_size_15"
+        android:layout_marginTop="@dimen/widget_size_15"
+        android:layout_marginRight="@dimen/widget_size_15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_18"
+            android:text="Device Name：Battery 1"
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_warning1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_18"
+            android:text="Device Name：Battery 1"
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_18"
+        android:layout_marginLeft="@dimen/widget_size_15"
+        android:layout_marginTop="@dimen/widget_size_5"
+        android:layout_marginRight="@dimen/widget_size_15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_18"
+            android:text="Device Name：Battery 1"
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_warning2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_18"
+            android:text="Device Name：Battery 1"
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_18"
+        android:layout_marginLeft="@dimen/widget_size_15"
+        android:layout_marginTop="@dimen/widget_size_5"
+        android:layout_marginBottom="@dimen/widget_size_15"
+        android:layout_marginRight="@dimen/widget_size_15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_18"
+            android:text="Update time："
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_warning3"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/widget_size_18"
+            android:text="2019/04/08 17:52:27"
+            android:textColor="#ff999999"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View style="@style/LineHorizontal" />
+
+    <LinearLayout
+        android:id="@+id/ll_site1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:paddingRight="@dimen/widget_size_16">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="XXXX"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_warning4"
+                style="@style/SiteEditTextStytle"
+                android:text="xxx"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:paddingRight="@dimen/widget_size_16">
+
+            <TextView
+                style="@style/SiteTextValueStytle"
+                android:text="XXXX"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/tv_warning5"
+                style="@style/SiteEditTextStytle"
+                android:text="xxx"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View style="@style/LineHorizontal" />
+</LinearLayout>

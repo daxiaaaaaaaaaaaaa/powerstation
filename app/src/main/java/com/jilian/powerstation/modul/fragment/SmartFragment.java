@@ -12,7 +12,9 @@ import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
+import com.jilian.powerstation.modul.activity.IntelligentDeviceActivity;
 import com.jilian.powerstation.modul.activity.MainActivity;
+import com.jilian.powerstation.modul.activity.WarningDetailActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
 import com.jilian.powerstation.modul.adapter.DataAdapter;
 
@@ -73,6 +75,6 @@ public class SmartFragment extends BaseFragment implements CustomItemClickListen
 
     @Override
     public void onItemClick(View view, int position) {
-
+        startActivity(new Intent(getContext(), IntelligentDeviceActivity.class));
     }
 }
