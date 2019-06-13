@@ -35,7 +35,7 @@
             android:layout_marginRight="17dp"
             android:padding="8dp"
             android:text="确定"
-            android:textColor="@color/color_main_select"
+            android:textColor="@color/color_red"
             android:textSize="16sp" />
         <TextView
             android:textColor="@color/color_text"

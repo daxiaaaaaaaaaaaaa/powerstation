@@ -114,10 +114,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:paddingTop="@dimen/widget_size_17"
-        android:paddingBottom="@dimen/widget_size_17"
-        android:paddingRight="@dimen/widget_size_20"
-        android:paddingLeft="@dimen/widget_size_20"
+        android:paddingTop="@dimen/widget_size_10"
+        android:paddingBottom="@dimen/widget_size_10"
+        android:paddingRight="@dimen/widget_size_15"
+        android:paddingLeft="@dimen/widget_size_15"
         android:layout_marginTop="@dimen/widget_size_60"
         android:layout_marginRight="@dimen/widget_size_20"
         android:drawableLeft="@drawable/image_logout"
@@ -125,7 +125,7 @@
         android:drawableTint="@color/white"
         android:gravity="center_vertical"
         android:textColor="@color/white"
-        android:textSize="@dimen/font_size_18"
+        android:textSize="@dimen/font_size_16"
         android:text="Login Out" />
         <View
             android:layout_width="match_parent"
