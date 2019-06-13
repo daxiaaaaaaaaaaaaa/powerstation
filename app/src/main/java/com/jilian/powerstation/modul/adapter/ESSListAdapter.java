@@ -41,14 +41,14 @@ public class ESSListAdapter extends RecyclerView.Adapter<ESSListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(mDatas.get(position).getPowerName());//电站名称
-        holder.powerToday.setText(mDatas.get(position).getToDayQuantity());//当天发电
-        holder.powerTotal.setText(mDatas.get(position).getTotalQuantity());//总共发电
-        holder.rated.setText(mDatas.get(position).getRatedPower());//光伏额定功率
-        holder.address.setText(mDatas.get(position).getPowerAddress());//地址
+        holder.name.setText(mDatas.get(position).getProductName());//电站名称
+        holder.powerToday.setText(mDatas.get(position).getTodayPVproduction());//当天发电
+        holder.powerTotal.setText(mDatas.get(position).getHistoryPVproduction());//总共发电
+        holder.rated.setText(mDatas.get(position).getRated_power());//光伏额定功率
+        holder.address.setText(mDatas.get(position).getAddress());//地址
 
         Glide.with(mContext).
-                load(mDatas.get(position).getPowerImg()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
+                load(mDatas.get(position).getPhotopath()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
                 .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
                 .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
                 .into(holder.cover);//在RequestBuilder 中使用自定义的ImageViewTarge
