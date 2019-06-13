@@ -14,4 +14,5 @@ public class PowerDto implements Serializable {
    private String rated_power;//	True	String		光伏额定功率
    private String address;//	True	String		电站地址
    private String photopath;//	True	String		电站图片
+   private String sn;//sn码
 }

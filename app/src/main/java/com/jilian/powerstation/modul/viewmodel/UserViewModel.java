@@ -9,6 +9,7 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
@@ -55,6 +56,10 @@ public class UserViewModel extends BaseViewModel {
      * 添加电站
      */
     private LiveData<BaseDto> addPowerliveData;
+    /**
+     * 个人信息
+     */
+    private LiveData<BaseDto<UserInfoDto>> userliveData;
     /**
      * 注册
      *
@@ -136,6 +141,13 @@ public class UserViewModel extends BaseViewModel {
         vo.setPowerName(powerName);
         addPowerliveData = Factoty.getRepository(UserRepository.class).addPowerInfo(vo);
     }
+    /**
+     * 获取个人信息
+     */
+    public void getUserInfo() {
+        userliveData = Factoty.getRepository(UserRepository.class).getUserInfo();
+    }
+
 
 
 

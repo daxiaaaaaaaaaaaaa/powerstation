@@ -20,7 +20,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/widget_size_260"
+        android:layout_height="@dimen/widget_size_220"
         android:background="@color/colorPrimary">
 
         <ImageView
@@ -34,22 +34,22 @@
             android:tint="@color/white" />
 
         <com.jilian.powerstation.views.CircularImageView
-            android:id="@+id/user_info_cover"
-            android:layout_width="@dimen/widget_size_92"
-            android:layout_height="@dimen/widget_size_92"
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/widget_size_80"
+            android:layout_height="@dimen/widget_size_80"
             android:layout_centerInParent="true"
             android:layout_marginBottom="@dimen/font_size_8"
-            android:src="@mipmap/ic_launcher" />
+            tools:src="@mipmap/ic_launcher" />
 
 
         <TextView
-            android:id="@+id/user_info_name"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@+id/user_info_cover"
+            android:layout_below="@+id/iv_head"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="Jonhn"
+            tools:text="Jonhn"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_22"
             android:textStyle="bold" />
@@ -59,20 +59,20 @@
             android:id="@+id/user_info_editor"
             android:layout_width="30dp"
             android:layout_height="33dp"
-            android:layout_above="@+id/user_info_id"
-            android:layout_toRightOf="@+id/user_info_name"
+            android:layout_above="@+id/tv_id"
+            android:layout_toRightOf="@+id/tv_name"
             android:padding="@dimen/widget_size_5"
             android:src="@drawable/ic_editor"
             android:tint="@color/white" />
 
         <TextView
             android:textSize="@dimen/font_size_14"
-            android:id="@+id/user_info_id"
+            android:id="@+id/tv_id"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_below="@+id/user_info_name"
+            android:layout_below="@+id/tv_name"
             android:gravity="center"
-            android:text="jonhn-209909109"
+            tools:text="jonhn-209909109"
             android:textColor="@color/white" />
     </RelativeLayout>
 
@@ -80,6 +80,7 @@
     <TextView
         style="@style/UserInfoText"
         android:drawableLeft="@drawable/image_chang_site"
+        android:id="@+id/tv_change_power"
         android:text="Change Site" />
 
     <View
@@ -90,6 +91,7 @@
     <TextView
         style="@style/UserInfoText"
         android:drawableLeft="@drawable/ic_chage_password"
+        android:id="@+id/tv_change_pwd"
         android:text="Change password" />
 
     <View
@@ -104,6 +106,7 @@
 
     <View
         style="@style/LineHorizontal"
+        android:id="@+id/tv_about"
         android:layout_marginLeft="@dimen/widget_size_16"
         android:layout_marginRight="@dimen/widget_size_16" />
 
@@ -118,7 +121,7 @@
         android:paddingBottom="@dimen/widget_size_10"
         android:paddingRight="@dimen/widget_size_15"
         android:paddingLeft="@dimen/widget_size_15"
-        android:layout_marginTop="@dimen/widget_size_60"
+        android:layout_marginTop="@dimen/widget_size_40"
         android:layout_marginRight="@dimen/widget_size_20"
         android:drawableLeft="@drawable/image_logout"
         android:drawablePadding="8dp"
@@ -129,7 +132,7 @@
         android:text="Login Out" />
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_149"/>
+            android:layout_height="@dimen/widget_size_60"/>
     </LinearLayout>
    </ScrollView>
 

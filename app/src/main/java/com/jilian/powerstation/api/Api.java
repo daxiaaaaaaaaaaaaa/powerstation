@@ -6,6 +6,7 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
@@ -77,6 +78,16 @@ public class Api {
     public static Flowable<BaseDto> addPowerInfo(PowerInfoVo vo) {
         return RequetRetrofit.getInstance().addPowerInfo(vo);
     }
+
+    /**
+     * 获取个人信息接口
+     * @return
+     */
+    public static Flowable<BaseDto<UserInfoDto>> getUserInfo() {
+        return RequetRetrofit.getInstance().getUserInfo();
+    }
+
+
 
 
 }
