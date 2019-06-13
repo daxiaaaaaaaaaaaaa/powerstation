@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_show_tips"
+        android:orientation="vertical">
+
+        <TextView
+            android:textStyle="bold"
+            android:gravity="center"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:text="Log out or not"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/widget_size_20"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Are you sure about quitting?"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/font_size_18"/>
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="32dp"
+            android:background="@color/color_line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="@dimen/font_size_16"
+                android:id="@+id/tv_no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="cancel"
+                android:textColor="@color/color_text_dark"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/color_line"/>
+
+            <TextView
+                android:textSize="@dimen/font_size_16"
+                android:id="@+id/tv_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ok"
+                android:textColor="@color/color_text"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

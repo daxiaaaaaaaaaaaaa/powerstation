@@ -9,6 +9,7 @@ import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
+import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 
@@ -81,6 +82,14 @@ public interface ApiService {
      */
     @POST("/HESS_SCADA/app/user/getUserInfo.app")
     Flowable<BaseDto<UserInfoDto>> getUserInfo();
+
+    /**
+     * 修改密码
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/resetPassword.app")
+    Flowable<BaseDto> resetPassword(@Body UpdatePwdVo vo);
 
 }
 

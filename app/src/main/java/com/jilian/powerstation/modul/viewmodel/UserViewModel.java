@@ -12,6 +12,7 @@ import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
+import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 import com.jilian.powerstation.factory.Factoty;
@@ -60,6 +61,10 @@ public class UserViewModel extends BaseViewModel {
      * 个人信息
      */
     private LiveData<BaseDto<UserInfoDto>> userliveData;
+    /**
+     * 修改密码
+     */
+    private LiveData<BaseDto> resetPwdliveData;
     /**
      * 注册
      *
@@ -149,7 +154,20 @@ public class UserViewModel extends BaseViewModel {
     }
 
 
-
+    /**
+     *
+     * @param rawAccountPwd 原密码
+     * @param nowAccountPwd 新密码
+     * @param confirmPwd 确认密码
+     *                   加密
+     */
+    public void resetPassword(String rawAccountPwd , String nowAccountPwd,String confirmPwd) {
+        UpdatePwdVo vo = new UpdatePwdVo();
+        vo.setRawAccountPwd(Md5Util.getMd5(rawAccountPwd));
+        vo.setNowAccountPwd(Md5Util.getMd5(nowAccountPwd));
+        vo.setConfirmPwd(Md5Util.getMd5(confirmPwd));
+        resetPwdliveData = Factoty.getRepository(UserRepository.class).resetPassword(vo);
+    }
 
 
 

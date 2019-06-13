@@ -1,6 +1,7 @@
 package com.jilian.powerstation.modul.fragment;
 
 
+import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -10,17 +11,29 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.jilian.powerstation.Constant;
+import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.modul.activity.EssListActivity;
+import com.jilian.powerstation.modul.activity.LoginActivity;
 import com.jilian.powerstation.modul.activity.StationDetailActivity;
+import com.jilian.powerstation.modul.activity.UpdatePwdActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
+import com.jilian.powerstation.utils.PinziDialogUtils;
+import com.jilian.powerstation.utils.RxTimerUtil;
+import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.CircularImageView;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 public class FiveFragment extends BaseFragment {
@@ -112,10 +125,54 @@ public class FiveFragment extends BaseFragment {
         tvChangePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(getmActivity(), Resr.class));
+               startActivity(new Intent(getmActivity(), UpdatePwdActivity.class));
+            }
+        });
+        userLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutDialog();
             }
         });
     }
 
+    /**
+     * 退出登录对话框
+     */
+    private void showLogoutDialog() {
+        Dialog dialog = PinziDialogUtils.getDialogNotTouchOutside(getmActivity(), R.layout.dialog_confirm);
+        TextView tvTitle = (TextView) dialog.findViewById(R.id.tv_title);
+        TextView tvContent = (TextView)dialog. findViewById(R.id.tv_content);
+        TextView tvNo = (TextView) dialog.findViewById(R.id.tv_no);
+        TextView tvOk = (TextView) dialog.findViewById(R.id.tv_ok);
 
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                getLoadingDialog().showDialog();
+                RxTimerUtil.timer(500, new RxTimerUtil.IRxNext() {
+                    @Override
+                    public void doNext() {
+                        getLoadingDialog().dismiss();
+                        ToastUitl.showImageToastSuccess("Exit the success");
+                        SPUtil.clearData(Constant.SP_VALUE.SP);
+                        startActivity(new Intent(getmActivity(), LoginActivity.class));
+                        getmActivity().finish();
+                        MyApplication.clearAllActivitys();
+                    }
+                });
+            }
+        });
+        tvNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+
+
+    }
 }

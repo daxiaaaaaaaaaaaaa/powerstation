@@ -12,6 +12,7 @@ import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
+import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 
@@ -86,6 +87,17 @@ public class UserRepository extends CommonRepository {
     public LiveData<BaseDto<UserInfoDto>> getUserInfo() {
         return request(Api.getUserInfo()).send().get();
     }
+
+    /**
+     * 修改密码
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto> resetPassword(UpdatePwdVo vo) {
+        return request(Api.resetPassword(vo)).send().get();
+    }
+
+
 
 
 }

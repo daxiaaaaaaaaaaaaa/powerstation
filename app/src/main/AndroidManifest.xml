@@ -91,6 +91,7 @@
         <activity android:name=".modul.activity.RegistActivity" />
         <activity android:name=".modul.activity.MainActivity" />
         <activity android:name=".modul.activity.ScanActivity" />
+        <activity android:name=".modul.activity.UpdatePwdActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

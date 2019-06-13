@@ -9,6 +9,7 @@ import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
+import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 import com.jilian.powerstation.http.RequetRetrofit;
@@ -85,6 +86,15 @@ public class Api {
      */
     public static Flowable<BaseDto<UserInfoDto>> getUserInfo() {
         return RequetRetrofit.getInstance().getUserInfo();
+    }
+
+    /**
+     * 修改密码
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto> resetPassword(UpdatePwdVo vo) {
+        return RequetRetrofit.getInstance().resetPassword(vo);
     }
 
 
