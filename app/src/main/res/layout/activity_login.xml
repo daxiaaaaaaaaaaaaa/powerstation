@@ -46,6 +46,7 @@
             style="@style/LoginDefult"
             android:hint="@string/string_email"
             android:layout_height="@dimen/widget_size_49"
+            android:text="247836277@qq.com"
              />
 
         <com.jilian.powerstation.views.ClearEditText
@@ -53,6 +54,7 @@
             style="@style/LoginDefult"
             android:hint="@string/login_password"
             android:layout_height="@dimen/widget_size_49"
+            android:text="123456"
             android:inputType="textPassword" />
 
         <RelativeLayout

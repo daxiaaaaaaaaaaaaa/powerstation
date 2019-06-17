@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
+
 /**
  * 时间格式化工具类
  *
@@ -135,24 +137,25 @@ public class DateUtil {
     private static final int TODAY = 0;
     private static final int TOMORROWDAT = 1;
     private static final int OTHER_DAY = 10000;
+
     /**
      * 调用显示日期
      */
-    public static String getTitleDay(Date date){
+    public static String getTitleDay(Date date) {
         try {
 
             switch (JudgmentDay(date)) {
-                case YESTERDY : {
+                case YESTERDY: {
                     return "昨天";
                 }
-                case TODAY : {
+                case TODAY: {
                     return "今天";
                 }
-                case TOMORROWDAT : {
+                case TOMORROWDAT: {
                     return "明天";
                 }
                 default:
-                    String str = DateUtil.dateToString(DateUtil.DATE_FORMAT,date);
+                    String str = DateUtil.dateToString(DateUtil.DATE_FORMAT, date);
                     return str;
             }
         } catch (ParseException e) {
@@ -160,6 +163,7 @@ public class DateUtil {
         }
         return null;
     }
+
     /**
      * 判断日期(效率比较高)
      */
@@ -177,13 +181,13 @@ public class DateUtil {
                     - pre.get(Calendar.DAY_OF_YEAR);
 
             switch (diffDay) {
-                case YESTERDY : {
+                case YESTERDY: {
                     return YESTERDY;
                 }
-                case TODAY : {
+                case TODAY: {
                     return TODAY;
                 }
-                case TOMORROWDAT : {
+                case TOMORROWDAT: {
                     return TOMORROWDAT;
                 }
             }
@@ -191,4 +195,89 @@ public class DateUtil {
         return OTHER_DAY;
     }
 
+
+    /**
+     * 获取某一天的开始时间
+     *
+     * @param time
+     * @return
+     */
+    public static String getDayBegin(long time) {
+        SimpleDateFormat aDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        return aDateFormat.format(c.getTime());
+    }
+
+    /**
+     * 获取某一天的结束时间
+     *
+     * @param time
+     * @return
+     */
+    public static String getDayEnd(long time) {
+        SimpleDateFormat aDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        c.set(Calendar.HOUR_OF_DAY, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+        c.set(Calendar.MILLISECOND, 999);
+        return aDateFormat.format(c.getTime());
+    }
+
+    /**
+     * 获取指定日期所在月份开始的时间
+     * 时间格式yyyyMMdd
+     *
+     * @param date 指定日期
+     * @return
+     */
+    public static String getMonthBegin(long date) {
+        SimpleDateFormat aDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(date);
+        //设置为1号,当前日期既为本月第一天
+        c.set(Calendar.DAY_OF_MONTH, 1);
+        //将小时至0
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        //将分钟至0
+        c.set(Calendar.MINUTE, 0);
+        //将秒至0
+        c.set(Calendar.SECOND, 0);
+        //将毫秒至0
+        c.set(Calendar.MILLISECOND, 0);
+        // 获取本月第一天的时间
+        return aDateFormat.format(c.getTime());
+    }
+
+    /**
+     * 获取指定日期所在月份结束的时间
+     * 时间格式yyyyMMdd
+     *
+     * @param date 指定日期
+     * @return
+     */
+    public static String getMonthEnd(long date) {
+        SimpleDateFormat aDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(date);
+
+        //设置为当月最后一天
+        c.set(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
+        //将小时至23
+        c.set(Calendar.HOUR_OF_DAY, 23);
+        //将分钟至59
+        c.set(Calendar.MINUTE, 59);
+        //将秒至59
+        c.set(Calendar.SECOND, 59);
+        //将毫秒至999
+        c.set(Calendar.MILLISECOND, 999);
+        // 获取本月最后一天的时间
+        return aDateFormat.format(c.getTime());
+    }
 }

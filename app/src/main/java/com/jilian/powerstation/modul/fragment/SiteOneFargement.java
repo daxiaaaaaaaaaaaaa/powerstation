@@ -1,9 +1,9 @@
 package com.jilian.powerstation.modul.fragment;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,21 +12,21 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.common.dto.ReportListDto;
+import com.jilian.powerstation.manege.CharManager;
+import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
-import com.jilian.powerstation.views.TMarket;
+import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.views.CostomMarket;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,13 +34,15 @@ import java.util.Date;
 import java.util.List;
 
 public class SiteOneFargement extends BaseFragment {
-    private TextView tvCenter;
-
-
-
     private LineChart lc;
-    TMarket tMarket = new TMarket();
+    private TextView tvCenter;
     private TimePickerView pvCustomTime;
+    private String sn;
+    private ReportViewModel reportViewModel;
+    private CostomMarket tMarket;
+    private CharManager charManager;
+    private long currDate;
+
     @Override
     protected void loadData() {
 
@@ -49,7 +51,7 @@ public class SiteOneFargement extends BaseFragment {
 
     @Override
     protected void createViewModel() {
-
+        reportViewModel = ViewModelProviders.of(this).get(ReportViewModel.class);
     }
 
     @Override
@@ -60,7 +62,43 @@ public class SiteOneFargement extends BaseFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         lc = view.findViewById(R.id.lineChart);
+        tvCenter = (TextView) view.findViewById(R.id.tv_center);
+        tMarket = new CostomMarket(getContext(),DisplayUtil.getScreenWidth(getContext()), Utils.convertDpToPixel(350));
         lc.setMarker(tMarket);
+        initCustomTimePicker();
+    }
+
+    @Override
+    protected void initData() {
+        // 设置上下左右偏移量
+        charManager = new CharManager(lc, tMarket, getContext());
+        charManager.setLegend(); // 设置图例
+        charManager.setYAxis(); // 设置Y轴
+        charManager.setXAxis(); // 设置X轴
+        setData();
+        sn = getActivity().getIntent().getStringExtra("sn");
+        currDate = System.currentTimeMillis();
+        getData();
+    }
+
+    /**
+     *
+     */
+    public void getData() {
+        if (sn == null) return;
+        String startTime = DateUtil.getDayBegin(currDate);
+        String endTime = DateUtil.getDayEnd(currDate);
+        reportViewModel.addReportData(sn, startTime, endTime, 0);
+        reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
+            @Override
+            public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void initListener() {
         lc.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -71,24 +109,6 @@ public class SiteOneFargement extends BaseFragment {
             public void onNothingSelected() {
             }
         });
-        tvCenter = (TextView)view. findViewById(R.id.tv_center);
-        initCustomTimePicker();
-    }
-
-    @Override
-    protected void initData() {
-        // 设置上下左右偏移量
-        lc.setExtraOffsets(24f, 24f, 24f, 0f);
-        lc.animateXY(3000, 3000); // XY动画
-        setLegend(); // 设置图例
-        setYAxis(); // 设置Y轴
-        setXAxis(); // 设置X轴
-        setData();
-
-    }
-
-    @Override
-    protected void initListener() {
         tvCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,68 +117,7 @@ public class SiteOneFargement extends BaseFragment {
         });
     }
 
-    private void setLegend() {
-        Legend legend = lc.getLegend();
-        legend.setForm(Legend.LegendForm.LINE); // 图形：线
-        legend.setFormSize(14f); // 图形大小
-        legend.setFormLineWidth(9f); // 线宽小于如下大小绘制出平躺长方形
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT); // 图例在水平线上的对齐方式：右对齐
-        legend.setTextColor(Color.WHITE);
-    }
-
-
-    private void setYAxis() {
-        // 左边Y轴
-        final YAxis yAxisLeft = lc.getAxisLeft();
-        yAxisLeft.setAxisMaximum(25.5f); // 设置Y轴最大值
-        yAxisLeft.setAxisMinimum(2); // 设置Y轴最小值
-        yAxisLeft.setGranularity(2f); // 设置间隔尺寸
-        yAxisLeft.setTextSize(12f); // 文本大小为12dp
-        yAxisLeft.setTextColor(Color.BLACK); // 文本颜色为灰色
-        yAxisLeft.setDrawGridLines(false); // 不绘制网格线
-//        yAxisLeft.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value, AxisBase axis) {
-//                return value == yAxisLeft.getAxisMinimum() ? (int) value + "" : (int) value + "";
-//            }
-//        });
-        // 右侧Y轴
-        lc.getAxisRight().setEnabled(false); // 不启用
-        //是否展示网格线
-        lc.setDrawGridBackground(false);
-        lc.getAxisRight().setDrawGridLines(false);
-        lc.getAxisLeft().setDrawGridLines(true);
-        //设置X Y轴网格线为虚线（实体线长度、间隔距离、偏移量：通常使用 0）
-        lc.getAxisLeft().enableGridDashedLine(10f, 10f, 0f);
-    }
-
-    private void setXAxis() {
-        // X轴
-        XAxis xAxis = lc.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 在底部
-        xAxis.setDrawGridLines(false); // 不绘制网格线
-        xAxis.setLabelCount(20); // 设置标签数量
-        xAxis.setTextColor(Color.BLACK); // 文本颜色为灰色
-        xAxis.setTextSize(12f); // 文本大小为12dp
-        xAxis.setGranularity(6f); // 设置间隔尺寸
-        xAxis.setAxisMinimum(0f); // 设置X轴最小值
-        xAxis.setAxisMaximum(30f); // 设置X轴最大值
-        // 设置标签的显示格式
-//        xAxis.setValueFormatter(new IndexAxisValueFormatter(){});
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            public String getFormattedValue(float value, AxisBase axis) {
-                return "9:" + value;
-            }
-        });
-        //是否展示网格线
-        xAxis.setDrawGridLines(false);
-
-    }
-
     public void setData() {
-        float[] ys1 = new float[]{
-                0f, 9f, 9f, 7f, 6f, 7f, 9f,
-                1f, 1f, 4f, 0f};
         LineData lineData = new LineData();
         for (int i = 0; i < 4; i++) {
             List<Entry> yVals1 = new ArrayList<>();
@@ -171,26 +130,22 @@ public class SiteOneFargement extends BaseFragment {
                     yVals1.add(new Entry(23f, 3f));
                     yVals1.add(new Entry(28f, 11f));
                     yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("123",yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
+                    lineDataSet = charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
 
                     break;
                 case 1:
-                    yVals1.add(new Entry(17f, 0f));
                     yVals1.add(new Entry(18f, 13f));
                     yVals1.add(new Entry(20f, 16f));
                     yVals1.add(new Entry(23f, 3f));
                     yVals1.add(new Entry(28f, 13f));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("1233",yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
+                    lineDataSet = charManager.setChartData("Load", yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
                     break;
                 case 2:
-                    yVals1.add(new Entry(20f, 0f));
                     yVals1.add(new Entry(22f, 13f));
                     yVals1.add(new Entry(26f, 22));
                     yVals1.add(new Entry(28f, 5f));
                     yVals1.add(new Entry(29f, 22));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("12223",yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
+                    lineDataSet = charManager.setChartData("Grid", yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
                     break;
                 case 3:
                     yVals1.add(new Entry(0f, 0f));
@@ -201,7 +156,7 @@ public class SiteOneFargement extends BaseFragment {
                     yVals1.add(new Entry(20f, 4f));
                     yVals1.add(new Entry(24f, 3f));
                     yVals1.add(new Entry(26f, 0f));
-                    lineDataSet = setChartData("我认为",yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
+                    lineDataSet = charManager.setChartData("Battery", yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
                     break;
             }
             lineData.addDataSet(lineDataSet);
@@ -213,35 +168,7 @@ public class SiteOneFargement extends BaseFragment {
         lc.invalidate();
     }
 
-    public LineDataSet setChartData(String name,List<Entry> yVals1, int color, int fillColor) {
-        // 1.获取一或多组Entry对象集合的数据
-        // 模拟数据1
 
-        // 2.分别通过每一组Entry对象集合的数据创建折线数据集
-        LineDataSet lineDataSet1 = new LineDataSet(yVals1, name);
-        lineDataSet1.setDrawCircles(false);// 不绘制圆点
-        lineDataSet1.setDrawCircleHole(false); // 不绘制圆洞，即为实心圆点
-        lineDataSet1.setColor(getContext().getResources().getColor(color)); // 设置为红色
-        lineDataSet1.setMode(LineDataSet.Mode.CUBIC_BEZIER); // 设置为贝塞尔曲线
-        lineDataSet1.setCubicIntensity(0.15f); // 强度
-        lineDataSet1.setCircleColor(Color.RED); // 设置圆点为颜色
-        lineDataSet1.setCircleRadius(0f);
-        lineDataSet1.setLineWidth(2f); // 设置线宽为2
-
-        lineDataSet1.setDrawFilled(true); // 启用填充
-        lineDataSet1.setFillAlpha(95); // 透明度
-        //设置曲线图渐填充渐变色
-        if (Utils.getSDKInt() >= 18) {
-            // fill drawable only supported on api level 18 and above
-            Drawable drawable = ContextCompat.getDrawable(getActivity(), fillColor);
-            drawable.setAlpha(160);
-            lineDataSet1.setFillDrawable(drawable);
-        } else {
-            lineDataSet1.setFillColor(Color.WHITE);
-        }
-        return lineDataSet1;
-
-    }
     /**
      * 初始化时间数据
      */
@@ -259,13 +186,14 @@ public class SiteOneFargement extends BaseFragment {
         Calendar startDate = Calendar.getInstance();
         startDate.set(1918, 1, 23);
         Calendar endDate = Calendar.getInstance();
-        endDate.set(2029,01,01);
+        endDate.set(2029, 01, 01);
         //时间选择器 ，自定义布局
         pvCustomTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 tvCenter.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, date));
-
+                currDate = date.getTime();
+                getData();
             }
         })
                 .setDate(selectedDate)

@@ -46,9 +46,12 @@
 
     <color name="color_chart_defult">#66F1F0F0</color>
     <color name="color_chart_one">#3D7FCC</color>
-    <color name="color_chart_two">#F8DC29</color>
+    <color name="color_chart_two">#EBA42F</color>
     <color name="color_chart_three">#84CE62</color>
     <color name="color_chart_four">#E24926</color>
     <color name="color_F2F2F2">#F2F2F2</color>
+    <color name="color_222222">#222222</color>
+
+    <color name="color_C78A92">#C78A92</color>
 
 </resources>

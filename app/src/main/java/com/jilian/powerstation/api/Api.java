@@ -6,10 +6,12 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
+import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
+import com.jilian.powerstation.common.vo.ReportVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.common.vo.LoginVo;
 import com.jilian.powerstation.http.RequetRetrofit;
@@ -78,6 +80,16 @@ public class Api {
      */
     public static Flowable<BaseDto> addPowerInfo(PowerInfoVo vo) {
         return RequetRetrofit.getInstance().addPowerInfo(vo);
+    }
+
+    /**
+     * 获取报告
+     *
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<ReportListDto>> getReportData(ReportVo vo) {
+        return RequetRetrofit.getInstance().getReportData(vo);
     }
 
     /**
