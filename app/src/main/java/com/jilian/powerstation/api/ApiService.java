@@ -5,6 +5,7 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
@@ -18,7 +19,9 @@ import com.jilian.powerstation.common.vo.LoginVo;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 /**
  * api接口
@@ -110,6 +113,14 @@ public interface ApiService {
      */
     @POST("/HESS_SCADA/app/user/resetPassword.app")
     Flowable<BaseDto> resetPassword(@Body UpdatePwdVo vo);
+
+    /**
+     * 电站卡片 - 固件信息
+     * @param vo
+     * @return
+     */
+    @GET("/HESS_SCADA/app.html?method=getPowerFirmwareInfo")
+    Flowable<BaseDto<PowerCardDto>> getPowerCard(@QueryMap PowerInfoVo vo);
 
 }
 

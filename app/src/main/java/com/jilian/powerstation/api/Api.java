@@ -5,6 +5,7 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
@@ -117,6 +118,14 @@ public class Api {
      */
     public static Flowable<BaseDto> resetPassword(UpdatePwdVo vo) {
         return RequetRetrofit.getInstance().resetPassword(vo);
+    }
+    /**
+     * 电站卡片 固件升级
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<PowerCardDto>> getPowerCard(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getPowerCard(vo);
     }
 
 

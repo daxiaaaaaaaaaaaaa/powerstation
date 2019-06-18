@@ -5,11 +5,14 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.modul.viewmodel.PowerViewModel;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 
 /**
@@ -18,8 +21,15 @@ import com.jilian.powerstation.modul.viewmodel.UserViewModel;
  * Discrebe: 电站名片
  */
 public class SiteCardFragment extends BaseFragment {
+    private TextView tvSiteName;
+    private TextView tvDeviceName;
+    private TextView tvPowerTotal;
+    private TextView tvPowerVersion;
+    private TextView tvOnlineTime;
+    private TextView tvPowerIntroduction;
+
     private PowerDto powerDto;
-    private UserViewModel viewModel;
+    private PowerViewModel viewModel;
 
     @Override
     protected void loadData() {
@@ -28,7 +38,7 @@ public class SiteCardFragment extends BaseFragment {
 
     @Override
     protected void createViewModel() {
-        viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(PowerViewModel.class);
     }
 
     @Override
@@ -39,12 +49,25 @@ public class SiteCardFragment extends BaseFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
+
+        tvSiteName = (TextView) view.findViewById(R.id.tv_site_name);
+        tvDeviceName = (TextView) view.findViewById(R.id.tv_device_name);
+        tvPowerTotal = (TextView) view.findViewById(R.id.tv_power_total);
+        tvPowerVersion = (TextView) view.findViewById(R.id.tv_power_version);
+        tvOnlineTime = (TextView) view.findViewById(R.id.tv_online_time);
+        tvPowerIntroduction = (TextView) view.findViewById(R.id.tv_power_introduction);
     }
 
     @Override
     protected void initData() {
         powerDto = (PowerDto) getActivity().getIntent().getSerializableExtra("data");
-        gegtPowerInfo();
+        if (powerDto!=null){
+            tvSiteName.setText(powerDto.getProductName());
+            tvDeviceName.setText(powerDto.getProductName());
+            tvPowerTotal.setText(powerDto.getHistoryPVproduction());
+            gegtPowerInfo();
+        }
+
     }
 
     @Override
@@ -56,11 +79,13 @@ public class SiteCardFragment extends BaseFragment {
         /**
          * 我的电站列表
          */
-        viewModel.getPowerInfo(powerDto.getSn(), "");
-        viewModel.getPowerliveData().observe(this, new Observer<BaseDto<PowerDto>>() {
+        viewModel.getPowerCard(powerDto.getSn(), "");
+        viewModel.getPowerCardliveData().observe(this, new Observer<BaseDto<PowerCardDto>>() {
             @Override
-            public void onChanged(@Nullable BaseDto<PowerDto> powerDtoBaseDto) {
-
+            public void onChanged(@Nullable BaseDto<PowerCardDto> powerCardDtoBaseDto) {
+                tvPowerVersion.setText(powerCardDtoBaseDto.getData().getVersionCode());
+                tvOnlineTime.setText(powerCardDtoBaseDto.getData().getVersionIntro());
+                tvPowerIntroduction.setText(powerCardDtoBaseDto.getData().getVersionIntro());
             }
         });
     }
