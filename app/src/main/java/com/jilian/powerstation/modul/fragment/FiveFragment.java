@@ -5,9 +5,11 @@ import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -30,6 +32,7 @@ import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.CircularImageView;
 
+import java.io.FileOutputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,6 +49,7 @@ public class FiveFragment extends BaseFragment {
     private TextView tvChangePwd;
     private View tvAbout;
     private TextView userLogout;
+    private ImageView img_view;
 
 
     @Override
@@ -65,6 +69,30 @@ public class FiveFragment extends BaseFragment {
         return R.layout.fragment_five;
     }
 
+    public void shareImg(View view) {
+        //打开图像缓存
+        view.setDrawingCacheEnabled(true);
+// 必须要调用measure和layout方法才能成功保存可视组件的截图到png图像文件
+// 测量View的大小
+        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+// 发送位置和尺寸到View及其所有的子View
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        try {
+// 获取可视组件的截图
+            Bitmap bitmap = view.getDrawingCache();
+// 将截图保存在SD卡根目录的test.png图像文件中
+            FileOutputStream fos = new FileOutputStream("/sdcard/test.png");
+// 将Bitmap对象中的图像数据压缩成png格式的图像数据，并将这些数据保存在test.png文件中
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+// 关闭文件输出流
+            fos.close();
+            img_view.setImageBitmap(bitmap);
+        } catch (Exception e) {
+        }
+
+    }
+
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         view.findViewById(R.id.user_logout).setOnClickListener(new View.OnClickListener() {
@@ -82,6 +110,13 @@ public class FiveFragment extends BaseFragment {
         tvChangePwd = (TextView) view.findViewById(R.id.tv_change_pwd);
         tvAbout = (View) view.findViewById(R.id.tv_about);
         userLogout = (TextView) view.findViewById(R.id.user_logout);
+        img_view = view.findViewById(R.id.img_view);
+        view.findViewById(R.id.user_info_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareImg(getView());
+            }
+        });
     }
 
     @Override
@@ -125,7 +160,7 @@ public class FiveFragment extends BaseFragment {
         tvChangePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(getmActivity(), UpdatePwdActivity.class));
+                startActivity(new Intent(getmActivity(), UpdatePwdActivity.class));
             }
         });
         userLogout.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +169,7 @@ public class FiveFragment extends BaseFragment {
                 showLogoutDialog();
             }
         });
+
     }
 
     /**
@@ -142,7 +178,7 @@ public class FiveFragment extends BaseFragment {
     private void showLogoutDialog() {
         Dialog dialog = PinziDialogUtils.getDialogNotTouchOutside(getmActivity(), R.layout.dialog_confirm);
         TextView tvTitle = (TextView) dialog.findViewById(R.id.tv_title);
-        TextView tvContent = (TextView)dialog. findViewById(R.id.tv_content);
+        TextView tvContent = (TextView) dialog.findViewById(R.id.tv_content);
         TextView tvNo = (TextView) dialog.findViewById(R.id.tv_no);
         TextView tvOk = (TextView) dialog.findViewById(R.id.tv_ok);
 
@@ -171,7 +207,6 @@ public class FiveFragment extends BaseFragment {
             }
         });
         dialog.show();
-
 
 
     }

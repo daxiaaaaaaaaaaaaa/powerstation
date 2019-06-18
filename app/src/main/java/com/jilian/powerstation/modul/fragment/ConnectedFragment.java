@@ -1,18 +1,27 @@
 package com.jilian.powerstation.modul.fragment;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ESSDto;
+import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
+import com.jilian.powerstation.modul.viewmodel.UserViewModel;
+import com.jilian.powerstation.utils.EmptyUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +31,14 @@ import java.util.List;
  * <p>
  * Discrebe: 智能设备列表
  */
-public class ConnectedFragment  extends BaseFragment {
+public class ConnectedFragment extends BaseFragment {
     private List<ESSDto> mDatas;
     private ConnectedsAdapter adapter;
     private RecyclerView mRecycle;
+
+
+
+
 
     @Override
     protected void loadData() {
@@ -58,13 +71,14 @@ public class ConnectedFragment  extends BaseFragment {
 
     }
 
+
     private void iniRecycle() {
         mDatas = new ArrayList<>();
         mDatas.add(new ESSDto());
         mDatas.add(new ESSDto());
         adapter = new ConnectedsAdapter(mDatas, getContext());
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(),1));
+        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(), 1));
         mRecycle.setAdapter(adapter);
 
         adapter.setItemListener(new OnRecycleItemListener() {

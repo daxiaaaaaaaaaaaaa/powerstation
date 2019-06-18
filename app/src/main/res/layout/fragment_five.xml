@@ -1,139 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context=".modul.fragment.FiveFragment">
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".modul.fragment.FiveFragment">
 
-
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/widget_size_220"
-        android:background="@color/colorPrimary">
-
-        <ImageView
-            android:layout_marginTop="@dimen/widget_size_50"
-            android:id="@+id/user_info_"
-            android:layout_width="@dimen/widget_size_27"
-            android:layout_height="@dimen/widget_size_20"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/widget_size_12"
-            android:src="@drawable/ic_share"
-            android:tint="@color/white" />
-
-        <com.jilian.powerstation.views.CircularImageView
-            android:id="@+id/iv_head"
-            android:layout_width="@dimen/widget_size_80"
-            android:layout_height="@dimen/widget_size_80"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="@dimen/font_size_8"
-            tools:src="@mipmap/ic_launcher" />
-
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@+id/iv_head"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            tools:text="Jonhn"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_22"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_marginLeft="@dimen/widget_size_10"
-            android:id="@+id/user_info_editor"
-            android:layout_width="30dp"
-            android:layout_height="33dp"
-            android:layout_above="@+id/tv_id"
-            android:layout_toRightOf="@+id/tv_name"
-            android:padding="@dimen/widget_size_5"
-            android:src="@drawable/ic_editor"
-            android:tint="@color/white" />
-
-        <TextView
-            android:textSize="@dimen/font_size_14"
-            android:id="@+id/tv_id"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_below="@+id/tv_name"
-            android:gravity="center"
-            tools:text="jonhn-209909109"
-            android:textColor="@color/white" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    <TextView
-        style="@style/UserInfoText"
-        android:drawableLeft="@drawable/image_chang_site"
-        android:id="@+id/tv_change_power"
-        android:text="Change Site" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_220"
+                android:background="@color/colorPrimary">
 
-    <View
-        style="@style/LineHorizontal"
-        android:layout_marginLeft="@dimen/widget_size_16"
-        android:layout_marginRight="@dimen/widget_size_16" />
+                <ImageView
+                    android:id="@+id/user_info_share"
+                    android:layout_width="@dimen/widget_size_27"
+                    android:layout_height="@dimen/widget_size_20"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/widget_size_50"
+                    android:layout_marginRight="@dimen/widget_size_12"
+                    android:src="@drawable/ic_share"
+                    android:tint="@color/white" />
 
-    <TextView
-        style="@style/UserInfoText"
-        android:drawableLeft="@drawable/ic_chage_password"
-        android:id="@+id/tv_change_pwd"
-        android:text="Change password" />
-
-    <View
-        style="@style/LineHorizontal"
-        android:layout_marginLeft="@dimen/widget_size_16"
-        android:layout_marginRight="@dimen/widget_size_16" />
-
-    <TextView
-        style="@style/UserInfoText"
-        android:drawableLeft="@drawable/ic_about"
-        android:text="About" />
-
-    <View
-        style="@style/LineHorizontal"
-        android:id="@+id/tv_about"
-        android:layout_marginLeft="@dimen/widget_size_16"
-        android:layout_marginRight="@dimen/widget_size_16" />
+                <com.jilian.powerstation.views.CircularImageView
+                    android:id="@+id/iv_head"
+                    android:layout_width="@dimen/widget_size_80"
+                    android:layout_height="@dimen/widget_size_80"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/font_size_8"
+                    tools:src="@mipmap/ic_launcher" />
 
 
-    <TextView
-        android:id="@+id/user_logout"
-        style="@style/ButtonDefult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:paddingTop="@dimen/widget_size_10"
-        android:paddingBottom="@dimen/widget_size_10"
-        android:paddingRight="@dimen/widget_size_15"
-        android:paddingLeft="@dimen/widget_size_15"
-        android:layout_marginTop="@dimen/widget_size_40"
-        android:layout_marginRight="@dimen/widget_size_20"
-        android:drawableLeft="@drawable/image_logout"
-        android:drawablePadding="8dp"
-        android:drawableTint="@color/white"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
-        android:textSize="@dimen/font_size_16"
-        android:text="Login Out" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_60"/>
-    </LinearLayout>
-   </ScrollView>
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/iv_head"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_22"
+                    android:textStyle="bold"
+                    tools:text="Jonhn" />
+
+                <ImageView
+                    android:id="@+id/user_info_editor"
+                    android:layout_width="30dp"
+                    android:layout_height="33dp"
+                    android:layout_above="@+id/tv_id"
+                    android:layout_marginLeft="@dimen/widget_size_10"
+                    android:layout_toRightOf="@+id/tv_name"
+                    android:padding="@dimen/widget_size_5"
+                    android:src="@drawable/ic_editor"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/tv_name"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_14"
+                    tools:text="jonhn-209909109" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_change_power"
+                style="@style/UserInfoText"
+                android:drawableLeft="@drawable/image_chang_site"
+                android:text="Change Site" />
+
+            <View
+                style="@style/LineHorizontal"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:layout_marginRight="@dimen/widget_size_16" />
+
+            <TextView
+                android:id="@+id/tv_change_pwd"
+                style="@style/UserInfoText"
+                android:drawableLeft="@drawable/ic_chage_password"
+                android:text="Change password" />
+
+            <View
+                style="@style/LineHorizontal"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:layout_marginRight="@dimen/widget_size_16" />
+
+            <TextView
+                style="@style/UserInfoText"
+                android:drawableLeft="@drawable/ic_about"
+                android:text="About" />
+
+            <View
+                android:id="@+id/tv_about"
+                style="@style/LineHorizontal"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:layout_marginRight="@dimen/widget_size_16" />
+
+
+            <TextView
+                android:id="@+id/user_logout"
+                style="@style/ButtonDefult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/widget_size_40"
+                android:layout_marginRight="@dimen/widget_size_20"
+                android:drawableLeft="@drawable/image_logout"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/widget_size_15"
+                android:paddingTop="@dimen/widget_size_10"
+                android:paddingRight="@dimen/widget_size_15"
+                android:paddingBottom="@dimen/widget_size_10"
+                android:text="Login Out"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_16" />
+
+            <ImageView
+                android:id="@+id/img_view"
+                android:layout_width="300dp"
+                android:layout_height="300dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_60" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

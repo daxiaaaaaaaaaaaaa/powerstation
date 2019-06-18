@@ -8,6 +8,7 @@ import com.jilian.powerstation.base.BaseViewModel;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
@@ -58,6 +59,10 @@ public class UserViewModel extends BaseViewModel {
      */
     private LiveData<BaseDto> addPowerliveData;
     /**
+     * 获取电站
+     */
+    private LiveData<BaseDto<PowerDto>> powerliveData;
+    /**
      * 个人信息
      */
     private LiveData<BaseDto<UserInfoDto>> userliveData;
@@ -65,6 +70,7 @@ public class UserViewModel extends BaseViewModel {
      * 修改密码
      */
     private LiveData<BaseDto> resetPwdliveData;
+
     /**
      * 注册
      *
@@ -104,27 +110,27 @@ public class UserViewModel extends BaseViewModel {
         UserInfoVo vo = new UserInfoVo();
         vo.setAccountEmail(accountEmail);
         vo.setAccountPwd(Md5Util.getMd5(accountPwd));
-        Log.e(TAG, "login: "+ Md5Util.getMd5(accountPwd));
+        Log.e(TAG, "login: " + Md5Util.getMd5(accountPwd));
         loginliveData = Factoty.getRepository(UserRepository.class).login(vo);
     }
 
     /**
-     *
      * @param accountEmail
      * @param newPassword
      * @param verCode
      */
-    public void forgetAndResetPassword(String accountEmail, String verCode,String newPassword) {
+    public void forgetAndResetPassword(String accountEmail, String verCode, String newPassword) {
         ForgetVo vo = new ForgetVo();
         vo.setAccountEmail(accountEmail);
         vo.setNewPassword(Md5Util.getMd5(newPassword));
         vo.setVerCode(verCode);
-        Log.e(TAG, "login: "+ Md5Util.getMd5(newPassword));
+        Log.e(TAG, "login: " + Md5Util.getMd5(newPassword));
         forgetliveData = Factoty.getRepository(UserRepository.class).forgetAndResetPassword(vo);
     }
 
     /**
      * 我的电站列表
+     *
      * @param page
      * @param rows
      */
@@ -140,12 +146,25 @@ public class UserViewModel extends BaseViewModel {
      * @param powerSn SN 码
      * @param powerName 电站名称
      */
-    public void addPowerInfo(String powerSn , String powerName) {
+    public void addPowerInfo(String powerSn, String powerName) {
         PowerInfoVo vo = new PowerInfoVo();
         vo.setPowerSn(powerSn);
         vo.setPowerName(powerName);
         addPowerliveData = Factoty.getRepository(UserRepository.class).addPowerInfo(vo);
     }
+
+    /***
+     * 添加电站
+     * @param powerSn SN 码
+     * @param powerName 电站名称
+     */
+    public void getPowerInfo(String powerSn, String powerName) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        vo.setPowerName(powerName);
+        powerliveData = Factoty.getRepository(UserRepository.class).getPowerInfo(vo);
+    }
+
     /**
      * 获取个人信息
      */
@@ -155,23 +174,18 @@ public class UserViewModel extends BaseViewModel {
 
 
     /**
-     *
      * @param rawAccountPwd 原密码
      * @param nowAccountPwd 新密码
-     * @param confirmPwd 确认密码
-     *                   加密
+     * @param confirmPwd    确认密码
+     *                      加密
      */
-    public void resetPassword(String rawAccountPwd , String nowAccountPwd,String confirmPwd) {
+    public void resetPassword(String rawAccountPwd, String nowAccountPwd, String confirmPwd) {
         UpdatePwdVo vo = new UpdatePwdVo();
         vo.setRawAccountPwd(Md5Util.getMd5(rawAccountPwd));
         vo.setNowAccountPwd(Md5Util.getMd5(nowAccountPwd));
         vo.setConfirmPwd(Md5Util.getMd5(confirmPwd));
         resetPwdliveData = Factoty.getRepository(UserRepository.class).resetPassword(vo);
     }
-
-
-
-
 
 
 }

@@ -5,6 +5,7 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
@@ -77,6 +78,14 @@ public interface ApiService {
      */
     @POST("/HESS_SCADA/app/user/addPowerInfo.app")
     Flowable<BaseDto> addPowerInfo(@Body PowerInfoVo vo);
+
+    /**
+     * 获取电站
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/getPowerInfo.app")
+    Flowable<BaseDto<PowerDto>> getPowerInfo(@Body PowerInfoVo vo);
 
 
     /**

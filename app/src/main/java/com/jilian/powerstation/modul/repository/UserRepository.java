@@ -8,6 +8,7 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.base.CommonRepository;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
@@ -77,6 +78,16 @@ public class UserRepository extends CommonRepository {
      */
     public LiveData<BaseDto> addPowerInfo(PowerInfoVo vo) {
         return request(Api.addPowerInfo(vo)).send().get();
+    }
+
+    /**
+     * 添加电站
+     *
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<PowerDto>> getPowerInfo(PowerInfoVo vo) {
+        return request(Api.getPowerInfo(vo)).send().get();
     }
 
     /**
