@@ -9,6 +9,12 @@ package com.jilian.powerstation;
 
 public class Constant {
 
+    public final static int INVERTER_TYPE = 0;//逆变器
+
+    public final static int BATTERY_TYPE = 1;//电池
+
+    public final static int SMART_DEVICES_TYPE = 2;//智能设备
+
     /**
      * 请求后台的所有API接口都在这里配置;统一管理
      */

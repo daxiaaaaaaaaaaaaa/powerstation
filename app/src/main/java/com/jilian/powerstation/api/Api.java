@@ -3,10 +3,12 @@ package com.jilian.powerstation.api;
 
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
+import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
@@ -89,7 +91,7 @@ public class Api {
      * @param vo
      * @return
      */
-    public static Flowable<BaseDto<PowerDto>> getPowerInfo(PowerInfoVo vo) {
+    public static Flowable<BaseDto<PowerInfoDetailDto>> getPowerInfo(PowerInfoVo vo) {
         return RequetRetrofit.getInstance().getPowerInfo(vo);
     }
 
@@ -127,6 +129,18 @@ public class Api {
     public static Flowable<BaseDto<PowerCardDto>> getPowerCard(PowerInfoVo vo) {
         return RequetRetrofit.getInstance().getPowerCard(vo);
     }
+
+
+    /**
+     * 电站详情 获取警告
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<AlarmInfoDto>> getPowerAlarmInfo(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getPowerAlarmInfo(vo);
+    }
+
+
 
 
 

@@ -3,10 +3,12 @@ package com.jilian.powerstation.api;
 
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
+import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
@@ -88,7 +90,7 @@ public interface ApiService {
      * @return
      */
     @POST("/HESS_SCADA/app/user/getPowerInfo.app")
-    Flowable<BaseDto<PowerDto>> getPowerInfo(@Body PowerInfoVo vo);
+    Flowable<BaseDto<PowerInfoDetailDto>> getPowerInfo(@Body PowerInfoVo vo);
 
 
     /**
@@ -121,6 +123,15 @@ public interface ApiService {
      */
     @GET("/HESS_SCADA/app.html?method=getPowerFirmwareInfo")
     Flowable<BaseDto<PowerCardDto>> getPowerCard(@QueryMap PowerInfoVo vo);
+
+    /**
+     * 电站详情获取警告
+     *
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/getPowerAlarmInfo.app")
+    Flowable<BaseDto<AlarmInfoDto>> getPowerAlarmInfo(@Body PowerInfoVo vo);
 
 }
 

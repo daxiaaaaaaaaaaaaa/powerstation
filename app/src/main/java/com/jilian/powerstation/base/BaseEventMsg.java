@@ -18,5 +18,11 @@ public class BaseEventMsg implements Serializable {
 
     private AddPowersEvent addPowersEvent;
 
+    public AddPowersEvent getAddPowersEvent() {
+        return addPowersEvent;
+    }
 
+    public void setAddPowersEvent(AddPowersEvent addPowersEvent) {
+        this.addPowersEvent = addPowersEvent;
+    }
 }

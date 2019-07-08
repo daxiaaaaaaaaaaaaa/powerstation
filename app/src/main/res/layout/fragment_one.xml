@@ -196,7 +196,7 @@
                                 android:layout_alignBottom="@+id/tv_number_1"
                                 android:layout_marginBottom="6dp"
                                 android:layout_toRightOf="@+id/tv_number_1"
-                                android:text="%"
+                                android:text="kWh"
                                 android:textColor="#ff222222"
                                 android:textSize="11sp" />
                         </RelativeLayout>
@@ -215,7 +215,7 @@
                         <TextView
                             style="@style/StationItemTitle"
                             android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day self-consumption" />
+                            android:text="Day connected device" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                                 android:layout_alignBottom="@+id/tv_number_2"
                                 android:layout_marginBottom="6dp"
                                 android:layout_toRightOf="@+id/tv_number_2"
-                                android:text="%"
+                                android:text="kWh"
                                 android:textColor="#ff222222"
                                 android:textSize="11sp" />
                         </RelativeLayout>
@@ -264,7 +264,7 @@
                         <TextView
                             style="@style/StationItemTitle"
                             android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day self-consumption" />
+                            android:text="Lifetime PV product" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -303,7 +303,7 @@
                         <TextView
                             style="@style/StationItemTitle"
                             android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day self-consumption" />
+                            android:text="Lifetime consumption" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -325,7 +325,7 @@
                                 android:layout_alignBottom="@+id/tv_number_4"
                                 android:layout_marginBottom="6dp"
                                 android:layout_toRightOf="@+id/tv_number_4"
-                                android:text="%"
+                                android:text="kWh"
                                 android:textColor="#ff222222"
                                 android:textSize="11sp" />
                         </RelativeLayout>
@@ -352,7 +352,7 @@
                         <TextView
                             style="@style/StationItemTitle"
                             android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day self-consumption" />
+                            android:text="Lifetime bill saved" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -374,7 +374,7 @@
                                 android:layout_alignBottom="@+id/tv_number_5"
                                 android:layout_marginBottom="6dp"
                                 android:layout_toRightOf="@+id/tv_number_5"
-                                android:text="%"
+                                android:text="$"
                                 android:textColor="#ff222222"
                                 android:textSize="11sp" />
                         </RelativeLayout>
@@ -393,7 +393,7 @@
                         <TextView
                             style="@style/StationItemTitle"
                             android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day self-consumption" />
+                            android:text="Lifetime CO2 reduced" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -415,7 +415,7 @@
                                 android:layout_alignBottom="@+id/tv_number_6"
                                 android:layout_marginBottom="6dp"
                                 android:layout_toRightOf="@+id/tv_number_6"
-                                android:text="%"
+                                android:text="kg"
                                 android:textColor="#ff222222"
                                 android:textSize="11sp" />
                         </RelativeLayout>

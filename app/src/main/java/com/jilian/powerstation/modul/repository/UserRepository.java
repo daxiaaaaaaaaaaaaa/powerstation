@@ -6,9 +6,11 @@ import com.jilian.powerstation.api.Api;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.base.CommonRepository;
+import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
@@ -81,12 +83,12 @@ public class UserRepository extends CommonRepository {
     }
 
     /**
-     * 添加电站
+     * 获取电站详情
      *
      * @param vo
      * @return
      */
-    public LiveData<BaseDto<PowerDto>> getPowerInfo(PowerInfoVo vo) {
+    public LiveData<BaseDto<PowerInfoDetailDto>> getPowerInfo(PowerInfoVo vo) {
         return request(Api.getPowerInfo(vo)).send().get();
     }
 
@@ -108,7 +110,14 @@ public class UserRepository extends CommonRepository {
         return request(Api.resetPassword(vo)).send().get();
     }
 
-
+    /**
+     * 电站详情 获取警告
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<AlarmInfoDto>> getPowerAlarmInfo(PowerInfoVo vo) {
+        return request(Api.getPowerAlarmInfo(vo)).send().get();
+    }
 
 
 }

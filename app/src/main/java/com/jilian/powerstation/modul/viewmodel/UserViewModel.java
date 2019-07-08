@@ -6,9 +6,11 @@ import android.util.Log;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseViewModel;
 import com.jilian.powerstation.base.BaseVo;
+import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerDto;
+import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ForgetVo;
@@ -59,9 +61,9 @@ public class UserViewModel extends BaseViewModel {
      */
     private LiveData<BaseDto> addPowerliveData;
     /**
-     * 获取电站
+     * 获取电站详情
      */
-    private LiveData<BaseDto<PowerDto>> powerliveData;
+    private LiveData<BaseDto<PowerInfoDetailDto>> powerliveData;
     /**
      * 个人信息
      */
@@ -70,6 +72,54 @@ public class UserViewModel extends BaseViewModel {
      * 修改密码
      */
     private LiveData<BaseDto> resetPwdliveData;
+    /**
+     * 电站详情 获取警告
+     */
+    private LiveData<BaseDto<AlarmInfoDto>> alarmliveData;
+
+    public LiveData<BaseDto<AlarmInfoDto>> getAlarmliveData() {
+        return alarmliveData;
+    }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public LiveData<BaseDto> getAddUserliveData() {
+        return addUserliveData;
+    }
+
+    public LiveData<BaseDto<BaseResultDto>> getCodeliveData() {
+        return codeliveData;
+    }
+
+    public LiveData<BaseDto<LoginDto>> getLoginliveData() {
+        return loginliveData;
+    }
+
+    public LiveData<BaseDto> getForgetliveData() {
+        return forgetliveData;
+    }
+
+    public LiveData<BaseDto<PowerListDto>> getPowerListliveData() {
+        return powerListliveData;
+    }
+
+    public LiveData<BaseDto> getAddPowerliveData() {
+        return addPowerliveData;
+    }
+
+    public LiveData<BaseDto<PowerInfoDetailDto>> getPowerliveData() {
+        return powerliveData;
+    }
+
+    public LiveData<BaseDto<UserInfoDto>> getUserliveData() {
+        return userliveData;
+    }
+
+    public LiveData<BaseDto> getResetPwdliveData() {
+        return resetPwdliveData;
+    }
 
     /**
      * 注册
@@ -154,7 +204,7 @@ public class UserViewModel extends BaseViewModel {
     }
 
     /***
-     * 添加电站
+     * 获取电站详情
      * @param powerSn SN 码
      * @param powerName 电站名称
      */
@@ -185,6 +235,19 @@ public class UserViewModel extends BaseViewModel {
         vo.setNowAccountPwd(Md5Util.getMd5(nowAccountPwd));
         vo.setConfirmPwd(Md5Util.getMd5(confirmPwd));
         resetPwdliveData = Factoty.getRepository(UserRepository.class).resetPassword(vo);
+    }
+
+
+    /**
+     * 电站详情  获取警告
+     * @param powerSn
+     * @param powerName
+     */
+    public void getPowerAlarmInfo(String powerSn, String powerName) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        vo.setPowerName(powerName);
+        alarmliveData = Factoty.getRepository(UserRepository.class).getPowerAlarmInfo(vo);
     }
 
 
