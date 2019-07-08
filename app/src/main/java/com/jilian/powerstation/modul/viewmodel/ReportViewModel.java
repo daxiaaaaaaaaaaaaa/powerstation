@@ -36,4 +36,5 @@ public class ReportViewModel extends BaseViewModel {
         vo.setType(type);
         reportData = Factoty.getRepository(ReportRepository.class).getReportData(vo);
     }
+
 }

@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.data.Entry;
@@ -14,6 +16,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.manege.CharDateManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,10 +35,12 @@ public class CostomMarket implements IMarker {
     private List<MarkerInfo> markerInfos;
     private float width, height;
     private Context context;
+    private String title = "";
     Paint textPaint;
     Paint paint;
     RectF rect;
 
+    int type = -1; //X轴的数据类型
     int bgColor;
     int strokerColor;
     int textColor;
@@ -43,6 +48,19 @@ public class CostomMarket implements IMarker {
     public CostomMarket(Context context, float width, float height) {
         this.width = width;
         this.height = height;
+        this.type = -1;
+        this.context = context.getApplicationContext();
+        entryMap = new HashMap<>();
+        colorMap = new HashMap<>();
+        valueMap = new HashMap<>();
+        markerInfos = new ArrayList<>();
+        init();
+    }
+
+    public CostomMarket(Context context, float width, float height, int type) {
+        this.width = width;
+        this.height = height;
+        this.type = type;
         this.context = context.getApplicationContext();
         entryMap = new HashMap<>();
         colorMap = new HashMap<>();
@@ -88,20 +106,32 @@ public class CostomMarket implements IMarker {
     public void refreshContent(Entry e, Highlight highlight) {
         this.mEntry = e;
         markerInfos = getEntrys(mEntry);
+        title = CharDateManager.getDateForm(type, mEntry.getX());
     }
+
 
     @Override
     public void draw(Canvas canvas, float posX, float posY) {
-
         Set<String> keys = colorMap.keySet();
         int len = keys.size();
-        float bottom = height - 75 * (len+1);
-        float top = bottom - Utils.convertDpToPixel(20) * (len + 1);
-        rect.bottom = bottom + Utils.convertDpToPixel(8);
-        rect.top = top - Utils.convertDpToPixel(8);
+        //文字区域上下距离 8dp 文字一行是20dp
+        float textHeight = 0;
+        if (TextUtils.isEmpty(title)) {
+            textHeight = Utils.convertDpToPixel(8) * 2 + Utils.convertDpToPixel(20) * len;
+        } else {
+            textHeight = Utils.convertDpToPixel(8) * 2 + Utils.convertDpToPixel(20) * (len + 1);
+        }
+        rect.bottom = height / 2 + textHeight / 2;
+        rect.top = height / 2 - textHeight / 2;
         paint.setColor(bgColor);
         paint.setAlpha(120);
         canvas.drawRect(rect, paint);
+
+        if (!TextUtils.isEmpty(title)) {
+            textPaint.setColor(context.getResources().getColor(R.color.color_838383));
+            setText(canvas, "", 0);
+        }
+        textPaint.setColor(textColor);
 
         paint.reset();
         paint.setStrokeWidth(5);
@@ -113,12 +143,36 @@ public class CostomMarket implements IMarker {
         int position = 0;
         for (String key : keys) {
             int color = colorMap.get(key);
-            setCircle(canvas, posX, color, len-position);
-            setNumberCircle(canvas, color, len-position);
-            setText(canvas, key, position);
+            setCircle(canvas, posX, color, len - position);
+            if (TextUtils.isEmpty(title)) {
+                setNumberCircle(canvas, color, len - position - 1);
+                setText(canvas, key, position);
+            } else {
+                setNumberCircle(canvas, color, len - position);
+                setText(canvas, key, position + 1);
+            }
+
             position++;
         }
 
+    }
+
+
+    /**
+     * @param canvas
+     * @param posX
+     * @param color
+     * @param position
+     */
+    public void setCircle(Canvas canvas, float posX, int color, int position) {
+        paint.setColor(color);
+        paint.setAlpha(95);
+        float y = height - Utils.convertDpToPixel(42) - Utils.convertDpToPixel(22) * position;
+
+        canvas.drawCircle(posX, y, Utils.convertDpToPixel(10), paint);
+        paint.reset();
+        paint.setColor(color);
+        canvas.drawCircle(posX, y, Utils.convertDpToPixel(6), paint);
     }
 
     /**
@@ -130,24 +184,9 @@ public class CostomMarket implements IMarker {
      */
     public void setNumberCircle(Canvas canvas, int color, int position) {
         paint.setColor(color);
-        float x = rect.left + Utils.convertDpToPixel(16) + 12;
+        float x = rect.left + Utils.convertDpToPixel(16);
         float y = rect.top + Utils.convertDpToPixel(8) + Utils.convertDpToPixel(20) * position + Utils.convertDpToPixel(10);
-        canvas.drawCircle(x, y, 12, paint);
-    }
-
-    /**
-     * @param canvas
-     * @param posX
-     * @param color
-     * @param position
-     */
-    public void setCircle(Canvas canvas, float posX, int color, int position) {
-        paint.setColor(color);
-        paint.setAlpha(95);
-        canvas.drawCircle(posX, height - 75 * position, 25, paint);
-        paint.reset();
-        paint.setColor(color);
-        canvas.drawCircle(posX, height - 75 * position, 10, paint);
+        canvas.drawCircle(x, y, Utils.convertDpToPixel(6), paint);
     }
 
     /**
@@ -159,11 +198,14 @@ public class CostomMarket implements IMarker {
      */
     public void setText(Canvas canvas, String key, int position) {
         String value = valueMap.get(key);
-        if (TextUtils.isEmpty(value)) {
-            value = "0kWh";
-        }
         float x = rect.left + Utils.convertDpToPixel(32);
         float y = rect.top + Utils.convertDpToPixel(8) + Utils.convertDpToPixel(20) * position + Utils.convertDpToPixel(14);
+        if (position == 0 && !TextUtils.isEmpty(title)) {
+            value = title;
+            x = rect.left + Utils.convertDpToPixel(10);
+        } else if (TextUtils.isEmpty(value)) {
+            value = "0kWh";
+        }
         canvas.drawText(value, x, y, textPaint);
     }
 
@@ -199,4 +241,6 @@ public class CostomMarket implements IMarker {
             this.color = color;
         }
     }
+
+
 }

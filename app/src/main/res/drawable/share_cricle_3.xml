@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <corners android:radius="100dp"/>
+    <!-- 圆角，你也可以对不同的角设置不同的数值 -->
+    <solid android:color="@color/color_chart_three"/>
+</shape>

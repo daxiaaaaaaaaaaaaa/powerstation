@@ -2,43 +2,42 @@ package com.jilian.powerstation.manege;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 
+import com.baidu.mapapi.map.Marker;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.views.CostomMarket;
+import com.jilian.powerstation.views.TMarket;
 
 import java.util.List;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 /**
- * Created by cxz on 2019/6/15
+ * Created by cxz on 2019-07-08
  * <p>
  * Discrebe:
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class CharManager {
-    private LineChart lc;
-    private CostomMarket tMarket;
+public class CharBarManage {
+
+    private BarChart lc;
+    private TMarket tMarket;
     private Context context;
     private float mYAxisTextSize = 12f;
     private float mXAxisTextSize = 12f;
 
-    public CharManager(LineChart lc, CostomMarket tMarket, Context context) {
+    public CharBarManage(BarChart lc, TMarket tMarket, Context context) {
         this.lc = lc;
         this.tMarket = tMarket;
         this.context = context;
@@ -57,21 +56,19 @@ public class CharManager {
         lc.setScaleYEnabled(false);
 
         lc.getLegend().setEnabled(false);
-        Description description = lc.getDescription();
-        description.setTextAlign(Paint.Align.CENTER);
-        description.setText("sdasdf");
+        lc.getDescription().setText("");
     }
 
     public void removeAll(){
-        if ( lc.getLineData()==null) return;
-        lc.getLineData().clearValues();
+        if (lc.getBarData()==null) return;
+        lc.getBarData().clearValues();
         lc.invalidate();
     }
 
     /**
      * 图例
      */
-    public CharManager setLegend() {
+    public CharBarManage setLegend() {
         Legend legend = lc.getLegend();
         legend.setForm(Legend.LegendForm.LINE); // 图形：线
         legend.setFormSize(14f); // 图形大小
@@ -85,7 +82,7 @@ public class CharManager {
     /**
      * Y轴
      */
-    public CharManager setYAxis(float maximum, float minimum, float granularity) {
+    public CharBarManage setYAxis(float maximum, float minimum, float granularity) {
         // 左边Y轴
         final YAxis yAxisLeft = lc.getAxisLeft();
         yAxisLeft.setAxisMaximum(maximum); // 设置Y轴最大值
@@ -107,7 +104,7 @@ public class CharManager {
         return this;
     }
 
-    public CharManager setXAxis(float maximum, float minimum, float granularity, int labelCount, IAxisValueFormatter iAxisValueFormatter) {
+    public CharBarManage setXAxis(float maximum, float minimum, float granularity, int labelCount, IAxisValueFormatter iAxisValueFormatter) {
         // X轴
         XAxis xAxis = lc.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 在底部
@@ -130,35 +127,30 @@ public class CharManager {
         return this;
     }
 
-    public LineDataSet setChartData(String name, List<Entry> yVals1, int color, int fillColor) {
-        int mColor = context.getResources().getColor(color);
-        tMarket.putValue(name, yVals1, mColor);
-        // 2.分别通过每一组Entry对象集合的数据创建折线数据集
-        LineDataSet lineDataSet1 = new LineDataSet(yVals1, name);
-        lineDataSet1.setDrawCircles(false);// 不绘制圆点
-        lineDataSet1.setDrawCircleHole(false); // 不绘制圆洞，即为实心圆点
-        lineDataSet1.setColor(mColor); // 设置为红色
-        lineDataSet1.setMode(LineDataSet.Mode.CUBIC_BEZIER); // 设置为贝塞尔曲线
-        lineDataSet1.setCubicIntensity(0.15f); // 强度
-        lineDataSet1.setCircleColor(Color.RED); // 设置圆点为颜色
-        lineDataSet1.setCircleRadius(0f);
-        lineDataSet1.setLineWidth(2f); // 设置线宽为2
+    public BarDataSet setChartData(String name, List<BarEntry> yVals1, int color, int fillColor) {
+        BarDataSet barDataSet = new BarDataSet(yVals1, name);
+        barDataSet.setColor(context.getResources().getColor(color));
+        barDataSet.setFormLineWidth(1f);
+        barDataSet.setFormSize(15.f);
+        //不显示柱状图顶部值
+        barDataSet.setDrawValues(false);
 
-        lineDataSet1.setDrawFilled(true); // 启用填充
-        lineDataSet1.setFillAlpha(95); // 透明度
-        //设置曲线图渐填充渐变色
-        if (Utils.getSDKInt() >= 18) {
-            // fill drawable only supported on api level 18 and above
-            Drawable drawable = ContextCompat.getDrawable(context, fillColor);
-            drawable.setAlpha(160);
-            lineDataSet1.setFillDrawable(drawable);
-        } else {
-            lineDataSet1.setFillColor(Color.WHITE);
-        }
-        return lineDataSet1;
+        return barDataSet;
+
+
     }
 
-    public void setData(LineData lineData) {
+    public void setData(BarData lineData) {
+        int barAmount = lineData.getDataSets().size(); //需要显示柱状图的类别 数量
+        //设置组间距占比30% 每条柱状图宽度占比 70% /barAmount  柱状图间距占比 0%
+        float groupSpace = 0.28f; //柱状图组之间的间距
+        float barSpace = 0.02f;
+        float barWidth = ((1f - groupSpace) / barAmount)-barSpace;
+
+        //设置柱状图宽度
+        lineData.setBarWidth(barWidth);
+        //(起始点、柱状图组间距、柱状图之间间距)
+        lineData.groupBars(0f, groupSpace, barSpace);
         lineData.setDrawValues(false);
         lc.setData(lineData);
         lc.invalidate();

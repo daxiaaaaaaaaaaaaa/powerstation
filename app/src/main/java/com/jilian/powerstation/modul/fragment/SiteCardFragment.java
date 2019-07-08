@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
@@ -20,7 +21,7 @@ import com.jilian.powerstation.modul.viewmodel.UserViewModel;
  * <p>
  * Discrebe: 电站名片
  */
-public class SiteCardFragment extends BaseFragment {
+public class SiteCardFragment extends BaseFragment  {
     private TextView tvSiteName;
     private TextView tvDeviceName;
     private TextView tvPowerTotal;
@@ -48,8 +49,6 @@ public class SiteCardFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
-
         tvSiteName = (TextView) view.findViewById(R.id.tv_site_name);
         tvDeviceName = (TextView) view.findViewById(R.id.tv_device_name);
         tvPowerTotal = (TextView) view.findViewById(R.id.tv_power_total);

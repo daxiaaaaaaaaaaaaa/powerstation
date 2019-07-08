@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,13 +22,18 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.gson.Gson;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.common.dto.ReportDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
+import com.jilian.powerstation.manege.CharBarManage;
+import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.views.TMarket;
@@ -37,7 +43,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class SiteTwoFargement extends BaseFragment {
+public class SiteTwoFargement extends BaseFragment implements IAxisValueFormatter {
     private TextView tvCenter;
     private TimePickerView pvCustomTime;
     private String sn;
@@ -45,12 +51,13 @@ public class SiteTwoFargement extends BaseFragment {
     private ReportViewModel reportViewModel;
 
     private BarChart barChart;
-    private TMarket tMarket = new TMarket();
+    private TMarket tMarket;
+    private CharBarManage charManager;
+    private List<ReportDto> mReportDto;
+
     @Override
     protected void loadData() {
-
     }
-
 
     @Override
     protected void createViewModel() {
@@ -65,7 +72,10 @@ public class SiteTwoFargement extends BaseFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         barChart = view.findViewById(R.id.lineChart);
-        barChart.setMarker(tMarket);
+//        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_350), 0);
+        tMarket = new TMarket();
+        charManager = new CharBarManage(barChart, tMarket, getContext());
+
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
         initCustomTimePicker();
     }
@@ -73,32 +83,29 @@ public class SiteTwoFargement extends BaseFragment {
     @Override
     protected void initData() {
         // 设置上下左右偏移量
-        barChart.setExtraOffsets(24f, 24f, 24f, 0f);
-        barChart.animateXY(3000, 3000); // XY动画
-        setLegend(); // 设置图例
-        setYAxis(); // 设置Y轴
+        charManager.setLegend(); // 设置图例
         setXAxis(); // 设置X轴
-        setData();
-
         sn = getActivity().getIntent().getStringExtra("sn");
         currDate = System.currentTimeMillis();
         getData();
     }
+
     /**
      *
      */
     public void getData() {
         if (sn == null) return;
-        String startTime = DateUtil.getMonthBegin(currDate) + "";
-        String endTime = DateUtil.getMonthEnd(currDate) + "";
+        String startTime = DateUtil.getDayBegin(currDate);
+        String endTime = DateUtil.getDayEnd(currDate);
         reportViewModel.addReportData(sn, startTime, endTime, 1);
         reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
-
+                setData(reportListDtoBaseDto.getData().getRows());
             }
         });
     }
+
     @Override
     protected void initListener() {
         barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
@@ -119,33 +126,66 @@ public class SiteTwoFargement extends BaseFragment {
         });
     }
 
-    private void setLegend() {
-        Legend legend = barChart.getLegend();
-        legend.setForm(Legend.LegendForm.LINE); // 图形：线
-        legend.setFormSize(14f); // 图形大小
-        legend.setFormLineWidth(9f); // 线宽小于如下大小绘制出平躺长方形
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT); // 图例在水平线上的对齐方式：右对齐
-        legend.setTextColor(Color.WHITE);
-    }
+
+    public void setData(List<ReportDto> rows) {
+        BarData barData = new BarData();
+        float totalValue1 = 0;
+        float totalValue2 = 0;
+        float totalValue3 = 0;
+        float totalValue4 = 0;
+        if (rows != null && !rows.isEmpty()) {
+            mReportDto = rows;
+            charManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
+            List<BarEntry> yVals1 = new ArrayList<>();
+            List<BarEntry> yVals2 = new ArrayList<>();
+            List<BarEntry> yVals3 = new ArrayList<>();
+            List<BarEntry> yVals4 = new ArrayList<>();
+            int maxValue = 50;
+            int minValue = 0;
+            for (int index = 0, len = rows.size(); index < len; index++) {
+                ReportDto dto = rows.get(index);
+                int value1 = dto.getPvProduction();
+                int value2 = dto.getLoadProduction();
+                int value3 = dto.getGridPower();
+                int value4 = dto.getCdPower();
+
+                yVals1.add(new BarEntry(index + 1, value1));
+                yVals2.add(new BarEntry(index + 1, value2));
+                yVals3.add(new BarEntry(index + 1, value3));
+                yVals4.add(new BarEntry(index + 1, value4));
+
+                maxValue = maxValue > value1 ? maxValue : value1;
+                maxValue = maxValue > value2 ? maxValue : value2;
+                maxValue = maxValue > value3 ? maxValue : value3;
+                maxValue = maxValue > value4 ? maxValue : value4;
 
 
-    private void setYAxis() {
-        // 左边Y轴
-        final YAxis yAxisLeft = barChart.getAxisLeft();
-        yAxisLeft.setAxisMaximum(25.5f); // 设置Y轴最大值
-        yAxisLeft.setAxisMinimum(0); // 设置Y轴最小值
-        yAxisLeft.setGranularity(2f); // 设置间隔尺寸
-        yAxisLeft.setTextSize(12f); // 文本大小为12dp
-        yAxisLeft.setTextColor(Color.BLACK); // 文本颜色为灰色
-        yAxisLeft.setDrawGridLines(false); // 不绘制网格线
-        // 右侧Y轴
-        barChart.getAxisRight().setEnabled(false); // 不启用
-        //是否展示网格线
-        barChart.setDrawGridBackground(false);
-        barChart.getAxisRight().setDrawGridLines(false);
-        barChart.getAxisLeft().setDrawGridLines(true);
-        //设置X Y轴网格线为虚线（实体线长度、间隔距离、偏移量：通常使用 0）
-        barChart.getAxisLeft().enableGridDashedLine(10f, 10f, 0f);
+                minValue = minValue < value1 ? minValue : value1;
+                minValue = minValue < value2 ? minValue : value2;
+                minValue = minValue < value3 ? minValue : value3;
+                minValue = minValue < value4 ? minValue : value4;
+
+                totalValue1 += value1;
+                totalValue2 += value2;
+                totalValue3 += value3;
+                totalValue4 += value4;
+            }
+//            tvTotal1.setText(totalValue1 + "");
+//            tvTotal2.setText(totalValue2 + "");
+//            tvTotal3.setText(totalValue3 + "");
+//            tvTotal4.setText(totalValue4 + "");
+            barData.addDataSet(charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
+            barData.addDataSet(charManager.setChartData("Grid", yVals2, R.color.color_chart_two, R.drawable.bg_color2));
+//            barData.addDataSet(charManager.setChartData("Load", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
+//            barData.addDataSet(charManager.setChartData("Battery", yVals4, R.color.color_chart_four, R.drawable.bg_color4));
+            int spa = (maxValue - minValue) / 10;
+            charManager.setYAxis(maxValue * 2, minValue, spa); // 设置Y轴
+            charManager.setData(barData);
+
+        } else {
+            charManager.removeAll();
+        }
+
     }
 
     private void setXAxis() {
@@ -161,7 +201,7 @@ public class SiteTwoFargement extends BaseFragment {
         xAxis.setAxisMaximum(14f); // 设置X轴最大值
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             public String getFormattedValue(float value, AxisBase axis) {
-                return "9:" + value;
+                return "" + value;
             }
         });
         //是否展示网格线
@@ -169,75 +209,6 @@ public class SiteTwoFargement extends BaseFragment {
 
     }
 
-    public void setData() {
-
-        BarData lineData = new BarData();
-        for (int i = 0; i < 2; i++) {
-            List<BarEntry> yVals1 = new ArrayList<>();
-            BarDataSet lineDataSet = null;
-            switch (i) {
-                case 0:
-                    yVals1.add(new BarEntry(1f, 18f));
-                    yVals1.add(new BarEntry(4f, 8f));
-                    yVals1.add(new BarEntry(8f, 18f));
-                    yVals1.add(new BarEntry(12f, 8f));
-                    lineDataSet = setChartData("123", yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
-
-                    break;
-                case 1:
-                    yVals1.add(new BarEntry(1f, 8f));
-                    yVals1.add(new BarEntry(4f, 14f));
-                    yVals1.add(new BarEntry(8f, 19f));
-                    yVals1.add(new BarEntry(12f, 7f));
-                    lineDataSet = setChartData("1233", yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
-                    break;
-                case 2:
-                    yVals1.add(new BarEntry(1f, 13f));
-                    yVals1.add(new BarEntry(4f, 4f));
-                    yVals1.add(new BarEntry(8f, 11f));
-                    yVals1.add(new BarEntry(12f, 2f));
-                    lineDataSet = setChartData("12223", yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
-                    break;
-                case 3:
-                    yVals1.add(new BarEntry(1f, 2f));
-                    yVals1.add(new BarEntry(4f, 6f));
-                    yVals1.add(new BarEntry(8f, 19f));
-                    yVals1.add(new BarEntry(12f, 5f));
-                    lineDataSet = setChartData("我认为", yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
-                    break;
-            }
-            lineData.addDataSet(lineDataSet);
-            // 3.将每一组折线数据集添加到折线数据中
-            lineData.setDrawValues(false);
-
-            // 4.将折线数据设置给图表
-        }
-        int barAmount = lineData.getDataSets().size(); //需要显示柱状图的类别 数量
-//设置组间距占比30% 每条柱状图宽度占比 70% /barAmount  柱状图间距占比 0%
-        float groupSpace = 0.28f; //柱状图组之间的间距
-        float barSpace = 0.02f;
-        float barWidth = ((1f - groupSpace) / barAmount)-barSpace;
-
-//设置柱状图宽度
-        lineData.setBarWidth(barWidth);
-//(起始点、柱状图组间距、柱状图之间间距)
-        lineData.groupBars(0f, groupSpace, barSpace);
-        barChart.setData(lineData);
-        barChart.invalidate();
-    }
-
-    public BarDataSet setChartData(String name, List<BarEntry> yVals1, int color, int fillColor) {
-        BarDataSet barDataSet = new BarDataSet(yVals1, name);
-        barDataSet.setColor(getContext().getResources().getColor(color));
-        barDataSet.setFormLineWidth(1f);
-        barDataSet.setFormSize(15.f);
-        //不显示柱状图顶部值
-        barDataSet.setDrawValues(false);
-
-        return barDataSet;
-
-
-    }
     /**
      * 初始化时间数据
      */
@@ -303,5 +274,8 @@ public class SiteTwoFargement extends BaseFragment {
                 .build();
     }
 
-
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        return CharDateManager.getDates(mReportDto, value, "MM");
+    }
 }

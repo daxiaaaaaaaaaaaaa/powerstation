@@ -19,10 +19,8 @@
         android:layout_marginRight="@dimen/widget_size_10"
         android:layout_marginBottom="@dimen/widget_size_15" />
 
-    <android.support.v4.view.ViewPager
+    <com.jilian.powerstation.views.CustomScrollViewPager
         android:id="@+id/vp_two"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent" />
 </LinearLayout>

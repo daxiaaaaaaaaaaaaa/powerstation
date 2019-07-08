@@ -12,6 +12,7 @@ import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.modul.adapter.PageAdapter;
 import com.jilian.powerstation.utils.StatusBarUtil;
+import com.jilian.powerstation.views.CustomScrollViewPager;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class TwoFragment extends BaseFragment  {
 
 
 
-    private ViewPager viewPager;
+    private CustomScrollViewPager viewPager;
     private RadioGroup radioGroup;
 
     SiteOneFargement oneFargement;
@@ -53,6 +54,7 @@ public class TwoFragment extends BaseFragment  {
     protected void initView(View view, Bundle savedInstanceState) {
         viewPager = view.findViewById(R.id.vp_two);
         radioGroup = view.findViewById(R.id.rg_date);
+        viewPager.setScanScroll(false);
         setNormalTitle("Site Name", v -> getActivity().finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override

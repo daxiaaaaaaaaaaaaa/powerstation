@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.util.Log;
 
 import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.data.Entry;
@@ -34,6 +35,7 @@ public class TMarket implements IMarker {
 
     @Override
     public void draw(Canvas canvas, float posX, float posY) {
+        Log.e("TAG_INFO","Canvas--------->"+posX+"/"+ mEntry.getX());
         Paint paint = new Paint();
         paint.setColor(Color.YELLOW);
         // 绘制倒等腰三角线

@@ -46,7 +46,8 @@
         <TextView
             android:id="@+id/tv_char_title"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_42"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:background="@color/white"
             android:gravity="center"
             android:text="Voltage (V)" />
@@ -54,14 +55,118 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_350"
+            android:layout_height="@dimen/widget_size_250"
             android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_80"
-            android:layout_marginLeft="@dimen/widget_size_12"
-            android:layout_marginRight="@dimen/widget_size_12">
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:background="@color/white"
+            android:paddingTop="@dimen/widget_size_28"
+            android:paddingRight="@dimen/widget_size_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_15"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/widget_size_8"
+                    android:layout_height="@dimen/font_size_8"
+                    android:background="@drawable/share_cricle_4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/widget_size_8"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/font_size_11"
+                    android:text="PV"
+                    android:textColor="@color/color_222222" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/widget_size_8"
+                    android:layout_height="@dimen/font_size_8"
+                    android:background="@drawable/share_cricle_1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/widget_size_8"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/font_size_11"
+                    android:text="Grid"
+                    android:textColor="@color/color_222222" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:background="@color/white"
+            android:paddingTop="@dimen/widget_size_13"
+            android:paddingRight="@dimen/widget_size_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_15"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/widget_size_8"
+                    android:layout_height="@dimen/font_size_8"
+                    android:background="@drawable/share_cricle_3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/widget_size_8"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/font_size_11"
+                    android:text="Load"
+                    android:textColor="@color/color_222222" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/widget_size_8"
+                    android:layout_height="@dimen/font_size_8"
+                    android:background="@drawable/share_cricle_2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/widget_size_8"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/font_size_11"
+                    android:text="Battery"
+                    android:textColor="@color/color_222222" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:paddingTop="@dimen/widget_size_21"
+            android:layout_height="@dimen/widget_size_101"
+            android:paddingLeft="@dimen/widget_size_12"
+            android:paddingRight="@dimen/widget_size_12">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,9 +180,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PV (kwh)" />
+                    android:textColor="@color/color_222222"
+                    android:text="Day PV production (kwh)" />
 
                 <TextView
+                    android:id="@+id/tv_total_1"
                     style="@style/SiteTextStyle"
                     android:text="30" />
             </LinearLayout>
@@ -94,9 +201,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Load (kwh)" />
+                    android:text="Day consumption (kwh)" />
 
                 <TextView
+                    android:id="@+id/tv_total_2"
                     style="@style/SiteTextStyle"
                     android:text="30" />
             </LinearLayout>
@@ -105,8 +213,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_80"
-            android:layout_marginLeft="@dimen/widget_size_12"
-            android:layout_marginRight="@dimen/widget_size_12">
+            android:paddingLeft="@dimen/widget_size_12"
+            android:paddingRight="@dimen/widget_size_12"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,6 +232,7 @@
                     android:text="Month bill saving ($)" />
 
                 <TextView
+                    android:id="@+id/tv_total_3"
                     style="@style/SiteTextStyle"
                     android:text="30" />
             </LinearLayout>
@@ -142,6 +252,7 @@
                     android:text="Month CO₂ Reduced（kg)" />
 
                 <TextView
+                    android:id="@+id/tv_total_4"
                     style="@style/SiteTextStyle"
                     android:text="30" />
             </LinearLayout>

@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,36 +13,52 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Utils;
+import com.google.gson.Gson;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.common.dto.ReportDto;
+import com.jilian.powerstation.common.dto.ReportDto1;
 import com.jilian.powerstation.common.dto.ReportListDto;
+import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.manege.CharManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
 import com.jilian.powerstation.views.CostomMarket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
-public class SiteOneFargement extends BaseFragment {
+public class SiteOneFargement extends BaseFragment implements IAxisValueFormatter{
     private LineChart lc;
     private TextView tvCenter;
+    private TextView tvTotal1;
+    private TextView tvTotal2;
+    private TextView tvTotal3;
+    private TextView tvTotal4;
+
     private TimePickerView pvCustomTime;
     private String sn;
     private ReportViewModel reportViewModel;
     private CostomMarket tMarket;
     private CharManager charManager;
+
+    private List<ReportDto> mReportDto;
     private long currDate;
+
 
     @Override
     protected void loadData() {
@@ -61,9 +78,13 @@ public class SiteOneFargement extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        tvTotal1 = (TextView) view.findViewById(R.id.tv_total_1);
+        tvTotal2 = (TextView) view.findViewById(R.id.tv_total_2);
+        tvTotal3 = (TextView) view.findViewById(R.id.tv_total_3);
+        tvTotal4 = (TextView) view.findViewById(R.id.tv_total_4);
         lc = view.findViewById(R.id.lineChart);
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
-        tMarket = new CostomMarket(getContext(),DisplayUtil.getScreenWidth(getContext()), Utils.convertDpToPixel(350));
+        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
         lc.setMarker(tMarket);
         initCustomTimePicker();
     }
@@ -73,17 +94,18 @@ public class SiteOneFargement extends BaseFragment {
         // 设置上下左右偏移量
         charManager = new CharManager(lc, tMarket, getContext());
         charManager.setLegend(); // 设置图例
-        charManager.setYAxis(); // 设置Y轴
-        charManager.setXAxis(); // 设置X轴
-        setData();
         sn = getActivity().getIntent().getStringExtra("sn");
         currDate = System.currentTimeMillis();
         getData();
+        setData(null);
     }
+
+
 
     /**
      *
      */
+
     public void getData() {
         if (sn == null) return;
         String startTime = DateUtil.getDayBegin(currDate);
@@ -92,7 +114,8 @@ public class SiteOneFargement extends BaseFragment {
         reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
-
+                Log.e("TAG_INFO", "JSON----->:" + new Gson().toJson(reportListDtoBaseDto));
+                setData(reportListDtoBaseDto.getData().getRows());
             }
         });
     }
@@ -117,55 +140,64 @@ public class SiteOneFargement extends BaseFragment {
         });
     }
 
-    public void setData() {
+    public void setData(List<ReportDto> rows) {
         LineData lineData = new LineData();
-        for (int i = 0; i < 4; i++) {
+        float totalValue1 = 0;
+        float totalValue2 = 0;
+        float totalValue3 = 0;
+        float totalValue4 = 0;
+        if (rows != null && !rows.isEmpty()) {
+            mReportDto = rows;
+            charManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
             List<Entry> yVals1 = new ArrayList<>();
-            LineDataSet lineDataSet = null;
-            switch (i) {
-                case 0:
-                    yVals1.add(new Entry(0f, 0f));
-                    yVals1.add(new Entry(8f, 6f));
-                    yVals1.add(new Entry(13f, 16f));
-                    yVals1.add(new Entry(23f, 3f));
-                    yVals1.add(new Entry(28f, 11f));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
+            List<Entry> yVals2 = new ArrayList<>();
+            List<Entry> yVals3 = new ArrayList<>();
+            List<Entry> yVals4 = new ArrayList<>();
+            int maxValue = 50;
+            int minValue = 0;
+            for (int index = 0, len = rows.size(); index < len; index++) {
+                ReportDto dto = rows.get(index);
+                int value1 = dto.getPvProduction();
+                int value2 = dto.getLoadProduction();
+                int value3 = dto.getGridPower();
+                int value4 = dto.getCdPower();
 
-                    break;
-                case 1:
-                    yVals1.add(new Entry(18f, 13f));
-                    yVals1.add(new Entry(20f, 16f));
-                    yVals1.add(new Entry(23f, 3f));
-                    yVals1.add(new Entry(28f, 13f));
-                    lineDataSet = charManager.setChartData("Load", yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
-                    break;
-                case 2:
-                    yVals1.add(new Entry(22f, 13f));
-                    yVals1.add(new Entry(26f, 22));
-                    yVals1.add(new Entry(28f, 5f));
-                    yVals1.add(new Entry(29f, 22));
-                    lineDataSet = charManager.setChartData("Grid", yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
-                    break;
-                case 3:
-                    yVals1.add(new Entry(0f, 0f));
-                    yVals1.add(new Entry(3f, 4f));
-                    yVals1.add(new Entry(5f, 2f));
-                    yVals1.add(new Entry(8f, 5f));
-                    yVals1.add(new Entry(10f, 0f));
-                    yVals1.add(new Entry(20f, 4f));
-                    yVals1.add(new Entry(24f, 3f));
-                    yVals1.add(new Entry(26f, 0f));
-                    lineDataSet = charManager.setChartData("Battery", yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
-                    break;
+                yVals1.add(new Entry(index + 1, value1));
+                yVals2.add(new Entry(index + 1, value2));
+                yVals3.add(new Entry(index + 1, value3));
+                yVals4.add(new Entry(index + 1, value4));
+
+                maxValue = maxValue > value1 ? maxValue : value1;
+                maxValue = maxValue > value2 ? maxValue : value2;
+                maxValue = maxValue > value3 ? maxValue : value3;
+                maxValue = maxValue > value4 ? maxValue : value4;
+
+
+                minValue = minValue < value1 ? minValue : value1;
+                minValue = minValue < value2 ? minValue : value2;
+                minValue = minValue < value3 ? minValue : value3;
+                minValue = minValue < value4 ? minValue : value4;
+
+                totalValue1 += value1;
+                totalValue2 += value2;
+                totalValue3 += value3;
+                totalValue4 += value4;
             }
-            lineData.addDataSet(lineDataSet);
-            // 3.将每一组折线数据集添加到折线数据中
-            lineData.setDrawValues(false);
-            // 4.将折线数据设置给图表
+            tvTotal1.setText(totalValue1 + "");
+            tvTotal2.setText(totalValue2 + "");
+            tvTotal3.setText(totalValue3 + "");
+            tvTotal4.setText(totalValue4 + "");
+            lineData.addDataSet(charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
+            lineData.addDataSet(charManager.setChartData("Grid", yVals2, R.color.color_chart_two, R.drawable.bg_color2));
+            lineData.addDataSet(charManager.setChartData("Load", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
+            lineData.addDataSet(charManager.setChartData("Battery", yVals4, R.color.color_chart_four, R.drawable.bg_color4));
+            charManager.setYAxis(maxValue * 2, minValue, (maxValue - minValue) / 10); // 设置Y轴
+            charManager.setData(lineData);
+
+        }else {
+            charManager.removeAll();
         }
-        lc.setData(lineData);
-        lc.invalidate();
+
     }
 
 
@@ -234,4 +266,8 @@ public class SiteOneFargement extends BaseFragment {
                 .build();
     }
 
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        return CharDateManager.getDates(mReportDto, value,"HH:mm");
+    }
 }
