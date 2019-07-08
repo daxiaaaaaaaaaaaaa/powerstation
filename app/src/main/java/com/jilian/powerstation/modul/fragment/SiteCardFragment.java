@@ -65,7 +65,6 @@ public class SiteCardFragment extends BaseFragment {
             tvSiteName.setText(powerDto.getProductName());
             tvDeviceName.setText(powerDto.getProductName());
             tvPowerTotal.setText(powerDto.getHistoryPVproduction());
-            gegtPowerInfo();
         }
 
     }
@@ -75,19 +74,6 @@ public class SiteCardFragment extends BaseFragment {
 
     }
 
-    public void gegtPowerInfo() {
-        /**
-         * 我的电站列表
-         */
-        viewModel.getPowerCard(powerDto.getSn(), "");
-        viewModel.getPowerCardliveData().observe(this, new Observer<BaseDto<PowerCardDto>>() {
-            @Override
-            public void onChanged(@Nullable BaseDto<PowerCardDto> powerCardDtoBaseDto) {
-                tvPowerVersion.setText(powerCardDtoBaseDto.getData().getVersionCode());
-                tvOnlineTime.setText(powerCardDtoBaseDto.getData().getVersionIntro());
-                tvPowerIntroduction.setText(powerCardDtoBaseDto.getData().getVersionIntro());
-            }
-        });
-    }
+
 
 }

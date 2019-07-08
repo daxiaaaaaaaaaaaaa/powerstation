@@ -10,6 +10,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
@@ -22,6 +23,7 @@ import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +34,14 @@ import java.util.List;
  * Discrebe: 智能设备列表
  */
 public class ConnectedFragment extends BaseFragment {
-    private List<ESSDto> mDatas;
-    private ConnectedsAdapter adapter;
-    private RecyclerView mRecycle;
+//    private List<ESSDto> mDatas;
+//    private ConnectedsAdapter adapter;
+//    private RecyclerView mRecycle;
+private SmartRefreshLayout srNoData;
+
+
+    private TextView tvNoData;
+
 
 
 
@@ -57,8 +64,14 @@ public class ConnectedFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        mRecycle = view.findViewById(R.id.rv_connected);
-        iniRecycle();
+//        mRecycle = view.findViewById(R.id.rv_connected);
+//        iniRecycle();
+        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
+        srNoData = (SmartRefreshLayout) view.findViewById(R.id.sr_no_data);
+        srNoData.setVisibility(View.VISIBLE);
+        srNoData.setEnableLoadMore(false);
+        srNoData.setEnableRefresh(false);
+        tvNoData.setText("暂未开放");
     }
 
     @Override
@@ -73,19 +86,19 @@ public class ConnectedFragment extends BaseFragment {
 
 
     private void iniRecycle() {
-        mDatas = new ArrayList<>();
-        mDatas.add(new ESSDto());
-        mDatas.add(new ESSDto());
-        adapter = new ConnectedsAdapter(mDatas, getContext());
-        mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(), 1));
-        mRecycle.setAdapter(adapter);
-
-        adapter.setItemListener(new OnRecycleItemListener() {
-            @Override
-            public void OnItemClick(View view, int position) {
-                startActivity(new Intent(getContext(), MainActivity.class));
-            }
-        });
+      //  mDatas = new ArrayList<>();
+//        mDatas.add(new ESSDto());
+//        mDatas.add(new ESSDto());
+//        adapter = new ConnectedsAdapter(mDatas, getContext());
+//        mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+//        mRecycle.addItemDecoration(new DividerItemDecoration(getContext(), 1));
+//        mRecycle.setAdapter(adapter);
+//
+//        adapter.setItemListener(new OnRecycleItemListener() {
+//            @Override
+//            public void OnItemClick(View view, int position) {
+//                startActivity(new Intent(getContext(), MainActivity.class));
+//            }
+//        });
     }
 }

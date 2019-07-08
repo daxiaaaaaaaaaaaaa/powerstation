@@ -8,11 +8,13 @@ import com.jilian.powerstation.base.BaseViewModel;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
+import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
@@ -76,6 +78,20 @@ public class UserViewModel extends BaseViewModel {
      * 电站详情 获取警告
      */
     private LiveData<BaseDto<AlarmInfoDto>> alarmliveData;
+    /**
+     * 配置-电站设置
+     */
+    private LiveData<BaseDto<ConfigInfoDto>> configliveData;
+
+    private LiveData<BaseDto<BaseResultDto>> saveliveData;
+
+    public LiveData<BaseDto<BaseResultDto>> getSaveliveData() {
+        return saveliveData;
+    }
+
+    public LiveData<BaseDto<ConfigInfoDto>> getConfigliveData() {
+        return configliveData;
+    }
 
     public LiveData<BaseDto<AlarmInfoDto>> getAlarmliveData() {
         return alarmliveData;
@@ -206,12 +222,10 @@ public class UserViewModel extends BaseViewModel {
     /***
      * 获取电站详情
      * @param powerSn SN 码
-     * @param powerName 电站名称
      */
-    public void getPowerInfo(String powerSn, String powerName) {
+    public void getPowerInfo(String powerSn) {
         PowerInfoVo vo = new PowerInfoVo();
         vo.setPowerSn(powerSn);
-        vo.setPowerName(powerName);
         powerliveData = Factoty.getRepository(UserRepository.class).getPowerInfo(vo);
     }
 
@@ -240,14 +254,64 @@ public class UserViewModel extends BaseViewModel {
 
     /**
      * 电站详情  获取警告
+     *
      * @param powerSn
-     * @param powerName
      */
-    public void getPowerAlarmInfo(String powerSn, String powerName) {
+    public void getPowerAlarmInfo(String powerSn) {
         PowerInfoVo vo = new PowerInfoVo();
         vo.setPowerSn(powerSn);
-        vo.setPowerName(powerName);
         alarmliveData = Factoty.getRepository(UserRepository.class).getPowerAlarmInfo(vo);
+    }
+
+    public void getConfigInfo(String powerSn) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        configliveData = Factoty.getRepository(UserRepository.class).getConfigInfo(vo);
+    }
+
+    /**
+     * @param powerSn
+     * @param workingType
+     * @param soc
+     * @param rechargePower_One
+     * @param dischargePower_One
+     * @param rechargePower_Two
+     * @param dischargePower_Two
+     * @param rechargeStartTime_One
+     * @param rechargeEndTime_One
+     * @param dischargeStartTime_One
+     * @param dischargeEndTime_One
+     * @param rechargeStartTime_Two
+     * @param rechargeEndTime_Two
+     * @param dischargeStartTime_Two
+     * @param dischargeEndTime_Two
+     */
+    public void savePowerSetting(String powerSn, int workingType, String soc,
+                                 String rechargePower_One, String dischargePower_One, String rechargePower_Two, String dischargePower_Two,
+
+                                 String rechargeStartTime_One, String rechargeEndTime_One, String dischargeStartTime_One, String dischargeEndTime_One,
+                                 String rechargeStartTime_Two, String rechargeEndTime_Two, String dischargeStartTime_Two, String dischargeEndTime_Two) {
+        ConfigInfoVo vo = new ConfigInfoVo();
+        vo.setPowerSn(powerSn);
+        vo.setWorkingType(workingType);
+        vo.setSoc(soc);
+        vo.setRechargePower_One(rechargePower_One);
+        vo.setDischargePower_One(dischargePower_One);
+        vo.setRechargePower_Two(rechargePower_Two);
+        vo.setDischargePower_Two(dischargePower_Two);
+
+        vo.setRechargeStartTime_One(rechargeStartTime_One);
+        vo.setRechargeEndTime_One(rechargeEndTime_One);
+        vo.setDischargeStartTime_One(dischargeStartTime_One);
+        vo.setDischargeEndTime_One(dischargeEndTime_One);
+
+        vo.setRechargeStartTime_Two(rechargeStartTime_Two);
+        vo.setRechargeEndTime_Two(rechargeEndTime_Two);
+        vo.setDischargeStartTime_Two(dischargeStartTime_Two);
+        vo.setDischargeEndTime_Two(dischargeEndTime_Two);
+
+
+        saveliveData = Factoty.getRepository(UserRepository.class).savePowerSetting(vo);
     }
 
 

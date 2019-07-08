@@ -5,6 +5,7 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
@@ -12,6 +13,7 @@ import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
+import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
@@ -85,6 +87,7 @@ public class Api {
     public static Flowable<BaseDto> addPowerInfo(PowerInfoVo vo) {
         return RequetRetrofit.getInstance().addPowerInfo(vo);
     }
+
     /**
      * 获取电站
      *
@@ -107,6 +110,7 @@ public class Api {
 
     /**
      * 获取个人信息接口
+     *
      * @return
      */
     public static Flowable<BaseDto<UserInfoDto>> getUserInfo() {
@@ -115,14 +119,17 @@ public class Api {
 
     /**
      * 修改密码
+     *
      * @param vo
      * @return
      */
     public static Flowable<BaseDto> resetPassword(UpdatePwdVo vo) {
         return RequetRetrofit.getInstance().resetPassword(vo);
     }
+
     /**
      * 电站卡片 固件升级
+     *
      * @param vo
      * @return
      */
@@ -133,6 +140,7 @@ public class Api {
 
     /**
      * 电站详情 获取警告
+     *
      * @param vo
      * @return
      */
@@ -140,9 +148,25 @@ public class Api {
         return RequetRetrofit.getInstance().getPowerAlarmInfo(vo);
     }
 
+    /**
+     * 配置-电站设
+     *
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<ConfigInfoDto>> getConfigInfo(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getConfigInfo(vo);
+    }
 
-
-
+    /**
+     * 电站设置-保存
+     *
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<BaseResultDto>> savePowerSetting(ConfigInfoVo vo) {
+        return RequetRetrofit.getInstance().savePowerSetting(vo);
+    }
 
 
 }

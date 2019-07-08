@@ -85,7 +85,7 @@ public class OneFragment extends BaseFragment {
      */
     private void getPowerAlarmInfo() {
         showLoadingDialog();
-        userViewModel.getPowerAlarmInfo(getActivity().getIntent().getStringExtra("sn"), null);
+        userViewModel.getPowerAlarmInfo(getActivity().getIntent().getStringExtra("sn"));
         userViewModel.getAlarmliveData().observe(this, new Observer<BaseDto<AlarmInfoDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<AlarmInfoDto> alarmInfoDtoBaseDto) {
@@ -117,7 +117,7 @@ public class OneFragment extends BaseFragment {
      * 获取电站详情
      */
     private void getPowerInfo() {
-        userViewModel.getPowerInfo(getActivity().getIntent().getStringExtra("sn"), null);
+        userViewModel.getPowerInfo(getActivity().getIntent().getStringExtra("sn"));
         userViewModel.getPowerliveData().observe(this, new Observer<BaseDto<PowerInfoDetailDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<PowerInfoDetailDto> detailDtoBaseDto) {

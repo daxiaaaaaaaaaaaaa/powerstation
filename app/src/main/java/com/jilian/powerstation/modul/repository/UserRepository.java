@@ -8,11 +8,13 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.base.CommonRepository;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
+import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
@@ -118,6 +120,28 @@ public class UserRepository extends CommonRepository {
     public LiveData<BaseDto<AlarmInfoDto>> getPowerAlarmInfo(PowerInfoVo vo) {
         return request(Api.getPowerAlarmInfo(vo)).send().get();
     }
+
+    /**
+     * 配置-电站设置
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<ConfigInfoDto>> getConfigInfo(PowerInfoVo vo) {
+        return request(Api.getConfigInfo(vo)).send().get();
+    }
+
+    /**
+     * 电站设置-保存
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<BaseResultDto>> savePowerSetting(ConfigInfoVo vo) {
+        return request(Api.savePowerSetting(vo)).send().get();
+    }
+
+
+
+
 
 
 }

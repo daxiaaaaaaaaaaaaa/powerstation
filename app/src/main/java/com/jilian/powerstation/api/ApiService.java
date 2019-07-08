@@ -5,6 +5,7 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
@@ -12,6 +13,7 @@ import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
+import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.ReportVo;
@@ -133,6 +135,23 @@ public interface ApiService {
     @POST("/HESS_SCADA/app/user/getPowerAlarmInfo.app")
     Flowable<BaseDto<AlarmInfoDto>> getPowerAlarmInfo(@Body PowerInfoVo vo);
 
+    /**
+     * 配置-电站设置
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/getConfigInfo.app")
+    Flowable<BaseDto<ConfigInfoDto>> getConfigInfo(@Body PowerInfoVo vo);
+
+
+
+    /**
+     * 电站设置-保存
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/savePowerSetting.app")
+    Flowable<BaseDto<BaseResultDto>> savePowerSetting(@Body ConfigInfoVo vo);
 }
 
 
