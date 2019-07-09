@@ -16,12 +16,16 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
+import com.jilian.powerstation.common.event.AlarmMsg;
+import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.activity.WarningDetailActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.utils.ToastUitl;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 public class OneFragment extends BaseFragment {
@@ -92,11 +96,20 @@ public class OneFragment extends BaseFragment {
                 hideLoadingDialog();
                 if (alarmInfoDtoBaseDto.isSuccess()) {
                     if (alarmInfoDtoBaseDto.getData().getTotal() > 0) {
+//                        Intent intent = new Intent(getmActivity(), WarningDetailActivity.class);
+//                        intent.putExtra("sn", getmActivity().getIntent().getStringExtra("sn"));
+//                        intent.putExtra("type", Constant.BATTERY_TYPE);
+//                        getmActivity().startActivity(intent);
 
-                        Intent intent = new Intent(getmActivity(), WarningDetailActivity.class);
-                        intent.putExtra("sn", getmActivity().getIntent().getStringExtra("sn"));
-                        intent.putExtra("type", Constant.BATTERY_TYPE);
-                        getmActivity().startActivity(intent);
+                        MessageEvent messageEvent = new MessageEvent();
+                        AlarmMsg msg = new AlarmMsg();
+                        msg.setCode(200);
+                        messageEvent.setAlarmMsg(msg);
+                        EventBus.getDefault().post(messageEvent);
+
+
+
+
                     } else {
                         ToastUitl.showImageToastTips("No warning message yet");
                     }

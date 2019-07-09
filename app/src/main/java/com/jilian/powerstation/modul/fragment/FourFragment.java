@@ -10,17 +10,32 @@ import android.view.View;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
+import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.StatusBarUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class FourFragment extends BaseFragment  {
+public class FourFragment extends BaseFragment {
 
     TabLayout tablayout;
     ViewPager viewPager;
+
+    public ViewPager getViewPager() {
+        return viewPager;
+    }
+
+    public void setViewPager(ViewPager viewPager) {
+        this.viewPager = viewPager;
+    }
+
     List<Fragment> mlist;
     FragmentPagerAdapter adapter;
     ArrayList<String> mTitle = new ArrayList<>();
@@ -43,6 +58,7 @@ public class FourFragment extends BaseFragment  {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+
         tablayout = view.findViewById(R.id.four_tablayout);
         viewPager = view.findViewById(R.id.four_viewPager);
         initTab();
@@ -62,6 +78,13 @@ public class FourFragment extends BaseFragment  {
         });
     }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+    }
+
     @Override
     protected void initData() {
         StatusBarUtil.setStatusBarMode(getmActivity(), true, R.color.white);
@@ -73,6 +96,7 @@ public class FourFragment extends BaseFragment  {
     }
 
     public void initViewpage() {
+        viewPager.setOffscreenPageLimit(4);
         mlist = new ArrayList<>();
         mlist.add(new InverterFragment());
         mlist.add(new BatteryFragment());
@@ -82,10 +106,11 @@ public class FourFragment extends BaseFragment  {
         adapter = new CinemaTabAdapter(getFragmentManager(), mlist, mTitle);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tablayout));
         viewPager.setAdapter(adapter);
+
     }
 
     public void initTab() {
-        mTitle= new ArrayList<>();
+        mTitle = new ArrayList<>();
         mTitle.add("Inverter information");
         mTitle.add("Battery information");
         mTitle.add("Smart device information");

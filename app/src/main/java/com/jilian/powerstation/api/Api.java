@@ -5,8 +5,13 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.BatteryDetailDto;
+import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.ConfigInfoDto;
+import com.jilian.powerstation.common.dto.DeviceAlarmInfoListDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
+import com.jilian.powerstation.common.dto.PcsInfoListDto;
 import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
@@ -168,5 +173,51 @@ public class Api {
         return RequetRetrofit.getInstance().savePowerSetting(vo);
     }
 
+    /**
+     * 设备调试-告警信息
+     *
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<DeviceAlarmInfoListDto>> getDeviceAlarmInfo(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getDeviceAlarmInfo(vo);
+    }
 
+    /**
+     * 逆变器列表
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<PcsInfoListDto>> getPcsInfoList(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getPcsInfoList(vo);
+    }
+
+    /**
+     * 逆变器详情
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<PcsInfoDetailDto>> getPcsInfo(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getPcsInfo(vo);
+    }
+
+
+
+    /**
+     * 电池列表
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<BatteryInfoListDto>> getBatteryInfoList(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getBatteryInfoList(vo);
+    }
+
+    /**
+     * 电池详情
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<BatteryDetailDto>> getBatteryInfo(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().getBatteryInfo(vo);
+    }
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
@@ -17,19 +18,24 @@ import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.activity.WarningDetailActivity;
 import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
 import com.jilian.powerstation.modul.adapter.DataAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cxz on 2019/6/2
- * <p>
- * Discrebe: 智能设备列表
+ * 智能设备列表
  */
 public class SmartFragment extends BaseFragment implements CustomItemClickListener {
     private List<ESSDto> mDatas;
     private DataAdapter adapter;
     private RecyclerView mRecycle;
+    private SmartRefreshLayout srNoData;
+    private TextView tvNoData;
+
+
+
+
 
     @Override
     protected void loadData() {
@@ -49,6 +55,12 @@ public class SmartFragment extends BaseFragment implements CustomItemClickListen
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         mRecycle = view.findViewById(R.id.smart_recycle);
+        srNoData = (SmartRefreshLayout)view. findViewById(R.id.sr_no_data);
+        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
+        srNoData.setVisibility(View.VISIBLE);
+        srNoData.setEnableLoadMore(false);
+        srNoData.setEnableRefresh(false);
+        tvNoData.setText("暂未开放");
         iniRecycle();
     }
 

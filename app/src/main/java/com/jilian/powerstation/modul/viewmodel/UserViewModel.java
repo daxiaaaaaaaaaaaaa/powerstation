@@ -8,8 +8,13 @@ import com.jilian.powerstation.base.BaseViewModel;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.BatteryDetailDto;
+import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.ConfigInfoDto;
+import com.jilian.powerstation.common.dto.DeviceAlarmInfoListDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
+import com.jilian.powerstation.common.dto.PcsInfoListDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
@@ -82,8 +87,52 @@ public class UserViewModel extends BaseViewModel {
      * 配置-电站设置
      */
     private LiveData<BaseDto<ConfigInfoDto>> configliveData;
-
+    /**
+     * 保存配置
+     */
     private LiveData<BaseDto<BaseResultDto>> saveliveData;
+
+    /**
+     * 告警信息列表
+     */
+    private LiveData<BaseDto<DeviceAlarmInfoListDto>> deviceAlarmInfoData;
+    /**
+     * 逆变器列表
+     */
+    private LiveData<BaseDto<PcsInfoListDto>> pcsInfoData;
+    /**
+     * 逆变器详情
+     */
+    private LiveData<BaseDto<PcsInfoDetailDto>> pcsInfoDetailData;
+    /**
+     * 电池列表
+     */
+    private LiveData<BaseDto<BatteryInfoListDto>> batteryInfoData;
+
+    /**
+     * 电池详情
+     */
+    private LiveData<BaseDto<BatteryDetailDto>> batteryDetailData;
+
+    public LiveData<BaseDto<BatteryInfoListDto>> getBatteryInfoData() {
+        return batteryInfoData;
+    }
+
+    public LiveData<BaseDto<BatteryDetailDto>> getBatteryDetailData() {
+        return batteryDetailData;
+    }
+
+    public LiveData<BaseDto<PcsInfoDetailDto>> getPcsInfoDetailData() {
+        return pcsInfoDetailData;
+    }
+
+    public LiveData<BaseDto<PcsInfoListDto>> getPcsInfoData() {
+        return pcsInfoData;
+    }
+
+    public LiveData<BaseDto<DeviceAlarmInfoListDto>> getDeviceAlarmInfoData() {
+        return deviceAlarmInfoData;
+    }
 
     public LiveData<BaseDto<BaseResultDto>> getSaveliveData() {
         return saveliveData;
@@ -314,5 +363,63 @@ public class UserViewModel extends BaseViewModel {
         saveliveData = Factoty.getRepository(UserRepository.class).savePowerSetting(vo);
     }
 
+    /**
+     * @param powerSn sn码
+     * @param type    类型  统计类型（0：逆变器，1：电池，2：智能设备）
+     */
+    public void getDeviceAlarmInfo(String powerSn, int type) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        vo.setType(type);
+        deviceAlarmInfoData = Factoty.getRepository(UserRepository.class).getDeviceAlarmInfo(vo);
+    }
+
+    /**
+     * 获取逆变器列表
+     *
+     * @param powerSn
+     */
+    public void getPcsInfoList(String powerSn) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        pcsInfoData = Factoty.getRepository(UserRepository.class).getPcsInfoList(vo);
+    }
+
+    /**
+     * 逆变器详情
+     *
+     * @param powerSn
+     * @param id
+     */
+    public void getPcsInfo(String powerSn, String id) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        vo.setId(id);
+        pcsInfoDetailData = Factoty.getRepository(UserRepository.class).getPcsInfo(vo);
+    }
+
+    /**
+     * 电池列表
+     * @param powerSn
+     */
+    public void getBatteryInfoList(String powerSn) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        batteryInfoData = Factoty.getRepository(UserRepository.class).getBatteryInfoList(vo);
+    }
+
+
+    /**
+     * 电池详情
+     *
+     * @param powerSn
+     * @param id
+     */
+    public void getBatteryInfo(String powerSn, String id) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        vo.setId(id);
+        batteryDetailData = Factoty.getRepository(UserRepository.class).getBatteryInfo(vo);
+    }
 
 }

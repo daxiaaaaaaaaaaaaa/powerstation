@@ -1,33 +1,21 @@
 package com.jilian.powerstation.modul.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
-import com.jilian.powerstation.common.dto.ESSDto;
-import com.jilian.powerstation.listener.OnRecycleItemListener;
-import com.jilian.powerstation.modul.activity.MainActivity;
-import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
 import com.jilian.powerstation.modul.adapter.PageAdapter;
-import com.jilian.powerstation.modul.adapter.WarningAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by cxz on 2019/6/2
- * <p>
- * Discrebe: 智能设备列表
+ * 告警信息界面
+ *
  */
 public class WarningFragment extends BaseFragment {
 
@@ -90,6 +78,7 @@ public class WarningFragment extends BaseFragment {
 
 
     public void initViewpage() {
+        viewPager.setOffscreenPageLimit(3);
         inverterWarningFragment = new InverterWarningFragment();
         batteryWarningFragment = new BatteryWarningFragment();
         smartWarningFragment = new SmartWarningFragment();

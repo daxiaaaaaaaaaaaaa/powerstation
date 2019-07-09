@@ -1,5 +1,7 @@
 package com.jilian.powerstation.modul.activity;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
@@ -7,6 +9,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -23,17 +27,40 @@ import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
+import com.jilian.powerstation.base.BaseDto;
+import com.jilian.powerstation.common.dto.BatteryDetailDto;
+import com.jilian.powerstation.modul.viewmodel.UserViewModel;
+import com.jilian.powerstation.utils.DateUtil;
+import com.jilian.powerstation.utils.EmptyUtils;
+import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.TMarket;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import lombok.ToString;
 
 /**
  * 电池详情
  */
 public class BatteryDetailActivity extends BaseActivity {
+
+    private UserViewModel userViewModel;
+
     private LineChart lc;
     TMarket tMarket = new TMarket();
+    private ImageView ivHead;
+    private TextView tvName;
+    private TextView tvDate;
+    private TextView tvOne;
+    private TextView tvTwo;
+    private TextView tvThree;
+    private TextView tvFour;
+    private TextView tvFive;
+    private TextView tvSix;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +76,7 @@ public class BatteryDetailActivity extends BaseActivity {
 
     @Override
     protected void createViewModel() {
-
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
     }
 
     @Override
@@ -65,6 +92,16 @@ public class BatteryDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+
+        ivHead = (ImageView) findViewById(R.id.iv_head);
+        tvName = (TextView) findViewById(R.id.tv_name);
+        tvDate = (TextView) findViewById(R.id.tv_date);
+        tvOne = (TextView) findViewById(R.id.tv_one);
+        tvTwo = (TextView) findViewById(R.id.tv_two);
+        tvThree = (TextView) findViewById(R.id.tv_three);
+        tvFour = (TextView) findViewById(R.id.tv_four);
+        tvFive = (TextView) findViewById(R.id.tv_five);
+        tvSix = (TextView) findViewById(R.id.tv_six);
         lc = findViewById(R.id.lineChart);
         lc.setMarker(tMarket);
         setNormalTitle("Site Name", v -> finish());
@@ -95,7 +132,49 @@ public class BatteryDetailActivity extends BaseActivity {
         setYAxis(); // 设置Y轴
         setXAxis(); // 设置X轴
         setData();
+        getBatteryInfo();
 
+    }
+
+    /**
+     * 获取电池详情
+     */
+    private void getBatteryInfo() {
+        showLoadingDialog();
+        userViewModel.getBatteryInfo(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"));
+        userViewModel.getBatteryDetailData().observe(this, new Observer<BaseDto<BatteryDetailDto>>() {
+            @Override
+            public void onChanged(@Nullable BaseDto<BatteryDetailDto> batteryDetailDtoBaseDto) {
+                hideLoadingDialog();
+                if (batteryDetailDtoBaseDto.isSuccess()) {
+                    BatteryDetailDto detailDto = batteryDetailDtoBaseDto.getData();
+                    if (EmptyUtils.isNotEmpty(detailDto)) {
+                        initDetailView(detailDto);
+                    }
+                    else{
+                        ToastUitl.showImageToastTips("no data");
+                    }
+                } else {
+                    ToastUitl.showImageToastTips(batteryDetailDtoBaseDto.getMsg());
+                }
+            }
+        });
+    }
+
+    /**
+     * 初始化电池详情
+     *
+     * @param detailDto
+     */
+    private void initDetailView(BatteryDetailDto detailDto) {
+        tvName.setText("Battery");
+        tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(detailDto.getTime())));
+        tvOne.setText(detailDto.getVolt());//电池电压
+        tvTwo.setText(detailDto.getCurrent());//电池电流
+        tvThree.setText(detailDto.getPower());//电池功率
+        tvFour.setText(detailDto.getAvgTemp());//电池平均温度
+        tvFive.setText(detailDto.getMaxTemp());//电池最高温度
+        tvSix.setText(detailDto.getSoc());//电池电量
     }
 
     private void setLegend() {

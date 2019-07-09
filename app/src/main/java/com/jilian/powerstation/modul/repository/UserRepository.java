@@ -8,8 +8,13 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.base.CommonRepository;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.BatteryDetailDto;
+import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.ConfigInfoDto;
+import com.jilian.powerstation.common.dto.DeviceAlarmInfoListDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
+import com.jilian.powerstation.common.dto.PcsInfoListDto;
 import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
@@ -105,6 +110,7 @@ public class UserRepository extends CommonRepository {
 
     /**
      * 修改密码
+     *
      * @param vo
      * @return
      */
@@ -114,6 +120,7 @@ public class UserRepository extends CommonRepository {
 
     /**
      * 电站详情 获取警告
+     *
      * @param vo
      * @return
      */
@@ -123,6 +130,7 @@ public class UserRepository extends CommonRepository {
 
     /**
      * 配置-电站设置
+     *
      * @param vo
      * @return
      */
@@ -132,11 +140,59 @@ public class UserRepository extends CommonRepository {
 
     /**
      * 电站设置-保存
+     *
      * @param vo
      * @return
      */
     public LiveData<BaseDto<BaseResultDto>> savePowerSetting(ConfigInfoVo vo) {
         return request(Api.savePowerSetting(vo)).send().get();
+    }
+
+    /**
+     * 设备调试-告警信息
+     *
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<DeviceAlarmInfoListDto>> getDeviceAlarmInfo(PowerInfoVo vo) {
+        return request(Api.getDeviceAlarmInfo(vo)).send().get();
+    }
+
+    /**
+     * 逆变器列表
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<PcsInfoListDto>> getPcsInfoList(PowerInfoVo vo) {
+        return request(Api.getPcsInfoList(vo)).send().get();
+    }
+
+    /**
+     * 逆变器详情
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<PcsInfoDetailDto>> getPcsInfo(PowerInfoVo vo) {
+        return request(Api.getPcsInfo(vo)).send().get();
+    }
+
+
+
+    /**
+     * 电池列表
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<BatteryInfoListDto>> getBatteryInfoList(PowerInfoVo vo) {
+        return request(Api.getBatteryInfoList(vo)).send().get();
+    }
+    /**
+     * 电池详情
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<BatteryDetailDto>> getBatteryInfo(PowerInfoVo vo) {
+        return request(Api.getBatteryInfo(vo)).send().get();
     }
 
 

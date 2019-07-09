@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_F2F2F2"
-    android:orientation="vertical"
-    tools:context=".modul.activity.BatteryDetailActivity">
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_F2F2F2"
+            android:orientation="vertical"
+            tools:context=".modul.activity.BatteryDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +23,7 @@
             android:padding="@dimen/widget_size_16">
 
             <ImageView
-                android:id="@+id/detail_station_cover"
+                android:id="@+id/iv_head"
                 android:layout_width="@dimen/widget_size_60"
                 android:layout_height="@dimen/widget_size_45"
                 android:layout_marginRight="8dp"
@@ -32,11 +31,11 @@
                 android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/detail_station_name"
+                android:id="@+id/tv_name"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_size_19"
-                android:layout_toRightOf="@+id/detail_station_cover"
-                android:text="name"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_head"
+                tools:text="name"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/font_size_18" />
 
@@ -45,19 +44,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/widget_size_17"
                 android:layout_marginTop="@dimen/widget_size_8"
-                android:layout_below="@+id/detail_station_name"
-                android:layout_toRightOf="@+id/detail_station_cover"
+                android:layout_below="@+id/tv_name"
+                android:layout_toRightOf="@+id/iv_head"
                 android:text="Updata time:"
                 android:textSize="@dimen/font_size_10" />
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/widget_size_17"
                 android:layout_marginTop="@dimen/widget_size_8"
-                android:layout_below="@+id/detail_station_name"
+                android:layout_below="@+id/tv_name"
                 android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@+id/detail_updata_time_key"
-                android:text="2014.09.02"
+                tools:text="2014.09.02"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/font_size_10" />
         </RelativeLayout>
@@ -76,71 +76,71 @@
                 android:text="Battery voltage（V）：" />
 
             <TextView
-                android:id="@+id/detail_voltage"
+                android:id="@+id/tv_one"
                 style="@style/DetalItemRight11"
                 android:layout_alignParentRight="true"
-                android:text="0" />
+                tools:text="0" />
 
             <TextView
                 style="@style/DetalItemLeft11"
-                android:layout_below="@+id/detail_voltage"
-                android:layout_toLeftOf="@+id/detail_current"
+                android:layout_below="@+id/tv_one"
+                android:layout_toLeftOf="@+id/tv_two"
                 android:text="Battery current（A）：" />
 
             <TextView
-                android:id="@+id/detail_current"
+                android:id="@+id/tv_two"
                 style="@style/DetalItemRight11"
-                android:layout_below="@+id/detail_voltage"
-                android:text="0" />
+                android:layout_below="@+id/tv_one"
+                tools:text="0" />
 
             <TextView
                 style="@style/DetalItemLeft11"
-                android:layout_below="@+id/detail_current"
-                android:layout_toLeftOf="@+id/detail_power"
+                android:layout_below="@+id/tv_two"
+                android:layout_toLeftOf="@+id/tv_one"
                 android:text="Battery power（W）：" />
 
             <TextView
-                android:id="@+id/detail_power"
+                android:id="@+id/tv_three"
                 style="@style/DetalItemRight11"
-                android:layout_below="@+id/detail_current"
-                android:text="0" />
+                android:layout_below="@+id/tv_two"
+                tools:text="0" />
 
             <TextView
                 style="@style/DetalItemLeft11"
-                android:layout_below="@+id/detail_power"
-                android:layout_toLeftOf="@+id/detail_temperatu"
+                android:layout_below="@+id/tv_three"
+                android:layout_toLeftOf="@+id/tv_four"
                 android:text="Average Battery Temperatu（℃）：" />
 
             <TextView
-                android:id="@+id/detail_temperatu"
+                android:id="@+id/tv_four"
                 style="@style/DetalItemRight11"
-                android:layout_below="@+id/detail_power"
-                android:text="0" />
+                android:layout_below="@+id/tv_three"
+                tools:text="0" />
 
 
             <TextView
                 style="@style/DetalItemLeft11"
-                android:layout_below="@+id/detail_temperatu"
-                android:layout_toLeftOf="@+id/detail_temperature"
+                android:layout_below="@+id/tv_four"
+                android:layout_toLeftOf="@+id/tv_five"
                 android:text="Maximum temperature of battery（℃）：" />
 
             <TextView
-                android:id="@+id/detail_temperature"
+                android:id="@+id/tv_five"
                 style="@style/DetalItemRight11"
-                android:layout_below="@+id/detail_temperatu"
-                android:text="0" />
+                android:layout_below="@+id/tv_four"
+                tools:text="0" />
 
             <TextView
                 style="@style/DetalItemLeft11"
-                android:layout_below="@+id/detail_temperature"
+                android:layout_below="@+id/tv_five"
                 android:layout_toLeftOf="@+id/detail_current1"
                 android:text="BatterySOC（%）：" />
 
             <TextView
-                android:id="@+id/detail_soc"
+                android:id="@+id/tv_six"
                 style="@style/DetalItemRight11"
-                android:layout_below="@+id/detail_temperature"
-                android:text="0" />
+                android:layout_below="@+id/tv_five"
+                tools:text="0" />
         </RelativeLayout>
 
         <include layout="@layout/layout_linechar" />

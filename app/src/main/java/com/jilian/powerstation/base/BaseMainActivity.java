@@ -1,6 +1,8 @@
 package com.jilian.powerstation.base;
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -11,12 +13,18 @@ import android.widget.TextView;
 
 
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.fragment.FiveFragment;
 import com.jilian.powerstation.modul.fragment.FourFragment;
 import com.jilian.powerstation.modul.fragment.OneFragment;
 import com.jilian.powerstation.modul.fragment.ThreeFragment;
 import com.jilian.powerstation.modul.fragment.TwoFragment;
+import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.views.NoScrollViewPager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +55,34 @@ public abstract class BaseMainActivity extends BaseActivity {
     private TextView tvFive;
     public LinearLayout llBottom;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    /**
+     * //监听外来是否要去成功的界面
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(MessageEvent event) {
+        /* Do something */
+        if (EmptyUtils.isNotEmpty(event)
+                && EmptyUtils.isNotEmpty(event.getAlarmMsg())
+                && event.getAlarmMsg().getCode() == 200
+        ) {
+            viewPager.setCurrentItem(3);
+            fourFragment.getViewPager().setCurrentItem(3);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 
     @Override
     protected void createViewModel() {

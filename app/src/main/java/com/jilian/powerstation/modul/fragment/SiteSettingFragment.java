@@ -257,7 +257,6 @@ public class SiteSettingFragment extends BaseFragment {
      * :配置-获取电站设置信息
      */
     private void getConfigInfo() {
-        showLoadingDialog();
         userViewModel.getConfigInfo(getActivity().getIntent().getStringExtra("sn"));
         userViewModel.getConfigliveData().observe(this, new Observer<BaseDto<ConfigInfoDto>>() {
             @Override
