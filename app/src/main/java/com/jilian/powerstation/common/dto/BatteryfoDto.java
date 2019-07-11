@@ -7,7 +7,7 @@ public class BatteryfoDto implements Serializable {
     private String id;//	false	Number		索引
     private String power;//	false	Number		充放电功率（正数放电，负数充电）
     private String soc;//	false	Number		电池功率
-    private String time;//	false	long		时间
+    private long time;//	false	long		时间
 
     public String getId() {
         return id;
@@ -33,11 +33,11 @@ public class BatteryfoDto implements Serializable {
         this.soc = soc;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }

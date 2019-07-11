@@ -45,7 +45,7 @@ public class BatteryDataAdapter extends RecyclerView.Adapter<BatteryDataAdapter.
     public void onBindViewHolder(@NonNull ESSListHolder holder, int position) {
 
 
-        holder.tvName.setText("Battery" + mDatas.get(position).getId());
+        holder.tvName.setText("battery" + mDatas.get(position).getId());
         holder.tvOne.setText(mDatas.get(position).getSoc());//充电功率
         holder.tvTwo.setText(mDatas.get(position).getPower());//当前电量
     }

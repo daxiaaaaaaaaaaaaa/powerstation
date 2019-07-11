@@ -190,6 +190,7 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
         Intent intent = new Intent(EssListActivity.this, MainActivity.class);
         intent.putExtra("sn",mDatas.get(position).getSn());
         intent.putExtra("data",mDatas.get(position));
+        MyApplication.getInstance().setPowerName(mDatas.get(position).getProductName());
         startActivity(intent);
     }
 }

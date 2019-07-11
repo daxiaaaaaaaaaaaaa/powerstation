@@ -7,7 +7,7 @@ public class PcsInfoDto implements Serializable {
     private String id;//	false	number		索引
     private String ratePower;//	false	number		额定功率
     private String nowChargePower;//	false	number		当前充放电功率（正数：放电，负数：充电）
-    private String time;//	false	long		时间
+    private long time;//	false	long		时间
 
     public String getId() {
         return id;
@@ -33,11 +33,11 @@ public class PcsInfoDto implements Serializable {
         this.nowChargePower = nowChargePower;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }

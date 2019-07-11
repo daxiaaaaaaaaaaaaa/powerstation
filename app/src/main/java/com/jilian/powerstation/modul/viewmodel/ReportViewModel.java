@@ -28,7 +28,16 @@ public class ReportViewModel extends BaseViewModel {
      */
     private LiveData<BaseDto<ReportListDto>> reportData;
 
-    public void addReportData(String powerSn,String startTime,String endTime,int type ){
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public LiveData<BaseDto<ReportListDto>> getReportData() {
+        return reportData;
+    }
+
+    public void addReportData(String powerSn, String startTime, String endTime, int type ){
         ReportVo vo = new ReportVo();
         vo.setPowerSn(powerSn);
         vo.setStartTime(startTime);

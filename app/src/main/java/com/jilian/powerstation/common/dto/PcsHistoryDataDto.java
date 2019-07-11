@@ -2,53 +2,41 @@ package com.jilian.powerstation.common.dto;
 
 import java.io.Serializable;
 
-public class PcsInfoDetailDto implements Serializable {
-
-    public String inputVoltPv1;//	false	number		PV1输入电压
-    public String inputCurrPv1;//	false	number		PV1输入电流
-    public String inputPowerPv1;//	false	number		PV1输入功率
-    public String inputVoltPv2;//	false	number		PV2输入电压
-    public String inputCurrPv2;//	false	number		PV2输入电流
-    public String inputPowerPv2;//	false	number		PV2输入功率
-    public String inputEneryPv1;//	false	number		PV1发电量
-    public String inputEneryPv2;//	false	number		PV2发电量
-    public String toGrid	;//false	number		电网馈电量
-    public String todayConsumption;//	false	number		电网用电量
-    public String loadConsumption;//	false	number		负载用电量
-
-    public String loadOutVolt	;//false	number		EPS输出电压
-    public String loadOutCurr;//	false	number		EPS输出电流
-    public String loadOutFreq;//	false	number		EPS输出频率
-    public String loadOutPower;//	false	number		EPS输出功率
-    public String gridVolt;//	false	number		电网电压
-    public String gridCurr;//	false	number		电网电流
-    public String gridFreq;//	false	number		电网频率
-    public String gridPower;//	false	number		电网功率
-    public String loadActivePower;//	false	number		负载用电功率
+public class PcsHistoryDataDto implements Serializable {
+    private String inputVoltPv1;//	false	number		PV1输入电压
+    private String inputCurrPv1;//	false	number		PV1输入电流
+    private String inputPowerPv1;//	false	number		PV1输入功率
+    private String inputVoltPv2	;//false	number		PV2输入电压
+    private String inputCurrPv2	;//false	number		PV2输入电流
+    private String inputPowerPv2;//	false	number		PV2输入功率
+    private String inputEneryPv	;//false	number		PV发电量
+    private String toGrid;//	false	number		电网馈电量
+    private String todayConsumption;//	false	number		电网用电量
+    private String loadConsumption;//	false	number		负载用电量
+    private String gridVolt;//	false	number		电网电压
+    private String gridCurr	;//false	number		电网电流
+    private String gridFreq	;//false	number		电网频率
+    private String gridPower;//	false	number		电网功率
+    private long time;//	false	Long		时间
 
     @Override
     public String toString() {
-        return "PcsInfoDetailDto{" +
+        return "PcsHistoryDataDto{" +
                 "inputVoltPv1='" + inputVoltPv1 + '\'' +
                 ", inputCurrPv1='" + inputCurrPv1 + '\'' +
                 ", inputPowerPv1='" + inputPowerPv1 + '\'' +
                 ", inputVoltPv2='" + inputVoltPv2 + '\'' +
                 ", inputCurrPv2='" + inputCurrPv2 + '\'' +
                 ", inputPowerPv2='" + inputPowerPv2 + '\'' +
-                ", inputEneryPv1='" + inputEneryPv1 + '\'' +
-                ", inputEneryPv2='" + inputEneryPv2 + '\'' +
+                ", inputEneryPv='" + inputEneryPv + '\'' +
                 ", toGrid='" + toGrid + '\'' +
                 ", todayConsumption='" + todayConsumption + '\'' +
                 ", loadConsumption='" + loadConsumption + '\'' +
-                ", loadOutVolt='" + loadOutVolt + '\'' +
-                ", loadOutCurr='" + loadOutCurr + '\'' +
-                ", loadOutFreq='" + loadOutFreq + '\'' +
-                ", loadOutPower='" + loadOutPower + '\'' +
                 ", gridVolt='" + gridVolt + '\'' +
                 ", gridCurr='" + gridCurr + '\'' +
                 ", gridFreq='" + gridFreq + '\'' +
                 ", gridPower='" + gridPower + '\'' +
-                ", loadActivePower='" + loadActivePower + '\'' +
+                ", time=" + time +
                 '}';
     }
 
@@ -100,20 +88,12 @@ public class PcsInfoDetailDto implements Serializable {
         this.inputPowerPv2 = inputPowerPv2;
     }
 
-    public String getInputEneryPv1() {
-        return inputEneryPv1;
+    public String getInputEneryPv() {
+        return inputEneryPv;
     }
 
-    public void setInputEneryPv1(String inputEneryPv1) {
-        this.inputEneryPv1 = inputEneryPv1;
-    }
-
-    public String getInputEneryPv2() {
-        return inputEneryPv2;
-    }
-
-    public void setInputEneryPv2(String inputEneryPv2) {
-        this.inputEneryPv2 = inputEneryPv2;
+    public void setInputEneryPv(String inputEneryPv) {
+        this.inputEneryPv = inputEneryPv;
     }
 
     public String getToGrid() {
@@ -138,38 +118,6 @@ public class PcsInfoDetailDto implements Serializable {
 
     public void setLoadConsumption(String loadConsumption) {
         this.loadConsumption = loadConsumption;
-    }
-
-    public String getLoadOutVolt() {
-        return loadOutVolt;
-    }
-
-    public void setLoadOutVolt(String loadOutVolt) {
-        this.loadOutVolt = loadOutVolt;
-    }
-
-    public String getLoadOutCurr() {
-        return loadOutCurr;
-    }
-
-    public void setLoadOutCurr(String loadOutCurr) {
-        this.loadOutCurr = loadOutCurr;
-    }
-
-    public String getLoadOutFreq() {
-        return loadOutFreq;
-    }
-
-    public void setLoadOutFreq(String loadOutFreq) {
-        this.loadOutFreq = loadOutFreq;
-    }
-
-    public String getLoadOutPower() {
-        return loadOutPower;
-    }
-
-    public void setLoadOutPower(String loadOutPower) {
-        this.loadOutPower = loadOutPower;
     }
 
     public String getGridVolt() {
@@ -204,11 +152,11 @@ public class PcsInfoDetailDto implements Serializable {
         this.gridPower = gridPower;
     }
 
-    public String getLoadActivePower() {
-        return loadActivePower;
+    public long getTime() {
+        return time;
     }
 
-    public void setLoadActivePower(String loadActivePower) {
-        this.loadActivePower = loadActivePower;
+    public void setTime(long time) {
+        this.time = time;
     }
 }

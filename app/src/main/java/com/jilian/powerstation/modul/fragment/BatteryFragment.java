@@ -16,16 +16,9 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.BatteryfoDto;
-import com.jilian.powerstation.common.dto.ESSDto;
-import com.jilian.powerstation.common.dto.PcsInfoListDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
-import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.activity.BatteryDetailActivity;
-import com.jilian.powerstation.modul.activity.EssListActivity;
-import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.BatteryDataAdapter;
-import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
-import com.jilian.powerstation.modul.adapter.DataAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -129,6 +122,7 @@ public class BatteryFragment extends BaseFragment implements CustomItemClickList
     @Override
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(getActivity(), BatteryDetailActivity.class);
+        intent.putExtra("data",mDatas.get(position));
         intent.putExtra("sn",getActivity().getIntent().getStringExtra("sn"));
         intent.putExtra("id",mDatas.get(position).getId());
         startActivity(intent);

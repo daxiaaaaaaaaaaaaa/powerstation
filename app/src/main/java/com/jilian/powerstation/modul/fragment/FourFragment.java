@@ -35,7 +35,6 @@ public class FourFragment extends BaseFragment {
     public void setViewPager(ViewPager viewPager) {
         this.viewPager = viewPager;
     }
-
     List<Fragment> mlist;
     FragmentPagerAdapter adapter;
     ArrayList<String> mTitle = new ArrayList<>();

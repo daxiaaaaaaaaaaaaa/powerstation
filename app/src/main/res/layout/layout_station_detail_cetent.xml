@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                     android:id="@+id/detail_voltage1"
                     style="@style/DetalItemRight"
                     android:layout_alignParentRight="true"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -47,7 +48,7 @@
                     android:id="@+id/detail_current1"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_voltage1"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -59,7 +60,7 @@
                     android:id="@+id/detail_power1"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_current1"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -71,7 +72,7 @@
                     android:id="@+id/detail_yield1"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_power1"
-                    android:text="0" />
+                    tools:text="0" />
 
             </RelativeLayout>
 
@@ -86,7 +87,7 @@
                     android:id="@+id/detail_voltage2"
                     style="@style/DetalItemRight"
                     android:layout_alignParentRight="true"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -98,7 +99,7 @@
                     android:id="@+id/detail_current2"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_voltage2"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -110,7 +111,7 @@
                     android:id="@+id/detail_power2"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_current2"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -122,7 +123,7 @@
                     android:id="@+id/detail_yield2"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_power2"
-                    android:text="0" />
+                    tools:text="0" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -158,7 +159,7 @@
                     android:id="@+id/detail_feed"
                     style="@style/DetalItemRight"
                     android:layout_alignParentRight="true"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -170,7 +171,7 @@
                     android:id="@+id/detail_consume"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_feed"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -182,7 +183,7 @@
                     android:id="@+id/detail_load_voltage"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_consume"
-                    android:text="0" />
+                    tools:text="0" />
 
 
             </RelativeLayout>
@@ -200,7 +201,7 @@
                     android:id="@+id/detail_eps_voltage"
                     style="@style/DetalItemRight"
                     android:layout_alignParentRight="true"
-                    android:text="10" />
+                    tools:text="10" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -212,7 +213,7 @@
                     android:id="@+id/detail_eps_current"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_eps_voltage"
-                    android:text="20" />
+                    tools:text="20" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -224,7 +225,7 @@
                     android:id="@+id/detail_eps_frequency"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_eps_current"
-                    android:text="30" />
+                    tools:text="30" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -236,7 +237,7 @@
                     android:id="@+id/detail_eps_power"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_eps_frequency"
-                    android:text="40" />
+                    tools:text="40" />
 
             </RelativeLayout>
 
@@ -273,7 +274,7 @@
                     android:id="@+id/detail_consume_voltage"
                     style="@style/DetalItemRight"
                     android:layout_alignParentRight="true"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -285,7 +286,7 @@
                     android:id="@+id/detail_consume_current"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_consume_voltage"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -297,7 +298,7 @@
                     android:id="@+id/detail_consume_frequnc"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_consume_current"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -309,7 +310,7 @@
                     android:id="@+id/detail_consume_power"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_consume_frequnc"
-                    android:text="0" />
+                    tools:text="0" />
 
                 <TextView
                     style="@style/DetalItemLeft"
@@ -321,7 +322,7 @@
                     android:id="@+id/detail_load_power"
                     style="@style/DetalItemRight"
                     android:layout_below="@+id/detail_consume_power"
-                    android:text="0" />
+                    tools:text="0" />
 
             </RelativeLayout>
 

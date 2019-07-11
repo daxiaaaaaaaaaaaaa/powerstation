@@ -8,23 +8,24 @@ import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.base.CommonRepository;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.BatteryDataListDto;
 import com.jilian.powerstation.common.dto.BatteryDetailDto;
 import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.common.dto.DeviceAlarmInfoListDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PcsHistoryDataListDto;
 import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
 import com.jilian.powerstation.common.dto.PcsInfoListDto;
-import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
+import com.jilian.powerstation.common.vo.HistoryVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
-import com.jilian.powerstation.common.vo.LoginVo;
 
 
 public class UserRepository extends CommonRepository {
@@ -194,6 +195,29 @@ public class UserRepository extends CommonRepository {
     public LiveData<BaseDto<BatteryDetailDto>> getBatteryInfo(PowerInfoVo vo) {
         return request(Api.getBatteryInfo(vo)).send().get();
     }
+
+    /**
+     * 逆变器详情-逆变器运行数据-历史数据 展示图形
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<PcsHistoryDataListDto>> getPcsHistoryData(HistoryVo vo) {
+        return request(Api.getPcsHistoryData(vo)).send().get();
+    }
+
+
+    /**
+     * 电池信息-电池数据(图表数据)
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto<BatteryDataListDto>> getBatteryData(HistoryVo vo) {
+        return request(Api.getBatteryData(vo)).send().get();
+    }
+
+
+
+
 
 
 

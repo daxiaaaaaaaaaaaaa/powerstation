@@ -21,7 +21,6 @@ import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.modul.activity.EssListActivity;
 import com.jilian.powerstation.modul.activity.LoginActivity;
-import com.jilian.powerstation.modul.activity.StationDetailActivity;
 import com.jilian.powerstation.modul.activity.UpdatePwdActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
@@ -33,10 +32,6 @@ import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.CircularImageView;
 
 import java.io.FileOutputStream;
-import java.util.HashSet;
-import java.util.Set;
-
-import cn.jpush.android.api.JPushInterface;
 
 
 public class FiveFragment extends BaseFragment {
@@ -95,14 +90,6 @@ public class FiveFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        view.findViewById(R.id.user_logout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                startActivity(new Intent(getContext(), IntelligentDeviceActivity.class));
-                startActivity(new Intent(getContext(), StationDetailActivity.class));
-            }
-        });
-
         ivHead = (CircularImageView) view.findViewById(R.id.iv_head);
         tvName = (TextView) view.findViewById(R.id.tv_name);
         tvId = (TextView) view.findViewById(R.id.tv_id);

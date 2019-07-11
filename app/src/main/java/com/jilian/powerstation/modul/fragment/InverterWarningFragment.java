@@ -2,11 +2,9 @@ package com.jilian.powerstation.modul.fragment;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,11 +14,7 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.DeviceAlarmInfoDto;
 import com.jilian.powerstation.common.dto.DeviceAlarmInfoListDto;
-import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.listener.OnRecycleItemListener;
-import com.jilian.powerstation.modul.activity.MainActivity;
-import com.jilian.powerstation.modul.activity.WarningDetailActivity;
-import com.jilian.powerstation.modul.adapter.DataAdapter;
 import com.jilian.powerstation.modul.adapter.WarningAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.DisplayUtil;
@@ -133,7 +127,7 @@ public class InverterWarningFragment extends BaseFragment {
         adapter.setItemListener(new OnRecycleItemListener() {
             @Override
             public void OnItemClick(View view, int position) {
-               // startActivity(new Intent(getContext(), WarningDetailActivity.class));
+               // startActivity(new Intent(getContext(), InverterDetailActivity.class));
             }
         });
     }

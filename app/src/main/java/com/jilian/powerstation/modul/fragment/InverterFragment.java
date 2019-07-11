@@ -14,17 +14,10 @@ import android.view.View;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
-import com.jilian.powerstation.common.dto.ESSDto;
 import com.jilian.powerstation.common.dto.PcsInfoDto;
 import com.jilian.powerstation.common.dto.PcsInfoListDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
-import com.jilian.powerstation.listener.OnRecycleItemListener;
-import com.jilian.powerstation.modul.activity.BatteryDetailActivity;
-import com.jilian.powerstation.modul.activity.IntelligentDetailActivity;
-import com.jilian.powerstation.modul.activity.IntelligentDeviceActivity;
-import com.jilian.powerstation.modul.activity.MainActivity;
-import com.jilian.powerstation.modul.adapter.ConnectedsAdapter;
-import com.jilian.powerstation.modul.adapter.DataAdapter;
+import com.jilian.powerstation.modul.activity.InverterDetailActivity;
 import com.jilian.powerstation.modul.adapter.InverDataAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
@@ -132,6 +125,10 @@ public class InverterFragment extends BaseFragment implements CustomItemClickLis
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), IntelligentDetailActivity.class));
+        Intent intent = new Intent(getActivity(), InverterDetailActivity.class);
+        intent.putExtra("data",mDatas.get(position));
+        intent.putExtra("sn",getActivity().getIntent().getStringExtra("sn"));
+        intent.putExtra("id",mDatas.get(position).getId());
+        startActivity(intent);
     }
 }

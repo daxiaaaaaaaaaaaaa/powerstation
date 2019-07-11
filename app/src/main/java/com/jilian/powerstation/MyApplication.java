@@ -43,6 +43,16 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class MyApplication extends MultiDexApplication {
     private static final String TAG = "MyApplication";
     private static MyApplication instance;
+    private String powerName;
+
+    public String getPowerName() {
+        return powerName;
+    }
+
+    public void setPowerName(String powerName) {
+        this.powerName = powerName;
+    }
+
     /**
      *
      */

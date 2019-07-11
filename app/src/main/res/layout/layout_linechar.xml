@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,13 +20,13 @@
             android:textColor="@color/color_black" />
 
         <TextView
+            android:id="@+id/tv_type"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawableRight="@drawable/image_right"
             android:drawablePadding="8dp"
-
             android:gravity="center_vertical|right"
-            android:text="PV input voltage" />
+            tools:text="PV input voltage" />
     </LinearLayout>
 
     <android.support.design.widget.TabLayout
@@ -47,13 +48,14 @@
             android:padding="@dimen/widget_size_16" />
 
         <TextView
+            android:id="@+id/tv_select_date"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:drawableRight="@drawable/image_calendar"
             android:drawablePadding="3dp"
             android:gravity="center_vertical"
-            android:text="07/04/2019"
+            tools:text="07/04/2019"
             android:textColor="#3298DB" />
 
         <TextView

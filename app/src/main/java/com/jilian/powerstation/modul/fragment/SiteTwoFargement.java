@@ -36,6 +36,7 @@ import com.jilian.powerstation.manege.CharBarManage;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
+import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.views.TMarket;
 
 import java.util.ArrayList;
@@ -101,7 +102,10 @@ public class SiteTwoFargement extends BaseFragment implements IAxisValueFormatte
         reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
-                setData(reportListDtoBaseDto.getData().getRows());
+                if(EmptyUtils.isNotEmpty(reportListDtoBaseDto.getData())){
+                    setData(reportListDtoBaseDto.getData().getRows());
+                }
+
             }
         });
     }

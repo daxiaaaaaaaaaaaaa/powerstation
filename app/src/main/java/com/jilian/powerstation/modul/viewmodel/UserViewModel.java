@@ -8,23 +8,24 @@ import com.jilian.powerstation.base.BaseViewModel;
 import com.jilian.powerstation.base.BaseVo;
 import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.common.dto.BatteryDataListDto;
 import com.jilian.powerstation.common.dto.BatteryDetailDto;
 import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.common.dto.DeviceAlarmInfoListDto;
 import com.jilian.powerstation.common.dto.LoginDto;
+import com.jilian.powerstation.common.dto.PcsHistoryDataListDto;
 import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
 import com.jilian.powerstation.common.dto.PcsInfoListDto;
-import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.dto.PowerListDto;
 import com.jilian.powerstation.common.dto.UserInfoDto;
 import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
+import com.jilian.powerstation.common.vo.HistoryVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
-import com.jilian.powerstation.common.vo.LoginVo;
 import com.jilian.powerstation.factory.Factoty;
 import com.jilian.powerstation.modul.repository.UserRepository;
 import com.jilian.powerstation.utils.Md5Util;
@@ -113,6 +114,22 @@ public class UserViewModel extends BaseViewModel {
      * 电池详情
      */
     private LiveData<BaseDto<BatteryDetailDto>> batteryDetailData;
+    /**
+     * 逆变器历史数据
+     */
+    private LiveData<BaseDto<PcsHistoryDataListDto>> pcsHistoryData;
+    /**
+     * 电池历史数据
+     */
+    private LiveData<BaseDto<BatteryDataListDto>> btyHistoryData;
+
+    public LiveData<BaseDto<BatteryDataListDto>> getBtyHistoryData() {
+        return btyHistoryData;
+    }
+
+    public LiveData<BaseDto<PcsHistoryDataListDto>> getPcsHistoryData() {
+        return pcsHistoryData;
+    }
 
     public LiveData<BaseDto<BatteryInfoListDto>> getBatteryInfoData() {
         return batteryInfoData;
@@ -400,6 +417,7 @@ public class UserViewModel extends BaseViewModel {
 
     /**
      * 电池列表
+     *
      * @param powerSn
      */
     public void getBatteryInfoList(String powerSn) {
@@ -421,5 +439,41 @@ public class UserViewModel extends BaseViewModel {
         vo.setId(id);
         batteryDetailData = Factoty.getRepository(UserRepository.class).getBatteryInfo(vo);
     }
+
+    /**
+     * @param powerSn   sn码
+     * @param id        逆变器索引
+     * @param type      统计类型（0:pv输入电压，1:PV输入电流，2:pv输入功率，3:电网输出电压，4:电网输出频率，5:电网输出电流，
+     *                  6:电网输出功率，7:pv发电量，8:馈电网电量，9:电网用电量，10:负载用电量）
+     * @param startTime 开始时间
+     */
+    public void getPcsHistoryData(String powerSn, String id, int type, String startTime) {
+        HistoryVo vo = new HistoryVo();
+        vo.setPowerSn(powerSn);
+        vo.setId(id);
+        vo.setType(type);
+        vo.setStartTime(startTime);
+        pcsHistoryData = Factoty.getRepository(UserRepository.class).getPcsHistoryData(vo);
+    }
+
+    /**
+     * @param powerSn   sn码
+     * @param id        逆变器索引
+     * @param type     统计类型（0:电池电压，1:电池电流，2：温度，3:电池功率，4:电池SOC百分比）----电池
+     * @param startTime 开始时间
+     */
+    public void getBatteryData(String powerSn, String id, int type, String startTime) {
+        HistoryVo vo = new HistoryVo();
+        vo.setPowerSn(powerSn);
+        vo.setId(id);
+        vo.setType(type);
+        vo.setStartTime(startTime);
+        btyHistoryData = Factoty.getRepository(UserRepository.class).getBatteryData(vo);
+    }
+
+
+
+
+
 
 }

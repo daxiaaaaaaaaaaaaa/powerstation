@@ -6,18 +6,16 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
-import com.contrarywind.view.WheelView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
@@ -34,11 +32,10 @@ import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.BaseDto;
-import com.jilian.powerstation.common.dto.BatteryDataDto;
-import com.jilian.powerstation.common.dto.BatteryDataListDto;
-import com.jilian.powerstation.common.dto.BatteryDetailDto;
-import com.jilian.powerstation.common.dto.BatteryfoDto;
+import com.jilian.powerstation.common.dto.PcsHistoryDataDto;
 import com.jilian.powerstation.common.dto.PcsHistoryDataListDto;
+import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
+import com.jilian.powerstation.common.dto.PcsInfoDto;
 import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
@@ -49,35 +46,53 @@ import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.TMarket;
+import com.contrarywind.view.WheelView;
+
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import lombok.ToString;
-
 /**
- * 电池详情
+ * 逆变器详情
  */
-public class BatteryDetailActivity extends BaseActivity {
-
-    private UserViewModel userViewModel;
-
+public class InverterDetailActivity extends BaseActivity {
     private LineChart lc;
     TMarket tMarket = new TMarket();
-    private ImageView ivHead;
+    private UserViewModel userViewModel;
+
+    private TextView detailVoltage1;//PV1输入电压
+    private TextView detailCurrent1;//PV1输入电流
+    private TextView detailPower1;//PV1输入功率
+    private TextView detailYield1;//PV1发电量
+
+    private TextView detailVoltage2;//PV2输入电压
+    private TextView detailCurrent2;//PV2输入电流
+    private TextView detailPower2;//PV2输入功率
+    private TextView detailYield2;//PV2发电量
+
+    private TextView detailFeed;//电网馈电量
+    private TextView detailConsume;//电网用电量
+    private TextView detailLoadVoltage;//负载用电量
+
+    private TextView detailEpsVoltage;//EPS输出电压
+    private TextView detailEpsCurrent;//EPS输出电流
+    private TextView detailEpsFrequency;//EPS输出频率
+    private TextView detailEpsPower;//EPS输出功率
+
+
+    private TextView detailConsumeVoltage;//电网电压
+    private TextView detailConsumeCurrent;//电网电流
+    private TextView detailConsumeFrequnc;//电网频率
+    private TextView detailConsumePower;//电网功率
+    private TextView detailLoadPower;//负载用电功率
     private TextView tvName;
     private TextView tvDate;
-    private TextView tvOne;
-    private TextView tvTwo;
-    private TextView tvThree;
-    private TextView tvFour;
-    private TextView tvFive;
-    private TextView tvSix;
-    private BatteryfoDto data;
-    private TextView tvSelectDate;
+    private PcsInfoDto data;
     private TextView tvType;
+    private TextView tvSelectDate;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,31 +112,36 @@ public class BatteryDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
     public int intiLayout() {
-        return R.layout.activity_battery_detail;
+        return R.layout.activity_station_detail;
     }
 
     @Override
     public void initView() {
-        tvType = (TextView) findViewById(R.id.tv_type);
-        tvSelectDate = (TextView) findViewById(R.id.tv_select_date);
-        ivHead = (ImageView) findViewById(R.id.iv_head);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvDate = (TextView) findViewById(R.id.tv_date);
-        tvOne = (TextView) findViewById(R.id.tv_one);
-        tvTwo = (TextView) findViewById(R.id.tv_two);
-        tvThree = (TextView) findViewById(R.id.tv_three);
-        tvFour = (TextView) findViewById(R.id.tv_four);
-        tvFive = (TextView) findViewById(R.id.tv_five);
-        tvSix = (TextView) findViewById(R.id.tv_six);
-        lc = findViewById(R.id.lineChart);
-        lc.setMarker(tMarket);
+        tvSelectDate = (TextView) findViewById(R.id.tv_select_date);
+        detailVoltage1 = (TextView) findViewById(R.id.detail_voltage1);
+        detailCurrent1 = (TextView) findViewById(R.id.detail_current1);
+        detailPower1 = (TextView) findViewById(R.id.detail_power1);
+        detailYield1 = (TextView) findViewById(R.id.detail_yield1);
+        detailVoltage2 = (TextView) findViewById(R.id.detail_voltage2);
+        detailCurrent2 = (TextView) findViewById(R.id.detail_current2);
+        detailPower2 = (TextView) findViewById(R.id.detail_power2);
+        detailYield2 = (TextView) findViewById(R.id.detail_yield2);
+        detailFeed = (TextView) findViewById(R.id.detail_feed);
+        detailConsume = (TextView) findViewById(R.id.detail_consume);
+        detailLoadVoltage = (TextView) findViewById(R.id.detail_load_voltage);
+        detailEpsVoltage = (TextView) findViewById(R.id.detail_eps_voltage);
+        detailEpsCurrent = (TextView) findViewById(R.id.detail_eps_current);
+        detailEpsFrequency = (TextView) findViewById(R.id.detail_eps_frequency);
+        detailEpsPower = (TextView) findViewById(R.id.detail_eps_power);
+        detailConsumeVoltage = (TextView) findViewById(R.id.detail_consume_voltage);
+        detailConsumeCurrent = (TextView) findViewById(R.id.detail_consume_current);
+        detailConsumeFrequnc = (TextView) findViewById(R.id.detail_consume_frequnc);
+        detailConsumePower = (TextView) findViewById(R.id.detail_consume_power);
+        detailLoadPower = (TextView) findViewById(R.id.detail_load_power);
+        tvType = (TextView) findViewById(R.id.tv_type);
         setNormalTitle(MyApplication.getInstance().getPowerName(), v -> finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
@@ -129,6 +149,8 @@ public class BatteryDetailActivity extends BaseActivity {
 
             }
         });
+        lc = findViewById(R.id.lineChart);
+        lc.setMarker(tMarket);
         lc.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -139,13 +161,13 @@ public class BatteryDetailActivity extends BaseActivity {
             public void onNothingSelected() {
             }
         });
-        data = (BatteryfoDto) getIntent().getSerializableExtra("data");
-        tvName.setText("battery" + data.getId());
-
+        data = (PcsInfoDto) getIntent().getSerializableExtra("data");
+        tvName.setText("inverter" + data.getId());
         tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(data.getTime())));
         initCustomTimePicker();
         tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, new Date()));
     }
+
 
     @Override
     public void initData() {
@@ -154,6 +176,14 @@ public class BatteryDetailActivity extends BaseActivity {
         typeList.add("PV input power");
         typeList.add("Glid output voltage");
         typeList.add("Glid output frequency");
+        typeList.add("Glid output current");
+        typeList.add("Glid output power");
+
+        typeList.add("PV Yield");
+        typeList.add("Yield of in grid");
+        typeList.add("Yield of feeding in grid");
+        typeList.add("Consumption of grid ");
+
         // 设置上下左右偏移量
         lc.setExtraOffsets(24f, 24f, 24f, 0f);
         lc.animateXY(3000, 3000); // XY动画
@@ -161,51 +191,112 @@ public class BatteryDetailActivity extends BaseActivity {
         setYAxis(); // 设置Y轴
         setXAxis(); // 设置X轴
         setData();
-        //获取电池详情
-        getBatteryInfo();
-        //获取电池历史数据
-        getBatteryData();
-
+        //获取逆变器详情
+        getPcsInfo();//
+        //获取逆变器历史数据
+        getPcsHistoryData();
 
     }
 
-    /**
-     * 获取电池详情
-     */
-    private void getBatteryInfo() {
+    private void getPcsInfo() {
         showLoadingDialog();
-        userViewModel.getBatteryInfo(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"));
-        userViewModel.getBatteryDetailData().observe(this, new Observer<BaseDto<BatteryDetailDto>>() {
+        userViewModel.getPcsInfo(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"));
+        userViewModel.getPcsInfoDetailData().observe(this, new Observer<BaseDto<PcsInfoDetailDto>>() {
             @Override
-            public void onChanged(@Nullable BaseDto<BatteryDetailDto> batteryDetailDtoBaseDto) {
+            public void onChanged(@Nullable BaseDto<PcsInfoDetailDto> pcsInfoDetailDtoBaseDto) {
                 hideLoadingDialog();
-                if (batteryDetailDtoBaseDto.isSuccess()) {
-                    BatteryDetailDto detailDto = batteryDetailDtoBaseDto.getData();
+                if (pcsInfoDetailDtoBaseDto.isSuccess()) {
+                    PcsInfoDetailDto detailDto = pcsInfoDetailDtoBaseDto.getData();
                     if (EmptyUtils.isNotEmpty(detailDto)) {
                         initDetailView(detailDto);
                     } else {
                         ToastUitl.showImageToastTips("no data");
                     }
                 } else {
-                    ToastUitl.showImageToastTips(batteryDetailDtoBaseDto.getMsg());
+                    ToastUitl.showImageToastTips(pcsInfoDetailDtoBaseDto.getMsg());
                 }
             }
         });
     }
 
     /**
-     * 初始化电池详情
+     * private TextView detailVoltage1;//PV1输入电压
+     * private TextView detailCurrent1;//PV1输入电流
+     * private TextView detailPower1;//PV1输入功率
+     * private TextView detailYield1;//PV1发电量
+     * <p>
+     * private TextView detailVoltage2;//PV2输入电压
+     * private TextView detailCurrent2;//PV2输入电流
+     * private TextView detailPower2;//PV2输入功率
+     * private TextView detailYield2;//PV2发电量
+     * <p>
+     * private TextView detailFeed;//电网馈电量
+     * <p>
+     * private TextView detailConsume;//电网用电量
+     * private TextView detailLoadVoltage;//负载用电量
+     * <p>
+     * <p>
+     * private TextView detailEpsVoltage;//EPS输出电压
+     * private TextView detailEpsCurrent;//EPS输出电流
+     * private TextView detailEpsFrequency;//EPS输出频率
+     * private TextView detailEpsPower;//EPS输出功率
+     * <p>
+     * <p>
+     * private TextView detailConsumeVoltage;//电网电压
+     * private TextView detailConsumeCurrent;//电网电流
+     * private TextView detailConsumeFrequnc;//电网频率
+     * private TextView detailConsumePower;//电网功率
+     * private TextView detailLoadPower;//负载用电功率
+     * 初始化详情页
      *
      * @param detailDto
      */
-    private void initDetailView(BatteryDetailDto detailDto) {
-        tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(detailDto.getTime())));
-        tvOne.setText(detailDto.getVolt());//电池电压
-        tvTwo.setText(detailDto.getCurrent());//电池电流
-        tvThree.setText(detailDto.getPower());//电池功率
-        tvFour.setText(detailDto.getAvgTemp());//电池平均温度
-        tvFive.setText(detailDto.getMaxTemp());//电池最高温度
-        tvSix.setText(detailDto.getSoc());//电池电量
+    private void initDetailView(PcsInfoDetailDto detailDto) {
+        Log.e(TAG, "initDetailView: " + detailDto.toString());
+        detailVoltage1.setText(detailDto.inputVoltPv1);//PV1输入电压
+        detailCurrent1.setText(detailDto.inputCurrPv1);//PV1输入电流
+        detailPower1.setText(detailDto.inputPowerPv1);//PV1输入功率
+        detailYield1.setText(detailDto.inputEneryPv1);//PV1发电量
+
+        detailVoltage2.setText(detailDto.inputVoltPv2);//PV2输入电压
+        detailCurrent2.setText(detailDto.inputCurrPv2);//PV2输入电流
+        detailPower2.setText(detailDto.inputPowerPv2);//PV2输入功率
+        detailYield2.setText(detailDto.inputEneryPv2);//PV2发电量
+
+        detailFeed.setText(detailDto.toGrid);//电网馈电量
+        detailConsume.setText(detailDto.todayConsumption);//电网用电量
+        detailLoadVoltage.setText(detailDto.loadConsumption);//负载用电量
+
+        detailEpsVoltage.setText(detailDto.loadOutVolt);//EPS输出电压
+        detailEpsCurrent.setText(detailDto.loadOutCurr);//EPS输出电流
+        detailEpsFrequency.setText(detailDto.loadOutFreq);//EPS输出频率
+        detailEpsPower.setText(detailDto.loadOutPower);//EPS输出功率
+
+
+        detailConsumeVoltage.setText(detailDto.gridVolt);//电网电压
+        detailConsumeCurrent.setText(detailDto.gridCurr);//电网电流
+        detailConsumeFrequnc.setText(detailDto.gridFreq);//电网频率
+        detailConsumePower.setText(detailDto.gridPower);//电网功率
+        detailLoadPower.setText(detailDto.loadActivePower);//负载用电功率
+
+
+    }
+
+    @Override
+    public void initListener() {
+        tvType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTypeDialog();
+            }
+        });
+        tvSelectDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pvCustomTime.show();
+            }
+        });
+
     }
 
     private void setLegend() {
@@ -352,27 +443,11 @@ public class BatteryDetailActivity extends BaseActivity {
         }
         return lineDataSet1;
 
-
-    }
-
-    @Override
-    public void initListener() {
-        tvType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTypeDialog();
-            }
-        });
-        tvSelectDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pvCustomTime.show();
-            }
-        });
     }
 
     private List<String> typeList = new ArrayList<>();
-    private int type = 0;//统计类型（0:电池电压，1:电池电流，2：温度，3:电池功率，4:电池SOC百分比）
+    private int type = 0;// 统计类型（0:pv输入电压，1:PV输入电流，2:pv输入功率，3:电网输出电压，4:电网输出频率，
+    // 5:电网输出电流，6:电网输出功率，7:pv发电量，8:馈电网电量，9:电网用电量，10:负载用电量）
 
 
     private void showTypeDialog() {
@@ -397,7 +472,7 @@ public class BatteryDetailActivity extends BaseActivity {
                                 tvType.setText(typeList.get(wheelview.getCurrentItem()));
                                 type = wheelview.getCurrentItem();
                                 dialog.dismiss();
-                                getBatteryData();
+                                getPcsHistoryData();
 
                             }
                         });
@@ -439,7 +514,7 @@ public class BatteryDetailActivity extends BaseActivity {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, date));
-                getBatteryData();
+                getPcsHistoryData();
             }
         })
                 .setDate(selectedDate)
@@ -481,15 +556,14 @@ public class BatteryDetailActivity extends BaseActivity {
     }
 
     /**
-     * 获取逆变器图形数据 历史数据
+     * 获取逆变器图形数据
      */
-    private void getBatteryData() {
-
+    private void getPcsHistoryData() {
         showLoadingDialog();
-        userViewModel.getBatteryData(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"), type, tvSelectDate.getText().toString());
-        userViewModel.getBtyHistoryData().observe(this, new Observer<BaseDto<BatteryDataListDto>>() {
+        userViewModel.getPcsHistoryData(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"), type, tvSelectDate.getText().toString());
+        userViewModel.getPcsHistoryData().observe(this, new Observer<BaseDto<PcsHistoryDataListDto>>() {
             @Override
-            public void onChanged(@Nullable BaseDto<BatteryDataListDto> dtoBaseDto) {
+            public void onChanged(@Nullable BaseDto<PcsHistoryDataListDto> dtoBaseDto) {
                 hideLoadingDialog();
                 if (dtoBaseDto.isSuccess()) {
                     if (EmptyUtils.isNotEmpty(dtoBaseDto.getData()) && EmptyUtils.isNotEmpty(dtoBaseDto.getData().getRows())) {
@@ -501,7 +575,6 @@ public class BatteryDetailActivity extends BaseActivity {
             }
         });
 
-
     }
 
     /**
@@ -509,7 +582,7 @@ public class BatteryDetailActivity extends BaseActivity {
      *
      * @param rows
      */
-    private void initDataView(List<BatteryDataDto> rows) {
+    private void initDataView(List<PcsHistoryDataDto> rows) {
         Log.e(TAG, "initDataView: " + rows.size());
     }
 
