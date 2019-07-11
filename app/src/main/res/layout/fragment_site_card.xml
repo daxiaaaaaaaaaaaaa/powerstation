@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_white"
-    android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:background="@color/color_white"
+            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +86,7 @@
                         android:id="@+id/tv_site_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Battersea Power Station,UK"
+                        tools:text="Battersea Power Station,UK"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
@@ -108,7 +109,7 @@
                         android:id="@+id/tv_device_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Battersea Power Station,UK"
+                        tools:text="Battersea Power Station,UK"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
@@ -136,8 +137,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:text="XX"
+                        android:id="@+id/tv_one"
+                        tools:text="XX"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/font_size_16" />
 
@@ -161,7 +162,7 @@
                         android:id="@+id/tv_power_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3000kWh"
+                        tools:text="3000kWh"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
@@ -192,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:drawableRight="@drawable/ic_updata_version"
                         android:drawablePadding="@dimen/widget_size_5"
-                        android:text="V1.0"
+                        tools:text="V1.0"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
@@ -215,7 +216,7 @@
                         android:id="@+id/tv_online_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2019/04/07 14:00"
+                        tools:text="2019/04/07 14:00"
                         android:textColor="#ff222222"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
@@ -238,7 +239,7 @@
                     android:id="@+id/tv_power_introduction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Battersea Power Station,UK"
+                    tools:text="Battersea Power Station,UK"
                     android:textColor="#ff222222"
                     android:textSize="@dimen/font_size_16" />
             </LinearLayout>

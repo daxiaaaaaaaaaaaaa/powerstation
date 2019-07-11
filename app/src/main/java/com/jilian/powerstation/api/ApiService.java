@@ -125,12 +125,21 @@ public interface ApiService {
     Flowable<BaseDto> resetPassword(@Body UpdatePwdVo vo);
 
     /**
-     * 电站卡片 - 固件信息
+     * 电站名片
      * @param vo
      * @return
      */
-    @GET("/HESS_SCADA/app.html?method=getPowerFirmwareInfo")
-    Flowable<BaseDto<PowerCardDto>> getPowerCard(@QueryMap PowerInfoVo vo);
+    @POST("/HESS_SCADA/app/user/getPowerCard.app")
+    Flowable<BaseDto<PowerCardDto>> getPowerCard(@Body PowerInfoVo vo);
+
+    /**
+     * 更新固件
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/updatePowerFirmwareInfo.app")
+    Flowable<BaseDto<BaseResultDto>> updatePowerFirmwareInfo(@Body PowerInfoVo vo);
+
 
     /**
      * 电站详情获取警告

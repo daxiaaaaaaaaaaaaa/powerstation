@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseViewModel;
+import com.jilian.powerstation.common.dto.BaseResultDto;
 import com.jilian.powerstation.common.dto.PowerCardDto;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.factory.Factoty;
@@ -21,22 +22,49 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class PowerViewModel extends BaseViewModel {
-    private static final String TAG = "UserViewModel";
+    private static final String TAG = "PowerViewModel";
 
     /**
-     * 注册
+     * 电站名片
      */
     private LiveData<BaseDto<PowerCardDto>> powerCardliveData;
-
-    /***
-     * 添加电站
-     * @param powerSn SN 码
-     * @param powerName 电站名称
+    /**
+     * 更新固件
      */
-    public void getPowerCard(String powerSn, String powerName) {
+    private LiveData<BaseDto<BaseResultDto>> updateliveData;
+
+    public LiveData<BaseDto<BaseResultDto>> getUpdateliveData() {
+        return updateliveData;
+    }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public LiveData<BaseDto<PowerCardDto>> getPowerCardliveData() {
+        return powerCardliveData;
+    }
+
+    /**
+     * 电站名片
+     * @param powerSn
+     */
+
+    public void getPowerCard(String powerSn) {
         PowerInfoVo vo = new PowerInfoVo();
         vo.setPowerSn(powerSn);
-        vo.setPowerName(powerName);
         powerCardliveData = Factoty.getRepository(PowerRepository.class).getPowerCard(vo);
     }
+
+    /**
+     * 更新固件
+     * @param powerSn
+     */
+    public void updatePowerFirmwareInfo(String powerSn) {
+        PowerInfoVo vo = new PowerInfoVo();
+        vo.setPowerSn(powerSn);
+        updateliveData = Factoty.getRepository(PowerRepository.class).updatePowerFirmwareInfo(vo);
+    }
+
+
 }

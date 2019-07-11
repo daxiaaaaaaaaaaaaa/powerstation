@@ -133,7 +133,7 @@ public class Api {
     }
 
     /**
-     * 电站卡片 固件升级
+     * 电站名片
      *
      * @param vo
      * @return
@@ -141,6 +141,16 @@ public class Api {
     public static Flowable<BaseDto<PowerCardDto>> getPowerCard(PowerInfoVo vo) {
         return RequetRetrofit.getInstance().getPowerCard(vo);
     }
+
+    /**
+     * 更新固件
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto<BaseResultDto>> updatePowerFirmwareInfo(PowerInfoVo vo) {
+        return RequetRetrofit.getInstance().updatePowerFirmwareInfo(vo);
+    }
+
 
 
     /**
