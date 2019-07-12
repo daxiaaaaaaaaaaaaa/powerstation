@@ -57,10 +57,10 @@
             android:textSize="@dimen/font_size_15" />
     </RadioGroup>
 
-    <android.support.v4.view.ViewPager
+    <com.jilian.powerstation.views.NoScrollViewPager
         android:id="@+id/vp_three"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v4.view.ViewPager>
+    </com.jilian.powerstation.views.NoScrollViewPager>
 </LinearLayout>

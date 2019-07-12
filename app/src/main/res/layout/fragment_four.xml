@@ -18,7 +18,7 @@
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         app:tabTextColor="#747474" />
 
-    <android.support.v4.view.ViewPager
+    <com.jilian.powerstation.views.NoScrollViewPager
         android:id="@+id/four_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

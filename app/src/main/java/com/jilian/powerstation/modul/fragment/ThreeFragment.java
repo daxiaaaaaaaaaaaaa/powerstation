@@ -21,6 +21,8 @@ import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
 import com.jilian.powerstation.modul.adapter.PageAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.StatusBarUtil;
+import com.jilian.powerstation.views.NoCustomerScrollViewPager;
+import com.jilian.powerstation.views.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ import java.util.List;
 
 public class ThreeFragment extends BaseFragment {
 
-    ViewPager viewPager;
+    NoScrollViewPager viewPager;
     RadioGroup radioGroup;
     private MainActivity activity;
 

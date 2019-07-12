@@ -14,6 +14,8 @@ import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.StatusBarUtil;
+import com.jilian.powerstation.views.NoCustomerScrollViewPager;
+import com.jilian.powerstation.views.NoScrollViewPager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,13 +28,13 @@ import java.util.List;
 public class FourFragment extends BaseFragment {
 
     TabLayout tablayout;
-    ViewPager viewPager;
+    NoScrollViewPager viewPager;
 
-    public ViewPager getViewPager() {
+    public NoScrollViewPager getViewPager() {
         return viewPager;
     }
 
-    public void setViewPager(ViewPager viewPager) {
+    public void setViewPager(NoScrollViewPager viewPager) {
         this.viewPager = viewPager;
     }
     List<Fragment> mlist;
