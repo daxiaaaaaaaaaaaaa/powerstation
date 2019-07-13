@@ -2,6 +2,7 @@ package com.jilian.powerstation.modul.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.BaseDto;
@@ -22,7 +24,19 @@ public class UpdatePwdActivity extends BaseActivity {
     private EditText etConfirmPwd;
     private TextView tvOk;
     private UserViewModel userViewModel;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MyApplication.addActivity(this);
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyApplication.removeActivity(this);
+    }
     @Override
     protected void createViewModel() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);

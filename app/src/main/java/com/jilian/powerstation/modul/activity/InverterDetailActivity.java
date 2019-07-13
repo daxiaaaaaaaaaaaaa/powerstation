@@ -148,7 +148,7 @@ public class InverterDetailActivity extends BaseActivity {
         detailConsumePower = (TextView) findViewById(R.id.detail_consume_power);
         detailLoadPower = (TextView) findViewById(R.id.detail_load_power);
         tvType = (TextView) findViewById(R.id.tv_type);
-        setNormalTitle(MyApplication.getInstance().getPowerName(), v -> finish());
+        setNormalTitle(MyApplication.getInstance().getPowerDto().getProductName(), v -> finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

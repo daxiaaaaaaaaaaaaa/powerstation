@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.MyApplication;
+import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.PermissionsObserver;
 import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.ToastUitl;
@@ -57,17 +58,15 @@ public class WelcomeActivity extends FragmentActivity {
         }
         //已经登录
         else {
-            if(MyApplication.getInstance().getPowerDto()!=null){
-
+            if (EmptyUtils.isNotEmpty(MyApplication.getInstance().getPowerDto())) {
                 Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                intent.putExtra("sn",MyApplication.getInstance().getPowerDto().getSn());
-                intent.putExtra("name",MyApplication.getInstance().getPowerDto().getProductName());
-                intent.putExtra("data",MyApplication.getInstance().getPowerDto());
+                intent.putExtra("sn", MyApplication.getInstance().getPowerDto().getSn());
+                intent.putExtra("name", MyApplication.getInstance().getPowerDto().getProductName());
+                intent.putExtra("data", MyApplication.getInstance().getPowerDto());
                 startActivity(intent);
 
-            }
-            else{
-                startActivity(new Intent(this,EssListActivity.class));
+            } else {
+                startActivity(new Intent(this, EssListActivity.class));
             }
 
 

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.fragment.FiveFragment;
@@ -59,6 +60,7 @@ public abstract class BaseMainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+        MyApplication.addActivity(this);
     }
 
     /**
@@ -82,6 +84,7 @@ public abstract class BaseMainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        MyApplication.removeActivity(this);
     }
 
     @Override

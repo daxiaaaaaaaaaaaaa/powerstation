@@ -123,7 +123,7 @@ public class BatteryDetailActivity extends BaseActivity {
         tvSix = (TextView) findViewById(R.id.tv_six);
         lc = findViewById(R.id.lineChart);
         lc.setMarker(tMarket);
-        setNormalTitle(MyApplication.getInstance().getPowerName(), v -> finish());
+        setNormalTitle(MyApplication.getInstance().getPowerDto().getProductName(), v -> finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

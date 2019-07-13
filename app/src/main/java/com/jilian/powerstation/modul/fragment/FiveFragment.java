@@ -179,6 +179,7 @@ public class FiveFragment extends BaseFragment {
                     public void doNext() {
                         getLoadingDialog().dismiss();
                         ToastUitl.showImageToastSuccess("Exit the success");
+                        MyApplication.getInstance().setPowerDto(null);
                         SPUtil.clearData(Constant.SP_VALUE.SP);
                         startActivity(new Intent(getmActivity(), LoginActivity.class));
                         getmActivity().finish();

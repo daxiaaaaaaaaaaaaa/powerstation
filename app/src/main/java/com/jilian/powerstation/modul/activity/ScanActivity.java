@@ -3,6 +3,7 @@ package com.jilian.powerstation.modul.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
@@ -12,6 +13,21 @@ import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 public class ScanActivity extends BaseSoEngrossedActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MyApplication.addActivity(this);
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyApplication.removeActivity(this);
+    }
+
     @Override
     protected void createViewModel() {
 

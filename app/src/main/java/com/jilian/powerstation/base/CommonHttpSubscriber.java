@@ -59,7 +59,7 @@ public class CommonHttpSubscriber<T> implements Subscriber<BaseDto<T>> {
         }
         //登录失效
         else if(t.isLogOut()){
-            MyApplication.logout(t.getCode(),t.getMsg());
+            MyApplication.getInstance().logout(t.getCode(),t.getMsg());
         }
         else {
             ex = ExceptionEngine.handleException(new ServerException(t.getCode(), t.getMsg()));

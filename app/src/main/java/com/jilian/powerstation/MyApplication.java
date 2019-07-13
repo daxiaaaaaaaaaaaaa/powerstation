@@ -44,7 +44,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class MyApplication extends MultiDexApplication {
     private static final String TAG = "MyApplication";
     private static MyApplication instance;
-    private String powerName;
+
 
     private PowerDto powerDto;
 
@@ -56,13 +56,7 @@ public class MyApplication extends MultiDexApplication {
         this.powerDto = powerDto;
     }
 
-    public String getPowerName() {
-        return powerName;
-    }
 
-    public void setPowerName(String powerName) {
-        this.powerName = powerName;
-    }
 
     /**
      *
@@ -223,7 +217,7 @@ public class MyApplication extends MultiDexApplication {
      * @param code
      * @param msg
      */
-    public static void logout(int code,String msg) {
+    public  void logout(int code,String msg) {
         out( code, msg);
     }
 
@@ -232,7 +226,7 @@ public class MyApplication extends MultiDexApplication {
      * @param code
      * @param msg
      */
-    private static  synchronized  void out(int code, String msg) {
+    private   synchronized  void out(int code, String msg) {
         //判断 session是否存在
         String cookieStr = SPUtil.getData(Constant.SP_VALUE.SP, Constant.SP_VALUE.SESSION_ID, String.class, null);
         //如果session已经被清空。则不往下走。
@@ -240,6 +234,7 @@ public class MyApplication extends MultiDexApplication {
             return;
         }
         ToastUitl.showImageToastTips(msg);
+        setPowerDto(null);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
