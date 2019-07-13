@@ -5,21 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
-import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
-import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.StatusBarUtil;
-import com.jilian.powerstation.views.NoCustomerScrollViewPager;
 import com.jilian.powerstation.views.NoScrollViewPager;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,19 +56,14 @@ public class FourFragment extends BaseFragment {
         viewPager = view.findViewById(R.id.four_viewPager);
         initTab();
         initViewpage();
-        setNormalTitle("Site Name", v -> getActivity().finish());
+        setNormalTitle(getActivity().getIntent().getStringExtra("name"), v -> getActivity().finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        setrightImageTwo(R.drawable.image_right_two, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
 

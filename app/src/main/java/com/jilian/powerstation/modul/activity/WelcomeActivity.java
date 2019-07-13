@@ -57,7 +57,19 @@ public class WelcomeActivity extends FragmentActivity {
         }
         //已经登录
         else {
-            startActivity(new Intent(this,EssListActivity.class));
+            if(MyApplication.getInstance().getPowerDto()!=null){
+
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                intent.putExtra("sn",MyApplication.getInstance().getPowerDto().getSn());
+                intent.putExtra("name",MyApplication.getInstance().getPowerDto().getProductName());
+                intent.putExtra("data",MyApplication.getInstance().getPowerDto());
+                startActivity(intent);
+
+            }
+            else{
+                startActivity(new Intent(this,EssListActivity.class));
+            }
+
 
         }
 

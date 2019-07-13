@@ -71,12 +71,7 @@ public class ThreeFragment extends BaseFragment {
 
             }
         });
-        setrightImageTwo(R.drawable.image_right_two, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

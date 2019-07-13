@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -16,6 +17,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
@@ -92,6 +94,9 @@ public class InverterDetailActivity extends BaseActivity {
     private PcsInfoDto data;
     private TextView tvType;
     private TextView tvSelectDate;
+    private ImageView ivHead;
+
+
 
 
     @Override
@@ -118,6 +123,7 @@ public class InverterDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        ivHead = (ImageView) findViewById(R.id.iv_head);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvDate = (TextView) findViewById(R.id.tv_date);
         tvSelectDate = (TextView) findViewById(R.id.tv_select_date);
@@ -163,6 +169,13 @@ public class InverterDetailActivity extends BaseActivity {
         });
         data = (PcsInfoDto) getIntent().getSerializableExtra("data");
         tvName.setText("inverter" + data.getId());
+
+        Glide.with(this).
+                load(data.getPcsPhoto()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
+                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
+                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
+                .into(ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
+
         tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(data.getTime())));
         initCustomTimePicker();
         tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, new Date()));

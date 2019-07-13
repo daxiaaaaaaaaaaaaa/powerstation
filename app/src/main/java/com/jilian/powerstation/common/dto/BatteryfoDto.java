@@ -8,6 +8,15 @@ public class BatteryfoDto implements Serializable {
     private String power;//	false	Number		充放电功率（正数放电，负数充电）
     private String soc;//	false	Number		电池功率
     private long time;//	false	long		时间
+    private String bcmuPhoto;
+
+    public String getBcmuPhoto() {
+        return bcmuPhoto;
+    }
+
+    public void setBcmuPhoto(String bcmuPhoto) {
+        this.bcmuPhoto = bcmuPhoto;
+    }
 
     public String getId() {
         return id;

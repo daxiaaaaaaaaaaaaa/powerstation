@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.dto.BatteryfoDto;
 import com.jilian.powerstation.common.dto.ESSDto;
@@ -48,6 +49,14 @@ public class BatteryDataAdapter extends RecyclerView.Adapter<BatteryDataAdapter.
         holder.tvName.setText("battery" + mDatas.get(position).getId());
         holder.tvOne.setText(mDatas.get(position).getSoc());//充电功率
         holder.tvTwo.setText(mDatas.get(position).getPower());//当前电量
+
+
+        Glide.with(context).
+                load(mDatas.get(position).getBcmuPhoto()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
+                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
+                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
+                .into(holder.ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
+
     }
 
     @Override

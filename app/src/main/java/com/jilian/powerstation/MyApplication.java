@@ -13,6 +13,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 
+import com.jilian.powerstation.common.dto.PowerDto;
 import com.jilian.powerstation.modul.activity.LoginActivity;
 import com.jilian.powerstation.ssl.SslContextFactory;
 import com.jilian.powerstation.utils.SPUtil;
@@ -44,6 +45,16 @@ public class MyApplication extends MultiDexApplication {
     private static final String TAG = "MyApplication";
     private static MyApplication instance;
     private String powerName;
+
+    private PowerDto powerDto;
+
+    public PowerDto getPowerDto() {
+        return powerDto;
+    }
+
+    public void setPowerDto(PowerDto powerDto) {
+        this.powerDto = powerDto;
+    }
 
     public String getPowerName() {
         return powerName;

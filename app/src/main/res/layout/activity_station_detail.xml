@@ -23,7 +23,7 @@
             android:padding="@dimen/widget_size_16">
 
             <ImageView
-                android:id="@+id/detail_station_cover"
+                android:id="@+id/iv_head"
                 android:layout_width="@dimen/widget_size_60"
                 android:layout_height="@dimen/widget_size_50"
                 android:layout_marginRight="8dp"
@@ -34,7 +34,7 @@
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/widget_size_30"
-                android:layout_toRightOf="@+id/detail_station_cover"
+                android:layout_toRightOf="@+id/iv_head"
                 tools:text="name"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/font_size_18" />
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/widget_size_20"
                 android:layout_below="@+id/tv_name"
-                android:layout_toRightOf="@+id/detail_station_cover"
+                android:layout_toRightOf="@+id/iv_head"
                 android:text="Updata time:"
                 android:textSize="@dimen/font_size_10" />
 

@@ -72,53 +72,12 @@ public class OneFragment extends BaseFragment {
 
             }
         });
-        setrightImageTwo(R.drawable.image_right_two, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //警告
-                getPowerAlarmInfo();
 
-            }
-        });
         setNormalTitle(activity.getData().getProductName(), v -> getActivity().finish());
 
     }
 
-    /**
-     * 电站详情 获取警告
-     */
-    private void getPowerAlarmInfo() {
-        showLoadingDialog();
-        userViewModel.getPowerAlarmInfo(getActivity().getIntent().getStringExtra("sn"));
-        userViewModel.getAlarmliveData().observe(this, new Observer<BaseDto<AlarmInfoDto>>() {
-            @Override
-            public void onChanged(@Nullable BaseDto<AlarmInfoDto> alarmInfoDtoBaseDto) {
-                hideLoadingDialog();
-                if (alarmInfoDtoBaseDto.isSuccess()) {
-                    if (alarmInfoDtoBaseDto.getData().getTotal() > 0) {
-//                        Intent intent = new Intent(getmActivity(), WarningDetailActivity.class);
-//                        intent.putExtra("sn", getmActivity().getIntent().getStringExtra("sn"));
-//                        intent.putExtra("type", Constant.BATTERY_TYPE);
-//                        getmActivity().startActivity(intent);
 
-                        MessageEvent messageEvent = new MessageEvent();
-                        AlarmMsg msg = new AlarmMsg();
-                        msg.setCode(200);
-                        messageEvent.setAlarmMsg(msg);
-                        EventBus.getDefault().post(messageEvent);
-
-
-
-
-                    } else {
-                        ToastUitl.showImageToastTips("No warning message yet");
-                    }
-                } else {
-                    ToastUitl.showImageToastTips(alarmInfoDtoBaseDto.getMsg());
-                }
-            }
-        });
-    }
 
     @Override
     protected void initData() {

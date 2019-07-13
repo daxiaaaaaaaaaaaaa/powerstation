@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.dto.PcsInfoDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
@@ -44,6 +45,13 @@ public class InverDataAdapter extends RecyclerView.Adapter<InverDataAdapter.ESSL
         holder.tvName.setText("inverter" + mDatas.get(position).getId());
         holder.tvOne.setText(mDatas.get(position).getRatePower());//额定功率
         holder.tvTwo.setText(mDatas.get(position).getNowChargePower());//当前放电功率
+
+        Glide.with(context).
+                load(mDatas.get(position).getPcsPhoto()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
+                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
+                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
+                .into(holder.ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
+
 
 
     }

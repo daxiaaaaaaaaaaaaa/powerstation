@@ -8,6 +8,15 @@ public class PcsInfoDto implements Serializable {
     private String ratePower;//	false	number		额定功率
     private String nowChargePower;//	false	number		当前充放电功率（正数：放电，负数：充电）
     private long time;//	false	long		时间
+    private String pcsPhoto;
+
+    public String getPcsPhoto() {
+        return pcsPhoto;
+    }
+
+    public void setPcsPhoto(String pcsPhoto) {
+        this.pcsPhoto = pcsPhoto;
+    }
 
     public String getId() {
         return id;
