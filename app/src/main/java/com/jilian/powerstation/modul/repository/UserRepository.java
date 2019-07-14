@@ -119,6 +119,19 @@ public class UserRepository extends CommonRepository {
         return request(Api.resetPassword(vo)).send().get();
     }
 
+
+    /**
+     *
+     * 修改个人信息
+     *
+     * @param vo
+     * @return
+     */
+    public LiveData<BaseDto> updateUserInfo(UserInfoVo vo) {
+        return request(Api.updateUserInfo(vo)).send().get();
+    }
+
+
     /**
      * 电站详情 获取警告
      *

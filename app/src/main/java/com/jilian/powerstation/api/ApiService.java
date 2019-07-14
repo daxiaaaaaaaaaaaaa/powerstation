@@ -122,6 +122,17 @@ public interface ApiService {
     @POST("/HESS_SCADA/app/user/resetPassword.app")
     Flowable<BaseDto> resetPassword(@Body UpdatePwdVo vo);
 
+
+    /**
+     * 修改个人用户名
+     * @param vo
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/updateUserInfo.app")
+    Flowable<BaseDto> updateUserInfo(@Body UserInfoVo vo);
+
+
+
     /**
      * 电站名片
      * @param vo

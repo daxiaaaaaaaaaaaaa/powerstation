@@ -187,6 +187,7 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
 
     @Override
     public void onItemClick(View view, int position) {
+        MyApplication.clearSpecifyActivities(new Class[]{MainActivity.class});
         Intent intent = new Intent(EssListActivity.this, MainActivity.class);
         intent.putExtra("sn",mDatas.get(position).getSn());
         intent.putExtra("name",mDatas.get(position).getProductName());

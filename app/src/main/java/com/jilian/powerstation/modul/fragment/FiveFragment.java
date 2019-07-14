@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -19,9 +18,11 @@ import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.UserInfoDto;
+import com.jilian.powerstation.modul.activity.AboutActivity;
 import com.jilian.powerstation.modul.activity.EssListActivity;
 import com.jilian.powerstation.modul.activity.LoginActivity;
 import com.jilian.powerstation.modul.activity.UpdatePwdActivity;
+import com.jilian.powerstation.modul.activity.UpdateUerActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.PinziDialogUtils;
@@ -30,8 +31,6 @@ import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.CircularImageView;
-
-import java.io.FileOutputStream;
 
 
 public class FiveFragment extends BaseFragment {
@@ -44,13 +43,17 @@ public class FiveFragment extends BaseFragment {
     private TextView tvChangePwd;
     private View tvAbout;
     private TextView userLogout;
-    private ImageView img_view;
+    private ImageView userInfoEditor;
+
+
 
 
     @Override
     protected void loadData() {
         //根据状态栏颜色来决定状态栏文字用黑色还是白色
         StatusBarUtil.setStatusBarMode(getmActivity(), false, R.color.colorPrimary);
+
+        initUserInfo();
     }
 
 
@@ -64,32 +67,12 @@ public class FiveFragment extends BaseFragment {
         return R.layout.fragment_five;
     }
 
-    public void shareImg(View view) {
-        //打开图像缓存
-        view.setDrawingCacheEnabled(true);
-// 必须要调用measure和layout方法才能成功保存可视组件的截图到png图像文件
-// 测量View的大小
-        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-// 发送位置和尺寸到View及其所有的子View
-        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        try {
-// 获取可视组件的截图
-            Bitmap bitmap = view.getDrawingCache();
-// 将截图保存在SD卡根目录的test.png图像文件中
-            FileOutputStream fos = new FileOutputStream("/sdcard/test.png");
-// 将Bitmap对象中的图像数据压缩成png格式的图像数据，并将这些数据保存在test.png文件中
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-// 关闭文件输出流
-            fos.close();
-            img_view.setImageBitmap(bitmap);
-        } catch (Exception e) {
-        }
 
-    }
+
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+
         ivHead = (CircularImageView) view.findViewById(R.id.iv_head);
         tvName = (TextView) view.findViewById(R.id.tv_name);
         tvId = (TextView) view.findViewById(R.id.tv_id);
@@ -97,18 +80,13 @@ public class FiveFragment extends BaseFragment {
         tvChangePwd = (TextView) view.findViewById(R.id.tv_change_pwd);
         tvAbout = (View) view.findViewById(R.id.tv_about);
         userLogout = (TextView) view.findViewById(R.id.user_logout);
-        img_view = view.findViewById(R.id.img_view);
-        view.findViewById(R.id.user_info_share).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareImg(getView());
-            }
-        });
+        userInfoEditor = (ImageView)view. findViewById(R.id.user_info_editor);
+
     }
 
     @Override
     protected void initData() {
-        initUserInfo();
+
     }
 
     private void initUserInfo() {
@@ -137,11 +115,25 @@ public class FiveFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+        userInfoEditor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getmActivity(), UpdateUerActivity.class);
+                intent.putExtra("name",tvName.getText().toString());
+
+                startActivity(intent);
+            }
+        });
+        tvAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getmActivity(), AboutActivity.class));
+            }
+        });
         tvChangePower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getmActivity(), EssListActivity.class));
-                getmActivity().finish();
             }
         });
         tvChangePwd.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +171,6 @@ public class FiveFragment extends BaseFragment {
                     public void doNext() {
                         getLoadingDialog().dismiss();
                         ToastUitl.showImageToastSuccess("Exit the success");
-                        MyApplication.getInstance().setPowerDto(null);
                         SPUtil.clearData(Constant.SP_VALUE.SP);
                         startActivity(new Intent(getmActivity(), LoginActivity.class));
                         getmActivity().finish();

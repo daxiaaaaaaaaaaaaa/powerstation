@@ -123,6 +123,15 @@ public class UserViewModel extends BaseViewModel {
      */
     private LiveData<BaseDto<BatteryDataListDto>> btyHistoryData;
 
+    /**
+     * 修改个人信息
+     */
+    private LiveData<BaseDto> updateUserliveData;
+
+    public LiveData<BaseDto> getUpdateUserliveData() {
+        return updateUserliveData;
+    }
+
     public LiveData<BaseDto<BatteryDataListDto>> getBtyHistoryData() {
         return btyHistoryData;
     }
@@ -469,6 +478,16 @@ public class UserViewModel extends BaseViewModel {
         vo.setType(type);
         vo.setStartTime(startTime);
         btyHistoryData = Factoty.getRepository(UserRepository.class).getBatteryData(vo);
+    }
+
+    /**
+     * 修改个人信息
+     * @param accountName
+     */
+    public void updateUserInfo(String accountName ) {
+        UserInfoVo vo = new UserInfoVo();
+        vo.setAccountName(accountName);
+        updateUserliveData = Factoty.getRepository(UserRepository.class).updateUserInfo(vo);
     }
 
 

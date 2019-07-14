@@ -133,6 +133,17 @@ public class Api {
     }
 
     /**
+     *  修改个人信息
+     * @param vo
+     * @return
+     */
+    public static Flowable<BaseDto> updateUserInfo(UserInfoVo vo) {
+        return RequetRetrofit.getInstance().updateUserInfo(vo);
+    }
+
+
+
+    /**
      * 电站名片
      *
      * @param vo

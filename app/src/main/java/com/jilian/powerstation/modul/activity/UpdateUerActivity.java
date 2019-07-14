@@ -16,12 +16,14 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.ToastUitl;
 
-public class UpdatePwdActivity extends BaseActivity {
-    private EditText etOldPwd;
-    private EditText etNewPwd;
-    private EditText etConfirmPwd;
+/**
+ * 修改用户名
+ */
+public class UpdateUerActivity extends BaseActivity {
+    private EditText etName;
     private TextView tvOk;
     private UserViewModel userViewModel;
+
 
     @Override
     protected void createViewModel() {
@@ -30,16 +32,16 @@ public class UpdatePwdActivity extends BaseActivity {
 
     @Override
     public int intiLayout() {
-        return R.layout.activity_updatepwd;
+        return R.layout.activity_updat_user;
     }
 
     @Override
     public void initView() {
         setNormalTitle("Change Password", v -> finish());
-        etOldPwd = (EditText) findViewById(R.id.et_old_pwd);
-        etNewPwd = (EditText) findViewById(R.id.et_new_pwd);
-        etConfirmPwd = (EditText) findViewById(R.id.et_confirm_pwd);
+        etName = (EditText) findViewById(R.id.et_name);
         tvOk = (TextView) findViewById(R.id.tv_ok);
+        etName.setText(getIntent().getStringExtra("name"));
+        initButtonEnable();
 
     }
 
@@ -53,46 +55,14 @@ public class UpdatePwdActivity extends BaseActivity {
         tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(etNewPwd.getText().toString().equals(etConfirmPwd.getText().toString()))) {
-                    ToastUitl.showImageToastTips("Old and new passwords don't match");
+                if (TextUtils.isEmpty(etName.getText().toString())) {
                     return;
                 }
-                updatePwd();
+                updateUser();
             }
         });
-        etOldPwd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                initButtonEnable();
-            }
-        });
-        etNewPwd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                initButtonEnable();
-            }
-        });
-        etConfirmPwd.addTextChangedListener(new TextWatcher() {
+        etName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -111,27 +81,29 @@ public class UpdatePwdActivity extends BaseActivity {
 
     }
 
-    private void updatePwd() {
+    /**
+     * 修改用户名
+     */
+    private void updateUser() {
         showLoadingDialog();
-        userViewModel.resetPassword(etOldPwd.getText().toString(), etNewPwd.getText().toString(), etConfirmPwd.getText().toString());
-        userViewModel.getResetPwdliveData().observe(this, new Observer<BaseDto>() {
+        userViewModel.updateUserInfo(etName.getText().toString());
+        userViewModel.getUpdateUserliveData().observe(this, new Observer<BaseDto>() {
             @Override
             public void onChanged(@Nullable BaseDto baseDto) {
                 hideLoadingDialog();
                 if (baseDto.isSuccess()) {
-                    finish();
-                    ToastUitl.showImageToastSuccess("Password changed successfully");
+                    ToastUitl.showImageToastSuccess("Modify the success");
                 } else {
                     ToastUitl.showImageToastTips(baseDto.getMsg());
                 }
+                finish();
             }
         });
     }
 
+
     private void initButtonEnable() {
-        if (TextUtils.isEmpty(etOldPwd.getText().toString())
-                || TextUtils.isEmpty(etNewPwd.getText().toString())
-                || TextUtils.isEmpty(etConfirmPwd.getText().toString())) {
+        if (TextUtils.isEmpty(etName.getText().toString())) {
             tvOk.setEnabled(false);
             tvOk.setBackgroundResource(R.drawable.shape_btn_login_dark);
         } else {

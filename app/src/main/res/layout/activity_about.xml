@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_title"/>
+
+    <ImageView
+        android:layout_marginTop="@dimen/widget_size_47"
+        android:layout_width="@dimen/widget_size_250"
+        android:layout_height="@dimen/widget_size_100"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/image_login_logo"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_46"
+        android:layout_marginLeft="@dimen/widget_size_38"
+        android:layout_marginRight="@dimen/widget_size_38"
+        android:layout_marginTop="@dimen/widget_size_54"
+        android:background="@color/color_line">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/widget_size_16"
+            android:text="App version"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/widget_size_16"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/widget_size_16"
+            android:text="v1.0"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/widget_size_16"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/widget_size_38"
+            android:layout_marginTop="@dimen/widget_size_70"
+            android:text="Official website"
+            android:textColor="#3298db"
+            android:textSize="@dimen/widget_size_16"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/widget_size_38"
+            android:layout_marginTop="@dimen/widget_size_70"
+            android:text="Privacy policy"
+            android:textColor="#3298db"
+            android:textSize="@dimen/widget_size_16"/>
+    </RelativeLayout>
+
+</LinearLayout>
