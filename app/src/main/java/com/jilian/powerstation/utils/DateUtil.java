@@ -26,6 +26,9 @@ public class DateUtil {
     public static final String DATE_FORMAT = "yyyy/MM/dd";
     public static final String DATE_FORMAT_POINT = "yyyy.MM.dd";
     public static final String DATE_FORMAT_CHINAL = "yyyy年MM月dd日";
+    public static final String EPARK_DATE_FORMATER_DATE = "dd/MM/yyyy";
+    public static final String EPARK_DATE_FORMATER_MONTH = "MM/yyyy";
+    public static final String EPARK_DATE_FORMATER_YEAR = "yyyy";
 
     private final static long MINUTE = 60 * 1000;// 1分钟
     private final static long HOUR = 60 * MINUTE;// 1小时
@@ -280,4 +283,92 @@ public class DateUtil {
         // 获取本月最后一天的时间
         return aDateFormat.format(c.getTime());
     }
+
+
+    /**
+     * 获取当前时间的前一天时间
+     * @return
+     */
+    public static Date getBeforeDay(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //使用roll方法进行向前回滚
+        //cl.roll(Calendar.DATE, -1);
+        //使用set方法直接进行设置
+        cal.add(Calendar.DATE, -1);
+        return cal.getTime();
+    }
+
+    /**
+     * 获取当前时间的后一天时间
+     * @return
+     */
+    public static Date getAfterDay(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //使用roll方法进行回滚到后一天的时间
+        //cl.roll(Calendar.DATE, 1);
+        //使用set方法直接设置时间值
+        cal.add(Calendar.DATE, 1);
+        return cal.getTime();
+    }
+
+
+    /**
+     * 获取当前时间的前一月时间
+     * @return
+     */
+    public static Date getBeforeMonth(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //使用roll方法进行向前回滚
+        //cl.roll(Calendar.DATE, -1);
+        //使用set方法直接进行设置
+        cal.add(Calendar.MONTH, -1);
+        return cal.getTime();
+    }
+
+    /**
+     * 获取当前时间的后一月时间
+     * @return
+     */
+    public static Date getAfterMonth(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //使用roll方法进行回滚到后一天的时间
+        //cl.roll(Calendar.DATE, 1);
+        //使用set方法直接设置时间值
+        cal.add(Calendar.MONTH, 1);
+        return cal.getTime();
+    }
+
+    /**
+     * 获取当前时间的前一月时间
+     * @return
+     */
+    public static Date getBeforeYear(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //使用roll方法进行向前回滚
+        //cl.roll(Calendar.DATE, -1);
+        //使用set方法直接进行设置
+        cal.add(Calendar.YEAR, -1);
+        return cal.getTime();
+    }
+
+    /**
+     * 获取当前时间的后一月时间
+     * @return
+     */
+    public static Date getAfterYear(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        //使用roll方法进行回滚到后一天的时间
+        //cl.roll(Calendar.DATE, 1);
+        //使用set方法直接设置时间值
+        cal.add(Calendar.YEAR, 1);
+        return cal.getTime();
+    }
+
+
 }

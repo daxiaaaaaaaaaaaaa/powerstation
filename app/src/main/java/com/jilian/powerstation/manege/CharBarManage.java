@@ -2,23 +2,15 @@ package com.jilian.powerstation.manege;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 
-import com.baidu.mapapi.map.Marker;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.views.CostomMarket;
 import com.jilian.powerstation.views.TMarket;
 
@@ -29,22 +21,24 @@ import java.util.List;
  * <p>
  * Discrebe:
  */
-public class CharBarManage {
+public class CharBarManage extends BaseChar {
 
     private BarChart lc;
-    private TMarket tMarket;
+    private CostomMarket tMarket;
     private Context context;
     private float mYAxisTextSize = 12f;
     private float mXAxisTextSize = 12f;
+    private float groupSpace = 0.28f; //柱状图组之间的间距
+    private float barSpace = 0.02f;
 
-    public CharBarManage(BarChart lc, TMarket tMarket, Context context) {
+    public CharBarManage(BarChart lc, CostomMarket tMarket, Context context) {
         this.lc = lc;
         this.tMarket = tMarket;
         this.context = context;
         setLineChar();
     }
 
-    private void setLineChar(){
+    private void setLineChar() {
         lc.setExtraOffsets(24f, 0f, 24f, 0f);
         lc.animateXY(3000, 3000); // XY动画
         lc.setDrawBorders(false);
@@ -54,14 +48,14 @@ public class CharBarManage {
         //不缩放
         lc.setScaleXEnabled(false);
         lc.setScaleYEnabled(false);
-
+        lc.setMarker(tMarket);
         lc.getLegend().setEnabled(false);
         lc.getDescription().setText("");
     }
 
-    public void removeAll(){
-        if (lc.getBarData()==null) return;
-        lc.getBarData().clearValues();
+    public void removeAll() {
+        lc.clear();
+        lc.notifyDataSetChanged();
         lc.invalidate();
     }
 
@@ -85,13 +79,13 @@ public class CharBarManage {
     public CharBarManage setYAxis(float maximum, float minimum, float granularity) {
         // 左边Y轴
         final YAxis yAxisLeft = lc.getAxisLeft();
-        yAxisLeft.setAxisMaximum(maximum); // 设置Y轴最大值
+        if (maximum==0){
+            yAxisLeft.setAxisMaximum(10);
+        }
         yAxisLeft.setAxisMinimum(minimum); // 设置Y轴最小值
-        yAxisLeft.setGranularity(granularity); // 设置间隔尺寸
         yAxisLeft.setTextSize(mYAxisTextSize); // 文本大小为12dp
         yAxisLeft.setTextColor(Color.BLACK); // 文本颜色为灰色
         yAxisLeft.setDrawGridLines(false); // 绘制网格线
-//        lc.getAxisLeft().enableGridDashedLine(5f, 10f, 0f);
 
         // 右侧Y轴
         lc.getAxisRight().setEnabled(false); // 不启用
@@ -115,7 +109,7 @@ public class CharBarManage {
         xAxis.setTextSize(mXAxisTextSize); // 文本大小为12dp
         xAxis.setGranularity(granularity); // 设置间隔尺寸
         xAxis.setAxisMinimum(minimum); // 设置X轴最小值
-        xAxis.setAxisMaximum(maximum); // 设置X轴最大值
+        xAxis.setAxisMaximum(maximum + 1); // 设置X轴最大值
         xAxis.setLabelRotationAngle(-30); //X轴旋转
         // 设置标签的显示格式
 //        xAxis.setValueFormatter(new IndexAxisValueFormatter(){});
@@ -127,9 +121,10 @@ public class CharBarManage {
         return this;
     }
 
-    public BarDataSet setChartData(String name, List<BarEntry> yVals1, int color, int fillColor) {
+    public BarDataSet setChartData(String name, List<BarEntry> yVals1, int mColor, int fillColor) {
+//        tMarket.putValue(name, yVals1, mColor);
         BarDataSet barDataSet = new BarDataSet(yVals1, name);
-        barDataSet.setColor(context.getResources().getColor(color));
+        barDataSet.setColor(context.getResources().getColor(mColor));
         barDataSet.setFormLineWidth(1f);
         barDataSet.setFormSize(15.f);
         //不显示柱状图顶部值
@@ -143,16 +138,25 @@ public class CharBarManage {
     public void setData(BarData lineData) {
         int barAmount = lineData.getDataSets().size(); //需要显示柱状图的类别 数量
         //设置组间距占比30% 每条柱状图宽度占比 70% /barAmount  柱状图间距占比 0%
-        float groupSpace = 0.28f; //柱状图组之间的间距
-        float barSpace = 0.02f;
-        float barWidth = ((1f - groupSpace) / barAmount)-barSpace;
-
+        float barWidth = ((1f - groupSpace) / barAmount) - barSpace;
         //设置柱状图宽度
         lineData.setBarWidth(barWidth);
         //(起始点、柱状图组间距、柱状图之间间距)
         lineData.groupBars(0f, groupSpace, barSpace);
         lineData.setDrawValues(false);
         lc.setData(lineData);
+        lc.notifyDataSetChanged();
         lc.invalidate();
+        if (tMarket!=null){
+            tMarket.getGroupSpace(getGroupWidth());
+        }
+    }
+
+    public float getGroupWidth() {
+        BarData mBarData = lc.getBarData();
+        if (mBarData != null) {
+            return mBarData.getGroupWidth(groupSpace, barSpace);
+        }
+        return 0;
     }
 }

@@ -78,7 +78,7 @@
                     android:background="@drawable/share_cricle_4" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
@@ -99,7 +99,7 @@
                     android:background="@drawable/share_cricle_1" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
@@ -114,6 +114,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/widget_size_16"
             android:background="@color/white"
+            android:visibility="gone"
             android:paddingTop="@dimen/widget_size_13"
             android:paddingRight="@dimen/widget_size_16">
 
@@ -180,8 +181,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_222222"
-                    android:text="Day PV production (kwh)" />
+                    android:text="PV (kwh)"
+                    android:textColor="@color/color_222222" />
 
                 <TextView
                     android:id="@+id/tv_total_1"
@@ -201,7 +202,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Day consumption (kwh)" />
+                    android:text="Load (kwh)" />
 
                 <TextView
                     android:id="@+id/tv_total_2"
@@ -229,7 +230,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Month bill saving ($)" />
+                    android:text="Year bill saving ($)" />
 
                 <TextView
                     android:id="@+id/tv_total_3"
@@ -249,7 +250,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Month CO₂ Reduced（kg)" />
+                    android:text="Year CO₂ Reduced（kg)" />
 
                 <TextView
                     android:id="@+id/tv_total_4"

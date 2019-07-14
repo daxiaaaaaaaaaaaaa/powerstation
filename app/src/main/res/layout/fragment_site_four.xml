@@ -80,7 +80,7 @@
                     android:background="@drawable/share_cricle_4" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
@@ -101,7 +101,7 @@
                     android:background="@drawable/share_cricle_1" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
@@ -117,6 +117,7 @@
             android:background="@color/white"
             android:paddingLeft="@dimen/widget_size_16"
             android:paddingTop="@dimen/widget_size_13"
+            android:visibility="gone"
             android:paddingRight="@dimen/widget_size_16">
 
             <LinearLayout
@@ -182,7 +183,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Day PV production (kwh)"
+                    android:singleLine="true"
+                    android:text="Lifetime production（kwh）"
                     android:textColor="@color/color_222222" />
 
                 <TextView
@@ -203,7 +205,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Day consumption (kwh)" />
+                    android:singleLine="true"
+                    android:text="Lifetime consumption（kwh）" />
 
                 <TextView
                     android:id="@+id/tv_total_2"
@@ -231,6 +234,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:text="Month bill saving ($)" />
 
                 <TextView
@@ -243,6 +247,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/widget_size_3"
+                android:singleLine="true"
                 android:layout_weight="1"
                 android:background="@drawable/share_main_bg"
                 android:gravity="center"

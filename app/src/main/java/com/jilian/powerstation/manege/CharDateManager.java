@@ -24,7 +24,7 @@ public class CharDateManager {
         int currTime = (int) time;
         String dateStr = currTime + "";
         if (currTime < 1 || currTime > list.size()) {
-            dateStr = currTime + "";
+            dateStr = "";
         } else {
             if ("MM".endsWith(type)) {
                 dateStr = getMonthSimple(list.get(currTime - 1).getTime());

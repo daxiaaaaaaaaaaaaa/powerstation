@@ -36,14 +36,17 @@ public class CostomMarket implements IMarker {
     private float width, height;
     private Context context;
     private String title = "";
-    Paint textPaint;
-    Paint paint;
-    RectF rect;
+    private Paint textPaint;
+    private Paint paint;
+    private RectF rect;
+    private RectF rect1;
 
-    int type = -1; //X轴的数据类型
-    int bgColor;
-    int strokerColor;
-    int textColor;
+    private int type = -1; //X轴的数据类型
+    private int bgColor;
+    private int strokerColor;
+    private  int textColor;
+    private float groupSpace = 0;
+
 
     public CostomMarket(Context context, float width, float height) {
         this.width = width;
@@ -81,6 +84,7 @@ public class CostomMarket implements IMarker {
 
         paint = new Paint();
         rect = new RectF();
+        rect1 = new RectF();
         rect.left = Utils.convertDpToPixel(100);
         rect.top = Utils.convertDpToPixel(100);
         rect.right = width - Utils.convertDpToPixel(100);
@@ -127,6 +131,15 @@ public class CostomMarket implements IMarker {
         paint.setAlpha(120);
         canvas.drawRect(rect, paint);
 
+        Log.e("TAG_LLLL","------------>"+groupSpace);
+        paint.reset();
+        paint.setColor(Color.RED);
+        rect1.left = 0;
+        rect1.top = 0;
+        rect1.right = groupSpace;
+        rect1.bottom = height;
+        canvas.drawRect(rect1, paint);
+
         if (!TextUtils.isEmpty(title)) {
             textPaint.setColor(context.getResources().getColor(R.color.color_838383));
             setText(canvas, "", 0);
@@ -164,7 +177,7 @@ public class CostomMarket implements IMarker {
      * @param color
      * @param position
      */
-    public void setCircle(Canvas canvas, float posX, int color, int position) {
+    private void setCircle(Canvas canvas, float posX, int color, int position) {
         paint.setColor(color);
         paint.setAlpha(95);
         float y = height - Utils.convertDpToPixel(42) - Utils.convertDpToPixel(22) * position;
@@ -182,7 +195,7 @@ public class CostomMarket implements IMarker {
      * @param color
      * @param position
      */
-    public void setNumberCircle(Canvas canvas, int color, int position) {
+    private void setNumberCircle(Canvas canvas, int color, int position) {
         paint.setColor(color);
         float x = rect.left + Utils.convertDpToPixel(16);
         float y = rect.top + Utils.convertDpToPixel(8) + Utils.convertDpToPixel(20) * position + Utils.convertDpToPixel(10);
@@ -196,7 +209,7 @@ public class CostomMarket implements IMarker {
      * @param key
      * @param position
      */
-    public void setText(Canvas canvas, String key, int position) {
+    private void setText(Canvas canvas, String key, int position) {
         String value = valueMap.get(key);
         float x = rect.left + Utils.convertDpToPixel(32);
         float y = rect.top + Utils.convertDpToPixel(8) + Utils.convertDpToPixel(20) * position + Utils.convertDpToPixel(14);
@@ -240,6 +253,10 @@ public class CostomMarket implements IMarker {
             this.value = value == null ? "" : value;
             this.color = color;
         }
+    }
+
+    public void getGroupSpace(float groupSpace){
+        this.groupSpace = groupSpace;
     }
 
 

@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ import com.jilian.powerstation.manege.CharBarManage;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
+import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.views.CostomMarket;
 import com.jilian.powerstation.views.TMarket;
 
 import java.util.ArrayList;
@@ -42,13 +45,20 @@ import java.util.List;
 
 public class SiteFourFargement extends BaseFragment implements IAxisValueFormatter {
     private TextView tvCenter;
+    private TextView tvTotal1;
+    private TextView tvTotal2;
+    private TextView tvTotal3;
+    private TextView tvTotal4;
+    private TextView tvLeft;
+    private TextView tvRight;
+
     private TimePickerView pvCustomTime;
     private String sn;
-    private long currDate;
+    private Date currDate;
     private ReportViewModel reportViewModel;
 
     private BarChart barChart;
-    private TMarket tMarket;
+    private CostomMarket tMarket;
     private CharBarManage charManager;
     private List<ReportDto> mReportDto;
 
@@ -68,9 +78,14 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        tvTotal1 = (TextView) view.findViewById(R.id.tv_total_1);
+        tvTotal2 = (TextView) view.findViewById(R.id.tv_total_2);
+        tvTotal3 = (TextView) view.findViewById(R.id.tv_total_3);
+        tvTotal4 = (TextView) view.findViewById(R.id.tv_total_4);
+        tvLeft = (TextView) view.findViewById(R.id.tv_left);
+        tvRight = (TextView) view.findViewById(R.id.tv_right);
         barChart = view.findViewById(R.id.lineChart);
-//        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_350), 0);
-        tMarket = new TMarket();
+        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
         charManager = new CharBarManage(barChart, tMarket, getContext());
 
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
@@ -82,8 +97,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         // 设置上下左右偏移量
         charManager.setLegend(); // 设置图例
         sn = getActivity().getIntent().getStringExtra("sn");
-        currDate = System.currentTimeMillis();
-        getData();
+        loadDatas(System.currentTimeMillis());
     }
 
     /**
@@ -91,15 +105,30 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
      */
     public void getData() {
         if (sn == null) return;
-        String startTime = DateUtil.getDayBegin(currDate);
-        String endTime = DateUtil.getDayEnd(currDate);
+        String startTime = DateUtil.getDayBegin(currDate.getTime());
+        String endTime = DateUtil.getDayEnd(currDate.getTime());
         reportViewModel.addReportData(sn, startTime, endTime, 3);
         reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
-                setData(reportListDtoBaseDto.getData().getRows());
+                if (reportListDtoBaseDto != null && reportListDtoBaseDto.getData() != null) {
+                    setData(reportListDtoBaseDto.getData().getRows());
+                    setTotalData(reportListDtoBaseDto.getData());
+                }
             }
         });
+    }
+
+    /**
+     * 统计
+     *
+     * @param dto
+     */
+    private void setTotalData(ReportListDto dto) {
+        tvTotal1.setText(String.valueOf(dto == null || dto.getProduction() == null ? 0 : dto.getProduction()));
+        tvTotal2.setText(String.valueOf(dto == null || dto.getRefund() == null ? 0 : dto.getRefund()));
+        tvTotal3.setText(String.valueOf(dto == null || dto.getRefund() == null ? 0 : dto.getRefund()));
+        tvTotal4.setText(String.valueOf(dto == null || dto.getOffset() == null ? 0 : dto.getOffset()));
     }
 
     @Override
@@ -120,15 +149,31 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
                 pvCustomTime.show();
             }
         });
+        tvLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDatas(DateUtil.getBeforeDay(currDate).getTime());
+            }
+        });
+
+        tvRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDatas(DateUtil.getAfterDay(currDate).getTime());
+            }
+        });
+    }
+
+    private void loadDatas(long currTime) {
+        currDate = new Date(currTime);
+        tvCenter.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_DATE, currDate));
+        getData();
     }
 
 
     public void setData(List<ReportDto> rows) {
         BarData barData = new BarData();
-        float totalValue1 = 0;
-        float totalValue2 = 0;
-        float totalValue3 = 0;
-        float totalValue4 = 0;
+        charManager.removeAll();
         if (rows != null && !rows.isEmpty()) {
             mReportDto = rows;
             charManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
@@ -140,10 +185,10 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
             int minValue = 0;
             for (int index = 0, len = rows.size(); index < len; index++) {
                 ReportDto dto = rows.get(index);
-                int value1 = dto.getPvProduction();
-                int value2 = dto.getLoadProduction();
-                int value3 = dto.getGridPower();
-                int value4 = dto.getCdPower();
+                int value1 = charManager.getIntValue(dto.getPvProduction());
+                int value2 = charManager.getIntValue(dto.getLoadProduction());
+                int value3 = charManager.getIntValue(dto.getGridPower());
+                int value4 = charManager.getIntValue(dto.getCdPower());
 
                 yVals1.add(new BarEntry(index + 1, value1));
                 yVals2.add(new BarEntry(index + 1, value2));
@@ -161,15 +206,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
                 minValue = minValue < value3 ? minValue : value3;
                 minValue = minValue < value4 ? minValue : value4;
 
-                totalValue1 += value1;
-                totalValue2 += value2;
-                totalValue3 += value3;
-                totalValue4 += value4;
             }
-//            tvTotal1.setText(totalValue1 + "");
-//            tvTotal2.setText(totalValue2 + "");
-//            tvTotal3.setText(totalValue3 + "");
-//            tvTotal4.setText(totalValue4 + "");
             barData.addDataSet(charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
             barData.addDataSet(charManager.setChartData("Grid", yVals2, R.color.color_chart_two, R.drawable.bg_color2));
 //            barData.addDataSet(charManager.setChartData("Load", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
@@ -178,8 +215,6 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
             charManager.setYAxis(maxValue * 2, minValue, spa); // 设置Y轴
             charManager.setData(barData);
 
-        } else {
-            charManager.removeAll();
         }
 
     }
@@ -206,9 +241,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         pvCustomTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
-                tvCenter.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, date));
-                currDate = date.getTime();
-                getData();
+                loadDatas(date.getTime());
             }
         })
                 .setDate(selectedDate)

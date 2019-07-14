@@ -31,7 +31,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CharManager {
+public class CharManager extends BaseChar {
     private LineChart lc;
     private CostomMarket tMarket;
     private Context context;
@@ -45,7 +45,7 @@ public class CharManager {
         setLineChar();
     }
 
-    private void setLineChar(){
+    private void setLineChar() {
         lc.setExtraOffsets(24f, 0f, 24f, 0f);
         lc.animateXY(3000, 3000); // XY动画
         lc.setDrawBorders(false);
@@ -59,12 +59,12 @@ public class CharManager {
         lc.getLegend().setEnabled(false);
         Description description = lc.getDescription();
         description.setTextAlign(Paint.Align.CENTER);
-        description.setText("sdasdf");
+        description.setText("");
     }
 
-    public void removeAll(){
-        if ( lc.getLineData()==null) return;
-        lc.getLineData().clearValues();
+    public void removeAll() {
+        lc.clear();
+        lc.notifyDataSetChanged();
         lc.invalidate();
     }
 
@@ -88,14 +88,14 @@ public class CharManager {
     public CharManager setYAxis(float maximum, float minimum, float granularity) {
         // 左边Y轴
         final YAxis yAxisLeft = lc.getAxisLeft();
-        yAxisLeft.setAxisMaximum(maximum); // 设置Y轴最大值
+        if (maximum == 0) {
+            yAxisLeft.setAxisMaximum(10); // 设置Y轴最大值
+        }
         yAxisLeft.setAxisMinimum(minimum); // 设置Y轴最小值
-        yAxisLeft.setGranularity(granularity); // 设置间隔尺寸
+//        yAxisLeft.setGranularity(granularity); // 设置间隔尺寸
         yAxisLeft.setTextSize(mYAxisTextSize); // 文本大小为12dp
         yAxisLeft.setTextColor(Color.BLACK); // 文本颜色为灰色
         yAxisLeft.setDrawGridLines(false); // 绘制网格线
-//        lc.getAxisLeft().enableGridDashedLine(5f, 10f, 0f);
-
         // 右侧Y轴
         lc.getAxisRight().setEnabled(false); // 不启用
         //是否展示网格线
@@ -118,7 +118,7 @@ public class CharManager {
         xAxis.setTextSize(mXAxisTextSize); // 文本大小为12dp
         xAxis.setGranularity(granularity); // 设置间隔尺寸
         xAxis.setAxisMinimum(minimum); // 设置X轴最小值
-        xAxis.setAxisMaximum(maximum); // 设置X轴最大值
+        xAxis.setAxisMaximum(maximum + 1); // 设置X轴最大值
         xAxis.setLabelRotationAngle(-30); //X轴旋转
         // 设置标签的显示格式
 //        xAxis.setValueFormatter(new IndexAxisValueFormatter(){});
