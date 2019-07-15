@@ -97,8 +97,6 @@ public class InverterDetailActivity extends BaseActivity {
     private ImageView ivHead;
 
 
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -223,14 +221,16 @@ public class InverterDetailActivity extends BaseActivity {
                     if (EmptyUtils.isNotEmpty(detailDto)) {
                         initDetailView(detailDto);
                     } else {
-                        ToastUitl.showImageToastTips("no data");
+                        initNodataView();
                     }
                 } else {
+                    initNodataView();
                     ToastUitl.showImageToastTips(pcsInfoDetailDtoBaseDto.getMsg());
                 }
             }
         });
     }
+
 
     /**
      * private TextView detailVoltage1;//PV1输入电压
@@ -591,7 +591,13 @@ public class InverterDetailActivity extends BaseActivity {
     }
 
     /**
-     * 初始化图形
+     * 没历史数据的时候
+     */
+    private void initNodataView() {
+    }
+
+    /**
+     * 有历史数据的时候 初始化图形
      *
      * @param rows
      */

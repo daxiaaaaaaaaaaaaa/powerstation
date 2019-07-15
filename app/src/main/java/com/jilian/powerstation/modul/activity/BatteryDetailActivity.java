@@ -501,8 +501,11 @@ public class BatteryDetailActivity extends BaseActivity {
                 if (dtoBaseDto.isSuccess()) {
                     if (EmptyUtils.isNotEmpty(dtoBaseDto.getData()) && EmptyUtils.isNotEmpty(dtoBaseDto.getData().getRows())) {
                         initDataView(dtoBaseDto.getData().getRows());
+                    } else {
+                        initNodataView();
                     }
                 } else {
+                    initNodataView();
                     ToastUitl.showImageToastTips(dtoBaseDto.getMsg());
                 }
             }
@@ -512,7 +515,13 @@ public class BatteryDetailActivity extends BaseActivity {
     }
 
     /**
-     * 初始化图形
+     * 没数据的时候
+     */
+    private void initNodataView() {
+    }
+
+    /**
+     * 有数据的时候  初始化图形
      *
      * @param rows
      */
