@@ -220,12 +220,13 @@ public class UserViewModel extends BaseViewModel {
      * @param verCode
      * @param accountPwd
      */
-    public void addUserInfo(String accountName, String accountEmail, String verCode, String accountPwd) {
+    public void addUserInfo(String accountName, String accountEmail, String verCode, String accountPwd,String confirmPwd) {
         UserInfoVo vo = new UserInfoVo();
         vo.setAccountName(accountName);
         vo.setAccountEmail(accountEmail);
         vo.setVerCode(verCode);
         vo.setAccountPwd(Md5Util.getMd5(accountPwd));
+        vo.setConfirmPwd(Md5Util.getMd5(confirmPwd));
         addUserliveData = Factoty.getRepository(UserRepository.class).addUserInfo(vo);
     }
 

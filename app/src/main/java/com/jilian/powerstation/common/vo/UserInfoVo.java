@@ -12,6 +12,15 @@ public class UserInfoVo extends BaseVo {
     private String accountEmail;//	true	number		账号邮箱
     private String verCode;//	true	string		邮箱验证码
     private String accountPwd;//	true	string		账号密码
+    private String confirmPwd;//确认密码
+
+    public String getConfirmPwd() {
+        return confirmPwd;
+    }
+
+    public void setConfirmPwd(String confirmPwd) {
+        this.confirmPwd = confirmPwd;
+    }
 
     public String getAccountName() {
         return accountName;

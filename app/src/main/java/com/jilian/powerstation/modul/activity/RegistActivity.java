@@ -210,7 +210,7 @@ public class RegistActivity extends BaseActivity {
      */
     private void regist() {
         showLoadingDialog();
-        userViewModel.addUserInfo(etUserName.getText().toString(), etEmail.getText().toString(), etCode.getText().toString(), etPwdOk.getText().toString());
+        userViewModel.addUserInfo(etUserName.getText().toString(), etEmail.getText().toString(), etCode.getText().toString(), etPwd.getText().toString(), etPwdOk.getText().toString());
         userViewModel.getAddUserliveData().observe(this, new Observer<BaseDto>() {
             @Override
             public void onChanged(@Nullable BaseDto baseDto) {
@@ -285,7 +285,7 @@ public class RegistActivity extends BaseActivity {
                 && !TextUtils.isEmpty(etCode.getText().toString())
                 && !TextUtils.isEmpty(etEmail.getText().toString())
                 && !TextUtils.isEmpty(etPwdOk.getText().toString())
-                ) {
+        ) {
             tvOk.setEnabled(true);
             tvOk.setBackgroundResource(R.drawable.shape_btn_login_normal);
         } else {
