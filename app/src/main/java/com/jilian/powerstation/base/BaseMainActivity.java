@@ -157,89 +157,89 @@ public abstract class BaseMainActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        ivOne.setImageResource(R.drawable.image_tab_one);
+                        ivOne.setImageResource(R.drawable.image_one_select);
                         tvOne.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        ivTwo.setImageResource(R.drawable.image_two);
                         tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_tab_three_un);
+                        ivThree.setImageResource(R.drawable.image_three);
                         tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_tab_four_un);
+                        ivFour.setImageResource(R.drawable.image_four);
                         tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        ivFive.setImageResource(R.drawable.image_five);
                         tvFive.setTextColor(Color.parseColor("#222222"));
                         break;
                     case 1:
 
 
-                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        ivOne.setImageResource(R.drawable.image_one);
                         tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_tab_two);
+                        ivTwo.setImageResource(R.drawable.image_two_select);
                         tvTwo.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivThree.setImageResource(R.drawable.image_tab_three_un);
+                        ivThree.setImageResource(R.drawable.image_three);
                         tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_tab_four_un);
+                        ivFour.setImageResource(R.drawable.image_four);
                         tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        ivFive.setImageResource(R.drawable.image_five);
                         tvFive.setTextColor(Color.parseColor("#222222"));
 
 
                         break;
                     case 2:
 
-                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        ivOne.setImageResource(R.drawable.image_one);
                         tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        ivTwo.setImageResource(R.drawable.image_two);
                         tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_tab_three);
+                        ivThree.setImageResource(R.drawable.image_three_select);
                         tvThree.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivFour.setImageResource(R.drawable.image_tab_four_un);
+                        ivFour.setImageResource(R.drawable.image_four);
                         tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        ivFive.setImageResource(R.drawable.image_five);
                         tvFive.setTextColor(Color.parseColor("#222222"));
 
                         break;
                     case 3:
-                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        ivOne.setImageResource(R.drawable.image_one);
                         tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        ivTwo.setImageResource(R.drawable.image_two);
                         tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_tab_three);
+                        ivThree.setImageResource(R.drawable.image_three);
                         tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_tab_four);
+                        ivFour.setImageResource(R.drawable.image_four_select);
                         tvFour.setTextColor(Color.parseColor("#D24F60"));
 
-                        ivFive.setImageResource(R.drawable.image_tab_five_un);
+                        ivFive.setImageResource(R.drawable.image_five);
                         tvFive.setTextColor(Color.parseColor("#222222"));
                         break;
                     case 4:
-                        ivOne.setImageResource(R.drawable.image_tab_one_un);
+                        ivOne.setImageResource(R.drawable.image_one);
                         tvOne.setTextColor(Color.parseColor("#222222"));
 
-                        ivTwo.setImageResource(R.drawable.image_tab_two_un);
+                        ivTwo.setImageResource(R.drawable.image_two);
                         tvTwo.setTextColor(Color.parseColor("#222222"));
 
-                        ivThree.setImageResource(R.drawable.image_tab_three);
+                        ivThree.setImageResource(R.drawable.image_three);
                         tvThree.setTextColor(Color.parseColor("#222222"));
 
-                        ivFour.setImageResource(R.drawable.image_tab_four);
+                        ivFour.setImageResource(R.drawable.image_four);
                         tvFour.setTextColor(Color.parseColor("#222222"));
 
-                        ivFive.setImageResource(R.drawable.image_tab_five);
+                        ivFive.setImageResource(R.drawable.image_five_select);
                         tvFive.setTextColor(Color.parseColor("#D24F60"));
                         break;
                 }

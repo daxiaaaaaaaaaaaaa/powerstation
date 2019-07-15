@@ -71,7 +71,7 @@ private SmartRefreshLayout srNoData;
         srNoData.setVisibility(View.VISIBLE);
         srNoData.setEnableLoadMore(false);
         srNoData.setEnableRefresh(false);
-        tvNoData.setText("暂未开放");
+        tvNoData.setText("no data");
     }
 
     @Override

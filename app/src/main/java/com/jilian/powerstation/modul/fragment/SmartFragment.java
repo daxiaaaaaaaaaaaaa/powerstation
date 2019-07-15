@@ -60,7 +60,7 @@ public class SmartFragment extends BaseFragment implements CustomItemClickListen
         srNoData.setVisibility(View.VISIBLE);
         srNoData.setEnableLoadMore(false);
         srNoData.setEnableRefresh(false);
-        tvNoData.setText("暂未开放");
+        tvNoData.setText("no data");
         iniRecycle();
     }
 

@@ -40,7 +40,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_tab_one"/>
+                android:src="@drawable/image_one_select"/>
 
             <TextView
                 android:id="@+id/tv_one"
@@ -68,7 +68,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_tab_two_un"/>
+                android:src="@drawable/image_two"/>
 
             <TextView
                 android:id="@+id/tv_two"
@@ -96,7 +96,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_tab_three_un"/>
+                android:src="@drawable/image_three"/>
 
             <TextView
                 android:id="@+id/tv_three"
@@ -124,7 +124,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_tab_four_un"/>
+                android:src="@drawable/image_four"/>
 
             <TextView
                 android:id="@+id/tv_four"
@@ -133,7 +133,7 @@
                 android:layout_below="@+id/iv_four"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
-                android:text="data"
+                android:text="Data"
                 android:textColor="#222222"
                 android:textSize="12sp"/>
 
@@ -152,7 +152,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/image_tab_five_un"/>
+                android:src="@drawable/image_five"/>
 
             <TextView
                 android:id="@+id/tv_five"
