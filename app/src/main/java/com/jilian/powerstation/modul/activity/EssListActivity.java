@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 
+import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
@@ -26,6 +28,7 @@ import com.jilian.powerstation.listener.OnRecycleItemListener;
 import com.jilian.powerstation.modul.adapter.ESSListAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
+import com.jilian.powerstation.utils.SPUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -145,6 +148,17 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
                 getPowerList();
             }
         });
+        findViewById(R.id.v_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!EmptyUtils.isNotEmpty(mDatas)){
+                    //清除session
+                    SPUtil.clearData(Constant.SP_VALUE.SP);
+                    MyApplication.getInstance().setPowerDto(null);
+                }
+                finish();
+            }
+        });
     }
 
     private Integer pageNum = 1;//
@@ -195,5 +209,23 @@ public class EssListActivity extends BaseActivity implements CustomItemClickList
         MyApplication.getInstance().setPowerDto(mDatas.get(position));
         startActivity(intent);
         finish();
+    }
+
+    /**
+     * 菜单、返回键响应
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //如果没数据 就清空session
+            if(!EmptyUtils.isNotEmpty(mDatas)){
+                //清除session
+                SPUtil.clearData(Constant.SP_VALUE.SP);
+                MyApplication.getInstance().setPowerDto(null);
+            }
+            finish();
+            return false;
+        }
+        return true;
     }
 }

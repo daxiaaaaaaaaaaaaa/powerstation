@@ -87,7 +87,7 @@
         <activity android:name=".modul.activity.BatteryDetailActivity" />
         <activity android:name=".modul.activity.InverterDetailActivity" />
         <activity android:name=".modul.activity.ForgetPasswordActivity" />
-        <activity android:name=".modul.activity.LoginActivity" />
+        <activity android:name=".modul.activity.LoginActivity"  android:launchMode="singleTask"/>
         <activity android:name=".modul.activity.AddESSActivity" />
         <activity android:name=".modul.activity.RegistActivity" />
         <activity android:name=".modul.activity.MainActivity" />

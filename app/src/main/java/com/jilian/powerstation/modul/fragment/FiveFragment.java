@@ -170,6 +170,7 @@ public class FiveFragment extends BaseFragment {
                     @Override
                     public void doNext() {
                         getLoadingDialog().dismiss();
+                        MyApplication.getInstance().setPowerDto(null);
                         ToastUitl.showImageToastSuccess("Exit the success");
                         SPUtil.clearData(Constant.SP_VALUE.SP);
                         startActivity(new Intent(getmActivity(), LoginActivity.class));
