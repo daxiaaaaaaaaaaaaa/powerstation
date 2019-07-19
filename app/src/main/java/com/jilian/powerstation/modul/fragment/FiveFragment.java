@@ -12,15 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.UserInfoDto;
+import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.activity.AboutActivity;
 import com.jilian.powerstation.modul.activity.EssListActivity;
 import com.jilian.powerstation.modul.activity.LoginActivity;
+import com.jilian.powerstation.modul.activity.MyInfoActivity;
 import com.jilian.powerstation.modul.activity.UpdatePwdActivity;
 import com.jilian.powerstation.modul.activity.UpdateUerActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
@@ -31,6 +34,10 @@ import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.utils.ToastUitl;
 import com.jilian.powerstation.views.CircularImageView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class FiveFragment extends BaseFragment {
@@ -46,14 +53,11 @@ public class FiveFragment extends BaseFragment {
     private ImageView userInfoEditor;
 
 
-
-
     @Override
     protected void loadData() {
         //根据状态栏颜色来决定状态栏文字用黑色还是白色
         StatusBarUtil.setStatusBarMode(getmActivity(), false, R.color.colorPrimary);
 
-        initUserInfo();
     }
 
 
@@ -67,12 +71,15 @@ public class FiveFragment extends BaseFragment {
         return R.layout.fragment_five;
     }
 
-
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
+        EventBus.getDefault().register(this);
         ivHead = (CircularImageView) view.findViewById(R.id.iv_head);
         tvName = (TextView) view.findViewById(R.id.tv_name);
         tvId = (TextView) view.findViewById(R.id.tv_id);
@@ -80,13 +87,13 @@ public class FiveFragment extends BaseFragment {
         tvChangePwd = (TextView) view.findViewById(R.id.tv_change_pwd);
         tvAbout = (View) view.findViewById(R.id.tv_about);
         userLogout = (TextView) view.findViewById(R.id.user_logout);
-        userInfoEditor = (ImageView)view. findViewById(R.id.user_info_editor);
+        userInfoEditor = (ImageView) view.findViewById(R.id.user_info_editor);
 
     }
 
     @Override
     protected void initData() {
-
+        initUserInfo();
     }
 
     private void initUserInfo() {
@@ -97,12 +104,10 @@ public class FiveFragment extends BaseFragment {
                 if (userInfoDtoBaseDto.isSuccess()) {
                     if (EmptyUtils.isNotEmpty(userInfoDtoBaseDto.getData())) {
                         UserInfoDto userInfoDto = userInfoDtoBaseDto.getData();
-                        Glide.with(getmActivity()).
-                                load(userInfoDto.getPhotopath()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
-                                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
-                                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
-                                .into(ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
-
+                        Glide.with(getmActivity()).load(userInfoDto.getPhotopath())
+                                .skipMemoryCache(true) // 不使用内存缓存
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)//// 不使用磁盘缓存
+                                .into(ivHead);
                         tvName.setText(userInfoDto.getUser_cname());
                         tvId.setText(userInfoDto.getUser_email());
                     }
@@ -113,13 +118,38 @@ public class FiveFragment extends BaseFragment {
         });
     }
 
+    /**
+     * //监听外来是否要去成功的界面
+     *
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(MessageEvent event) {
+        /* Do something */
+        if (EmptyUtils.isNotEmpty(event)
+                && EmptyUtils.isNotEmpty(event.getUserMessage())
+                && event.getUserMessage().getCode() == 200
+        ) {
+            initUserInfo();
+        }
+    }
+
     @Override
     protected void initListener() {
+
+
+        ivHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getmActivity(), MyInfoActivity.class);
+                startActivity(intent);
+            }
+        });
         userInfoEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getmActivity(), UpdateUerActivity.class);
-                intent.putExtra("name",tvName.getText().toString());
+                intent.putExtra("name", tvName.getText().toString());
 
                 startActivity(intent);
             }

@@ -27,6 +27,9 @@ import com.jilian.powerstation.common.vo.PowerInfoVo;
 import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 
+import java.io.File;
+import java.util.List;
+
 
 public class UserRepository extends CommonRepository {
     /**
@@ -227,6 +230,18 @@ public class UserRepository extends CommonRepository {
     public LiveData<BaseDto<BatteryDataListDto>> getBatteryData(HistoryVo vo) {
         return request(Api.getBatteryData(vo)).send().get();
     }
+
+    /**
+     * 修改头像
+     * @param files
+     * @return
+     */
+    public LiveData<BaseDto> uploadHeadPortrait( List<File> files) {
+        return request(Api.uploadHeadPortrait( files, "*/*")).send().get();
+    }
+
+
+
 
 
 

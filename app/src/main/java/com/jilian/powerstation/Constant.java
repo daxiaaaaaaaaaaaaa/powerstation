@@ -47,6 +47,7 @@ public class Constant {
         public static final String CLIENT_TRUST_KEYSTORE = "pkcs12";//bks pkcs12
         //证书
         public static final int CERTIFICATE = 0;//R.raw.formal_environment (把证书文件放到 raw 目录下)
+
         public static final String FILE_PROVIDER = "com.jilian.powerstation.fileprovider";
 
 

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_line"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.jilian.powerstation.views.CircularImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/widget_size_120"
+            android:layout_height="@dimen/widget_size_120"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/widget_size_30"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/widget_size_20"
+            android:layout_marginBottom="@dimen/widget_size_30"
+            android:text="Edit Avatar"
+            android:textColor="#3298db"
+            android:textSize="@dimen/font_size_16"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_size_14"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:text="Account"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/font_size_16"/>
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/widget_size_15"
+                android:gravity="right"
+                android:text="xinwangda@gmail.com"
+                android:textColor="#999999"
+                android:textSize="@dimen/widget_size_16"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_update_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/widget_size_16"
+                android:text="User name"
+                android:textColor="@color/color_text"
+                android:textSize="@dimen/font_size_16"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/widget_size_15"
+                android:drawableRight="@drawable/image_right"
+                android:drawablePadding="@dimen/widget_size_10"
+                android:gravity="right"
+                android:text="Jonhn Smith"
+                android:textColor="#999999"
+                android:textSize="@dimen/widget_size_16"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

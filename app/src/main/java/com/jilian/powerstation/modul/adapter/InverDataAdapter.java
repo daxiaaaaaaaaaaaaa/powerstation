@@ -47,9 +47,7 @@ public class InverDataAdapter extends RecyclerView.Adapter<InverDataAdapter.ESSL
         holder.tvTwo.setText(mDatas.get(position).getNowChargePower());//当前放电功率
 
         Glide.with(context).
-                load(mDatas.get(position).getPcsPhoto()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
-                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
-                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
+                load(mDatas.get(position).getPcsPhoto())
                 .into(holder.ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
 
 

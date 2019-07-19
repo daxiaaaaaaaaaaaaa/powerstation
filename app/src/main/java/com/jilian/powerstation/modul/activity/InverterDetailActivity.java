@@ -169,9 +169,7 @@ public class InverterDetailActivity extends BaseActivity {
         tvName.setText("inverter" + data.getId());
 
         Glide.with(this).
-                load(data.getPcsPhoto()).error(R.drawable.ic_launcher_background) //异常时候显示的图片
-                .placeholder(R.drawable.ic_launcher_background) //加载成功前显示的图片
-                .fallback(R.drawable.ic_launcher_background) //url为空的时候,显示的图片
+                load(data.getPcsPhoto())
                 .into(ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
 
         tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(data.getTime())));

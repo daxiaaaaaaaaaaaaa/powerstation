@@ -13,8 +13,12 @@ import android.widget.TextView;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.base.BaseDto;
+import com.jilian.powerstation.common.event.MessageEvent;
+import com.jilian.powerstation.common.event.UpdateUserMessage;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.ToastUitl;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * 修改用户名
@@ -37,7 +41,7 @@ public class UpdateUerActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setNormalTitle("Change Password", v -> finish());
+        setNormalTitle("Modify User Name", v -> finish());
         etName = (EditText) findViewById(R.id.et_name);
         tvOk = (TextView) findViewById(R.id.tv_ok);
         etName.setText(getIntent().getStringExtra("name"));
@@ -92,6 +96,12 @@ public class UpdateUerActivity extends BaseActivity {
             public void onChanged(@Nullable BaseDto baseDto) {
                 hideLoadingDialog();
                 if (baseDto.isSuccess()) {
+                    MessageEvent messageEvent = new MessageEvent();
+                    UpdateUserMessage message = new UpdateUserMessage();
+                    message.setCode(200);
+                    messageEvent.setUserMessage(message);
+                    EventBus.getDefault().post(messageEvent);
+
                     ToastUitl.showImageToastSuccess("Modify the success");
                 } else {
                     ToastUitl.showImageToastTips(baseDto.getMsg());

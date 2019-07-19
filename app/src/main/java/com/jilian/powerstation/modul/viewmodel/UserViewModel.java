@@ -31,6 +31,9 @@ import com.jilian.powerstation.modul.repository.UserRepository;
 import com.jilian.powerstation.utils.Md5Util;
 
 
+import java.io.File;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -124,9 +127,18 @@ public class UserViewModel extends BaseViewModel {
     private LiveData<BaseDto<BatteryDataListDto>> btyHistoryData;
 
     /**
+     * 上传
+     */
+    private LiveData<BaseDto> uploadData;
+
+    /**
      * 修改个人信息
      */
     private LiveData<BaseDto> updateUserliveData;
+
+    public LiveData<BaseDto> getUploadData() {
+        return uploadData;
+    }
 
     public LiveData<BaseDto> getUpdateUserliveData() {
         return updateUserliveData;
@@ -492,7 +504,13 @@ public class UserViewModel extends BaseViewModel {
     }
 
 
-
+    /**
+     * 上传文件
+     * @param files
+     */
+    public void uploadHeadPortrait(List<File> files) {
+        uploadData = Factoty.getRepository(UserRepository.class).uploadHeadPortrait(files);
+    }
 
 
 

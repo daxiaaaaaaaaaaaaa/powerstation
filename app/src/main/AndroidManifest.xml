@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jilian.powerstation">
+          package="com.jilian.powerstation">
     <!-- 安装未知来源应用的权限 -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 添加读写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 访问互联网权限 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- //网络权限，当禁用后，无法进行检索等相关业务 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- //读取设备硬件信息，统计数据 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/> <!-- 添加读写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 访问互联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- //网络权限，当禁用后，无法进行检索等相关业务 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> <!-- //读取设备硬件信息，统计数据 -->
     <!--
      <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
      //读取系统信息，包含系统版本等信息，用作统计
     -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- //获取设备的网络状态，鉴权所需网络代理 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- //获取统计数据 -->
-    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- //鉴权所需该权限获取进程列表 -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- //使用步行AR导航，配置Camera权限 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 手机震动权限 -->
-    <uses-permission android:name="android.permission.BODY_SENSORS" />
-    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_GPS" /> <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" /> <!-- 来电消音 -->
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 摄影机 -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- 语音合成 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 获取手机imei -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> <!-- //获取设备的网络状态，鉴权所需网络代理 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- //获取统计数据 -->
+    <uses-permission android:name="android.permission.GET_TASKS"/> <!-- //鉴权所需该权限获取进程列表 -->
+    <uses-permission android:name="android.permission.CAMERA"/> <!-- //使用步行AR导航，配置Camera权限 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/> <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> <!-- 手机震动权限 -->
+    <uses-permission android:name="android.permission.BODY_SENSORS"/>
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_GPS"/> <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/> <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/> <!-- 摄影机 -->
+    <uses-permission android:name="android.permission.CAMERA"/> <!-- 语音合成 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/> <!-- 获取手机imei -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
-        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".modul.activity.IntelligentDetailActivity"></activity>
-        <activity android:name=".modul.activity.WarningDetailActivity" />
-        <activity android:name=".modul.activity.EssListActivity" />
+        <activity android:name=".modul.activity.WarningDetailActivity"/>
+        <activity android:name=".modul.activity.EssListActivity"/>
         <activity
             android:name=".modul.activity.WelcomeActivity"
             android:configChanges="locale"
@@ -78,23 +78,26 @@
             android:theme="@style/Welcome"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".modul.activity.IntelligentDeviceActivity" />
-        <activity android:name=".modul.activity.BatteryDetailActivity" />
-        <activity android:name=".modul.activity.InverterDetailActivity" />
-        <activity android:name=".modul.activity.ForgetPasswordActivity" />
-        <activity android:name=".modul.activity.LoginActivity"  android:launchMode="singleTask"/>
-        <activity android:name=".modul.activity.AddESSActivity" />
-        <activity android:name=".modul.activity.RegistActivity" />
-        <activity android:name=".modul.activity.MainActivity" />
-        <activity android:name=".modul.activity.ScanActivity" />
+        <activity android:name=".modul.activity.IntelligentDeviceActivity"/>
+        <activity android:name=".modul.activity.BatteryDetailActivity"/>
+        <activity android:name=".modul.activity.InverterDetailActivity"/>
+        <activity android:name=".modul.activity.ForgetPasswordActivity"/>
+        <activity
+            android:name=".modul.activity.LoginActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".modul.activity.AddESSActivity"/>
+        <activity android:name=".modul.activity.RegistActivity"/>
+        <activity android:name=".modul.activity.MainActivity"/>
+        <activity android:name=".modul.activity.ScanActivity"/>
         <activity android:name=".modul.activity.UpdatePwdActivity"/>
         <activity android:name=".modul.activity.AboutActivity"/>
         <activity android:name=".modul.activity.UpdateUerActivity"/>
+        <activity android:name=".modul.activity.MyInfoActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -103,20 +106,20 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" />
+            android:process=":remote"/>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="PvBZtlvuOpHHxYggW0kyQTG8aBh9F88S" /> <!-- 配置APP ID -->
+            android:value="PvBZtlvuOpHHxYggW0kyQTG8aBh9F88S"/> <!-- 配置APP ID -->
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="42fc2c51-6417-4f79-a5da-2196d56060d3" />
+            android:value="42fc2c51-6417-4f79-a5da-2196d56060d3"/>
         <!--
            配置APP版本号 1.0.0 测试  2.0.0 正式
             阿里环境 使用版本号 1.0.0
@@ -129,13 +132,13 @@
         -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
-            android:value="6.0.0" /> <!-- 配置APP渠道号 -->
+            android:value="6.0.0"/> <!-- 配置APP渠道号 -->
         <meta-data
             android:name="BUGLY_APP_CHANNEL"
-            android:value="6.0.0" /> <!-- 配置Bugly调试模式（true或者false） -->
+            android:value="6.0.0"/> <!-- 配置Bugly调试模式（true或者false） -->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
-            android:value="false" />
+            android:value="false"/>
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"
@@ -143,13 +146,13 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" /> <!-- Since JCore2.0.0 Required SDK核心功能 -->
+            android:theme="@android:style/Theme.Light.NoTitleBar"/> <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 这个Service继承JCommonService即可，可以在更多手机平台上使得推送通道保持的更稳定 -->
         <service
             android:name=".MyService"
             android:process=":pushcore">
             <intent-filter>
-                <action android:name="cn.jiguang.user.service.action" />
+                <action android:name="cn.jiguang.user.service.action"/>
             </intent-filter>
         </service>
     </application>

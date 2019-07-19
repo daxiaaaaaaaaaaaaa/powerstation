@@ -23,10 +23,14 @@ import com.jilian.powerstation.common.vo.ConfigInfoVo;
 import com.jilian.powerstation.common.vo.ForgetVo;
 import com.jilian.powerstation.common.vo.HistoryVo;
 import com.jilian.powerstation.common.vo.PowerInfoVo;
-import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.ReportVo;
+import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 import com.jilian.powerstation.http.RequetRetrofit;
+import com.jilian.powerstation.utils.HttpUtil;
+
+import java.io.File;
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -265,5 +269,14 @@ public class Api {
         return RequetRetrofit.getInstance().getBatteryData(vo);
     }
 
+    /**
+     *
+     * @param files
+     * @param mediaType
+     * @return
+     */
+    public static Flowable<BaseDto> uploadHeadPortrait(List<File> files, String mediaType) {
+        return RequetRetrofit.getInstance().uploadHeadPortrait(HttpUtil.filesToMultipartBody(null, files, mediaType));
+    }
 
 }

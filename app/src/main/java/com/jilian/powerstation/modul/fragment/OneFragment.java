@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,9 @@ import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.utils.ToastUitl;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -38,7 +42,7 @@ public class OneFragment extends BaseFragment {
     private TextView tvNumber5;
     private TextView tvNumber6;
     private MainActivity activity;
-
+    private SmartRefreshLayout srHasData;
 
     @Override
     protected void loadData() {
@@ -65,7 +69,8 @@ public class OneFragment extends BaseFragment {
         tvNumber4 = (TextView) view.findViewById(R.id.tv_number_4);
         tvNumber5 = (TextView) view.findViewById(R.id.tv_number_5);
         tvNumber6 = (TextView) view.findViewById(R.id.tv_number_6);
-
+        srHasData = (SmartRefreshLayout) view.findViewById(R.id.sr_has_data);
+        srHasData.setEnableLoadMore(false);
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,9 +79,14 @@ public class OneFragment extends BaseFragment {
         });
 
         setNormalTitle(activity.getData().getProductName(), v -> getActivity().finish());
+        srHasData.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getPowerInfo();
+            }
+        });
 
     }
-
 
 
     @Override
@@ -93,6 +103,7 @@ public class OneFragment extends BaseFragment {
         userViewModel.getPowerliveData().observe(this, new Observer<BaseDto<PowerInfoDetailDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<PowerInfoDetailDto> detailDtoBaseDto) {
+                srHasData.finishRefresh();
                 if (detailDtoBaseDto.isSuccess()) {
                     if (EmptyUtils.isNotEmpty(detailDtoBaseDto)) {
                         initDetailView(detailDtoBaseDto.getData());

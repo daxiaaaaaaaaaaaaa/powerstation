@@ -1,13 +1,10 @@
 package com.jilian.powerstation.utils;
 
 
-
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jilian.powerstation.base.BaseVo;
-
-
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -30,6 +27,34 @@ import okhttp3.RequestBody;
  * @Time 2018-03-19
  */
 public class HttpUtil {
+
+    /**
+     * 上传单个对象的文件
+     * 对象中包含文件数组
+     * files转换为MultipartBody
+     *
+     * @param files
+     * @return
+     */
+    public static MultipartBody filesToMultipartBody(BaseVo vo, List<File> files, String mediaType) {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        for (File file : files) {
+            //  这里为了简单起见，没有判断file的类型
+            RequestBody requestBody = RequestBody.create(MediaType.parse(mediaType), file);
+            builder.addFormDataPart("imgStream", file.getName(), requestBody);
+
+        }
+        if (EmptyUtils.isNotEmpty(vo)) {
+            Map<String, String> map = HttpUtil.convertVo2Params(vo);
+            for (String key : map.keySet()) {
+                builder.addFormDataPart(key, map.get(key));
+            }
+        }
+        builder.setType(MultipartBody.FORM);
+        MultipartBody multipartBody = builder.build();
+        return multipartBody;
+    }
+
     /**
      * 上传单组表单 多个文件
      * @param vo 表单

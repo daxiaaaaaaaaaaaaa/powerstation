@@ -28,6 +28,7 @@ import com.jilian.powerstation.common.vo.UpdatePwdVo;
 import com.jilian.powerstation.common.vo.UserInfoVo;
 
 import io.reactivex.Flowable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
@@ -239,6 +240,16 @@ public interface ApiService {
      */
     @POST("/HESS_SCADA/app/user/getBatteryData.app")
     Flowable<BaseDto<BatteryDataListDto>> getBatteryData(@Body HistoryVo vo);
+
+
+    /**
+     * 一键上传文件
+     *
+     * @param multipartBody
+     * @return
+     */
+    @POST("/HESS_SCADA/app/user/uploadHeadPortrait.app")
+    Flowable<BaseDto> uploadHeadPortrait(@Body MultipartBody multipartBody);
 }
 
 
