@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
+import com.bumptech.glide.Glide;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.jilian.powerstation.Constant;
 import com.jilian.powerstation.MyApplication;
@@ -56,6 +57,9 @@ public class SiteCardFragment extends BaseFragment  implements BDLocationListene
     private ImageView ivWether;
     private TextView tvGoodAir;
     private TextView tvAdress;
+    private ImageView ivBanner;
+
+
 
 
 
@@ -92,6 +96,7 @@ public class SiteCardFragment extends BaseFragment  implements BDLocationListene
         ivWether = (ImageView)view. findViewById(R.id.iv_wether);
         tvGoodAir = (TextView) view.findViewById(R.id.tv_good_air);
         tvAdress = (TextView)view. findViewById(R.id.tv_adress);
+        ivBanner = (ImageView) view.findViewById(R.id.iv_banner);
     }
     private String nowTmp;
     private String location;
@@ -106,10 +111,14 @@ public class SiteCardFragment extends BaseFragment  implements BDLocationListene
         lang = Lang.ENGLISH;
         unit = Unit.METRIC;
         powerDto = (PowerDto) getActivity().getIntent().getSerializableExtra("data");
+
         if (powerDto != null) {
             tvSiteName.setText(powerDto.getProductName());
             tvDeviceName.setText(powerDto.getProductName());
             tvPowerTotal.setText(powerDto.getHistoryPVproduction());
+            Glide.with(getActivity()).
+                    load(powerDto.getPhotopath())
+                    .into(ivBanner);//在RequestBuilder 中使用自定义的ImageViewTarge
             getPowerCard();
         }
         startLocationCilent();

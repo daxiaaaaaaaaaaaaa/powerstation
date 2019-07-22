@@ -1,31 +1,20 @@
 package com.jilian.powerstation.modul.fragment;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RadioGroup;
 
 import com.jilian.powerstation.R;
-import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
-import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.modul.activity.MainActivity;
-import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
 import com.jilian.powerstation.modul.adapter.PageAdapter;
-import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.StatusBarUtil;
-import com.jilian.powerstation.views.NoCustomerScrollViewPager;
 import com.jilian.powerstation.views.NoScrollViewPager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ThreeFragment extends BaseFragment {

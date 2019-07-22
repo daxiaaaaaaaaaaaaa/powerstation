@@ -16,10 +16,11 @@
             android:layout_height="@dimen/widget_size_220">
 
             <ImageView
+                android:id="@+id/iv_banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+                tools:src="@mipmap/ic_launcher" />
 
         </RelativeLayout>
 
