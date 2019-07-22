@@ -17,6 +17,60 @@ public class PowerInfoDetailDto implements Serializable {
    private String totalEquipment	;//false	number	暂无值	智能设备运行数量
    private String history_estimated_refund;//	false	number		收益估值
    private String history_carbon_offset;//	false	number		总计二氧化碳减排
+    private String pv2GRID;//1
+    private String pv2BAT;//2
+    private String bat2GRID;//3
+    private String pv2LOAD;//4
+    private String bat2LOAD;//5
+    private String grid2LOAD;//6
+
+    public String getPv2GRID() {
+        return pv2GRID;
+    }
+
+    public void setPv2GRID(String pv2GRID) {
+        this.pv2GRID = pv2GRID;
+    }
+
+    public String getPv2BAT() {
+        return pv2BAT;
+    }
+
+    public void setPv2BAT(String pv2BAT) {
+        this.pv2BAT = pv2BAT;
+    }
+
+    public String getBat2GRID() {
+        return bat2GRID;
+    }
+
+    public void setBat2GRID(String bat2GRID) {
+        this.bat2GRID = bat2GRID;
+    }
+
+    public String getPv2LOAD() {
+        return pv2LOAD;
+    }
+
+    public void setPv2LOAD(String pv2LOAD) {
+        this.pv2LOAD = pv2LOAD;
+    }
+
+    public String getBat2LOAD() {
+        return bat2LOAD;
+    }
+
+    public void setBat2LOAD(String bat2LOAD) {
+        this.bat2LOAD = bat2LOAD;
+    }
+
+    public String getGrid2LOAD() {
+        return grid2LOAD;
+    }
+
+    public void setGrid2LOAD(String grid2LOAD) {
+        this.grid2LOAD = grid2LOAD;
+    }
 
     @Override
     public String toString() {

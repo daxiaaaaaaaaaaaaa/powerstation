@@ -238,7 +238,7 @@ public class SiteCardFragment extends BaseFragment  implements BDLocationListene
 
                         if(EmptyUtils.isNotEmpty(Constant.nowTmp)){
                             Integer inx =  Integer.parseInt(Constant.nowTmp);
-                            tvGoodAir.setText((inx-3)+"~"+(inx+3)+"°C");
+                            tvGoodAir.setText(inx+"°C");
                         }
 
 
