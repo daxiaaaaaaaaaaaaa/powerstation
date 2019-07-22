@@ -150,7 +150,6 @@ public class FiveFragment extends BaseFragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getmActivity(), UpdateUerActivity.class);
                 intent.putExtra("name", tvName.getText().toString());
-
                 startActivity(intent);
             }
         });

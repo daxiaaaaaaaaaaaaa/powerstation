@@ -29,7 +29,8 @@ public class WelcomeActivity extends FragmentActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION,//定位权限
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,//写权限
                 Manifest.permission.READ_EXTERNAL_STORAGE, //读权限
-                Manifest.permission.CAMERA//相机权限
+                Manifest.permission.CAMERA,//相机权限,
+                Manifest.permission.READ_PHONE_STATE//相机权限
 
 
         ).subscribe(new PermissionsObserver() {

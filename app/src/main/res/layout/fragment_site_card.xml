@@ -24,6 +24,7 @@
         </RelativeLayout>
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_47"
             android:layout_marginTop="@dimen/widget_size_12"
@@ -35,22 +36,29 @@
 
 
             <TextView
+                android:id="@+id/tv_adress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/font_size_8"
                 android:layout_weight="1"
                 android:drawableLeft="@mipmap/ic_address_red"
                 android:drawablePadding="@dimen/widget_size_6"
-                android:text="Batiment 2, 1900 rue CopyBatiment 2, 1900 rue CopyBatiment 2, 1900 rue Copy"
+                tools:text="Batiment 2, 1900 rue CopyBatiment 2, 1900 rue CopyBatiment 2, 1900 rue Copy"
                 android:textColor="#ffd24f60"
                 android:textSize="@dimen/widget_size_12" />
-
+            <ImageView
+                android:tint="#ffd24f60"
+                android:id="@+id/iv_wether"
+                tools:src="@mipmap/ic_weather_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/tv_good_air"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/ic_weather_red"
+                android:layout_marginLeft="10dp"
                 android:drawablePadding="@dimen/widget_size_6"
-                android:text="24°C"
+                tools:text="24°C"
                 android:textColor="#ffd24f60"
                 android:textSize="@dimen/font_size_19" />
         </LinearLayout>

@@ -1,5 +1,9 @@
 package com.jilian.powerstation;
 
+import java.util.List;
+
+import interfaces.heweather.com.interfacesmodule.bean.weather.forecast.ForecastBase;
+
 /**
  * 全局常量
  *
@@ -8,6 +12,14 @@ package com.jilian.powerstation;
  */
 
 public class Constant {
+
+
+    public  static String condTxt = "";
+
+    public  static String nowTmp = "";
+
+    public  static List<ForecastBase> daily_forecast ;
+
 
     public final static int INVERTER_TYPE = 0;//逆变器
 

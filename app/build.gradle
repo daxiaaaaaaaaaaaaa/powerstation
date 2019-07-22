@@ -199,7 +199,6 @@ dependencies {
     implementation 'org.glassfish:javax.annotation:10.0-b28'
     implementation 'com.google.dagger:dagger:2.7'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
-
     compile project(':magicindicator')
     implementation files('libs/BaiduLBS_Android.jar')
     implementation files('libs/httpmime-4.1.2.jar')
@@ -207,17 +206,22 @@ dependencies {
 
     //修改状态栏字体相关
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
     //极光
-    implementation 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+    implementation 'cn.jiguang.sdk:jpush:3.2.0'
 
+    // 此处以JPush 3.2.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'
+
+    // 此处以JCore 2.0.0 版本为例。
 
     //图表mp
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-
     compile 'cn.yipianfengye.android:zxing-library:2.2'
 
+    //天气
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.google.code.gson:gson:2.6.2'
+    implementation files('libs/sdk_HeWeather_Public_Android_V2.4.jar')
 }
