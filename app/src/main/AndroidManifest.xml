@@ -132,6 +132,13 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
+
+        <!--value的值填写你在友盟后台申请的应用Appkey-->
+        <meta-data android:value="5d36b6f4570df33b4d000377" android:name="UMENG_APPKEY"/>
+        <!--value的值填写渠道名称，例如yingyongbao。这里设置动态渠道变量-->
+        <!--<meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>-->
+
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -178,6 +185,29 @@
                 <action android:name="cn.jiguang.user.service.action"/>
             </intent-filter>
         </service>
+
+
+
+
+        <!--友盟 QQ  8.0适配-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
     </application>
 
 </manifest>

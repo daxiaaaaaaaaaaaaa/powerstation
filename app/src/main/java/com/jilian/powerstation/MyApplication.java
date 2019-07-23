@@ -23,6 +23,8 @@ import com.orhanobut.logger.Logger;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -97,9 +99,40 @@ public class MyApplication extends MultiDexApplication {
 
         HeConfig.init("HE1907221513361565", "4636ab5d580b4ef3bac3423ae1e39bbf");
         HeConfig.switchToFreeServerNode();
+        initYOUMENG();
         initBaidu();
 
     }
+    private void initYOUMENG() {
+        /**
+         * 初始化common库
+         * 参数1:上下文，必须的参数，不能为空
+         * 参数2:友盟 app key，非必须参数，如果Manifest文件中已配置app key，该参数可以传空，则使用Manifest中配置的app key，否则该参数必须传入
+         * 参数3:友盟 channel，非必须参数，如果Manifest文件中已配置channel，该参数可以传空，则使用Manifest中配置的channel，否则该参数必须传入，channel命名请详见channel渠道命名规范
+         * 参数4:设备类型，必须参数，传参数为UMConfigure.DEVICE_TYPE_PHONE则表示手机；传参数为UMConfigure.DEVICE_TYPE_BOX则表示盒子；默认为手机
+         * 参数5:Push推送业务的secret，需要集成Push功能时必须传入Push的secret，否则传空
+         */
+        UMConfigure.init(this,"5d36b6f4570df33b4d000377","umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
+        //豆瓣RENREN平台目前只能在服务器端配置
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad","http://sns.whalecloud.com");
+        PlatformConfig.setYixin("yxc0614e80c9304c11b0391514d09f13bf");
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        PlatformConfig.setTwitter("3aIN7fuF685MuZ7jtXkQxalyi", "MK6FEYG63eWcpDFgRYw4w9puJhzDl0tyuqWjZ3M7XJuuG7mMbO");
+        PlatformConfig.setAlipay("2015111700822536");
+        PlatformConfig.setLaiwang("laiwangd497e70d4", "d497e70d4c3e4efeab1381476bac4c5e");
+        PlatformConfig.setPinterest("1439206");
+        PlatformConfig.setKakao("e4f60e065048eb031e235c806b31c70f");
+        PlatformConfig.setDing("dingoalmlnohc0wggfedpk");
+        PlatformConfig.setVKontakte("5764965","5My6SNliAaLxEm3Lyd9J");
+        PlatformConfig.setDropbox("oz8v5apet3arcdy","h7p2pjbzkkxt02a");
+
+
+
+
+    }
+
+
     // APP_ID 替换为你的应用从官方网站申请到的合法appID
     private static final String APP_ID = "wx543f82c7e0c9f306";
 
