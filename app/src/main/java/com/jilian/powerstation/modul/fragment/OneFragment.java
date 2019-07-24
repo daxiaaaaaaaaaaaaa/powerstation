@@ -11,7 +11,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -24,6 +26,10 @@ import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.event.AlarmMsg;
 import com.jilian.powerstation.common.event.MessageEvent;
+import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
+import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
+import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
+import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.activity.WarningDetailActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
@@ -34,6 +40,15 @@ import com.jilian.powerstation.utils.ToastUitl;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.editorpage.ShareActivity;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.ShareBoardlistener;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -97,7 +112,7 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showShareDialog();
             }
         });
 
@@ -129,6 +144,73 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         }
 
 
+    }
+    /**
+     * 选择设置配置类型对话框
+     */
+    private void showShareDialog() {
+        NiceDialog.init()
+                .setLayoutId(R.layout.dialog_share_select)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
+                        dialog.setOutCancel(false);
+
+
+
+                        LinearLayout  llOne = (LinearLayout) holder.getView(R.id.ll_one);
+                        LinearLayout  llTwo = (LinearLayout) holder.getView(R.id.ll_two);
+
+                        llOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                share(1);
+                            }
+                        });
+                        llTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                share(2);
+                            }
+                        });
+
+
+                    }
+                })
+                .setShowBottom(true)
+                .show(getActivity().getSupportFragmentManager());
+    }
+
+    private void share(int type) {
+        UMImage image = new UMImage(getmActivity(), R.mipmap.ic_launcher);//分享图标
+        final UMWeb web = new UMWeb("http://www.baidu.com/"); //切记切记 这里分享的链接必须是http开头
+        web.setTitle("测试分享标题");//标题
+        web.setThumb(image);  //缩略图
+        web.setDescription("测下分享内容");//描述
+        if(type==1){
+            new ShareAction(activity).setPlatform(SHARE_MEDIA.FACEBOOK)
+                    .withMedia(web)
+                    .setCallback(umShareListener)
+                    .share();
+        }
+        if(type==2){
+            new ShareAction(activity).setPlatform(SHARE_MEDIA.FACEBOOK)
+                    .withMedia(web)
+                    .setCallback(umShareListener)
+                    .share();
+        }
+
+
+
+
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(getmActivity()).onActivityResult(requestCode, resultCode, data);
     }
 
     private String nowTmp;
@@ -184,9 +266,32 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         tvNumber6.setText(data.getHistory_carbon_offset());
     }
 
-
+private UMShareListener umShareListener;
     @Override
     protected void initListener() {
+        umShareListener = new UMShareListener() {
+            @Override
+            public void onStart(SHARE_MEDIA platform) {
+                //分享开始的回调
+            }
+
+            @Override
+            public void onResult(SHARE_MEDIA platform) {
+           Toast.makeText(getmActivity(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA platform, Throwable t) {
+           Toast.makeText(getmActivity(),platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(getmActivity(),platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            }
+        };
+
 
     }
 
@@ -273,11 +378,6 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
             getNow(currentLon + "," + currentLat, true);
 
             getWeatherForecast(currentLon + "," + currentLat);
-
-//            getNow(-106.689372 + "," + 52.181005, true);
-//
-//            getWeatherForecast(-106.689372 + "," + 52.181005);
-
             MyApplication.getInstance().mLocationClient.stop();
 
         }
