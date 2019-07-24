@@ -2,9 +2,11 @@ package com.jilian.powerstation.manege;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -12,13 +14,21 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarLineScatterCandleBubbleData;
+import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.Utils;
+import com.google.gson.Gson;
 import com.jilian.powerstation.views.CostomMarket;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
@@ -60,7 +70,23 @@ public class CharManager extends BaseChar {
         Description description = lc.getDescription();
         description.setTextAlign(Paint.Align.CENTER);
         description.setText("");
+        lc.setMarker(tMarket);
+        lc.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                if (tMarket != null) {
+                    Log.e("TAG_LLLL","Gson------------>Highlight"+(new Gson().toJson(h)));
+                    tMarket.refreshContent(e, h);
+//                    lc.getHighlightByTouchPoint(e)
+                }
+            }
+
+            @Override
+            public void onNothingSelected() {
+            }
+        });
     }
+
 
     public void removeAll() {
         lc.clear();
@@ -118,7 +144,7 @@ public class CharManager extends BaseChar {
         xAxis.setTextSize(mXAxisTextSize); // 文本大小为12dp
         xAxis.setGranularity(granularity); // 设置间隔尺寸
         xAxis.setAxisMinimum(minimum); // 设置X轴最小值
-        xAxis.setAxisMaximum(maximum + 1); // 设置X轴最大值
+        xAxis.setAxisMaximum(maximum); // 设置X轴最大值
         xAxis.setLabelRotationAngle(-30); //X轴旋转
         // 设置标签的显示格式
 //        xAxis.setValueFormatter(new IndexAxisValueFormatter(){});
@@ -132,7 +158,9 @@ public class CharManager extends BaseChar {
 
     public LineDataSet setChartData(String name, List<Entry> yVals1, int color, int fillColor) {
         int mColor = context.getResources().getColor(color);
-        tMarket.putValue(name, yVals1, mColor);
+        if (tMarket!=null){
+            tMarket.putValue(name, yVals1, mColor);
+        }
         // 2.分别通过每一组Entry对象集合的数据创建折线数据集
         LineDataSet lineDataSet1 = new LineDataSet(yVals1, name);
         lineDataSet1.setDrawCircles(false);// 不绘制圆点
@@ -161,6 +189,9 @@ public class CharManager extends BaseChar {
     public void setData(LineData lineData) {
         lineData.setDrawValues(false);
         lc.setData(lineData);
+        Matrix m = new Matrix();
+        m.postScale(scaleNum(lc.getXAxis().getLabelCount() - 1), 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        lc.getViewPortHandler().refresh(m, lc, false);//将图表动画显示之前进行缩放
         lc.invalidate();
     }
 }

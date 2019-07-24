@@ -21,4 +21,11 @@ public class BaseChar {
         }
         return mValue;
     }
+
+    //30个横坐标时，缩放4f是正好的。
+    public float scalePercent = 4f/30f;
+
+    public float scaleNum(int xCount){
+        return xCount * scalePercent;
+    }
 }

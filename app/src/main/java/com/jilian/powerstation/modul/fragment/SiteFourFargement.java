@@ -25,16 +25,19 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.gson.Gson;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ReportDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.manege.CharBarManage;
+import com.jilian.powerstation.manege.CharBarManage1;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.views.CostomBarMarket;
 import com.jilian.powerstation.views.CostomMarket;
 import com.jilian.powerstation.views.TMarket;
 
@@ -58,9 +61,9 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
     private ReportViewModel reportViewModel;
 
     private BarChart barChart;
-    private CostomMarket tMarket;
-    private CharBarManage charManager;
+    private CostomBarMarket tMarket;
     private List<ReportDto> mReportDto;
+    private CharBarManage1 barManage1;
 
     @Override
     protected void loadData() {
@@ -85,19 +88,73 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         tvLeft = (TextView) view.findViewById(R.id.tv_left);
         tvRight = (TextView) view.findViewById(R.id.tv_right);
         barChart = view.findViewById(R.id.lineChart);
-        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
-        charManager = new CharBarManage(barChart, tMarket, getContext());
+
+        tMarket = new CostomBarMarket(getContext(), barChart, DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
+        barManage1 = new CharBarManage1(barChart);
+        barChart.setMarker(tMarket);
+        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                if (tMarket != null) {
+                    Log.e("TAG_LLLL", "Gson------------>Highlight" + (new Gson().toJson(h)));
+                    tMarket.refreshContent(e, h);
+                }
+            }
+
+            @Override
+            public void onNothingSelected() {
+            }
+        });
 
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
         initCustomTimePicker();
     }
 
+
     @Override
     protected void initData() {
-        // 设置上下左右偏移量
-        charManager.setLegend(); // 设置图例
         sn = getActivity().getIntent().getStringExtra("sn");
         loadDatas(System.currentTimeMillis());
+    }
+
+    //显示2条柱状图
+    private void showBarChartMore(List<ReportDto> rows) {
+        List<Float> xAxisValues = new ArrayList<>();
+        List<List<Float>> yAxisValues = new ArrayList<>();
+        List<String> labels = new ArrayList<>();
+        List<Integer> colours = new ArrayList<>();
+        List<Float> x1 = new ArrayList<>();
+        List<Float> x2 = new ArrayList<>();
+
+        List<Float> yVals1 = new ArrayList<>();
+        List<Float> yVals2 = new ArrayList<>();
+        List<Float> yVals3 = new ArrayList<>();
+        List<Float> yVals4 = new ArrayList<>();
+        for (int index = 0, len = rows.size(); index < len; index++) {
+            mReportDto = rows;
+            ReportDto dto = rows.get(index);
+            xAxisValues.add((float) index);
+            float value1 = barManage1.getIntValue(dto.getPvProduction());
+            float value2 = barManage1.getIntValue(dto.getLoadProduction());
+
+            yVals1.add(value1);
+            yVals2.add(value2);
+            yVals3.add(value2);
+        }
+        xAxisValues.add((float) xAxisValues.size());
+        yAxisValues.add(yVals1);
+        yAxisValues.add(yVals2);
+        yAxisValues.add(yVals3);
+        labels.add("PV");
+        labels.add("Grid");
+        labels.add("Grid1");
+        colours.add(getResources().getColor(R.color.color_chart_three));
+        colours.add(getResources().getColor(R.color.color_chart_two));
+        colours.add(getResources().getColor(R.color.color_chart_four));
+        barManage1.showMoreBarChart(xAxisValues, yAxisValues, labels, colours, this)
+                .setXAxis(xAxisValues.size() - 1, 0, xAxisValues.size())
+                .invalidate()
+                .setScalX();
     }
 
     /**
@@ -112,7 +169,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
                 if (reportListDtoBaseDto != null && reportListDtoBaseDto.getData() != null) {
-                    setData(reportListDtoBaseDto.getData().getRows());
+                    showBarChartMore(reportListDtoBaseDto.getData().getRows());
                     setTotalData(reportListDtoBaseDto.getData());
                 }
             }
@@ -170,54 +227,6 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         getData();
     }
 
-
-    public void setData(List<ReportDto> rows) {
-        BarData barData = new BarData();
-        charManager.removeAll();
-        if (rows != null && !rows.isEmpty()) {
-            mReportDto = rows;
-            charManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
-            List<BarEntry> yVals1 = new ArrayList<>();
-            List<BarEntry> yVals2 = new ArrayList<>();
-            List<BarEntry> yVals3 = new ArrayList<>();
-            List<BarEntry> yVals4 = new ArrayList<>();
-            int maxValue = 50;
-            int minValue = 0;
-            for (int index = 0, len = rows.size(); index < len; index++) {
-                ReportDto dto = rows.get(index);
-                int value1 = charManager.getIntValue(dto.getPvProduction());
-                int value2 = charManager.getIntValue(dto.getLoadProduction());
-                int value3 = charManager.getIntValue(dto.getGridPower());
-                int value4 = charManager.getIntValue(dto.getCdPower());
-
-                yVals1.add(new BarEntry(index + 1, value1));
-                yVals2.add(new BarEntry(index + 1, value2));
-                yVals3.add(new BarEntry(index + 1, value3));
-                yVals4.add(new BarEntry(index + 1, value4));
-
-                maxValue = maxValue > value1 ? maxValue : value1;
-                maxValue = maxValue > value2 ? maxValue : value2;
-                maxValue = maxValue > value3 ? maxValue : value3;
-                maxValue = maxValue > value4 ? maxValue : value4;
-
-
-                minValue = minValue < value1 ? minValue : value1;
-                minValue = minValue < value2 ? minValue : value2;
-                minValue = minValue < value3 ? minValue : value3;
-                minValue = minValue < value4 ? minValue : value4;
-
-            }
-            barData.addDataSet(charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
-            barData.addDataSet(charManager.setChartData("Grid", yVals2, R.color.color_chart_two, R.drawable.bg_color2));
-//            barData.addDataSet(charManager.setChartData("Load", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
-//            barData.addDataSet(charManager.setChartData("Battery", yVals4, R.color.color_chart_four, R.drawable.bg_color4));
-            int spa = (maxValue - minValue) / 10;
-            charManager.setYAxis(maxValue * 2, minValue, spa); // 设置Y轴
-            charManager.setData(barData);
-
-        }
-
-    }
 
     /**
      * 初始化时间数据
@@ -284,6 +293,9 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return CharDateManager.getDates(mReportDto, value, "MM");
+        if (value < 0 || value > barChart.getBarData().getDataSets().size()) {
+            return "";
+        }
+        return CharDateManager.getDates(mReportDto, value + 1, "MM");
     }
 }

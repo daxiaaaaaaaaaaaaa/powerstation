@@ -81,7 +81,7 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
         tvLeft = (TextView) view.findViewById(R.id.tv_left);
         tvRight = (TextView) view.findViewById(R.id.tv_right);
-        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
+        tMarket = new CostomMarket(getContext(), lc,DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
         lc.setMarker(tMarket);
         initCustomTimePicker();
     }

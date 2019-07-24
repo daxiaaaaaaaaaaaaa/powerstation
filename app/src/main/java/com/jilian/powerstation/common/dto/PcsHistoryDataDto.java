@@ -17,7 +17,9 @@ public class PcsHistoryDataDto implements Serializable {
     private String gridCurr	;//false	number		电网电流
     private String gridFreq	;//false	number		电网频率
     private String gridPower;//	false	number		电网功率
+    private String ratePower;//	false	number		电网功率
     private long time;//	false	Long		时间
+
 
     @Override
     public String toString() {
@@ -39,6 +41,8 @@ public class PcsHistoryDataDto implements Serializable {
                 ", time=" + time +
                 '}';
     }
+
+
 
     public String getInputVoltPv1() {
         return inputVoltPv1;

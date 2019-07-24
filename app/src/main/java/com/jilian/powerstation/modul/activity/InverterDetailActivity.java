@@ -2,34 +2,28 @@ package com.jilian.powerstation.modul.activity;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
+import com.contrarywind.view.WheelView;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
@@ -42,14 +36,17 @@ import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
+import com.jilian.powerstation.manege.CharBarManage1;
+import com.jilian.powerstation.manege.CharDateManager;
+import com.jilian.powerstation.manege.CharManager;
 import com.jilian.powerstation.modul.adapter.WheelAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.DateUtil;
+import com.jilian.powerstation.utils.DisplayUtil;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.ToastUitl;
-import com.jilian.powerstation.views.TMarket;
-import com.contrarywind.view.WheelView;
-
+import com.jilian.powerstation.views.CostomBarMarket;
+import com.jilian.powerstation.views.CostomMarket;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,10 +56,17 @@ import java.util.List;
 /**
  * 逆变器详情
  */
-public class InverterDetailActivity extends BaseActivity {
-    private LineChart lc;
-    TMarket tMarket = new TMarket();
+public class InverterDetailActivity extends BaseActivity implements IAxisValueFormatter {
+    private LineChart lineChart;
+    private BarChart barChart;
     private UserViewModel userViewModel;
+    private CharManager mCharManager;
+    private CharBarManage1 mCharBarManage;
+    private CostomMarket mLineMarket;
+    private CostomBarMarket mBarMarket;
+    private RadioGroup dateTitle;
+
+    ArrayList<String> mTitle = new ArrayList<>();
 
     private TextView detailVoltage1;//PV1输入电压
     private TextView detailCurrent1;//PV1输入电流
@@ -95,7 +99,8 @@ public class InverterDetailActivity extends BaseActivity {
     private TextView tvType;
     private TextView tvSelectDate;
     private ImageView ivHead;
-
+    private RadioButton rbView1;
+    private int dateType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,6 +126,8 @@ public class InverterDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        rbView1 = findViewById(R.id.rb_view1);
+        dateTitle = findViewById(R.id.rg_date);
         ivHead = (ImageView) findViewById(R.id.iv_head);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvDate = (TextView) findViewById(R.id.tv_date);
@@ -146,6 +153,9 @@ public class InverterDetailActivity extends BaseActivity {
         detailConsumePower = (TextView) findViewById(R.id.detail_consume_power);
         detailLoadPower = (TextView) findViewById(R.id.detail_load_power);
         tvType = (TextView) findViewById(R.id.tv_type);
+        lineChart = findViewById(R.id.lineChart);
+        barChart = findViewById(R.id.barChart);
+
         setNormalTitle(MyApplication.getInstance().getPowerDto().getProductName(), v -> finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
@@ -153,18 +163,15 @@ public class InverterDetailActivity extends BaseActivity {
 
             }
         });
-        lc = findViewById(R.id.lineChart);
-        lc.setMarker(tMarket);
-        lc.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, Highlight h) {
-                tMarket.refreshContent(e, h);
-            }
 
-            @Override
-            public void onNothingSelected() {
-            }
-        });
+        mLineMarket = new CostomMarket(this, lineChart, DisplayUtil.getScreenWidth(this), getResources().getDimension(R.dimen.widget_size_250), 0);
+        mCharManager = new CharManager(lineChart, mLineMarket, this);
+        mCharManager.setLegend(); // 设置图例
+
+        mBarMarket = new CostomBarMarket(this, barChart, DisplayUtil.getScreenWidth(this), getResources().getDimension(R.dimen.widget_size_250), 0);
+        mCharBarManage = new CharBarManage1(barChart);
+        barChart.setMarker(mBarMarket);
+
         data = (PcsInfoDto) getIntent().getSerializableExtra("data");
         tvName.setText("inverter" + data.getId());
 
@@ -183,6 +190,7 @@ public class InverterDetailActivity extends BaseActivity {
         typeList.add("PV input voltage");
         typeList.add("PV input current");
         typeList.add("PV input power");
+
         typeList.add("Glid output voltage");
         typeList.add("Glid output frequency");
         typeList.add("Glid output current");
@@ -193,18 +201,16 @@ public class InverterDetailActivity extends BaseActivity {
         typeList.add("Yield of feeding in grid");
         typeList.add("Consumption of grid ");
 
-        // 设置上下左右偏移量
-        lc.setExtraOffsets(24f, 24f, 24f, 0f);
-        lc.animateXY(3000, 3000); // XY动画
-        setLegend(); // 设置图例
-        setYAxis(); // 设置Y轴
-        setXAxis(); // 设置X轴
-        setData();
+//        setData();
         //获取逆变器详情
         getPcsInfo();//
         //获取逆变器历史数据
         getPcsHistoryData();
 
+    }
+
+
+    public void initTab() {
     }
 
     private void getPcsInfo() {
@@ -228,7 +234,6 @@ public class InverterDetailActivity extends BaseActivity {
             }
         });
     }
-
 
     /**
      * private TextView detailVoltage1;//PV1输入电压
@@ -308,158 +313,326 @@ public class InverterDetailActivity extends BaseActivity {
             }
         });
 
-    }
+        dateTitle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_view1:
+                        dateType = 0;
+                        break;
+                    case R.id.rb_view2:
+                        dateType = 1;
+                        break;
+                    case R.id.rb_view3:
+                        dateType = 2;
+                        break;
+                    case R.id.rb_view4:
+                        dateType = 3;
+                        break;
+                }
 
-    private void setLegend() {
-        Legend legend = lc.getLegend();
-        legend.setForm(Legend.LegendForm.LINE); // 图形：线
-        legend.setFormSize(14f); // 图形大小
-        legend.setFormLineWidth(9f); // 线宽小于如下大小绘制出平躺长方形
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT); // 图例在水平线上的对齐方式：右对齐
-        legend.setTextColor(Color.WHITE);
-    }
-
-
-    private void setYAxis() {
-        // 左边Y轴
-        final YAxis yAxisLeft = lc.getAxisLeft();
-        yAxisLeft.setAxisMaximum(25.5f); // 设置Y轴最大值
-        yAxisLeft.setAxisMinimum(2); // 设置Y轴最小值
-        yAxisLeft.setGranularity(2f); // 设置间隔尺寸
-        yAxisLeft.setTextSize(12f); // 文本大小为12dp
-        yAxisLeft.setTextColor(Color.BLACK); // 文本颜色为灰色
-        yAxisLeft.setDrawGridLines(false); // 不绘制网格线
-//        yAxisLeft.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value, AxisBase axis) {
-//                return value == yAxisLeft.getAxisMinimum() ? (int) value + "" : (int) value + "";
-//            }
-//        });
-        // 右侧Y轴
-        lc.getAxisRight().setEnabled(false); // 不启用
-        //是否展示网格线
-        lc.setDrawGridBackground(false);
-        lc.getAxisRight().setDrawGridLines(false);
-        lc.getAxisLeft().setDrawGridLines(true);
-        //设置X Y轴网格线为虚线（实体线长度、间隔距离、偏移量：通常使用 0）
-        lc.getAxisLeft().enableGridDashedLine(10f, 10f, 0f);
-    }
-
-    private void setXAxis() {
-        // X轴
-        XAxis xAxis = lc.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 在底部
-        xAxis.setDrawGridLines(false); // 不绘制网格线
-        xAxis.setLabelCount(20); // 设置标签数量
-        xAxis.setTextColor(Color.BLACK); // 文本颜色为灰色
-        xAxis.setTextSize(12f); // 文本大小为12dp
-        xAxis.setGranularity(6f); // 设置间隔尺寸
-        xAxis.setAxisMinimum(0f); // 设置X轴最小值
-        xAxis.setAxisMaximum(30f); // 设置X轴最大值
-        // 设置标签的显示格式
-//        xAxis.setValueFormatter(new IndexAxisValueFormatter(){});
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            public String getFormattedValue(float value, AxisBase axis) {
-                return "9:" + value;
             }
         });
-        //是否展示网格线
-        xAxis.setDrawGridLines(false);
 
     }
 
-    public void setData() {
-        float[] ys1 = new float[]{
-                0f, 9f, 9f, 7f, 6f, 7f, 9f,
-                1f, 1f, 4f, 0f};
-        LineData lineData = new LineData();
-        for (int i = 0; i < 4; i++) {
-            List<Entry> yVals1 = new ArrayList<>();
-            LineDataSet lineDataSet = null;
-            switch (i) {
-                case 0:
-                    yVals1.add(new Entry(0f, 0f));
-                    yVals1.add(new Entry(8f, 6f));
-                    yVals1.add(new Entry(13f, 16f));
-                    yVals1.add(new Entry(23f, 3f));
-                    yVals1.add(new Entry(28f, 11f));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("123", yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
 
+    //显示2条柱状图
+    private void showBarChartMore(List<PcsHistoryDataDto> rows) {
+        List<Float> xAxisValues = new ArrayList<>();
+        List<List<Float>> yAxisValues = new ArrayList<>();
+        List<String> labels = new ArrayList<>();
+        List<Integer> colours = new ArrayList<>();
+        List<Float> x1 = new ArrayList<>();
+        List<Float> x2 = new ArrayList<>();
+
+        List<Float> yVals1 = new ArrayList<>();
+        List<Float> yVals2 = new ArrayList<>();
+        List<Float> yVals3 = new ArrayList<>();
+        List<BarEntry> yVals4 = new ArrayList<>();
+        float maxValue = 0;
+        float minValue = 0;
+        for (int index = 0, len = rows.size(); index < len; index++) {
+            mDataDto = rows;
+            PcsHistoryDataDto dto = rows.get(index);
+            xAxisValues.add((float) index);
+            float value1 = 0;
+            float value2 = 0;
+            float value3 = 0;
+            switch (type) {
+                case 7:
+                    value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
+                    value2 = mCharBarManage.getIntValue(dto.getInputCurrPv2());
+                    value3 = mCharBarManage.getIntValue(dto.getInputEneryPv());
+                    yVals1.add(value1);
+                    yVals2.add(value2);
+                    yVals3.add(value3);
+                    maxValue = maxValue > value1 ? maxValue : value1;
+                    maxValue = maxValue > value2 ? maxValue : value2;
+                    maxValue = maxValue > value3 ? maxValue : value3;
+                    minValue = minValue < value1 ? minValue : value1;
+                    minValue = minValue < value2 ? minValue : value2;
+                    minValue = minValue < value3 ? minValue : value3;
                     break;
+                case 8:
+                    value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
+                    yVals1.add(value1);
+                    yVals2.add(value2);
+                    yVals3.add(value3);
+                    maxValue = maxValue > value1 ? maxValue : value1;
+                    minValue = minValue < value1 ? minValue : value1;
+            }
+
+        }
+        switch (type) {
+            case 7:
+                yAxisValues.add(yVals1);
+                yAxisValues.add(yVals2);
+                yAxisValues.add(yVals3);
+                labels.add("PV1");
+                labels.add("PV2");
+                labels.add("Total");
+                colours.add(getResources().getColor(R.color.color_chart_three));
+                colours.add(getResources().getColor(R.color.color_chart_four));
+                colours.add(getResources().getColor(R.color.color_chart_one));
+                break;
+            case 8:
+                yAxisValues.add(yVals1);
+                labels.add("Capacity");
+                colours.add(getResources().getColor(R.color.color_chart_one));
+                break;
+            case 9:
+                yAxisValues.add(yVals1);
+                labels.add("Power");
+                colours.add(getResources().getColor(R.color.color_chart_one));
+                break;
+            case 10:
+                yAxisValues.add(yVals1);
+                labels.add("Power");
+                colours.add(getResources().getColor(R.color.color_chart_one));
+                break;
+            case 11:
+                yAxisValues.add(yVals1);
+                labels.add("Voltage");
+                colours.add(getResources().getColor(R.color.color_chart_three));
+                break;
+            case 12:
+                yAxisValues.add(yVals1);
+                labels.add("Frequency");
+                colours.add(getResources().getColor(R.color.color_chart_two));
+                break;
+            case 13:
+                yAxisValues.add(yVals1);
+                labels.add("Current");
+                colours.add(getResources().getColor(R.color.color_chart_one));
+                break;
+            case 14:
+                yAxisValues.add(yVals1);
+                labels.add("Power");
+                colours.add(getResources().getColor(R.color.color_chart_four));
+                break;
+        }
+        xAxisValues.add((float) xAxisValues.size());
+        mCharBarManage.showMoreBarChart(xAxisValues, yAxisValues, labels, colours, this)
+                .setXAxis(xAxisValues.get(xAxisValues.size() - 1) + 1, xAxisValues.get(0), xAxisValues.size() + 2)
+                .invalidate()
+                .setScalX();
+    }
+
+    /**
+     * @param rows
+     */
+    public void setLineData(List<PcsHistoryDataDto> rows) {
+        LineData lineData = new LineData();
+        mCharManager.removeAll();
+        if (rows != null && !rows.isEmpty()) {
+            mDataDto = rows;
+            mCharManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
+            List<Entry> yVals1 = new ArrayList<>();
+            List<Entry> yVals2 = new ArrayList<>();
+            List<Entry> yVals3 = new ArrayList<>();
+            List<Entry> yVals4 = new ArrayList<>();
+            int maxValue = 0;
+            int minValue = 0;
+            mLineMarket.clear();
+            for (int index = 0, len = rows.size(); index < len; index++) {
+                PcsHistoryDataDto dto = rows.get(index);
+                int value1 = 0;
+                int value2 = 0;
+                int value3 = 0;
+                int value4 = 0;
+
+                switch (type) {
+                    case 0:
+                        value1 = mCharBarManage.getIntValue(dto.getInputVoltPv1());
+                        value2 = mCharBarManage.getIntValue(dto.getInputVoltPv2());
+                        yVals1.add(new Entry(index, value1));
+                        yVals2.add(new Entry(index, value2));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        maxValue = maxValue > value2 ? maxValue : value2;
+                        minValue = minValue < value1 ? minValue : value1;
+                        minValue = minValue < value2 ? minValue : value2;
+                        break;
+                    case 1:
+                        value1 = mCharBarManage.getIntValue(dto.getInputPowerPv1());
+                        value2 = mCharBarManage.getIntValue(dto.getInputPowerPv2());
+                        yVals1.add(new Entry(index, value1));
+                        yVals2.add(new Entry(index, value2));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        maxValue = maxValue > value2 ? maxValue : value2;
+                        minValue = minValue < value1 ? minValue : value1;
+                        minValue = minValue < value2 ? minValue : value2;
+                        break;
+                    case 2:
+                        value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
+                        value2 = mCharBarManage.getIntValue(dto.getInputCurrPv2());
+                        yVals1.add(new Entry(index, value1));
+                        yVals2.add(new Entry(index, value2));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        maxValue = maxValue > value2 ? maxValue : value2;
+                        minValue = minValue < value1 ? minValue : value1;
+                        minValue = minValue < value2 ? minValue : value2;
+                        break;
+                    case 3:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 4:
+                        value1 = mCharBarManage.getIntValue(dto.getGridFreq());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 5:
+                        value1 = mCharBarManage.getIntValue(dto.getGridCurr());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 6:
+                        value1 = mCharBarManage.getIntValue(dto.getGridPower());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 7:
+                        value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
+                        value2 = mCharBarManage.getIntValue(dto.getInputCurrPv2());
+                        value3 = mCharBarManage.getIntValue(dto.getInputEneryPv());
+                        yVals1.add(new Entry(index, value1));
+                        yVals2.add(new Entry(index, value2));
+                        yVals3.add(new Entry(index, value3));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        maxValue = maxValue > value2 ? maxValue : value2;
+                        maxValue = maxValue > value3 ? maxValue : value3;
+                        minValue = minValue < value1 ? minValue : value1;
+                        minValue = minValue < value2 ? minValue : value2;
+                        minValue = minValue < value3 ? minValue : value3;
+                        break;
+                    case 8:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 9:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 10:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 11:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 12:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 13:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                    case 14:
+                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        yVals1.add(new Entry(index, value1));
+                        maxValue = maxValue > value1 ? maxValue : value1;
+                        minValue = minValue < value1 ? minValue : value1;
+                        break;
+                }
+
+            }
+
+            switch (type) {
+                case 0:
                 case 1:
-                    yVals1.add(new Entry(17f, 0f));
-                    yVals1.add(new Entry(18f, 13f));
-                    yVals1.add(new Entry(20f, 16f));
-                    yVals1.add(new Entry(23f, 3f));
-                    yVals1.add(new Entry(28f, 13f));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("1233", yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
-                    break;
                 case 2:
-                    yVals1.add(new Entry(20f, 0f));
-                    yVals1.add(new Entry(22f, 13f));
-                    yVals1.add(new Entry(26f, 22));
-                    yVals1.add(new Entry(28f, 5f));
-                    yVals1.add(new Entry(29f, 22));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("12223", yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
+                    lineData.addDataSet(mCharManager.setChartData("PV1", yVals1, R.color.color_chart_four, R.drawable.bg_color4));
+                    lineData.addDataSet(mCharManager.setChartData("PV2", yVals2, R.color.color_chart_one, R.drawable.bg_color1));
                     break;
                 case 3:
-                    yVals1.add(new Entry(0f, 0f));
-                    yVals1.add(new Entry(3f, 4f));
-                    yVals1.add(new Entry(5f, 2f));
-                    yVals1.add(new Entry(8f, 5f));
-                    yVals1.add(new Entry(10f, 0f));
-                    yVals1.add(new Entry(20f, 4f));
-                    yVals1.add(new Entry(24f, 3f));
-                    yVals1.add(new Entry(26f, 0f));
-                    lineDataSet = setChartData("我认为", yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
+                    lineData.addDataSet(mCharManager.setChartData("Voltage", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
+                    break;
+                case 4:
+                    lineData.addDataSet(mCharManager.setChartData("Freguency", yVals1, R.color.color_chart_two, R.drawable.bg_color2));
+                    break;
+                case 5:
+                    lineData.addDataSet(mCharManager.setChartData("Power", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 6:
+                    lineData.addDataSet(mCharManager.setChartData("PV1", yVals1, R.color.color_chart_four, R.drawable.bg_color4));
+                    break;
+                case 7:
+                    lineData.addDataSet(mCharManager.setChartData("Pv1", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
+                    lineData.addDataSet(mCharManager.setChartData("Pv2", yVals2, R.color.color_chart_four, R.drawable.bg_color4));
+                    lineData.addDataSet(mCharManager.setChartData("Total", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 8:
+                    lineData.addDataSet(mCharManager.setChartData("Power", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 9:
+                    lineData.addDataSet(mCharManager.setChartData("Power", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 10:
+                    lineData.addDataSet(mCharManager.setChartData("Power", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 11:
+                    lineData.addDataSet(mCharManager.setChartData("Voltage", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 12:
+                    lineData.addDataSet(mCharManager.setChartData("Frequency", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 13:
+                    lineData.addDataSet(mCharManager.setChartData("Current", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
+                    break;
+                case 14:
+                    lineData.addDataSet(mCharManager.setChartData("Power", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
                     break;
             }
-            lineData.addDataSet(lineDataSet);
-            // 3.将每一组折线数据集添加到折线数据中
-            lineData.setDrawValues(false);
-            // 4.将折线数据设置给图表
+            mCharManager.setYAxis(maxValue, minValue, (maxValue - minValue) / 10); // 设置Y轴
+            mCharManager.setData(lineData);
+
         }
-        lc.setData(lineData);
-        lc.invalidate();
     }
 
-    public LineDataSet setChartData(String name, List<Entry> yVals1, int color, int fillColor) {
-        // 1.获取一或多组Entry对象集合的数据
-        // 模拟数据1
-
-        // 2.分别通过每一组Entry对象集合的数据创建折线数据集
-        LineDataSet lineDataSet1 = new LineDataSet(yVals1, name);
-        lineDataSet1.setDrawCircles(false);// 不绘制圆点
-        lineDataSet1.setDrawCircleHole(false); // 不绘制圆洞，即为实心圆点
-        lineDataSet1.setColor(getResources().getColor(color)); // 设置为红色
-        lineDataSet1.setMode(LineDataSet.Mode.CUBIC_BEZIER); // 设置为贝塞尔曲线
-        lineDataSet1.setCubicIntensity(0.15f); // 强度
-        lineDataSet1.setCircleColor(Color.RED); // 设置圆点为颜色
-        lineDataSet1.setCircleRadius(0f);
-        lineDataSet1.setLineWidth(2f); // 设置线宽为2
-
-        lineDataSet1.setDrawFilled(true); // 启用填充
-        lineDataSet1.setFillAlpha(95); // 透明度
-        //设置曲线图渐填充渐变色
-        if (Utils.getSDKInt() >= 18) {
-            // fill drawable only supported on api level 18 and above
-            Drawable drawable = ContextCompat.getDrawable(this, fillColor);
-            drawable.setAlpha(160);
-            lineDataSet1.setFillDrawable(drawable);
-        } else {
-            lineDataSet1.setFillColor(Color.WHITE);
-        }
-        return lineDataSet1;
-
-    }
 
     private List<String> typeList = new ArrayList<>();
     private int type = 0;// 统计类型（0:pv输入电压，1:PV输入电流，2:pv输入功率，3:电网输出电压，4:电网输出频率，
     // 5:电网输出电流，6:电网输出功率，7:pv发电量，8:馈电网电量，9:电网用电量，10:负载用电量）
-
 
     private void showTypeDialog() {
 
@@ -482,6 +655,8 @@ public class InverterDetailActivity extends BaseActivity {
                             public void onClick(View view) {
                                 tvType.setText(typeList.get(wheelview.getCurrentItem()));
                                 type = wheelview.getCurrentItem();
+                                rbView1.setChecked(true);
+                                dateType = 0;
                                 dialog.dismiss();
                                 getPcsHistoryData();
 
@@ -592,6 +767,15 @@ public class InverterDetailActivity extends BaseActivity {
      * 没历史数据的时候
      */
     private void initNodataView() {
+        if (type == 0) {
+            lineChart.setVisibility(View.VISIBLE);
+            barChart.setVisibility(View.GONE);
+            mCharManager.removeAll();
+        } else {
+            lineChart.setVisibility(View.GONE);
+            barChart.setVisibility(View.VISIBLE);
+            mCharBarManage.clear();
+        }
     }
 
     /**
@@ -601,6 +785,42 @@ public class InverterDetailActivity extends BaseActivity {
      */
     private void initDataView(List<PcsHistoryDataDto> rows) {
         Log.e(TAG, "initDataView: " + rows.size());
+        dateTitle.setVisibility(View.GONE);
+        switch (type) {
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                if (dateType == 0) {
+                    dateTitle.setVisibility(View.VISIBLE);
+                    lineChart.setVisibility(View.VISIBLE);
+                    barChart.setVisibility(View.GONE);
+                    setLineData(rows);
+                } else {
+                    lineChart.setVisibility(View.GONE);
+                    barChart.setVisibility(View.VISIBLE);
+                    showBarChartMore(rows);
+                }
+                break;
+            default:
+                lineChart.setVisibility(View.VISIBLE);
+                barChart.setVisibility(View.GONE);
+                setLineData(rows);
+                break;
+        }
     }
 
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        int index = -1;
+        index = CharDateManager.getValueIndex(value, mDataDto == null ? 0 : mDataDto.size());
+        if (index == -1) {
+            return "";
+        } else {
+            return CharDateManager.getDates(mDataDto.get(index).getTime(), index, "HH:mm");
+        }
+    }
+
+
+    private List<PcsHistoryDataDto> mDataDto = new ArrayList<>();
 }

@@ -22,7 +22,6 @@ import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
-import com.jilian.powerstation.common.dto.AlarmInfoDto;
 import com.jilian.powerstation.common.dto.PowerInfoDetailDto;
 import com.jilian.powerstation.common.event.AlarmMsg;
 import com.jilian.powerstation.common.event.MessageEvent;
@@ -31,7 +30,6 @@ import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
 import com.jilian.powerstation.modul.activity.MainActivity;
-import com.jilian.powerstation.modul.activity.WarningDetailActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.IconUtils;
@@ -50,8 +48,6 @@ import com.umeng.socialize.media.UMWeb;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.socialize.utils.ShareBoardlistener;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
@@ -65,7 +61,7 @@ import interfaces.heweather.com.interfacesmodule.bean.weather.now.NowBase;
 import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 
-public class OneFragment extends BaseFragment  implements BDLocationListener {
+public class OneFragment extends BaseFragment implements BDLocationListener {
 
     private UserViewModel userViewModel;
     private TextView tvNumber1;
@@ -78,6 +74,20 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
     private SmartRefreshLayout srHasData;
     private ImageView ivWether;
     private TextView tvGoodAir;
+    private TextView tvPowerValue1;
+    private TextView tvPowerValue2;
+    private TextView tvPowerValue3;
+    private TextView tvPowerValue4;
+    private TextView tvPowerValue5;
+    private TextView tvPowerValue6;
+    private ImageView imgPower1;
+    private ImageView imgPower2;
+    private ImageView imgPower3;
+    private ImageView imgPower4;
+    private ImageView imgPower5;
+    private ImageView imgPower6;
+    private ImageView imgPower7;
+    private ImageView imgPower8;
 
 
     @Override
@@ -105,6 +115,23 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         tvNumber4 = (TextView) view.findViewById(R.id.tv_number_4);
         tvNumber5 = (TextView) view.findViewById(R.id.tv_number_5);
         tvNumber6 = (TextView) view.findViewById(R.id.tv_number_6);
+
+        tvPowerValue1 = (TextView) view.findViewById(R.id.tv_power_value1);
+        tvPowerValue2 = (TextView) view.findViewById(R.id.tv_power_value2);
+        tvPowerValue3 = (TextView) view.findViewById(R.id.tv_power_value3);
+        tvPowerValue4 = (TextView) view.findViewById(R.id.tv_power_value4);
+        tvPowerValue5 = (TextView) view.findViewById(R.id.tv_power_value5);
+        tvPowerValue6 = (TextView) view.findViewById(R.id.tv_power_value6);
+
+        imgPower1 = view.findViewById(R.id.img_station_7);
+        imgPower2 = view.findViewById(R.id.img_station_6);
+        imgPower3 = view.findViewById(R.id.img_station_5);
+        imgPower4 = view.findViewById(R.id.img_station_8);
+        imgPower5 = view.findViewById(R.id.img_station_9);
+        imgPower6 = view.findViewById(R.id.img_station_10);
+        imgPower7 = view.findViewById(R.id.img_station_3);
+        imgPower8 = view.findViewById(R.id.img_station_1);
+
         srHasData = (SmartRefreshLayout) view.findViewById(R.id.sr_has_data);
         srHasData.setEnableLoadMore(false);
         ivWether = (ImageView) view.findViewById(R.id.iv_wether);
@@ -138,9 +165,9 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
 
             }
         }
-        if(EmptyUtils.isNotEmpty(Constant.nowTmp)){
-           Integer inx =  Integer.parseInt(Constant.nowTmp);
-           tvGoodAir.setText((inx-3)+"~"+(inx+3));
+        if (EmptyUtils.isNotEmpty(Constant.nowTmp)) {
+            Integer inx = Integer.parseInt(Constant.nowTmp);
+            tvGoodAir.setText((inx - 3) + "~" + (inx + 3));
         }
 
 
@@ -221,6 +248,7 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
 
     private Lang lang;
     private Unit unit;
+
     @Override
     protected void initData() {
         lang = Lang.ENGLISH;
@@ -264,6 +292,55 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         tvNumber4.setText(data.getToday_own_consumption());
         tvNumber5.setText(data.getHistory_estimated_refund());
         tvNumber6.setText(data.getHistory_carbon_offset());
+        setPowerView(data.getPv2GRID(), tvPowerValue1, imgPower1, R.drawable.image_station_7, R.drawable.image_station_7, R.drawable.image_station_7);
+        setPowerView(data.getPv2BAT(), tvPowerValue2, imgPower2, R.drawable.image_station_6, R.drawable.image_station_6, R.drawable.image_station_6);
+        setPowerView(data.getBat2GRID(), tvPowerValue3, imgPower3, R.drawable.image_station_7, R.drawable.image_station_7, R.drawable.image_station_5);
+        setPowerView(data.getPv2LOAD(), tvPowerValue4, imgPower4, R.drawable.image_station_8, R.drawable.image_station_8, R.drawable.image_station_8);
+        setPowerView(data.getBat2LOAD(), tvPowerValue5, imgPower5, R.drawable.image_station_9, R.drawable.image_station_9, R.drawable.image_station_9);
+        setPowerView(data.getGrid2LOAD(), tvPowerValue6, imgPower6, R.drawable.image_station_10, R.drawable.image_station_10, R.drawable.image_station_10);
+        if (data.getBatteryStatus()==0){
+            imgPower7.setImageResource(R.drawable.image_station_3_0);
+        }else if (data.getBatteryStatus()==1){
+            imgPower7.setImageResource(R.drawable.image_station_3_1);
+        }else {
+            imgPower7.setImageResource(R.drawable.image_station_3_2);
+        }
+        if (data.getLoad_a_active_power()<0){
+            imgPower8.setImageResource(R.drawable.image_station_1_0);
+        }else {
+            imgPower8.setImageResource(R.drawable.image_station_1);
+        }
+    }
+
+    /**
+     * @param textView
+     * @param imageView
+     * @param input     输入
+     * @param output    输出
+     * @param nopower   没有能量
+     */
+    public void setPowerView(int value, TextView textView, ImageView imageView, int input, int output, int nopower) {
+        if (value == 0) {
+            textView.setText("");
+            imageView.setImageResource(nopower);
+        } else if (value < 0) {
+            textView.setText(value + "W");
+            imageView.setImageResource(output);
+        } else {
+            textView.setText(value + "W");
+            imageView.setImageResource(nopower);
+        }
+
+    }
+
+    private int getIntValue(String value) {
+        if (value == null) return 0;
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+            return 0;
+        }
+
     }
 
 private UMShareListener umShareListener;

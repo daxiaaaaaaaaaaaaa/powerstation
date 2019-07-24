@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class PowerInfoDetailDto implements Serializable {
 
    private String grid_a_active_power;//	false	Number		电网功率
-   private String load_a_active_power;//	false	Number		负载功率
+   private int load_a_active_power;//	false	Number		负载功率
    private String pv_output_power	;//false	number		光伏功率
    private String run_power	;//false	number		电池功率
    private String today_pv_production	;//false	number		当天发电量
@@ -17,58 +17,76 @@ public class PowerInfoDetailDto implements Serializable {
    private String totalEquipment	;//false	number	暂无值	智能设备运行数量
    private String history_estimated_refund;//	false	number		收益估值
    private String history_carbon_offset;//	false	number		总计二氧化碳减排
-    private String pv2GRID;//1
-    private String pv2BAT;//2
-    private String bat2GRID;//3
-    private String pv2LOAD;//4
-    private String bat2LOAD;//5
-    private String grid2LOAD;//6
+    private int pv2GRID;//1
+    private int pv2BAT;//2
+    private int bat2GRID;//3
+    private int pv2LOAD;//4
+    private int bat2LOAD;//5
+    private int grid2LOAD;//6
+    private int soc;//电池电量
+    private int batteryStatus;//电池状态
 
-    public String getPv2GRID() {
+    public int getSoc() {
+        return soc;
+    }
+
+    public void setSoc(int soc) {
+        this.soc = soc;
+    }
+
+    public int getBatteryStatus() {
+        return batteryStatus;
+    }
+
+    public void setBatteryStatus(int batteryStatus) {
+        this.batteryStatus = batteryStatus;
+    }
+
+    public int getPv2GRID() {
         return pv2GRID;
     }
 
-    public void setPv2GRID(String pv2GRID) {
+    public void setPv2GRID(int pv2GRID) {
         this.pv2GRID = pv2GRID;
     }
 
-    public String getPv2BAT() {
+    public int getPv2BAT() {
         return pv2BAT;
     }
 
-    public void setPv2BAT(String pv2BAT) {
+    public void setPv2BAT(int pv2BAT) {
         this.pv2BAT = pv2BAT;
     }
 
-    public String getBat2GRID() {
+    public int getBat2GRID() {
         return bat2GRID;
     }
 
-    public void setBat2GRID(String bat2GRID) {
+    public void setBat2GRID(int bat2GRID) {
         this.bat2GRID = bat2GRID;
     }
 
-    public String getPv2LOAD() {
+    public int getPv2LOAD() {
         return pv2LOAD;
     }
 
-    public void setPv2LOAD(String pv2LOAD) {
+    public void setPv2LOAD(int pv2LOAD) {
         this.pv2LOAD = pv2LOAD;
     }
 
-    public String getBat2LOAD() {
+    public int getBat2LOAD() {
         return bat2LOAD;
     }
 
-    public void setBat2LOAD(String bat2LOAD) {
+    public void setBat2LOAD(int bat2LOAD) {
         this.bat2LOAD = bat2LOAD;
     }
 
-    public String getGrid2LOAD() {
+    public int getGrid2LOAD() {
         return grid2LOAD;
     }
 
-    public void setGrid2LOAD(String grid2LOAD) {
+    public void setGrid2LOAD(int grid2LOAD) {
         this.grid2LOAD = grid2LOAD;
     }
 
@@ -76,7 +94,7 @@ public class PowerInfoDetailDto implements Serializable {
     public String toString() {
         return "PowerInfoDetailDto{" +
                 "grid_a_active_power='" + grid_a_active_power + '\'' +
-                ", load_a_active_power='" + load_a_active_power + '\'' +
+                ", load_a_active_power=" + load_a_active_power +
                 ", pv_output_power='" + pv_output_power + '\'' +
                 ", run_power='" + run_power + '\'' +
                 ", today_pv_production='" + today_pv_production + '\'' +
@@ -88,7 +106,23 @@ public class PowerInfoDetailDto implements Serializable {
                 ", totalEquipment='" + totalEquipment + '\'' +
                 ", history_estimated_refund='" + history_estimated_refund + '\'' +
                 ", history_carbon_offset='" + history_carbon_offset + '\'' +
+                ", pv2GRID=" + pv2GRID +
+                ", pv2BAT=" + pv2BAT +
+                ", bat2GRID=" + bat2GRID +
+                ", pv2LOAD=" + pv2LOAD +
+                ", bat2LOAD=" + bat2LOAD +
+                ", grid2LOAD=" + grid2LOAD +
+                ", soc=" + soc +
+                ", batteryStatus=" + batteryStatus +
                 '}';
+    }
+
+    public int getLoad_a_active_power() {
+        return load_a_active_power;
+    }
+
+    public void setLoad_a_active_power(int load_a_active_power) {
+        this.load_a_active_power = load_a_active_power;
     }
 
     public String getGrid_a_active_power() {
@@ -99,13 +133,6 @@ public class PowerInfoDetailDto implements Serializable {
         this.grid_a_active_power = grid_a_active_power;
     }
 
-    public String getLoad_a_active_power() {
-        return load_a_active_power;
-    }
-
-    public void setLoad_a_active_power(String load_a_active_power) {
-        this.load_a_active_power = load_a_active_power;
-    }
 
     public String getPv_output_power() {
         return pv_output_power;

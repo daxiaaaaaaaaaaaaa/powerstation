@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_F2F2F2"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
         android:background="@color/white"
         android:paddingLeft="@dimen/widget_size_16"
         android:paddingRight="@dimen/widget_size_16">
@@ -29,15 +31,15 @@
             tools:text="PV input voltage" />
     </LinearLayout>
 
-    <android.support.design.widget.TabLayout
+    <include
+        layout="@layout/layout_date_title1"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:visibility="gone" />
+        android:layout_height="42dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginLeft="@dimen/widget_size_16"
+        android:paddingLeft="@dimen/widget_size_16"
         android:paddingRight="@dimen/widget_size_16">
 
         <TextView
@@ -55,8 +57,8 @@
             android:drawableRight="@drawable/image_calendar"
             android:drawablePadding="3dp"
             android:gravity="center_vertical"
-            tools:text="07/04/2019"
-            android:textColor="#3298DB" />
+            android:textColor="#3298DB"
+            tools:text="07/04/2019" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,15 +70,24 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
+        android:paddingTop="@dimen/widget_size_12"
         android:text="Voltage (V)" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/widget_size_250"
         android:layout_centerInParent="true"
         android:background="@color/white" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_250"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:visibility="gone" />
 </LinearLayout>
