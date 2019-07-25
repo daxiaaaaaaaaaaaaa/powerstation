@@ -18,6 +18,7 @@ import com.jilian.powerstation.modul.activity.LoginActivity;
 import com.jilian.powerstation.ssl.SslContextFactory;
 import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.ToastUitl;
+import com.mob.MobSDK;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -99,7 +100,8 @@ public class MyApplication extends MultiDexApplication {
 
         HeConfig.init("HE1907221513361565", "4636ab5d580b4ef3bac3423ae1e39bbf");
         HeConfig.switchToFreeServerNode();
-        initYOUMENG();
+       // initYOUMENG();
+        MobSDK.init(this);
         initBaidu();
 
     }

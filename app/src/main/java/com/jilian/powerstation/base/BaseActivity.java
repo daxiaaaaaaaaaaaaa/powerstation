@@ -22,11 +22,20 @@ import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.dialog.LoadingDialog;
+import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
+import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
+import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
+import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
+import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.utils.AndroidWorkaround;
 import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.lljjcoder.citywheel.CityConfig;
 import com.lljjcoder.style.citypickerview.CityPickerView;
+
+import cn.sharesdk.facebook.Facebook;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.twitter.Twitter;
 
 /**
  * Activity 基类3
@@ -49,6 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +87,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         StatusBarUtil.setStatusBarMode(this, true, R.color.white);
 
     }
-    public LoginDto getLoginDto(){
-        return SPUtil.getData(Constant.SP_VALUE.SP,Constant.SP_VALUE.LOGIN_DTO,LoginDto.class,null);
+
+    public LoginDto getLoginDto() {
+        return SPUtil.getData(Constant.SP_VALUE.SP, Constant.SP_VALUE.LOGIN_DTO, LoginDto.class, null);
     }
+
     //地址选择对象
     private CityPickerView mPicker;
 
@@ -156,6 +168,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return mPicker;
 
     }
+
     private void initStatus() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -249,6 +262,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 设置透明标题栏
+     *
      * @param title
      * @param backListener
      */
@@ -257,6 +271,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setleftImage(R.drawable.image_white_back, true, backListener);
         setTitleBg(R.color.translucent_background);
     }
+
     public void setNormalTitle(String title, View.OnClickListener backListener, String rightText, View.OnClickListener rightListener) {
         setCenterTitle(title, "#FFFFFF");
         setleftImage(R.drawable.image_back, true, backListener);
@@ -345,6 +360,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         imageView.setVisibility(View.VISIBLE);
 
     }
+
     /**
      * 设置右边图片
      **/
@@ -355,6 +371,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         imageView.setVisibility(View.VISIBLE);
 
     }
+
     /**
      * 设置背景图片
      **/
@@ -415,8 +432,89 @@ public abstract class BaseActivity extends AppCompatActivity {
         getLoadingDialog().showDialog();
     }
 
-    public void hideLoadingDialog()  {
+    public void hideLoadingDialog() {
         getLoadingDialog().dismiss();
+    }
+
+
+    /**
+     * 选择设置配置类型对话框
+     */
+    public void showShareDialog() {
+        NiceDialog.init()
+                .setLayoutId(R.layout.dialog_share_select)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
+                        dialog.setOutCancel(false);
+
+
+                        LinearLayout llOne = (LinearLayout) holder.getView(R.id.ll_one);
+                        LinearLayout llTwo = (LinearLayout) holder.getView(R.id.ll_two);
+
+                        ImageView ivClose = (ImageView) holder.getView(R.id.iv_close);
+
+
+                        ivClose.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        llOne.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                showShare(Twitter.NAME);
+                            }
+                        });
+                        llTwo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                showShare(Facebook.NAME);
+
+                            }
+                        });
+
+
+                    }
+                })
+                .setOutCancel(true)
+                .setShowBottom(true)
+                .show(getSupportFragmentManager());
+    }
+
+
+    public void showShare(String platform) {
+        final OnekeyShare oks = new OnekeyShare();
+        //指定分享的平台，如果为空，还是会调用九宫格的平台列表界面
+        if (platform != null) {
+            oks.setPlatform(platform);
+        }
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
+        oks.setTitle("标题");
+        // titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
+        oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("我是分享文本");
+        //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+        oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("我是测试评论文本");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite("ShareSDK");
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://sharesdk.cn");
+
+        //启动分享
+        oks.show(this);
     }
 
 }

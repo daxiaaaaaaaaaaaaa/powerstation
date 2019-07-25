@@ -54,6 +54,11 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import cn.sharesdk.facebook.Facebook;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.twitter.Twitter;
 import interfaces.heweather.com.interfacesmodule.bean.Lang;
 import interfaces.heweather.com.interfacesmodule.bean.Unit;
 import interfaces.heweather.com.interfacesmodule.bean.basic.Basic;
@@ -112,7 +117,7 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showShareDialog();
+                ((MainActivity)getActivity()).showShareDialog();
             }
         });
 
@@ -145,68 +150,9 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
 
 
     }
-    /**
-     * 选择设置配置类型对话框
-     */
-    private void showShareDialog() {
-        NiceDialog.init()
-                .setLayoutId(R.layout.dialog_share_select)
-                .setConvertListener(new ViewConvertListener() {
-                    @Override
-                    public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
-                        dialog.setOutCancel(false);
 
 
 
-                        LinearLayout  llOne = (LinearLayout) holder.getView(R.id.ll_one);
-                        LinearLayout  llTwo = (LinearLayout) holder.getView(R.id.ll_two);
-
-                        llOne.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                share(1);
-                            }
-                        });
-                        llTwo.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                share(2);
-                            }
-                        });
-
-
-                    }
-                })
-                .setShowBottom(true)
-                .show(getActivity().getSupportFragmentManager());
-    }
-
-    private void share(int type) {
-        UMImage image = new UMImage(getmActivity(), R.mipmap.ic_launcher);//分享图标
-        final UMWeb web = new UMWeb("http://www.baidu.com/"); //切记切记 这里分享的链接必须是http开头
-        web.setTitle("测试分享标题");//标题
-        web.setThumb(image);  //缩略图
-        web.setDescription("测下分享内容");//描述
-        if(type==1){
-            new ShareAction(activity).setPlatform(SHARE_MEDIA.FACEBOOK)
-                    .withMedia(web)
-                    .setCallback(umShareListener)
-                    .share();
-        }
-        if(type==2){
-            new ShareAction(activity).setPlatform(SHARE_MEDIA.FACEBOOK)
-                    .withMedia(web)
-                    .setCallback(umShareListener)
-                    .share();
-        }
-
-
-
-
-
-    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -227,6 +173,11 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         unit = Unit.METRIC;
         getPowerInfo();
         startLocationCilent();
+
+    }
+
+    @Override
+    protected void initListener() {
 
     }
 
@@ -266,34 +217,7 @@ public class OneFragment extends BaseFragment  implements BDLocationListener {
         tvNumber6.setText(data.getHistory_carbon_offset());
     }
 
-private UMShareListener umShareListener;
-    @Override
-    protected void initListener() {
-        umShareListener = new UMShareListener() {
-            @Override
-            public void onStart(SHARE_MEDIA platform) {
-                //分享开始的回调
-            }
 
-            @Override
-            public void onResult(SHARE_MEDIA platform) {
-           Toast.makeText(getmActivity(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onError(SHARE_MEDIA platform, Throwable t) {
-           Toast.makeText(getmActivity(),platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(getmActivity(),platform + " 分享取消了", Toast.LENGTH_SHORT).show();
-            }
-        };
-
-
-    }
 
     /**
      * 开启定位

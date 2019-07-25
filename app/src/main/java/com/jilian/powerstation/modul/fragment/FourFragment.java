@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
+import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.CinemaTabAdapter;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.jilian.powerstation.views.NoScrollViewPager;
@@ -60,7 +61,7 @@ public class FourFragment extends BaseFragment {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((MainActivity)getActivity()).showShareDialog();
             }
         });
 
