@@ -25,7 +25,7 @@
 
                 <ImageView
                     android:layout_marginTop="@dimen/widget_size_50"
-                    android:id="@+id/user_info_"
+                    android:id="@+id/iv_share"
                     android:layout_width="@dimen/widget_size_27"
                     android:layout_height="@dimen/widget_size_20"
                     android:layout_alignParentRight="true"

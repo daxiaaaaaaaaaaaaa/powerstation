@@ -18,6 +18,7 @@ import com.jilian.powerstation.common.dto.PcsInfoDto;
 import com.jilian.powerstation.common.dto.PcsInfoListDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
 import com.jilian.powerstation.modul.activity.InverterDetailActivity;
+import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.InverDataAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
@@ -40,6 +41,9 @@ public class InverterFragment extends BaseFragment implements CustomItemClickLis
     private SmartRefreshLayout srNoData;
     private UserViewModel userViewModel;
 
+    public RecyclerView getRvList() {
+        return rvList;
+    }
 
     @Override
     protected void loadData() {
@@ -65,6 +69,7 @@ public class InverterFragment extends BaseFragment implements CustomItemClickLis
         srHasData.setEnableLoadMore(false);
         srNoData.setEnableLoadMore(false);
         iniRecycle();
+
     }
 
     @Override
@@ -99,6 +104,8 @@ public class InverterFragment extends BaseFragment implements CustomItemClickLis
 
     @Override
     protected void initListener() {
+
+
         srHasData.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -126,9 +133,9 @@ public class InverterFragment extends BaseFragment implements CustomItemClickLis
     @Override
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(getActivity(), InverterDetailActivity.class);
-        intent.putExtra("data",mDatas.get(position));
-        intent.putExtra("sn",getActivity().getIntent().getStringExtra("sn"));
-        intent.putExtra("id",mDatas.get(position).getId());
+        intent.putExtra("data", mDatas.get(position));
+        intent.putExtra("sn", getActivity().getIntent().getStringExtra("sn"));
+        intent.putExtra("id", mDatas.get(position).getId());
         startActivity(intent);
     }
 }

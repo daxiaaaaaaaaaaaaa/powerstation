@@ -1,19 +1,30 @@
 package com.jilian.powerstation.base;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +39,18 @@ import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
 import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.utils.AndroidWorkaround;
+import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.StatusBarUtil;
 import com.lljjcoder.citywheel.CityConfig;
 import com.lljjcoder.style.citypickerview.CityPickerView;
+import com.umeng.socialize.media.UMImage;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -440,7 +459,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 选择设置配置类型对话框
      */
-    public void showShareDialog() {
+    public void showShareDialog(ScrollView scrollView, Activity activity, RecyclerView recyclerView, NestedScrollView nestedScrollView) {
         NiceDialog.init()
                 .setLayoutId(R.layout.dialog_share_select)
                 .setConvertListener(new ViewConvertListener() {
@@ -465,6 +484,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
+                                initPhoto(scrollView, activity, recyclerView,nestedScrollView);
                                 showShare(Twitter.NAME);
                             }
                         });
@@ -472,6 +492,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
+                                initPhoto(scrollView, activity, recyclerView,nestedScrollView);
                                 showShare(Facebook.NAME);
 
                             }
@@ -485,6 +506,47 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .show(getSupportFragmentManager());
     }
 
+    /**
+     * 保存截图
+     *
+     * @param scrollView
+     * @param activity
+     * @param recyclerView
+     */
+    private void initPhoto(ScrollView scrollView, Activity activity, RecyclerView recyclerView,NestedScrollView nestedScrollView) {
+        //scrollView
+        if (EmptyUtils.isNotEmpty(scrollView)) {
+            File file = new File(Environment.getExternalStorageDirectory() + "/share.jpg");
+            if (file.exists()) {
+                file.delete();
+            }
+            getScrollViewBitmap(scrollView, Environment.getExternalStorageDirectory() + "/share.jpg");
+        }
+        //activity
+        if (EmptyUtils.isNotEmpty(activity)) {
+            File file = new File(Environment.getExternalStorageDirectory() + "/share.jpg");
+            if (file.exists()) {
+                file.delete();
+            }
+            takeScreenShot(activity, Environment.getExternalStorageDirectory() + "/share.jpg");
+        }
+        //recyclerView
+        if (EmptyUtils.isNotEmpty(recyclerView)) {
+            File file = new File(Environment.getExternalStorageDirectory() + "/share.jpg");
+            if (file.exists()) {
+                file.delete();
+            }
+            getListViewBitmap(recyclerView, Environment.getExternalStorageDirectory() + "/share.jpg");
+        }
+        if (EmptyUtils.isNotEmpty(nestedScrollView)) {
+            File file = new File(Environment.getExternalStorageDirectory() + "/share.jpg");
+            if (file.exists()) {
+                file.delete();
+            }
+            getNestScrollViewBitmap(nestedScrollView, Environment.getExternalStorageDirectory() + "/share.jpg");
+        }
+    }
+
 
     public void showShare(String platform) {
         final OnekeyShare oks = new OnekeyShare();
@@ -495,26 +557,159 @@ public abstract class BaseActivity extends AppCompatActivity {
         //关闭sso授权
         oks.disableSSOWhenAuthorize();
         // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-        oks.setTitle("标题");
-        // titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
-        oks.setTitleUrl("http://sharesdk.cn");
-        // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
-        //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
-        oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
-        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-        // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://sharesdk.cn");
-        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-        oks.setComment("我是测试评论文本");
-        // site是分享此内容的网站名称，仅在QQ空间使用
-        oks.setSite("ShareSDK");
-        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        oks.setSiteUrl("http://sharesdk.cn");
-
+//        oks.setTitle("标题");
+//        // titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
+//      //  oks.setTitleUrl("http://sharesdk.cn");
+//        // text是分享文本，所有平台都需要这个字段
+//        oks.setText("我是分享文本");
+        oks.setImagePath(Environment.getExternalStorageDirectory() + "/share.jpg");
+//        //分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+//        oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
+//        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+//        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+//        // url仅在微信（包括好友和朋友圈）中使用
+//        oks.setUrl("http://sharesdk.cn");
+//        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+//        oks.setComment("我是测试评论文本");
+//        // site是分享此内容的网站名称，仅在QQ空间使用
+//        oks.setSite("ShareSDK");
+//        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+//        oks.setSiteUrl("http://sharesdk.cn");
         //启动分享
         oks.show(this);
     }
+    /**
+     * 截取scrollview的屏幕
+     **/
+    public Bitmap getNestScrollViewBitmap(NestedScrollView scrollView, String picpath) {
+        int h = 0;
+        Bitmap bitmap;
+        // 获取listView实际高度
+        for (int i = 0; i < scrollView.getChildCount(); i++) {
+            h += scrollView.getChildAt(i).getHeight();
+        }
+
+        // 创建对应大小的bitmap
+        bitmap = Bitmap.createBitmap(scrollView.getWidth(), h,
+                Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bitmap);
+        scrollView.draw(canvas);
+        // 测试输出
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(picpath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (null != out) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.flush();
+                out.close();
+            }
+        } catch (IOException e) {
+        }
+        return bitmap;
+    }
+    /**
+     * 截取scrollview的屏幕
+     **/
+    public Bitmap getScrollViewBitmap(ScrollView scrollView, String picpath) {
+        int h = 0;
+        Bitmap bitmap;
+        // 获取listView实际高度
+        for (int i = 0; i < scrollView.getChildCount(); i++) {
+            h += scrollView.getChildAt(i).getHeight();
+        }
+
+        // 创建对应大小的bitmap
+        bitmap = Bitmap.createBitmap(scrollView.getWidth(), h,
+                Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bitmap);
+        scrollView.draw(canvas);
+        // 测试输出
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(picpath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (null != out) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.flush();
+                out.close();
+            }
+        } catch (IOException e) {
+        }
+        return bitmap;
+    }
+
+
+    // 获取指定Activity的截屏，保存到png文件
+    public static Bitmap takeScreenShot(Activity activity, String picpath) {
+        // View是你需要截图的View
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap b1 = view.getDrawingCache();
+
+        // 获取状态栏高度
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+
+
+        // 获取屏幕长和高
+        int width = activity.getWindowManager().getDefaultDisplay().getWidth();
+        int height = activity.getWindowManager().getDefaultDisplay()
+                .getHeight();
+        // 去掉标题栏
+        // Bitmap b = Bitmap.createBitmap(b1, 0, 25, 320, 455);
+        Bitmap bitmap = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height
+                - statusBarHeight);
+        view.destroyDrawingCache();
+        savePic(bitmap, picpath);
+        return bitmap;
+    }
+
+    // 保存到sdcard
+    public static void savePic(Bitmap b, String strFileName) {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(strFileName);
+            if (null != fos) {
+                b.compress(Bitmap.CompressFormat.PNG, 90, fos);
+                fos.flush();
+                fos.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 截图listview RecyclerView
+     **/
+    public static Bitmap getListViewBitmap(RecyclerView listView, String picpath) {
+        int h = 0;
+        Bitmap bitmap;
+        // 获取listView实际高度
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            h += listView.getChildAt(i).getHeight();
+        }
+
+        // 创建对应大小的bitmap
+        bitmap = Bitmap.createBitmap(listView.getWidth(), h,
+                Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bitmap);
+        listView.draw(canvas);
+        savePic(bitmap, picpath);
+        return bitmap;
+    }
+
 
 }

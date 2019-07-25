@@ -61,7 +61,19 @@ public class FourFragment extends BaseFragment {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).showShareDialog();
+                if(viewPager.getCurrentItem()==0){
+                    ((MainActivity) getmActivity()).showShareDialog(null, null,inverterFragment.getRvList(),null );
+                }
+                if(viewPager.getCurrentItem()==1){
+                    ((MainActivity) getmActivity()).showShareDialog(null, null,batteryFragment.getRvList() ,null);
+                }
+
+                if(viewPager.getCurrentItem()==2){
+                    ((MainActivity) getmActivity()).showShareDialog(null, getmActivity(),null ,null);
+                }
+                if(viewPager.getCurrentItem()==3){
+                    ((MainActivity) getmActivity()).showShareDialog(null, getmActivity(),null ,null);
+                }
             }
         });
 
@@ -83,12 +95,15 @@ public class FourFragment extends BaseFragment {
     protected void initListener() {
 
     }
-
+    private InverterFragment inverterFragment;
+    private BatteryFragment batteryFragment;
     public void initViewpage() {
+        inverterFragment = new InverterFragment();
+        batteryFragment = new BatteryFragment();
         viewPager.setOffscreenPageLimit(4);
         mlist = new ArrayList<>();
-        mlist.add(new InverterFragment());
-        mlist.add(new BatteryFragment());
+        mlist.add(inverterFragment);
+        mlist.add(batteryFragment);
         mlist.add(new SmartFragment());
         mlist.add(new WarningFragment());
 

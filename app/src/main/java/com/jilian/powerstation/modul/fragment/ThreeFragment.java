@@ -57,7 +57,7 @@ public class ThreeFragment extends BaseFragment {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).showShareDialog();
+                ((MainActivity)getActivity()).showShareDialog(null,getmActivity(),null,null);
             }
         });
 

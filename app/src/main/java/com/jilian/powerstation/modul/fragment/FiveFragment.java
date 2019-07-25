@@ -23,6 +23,7 @@ import com.jilian.powerstation.common.event.MessageEvent;
 import com.jilian.powerstation.modul.activity.AboutActivity;
 import com.jilian.powerstation.modul.activity.EssListActivity;
 import com.jilian.powerstation.modul.activity.LoginActivity;
+import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.activity.MyInfoActivity;
 import com.jilian.powerstation.modul.activity.UpdatePwdActivity;
 import com.jilian.powerstation.modul.activity.UpdateUerActivity;
@@ -51,6 +52,9 @@ public class FiveFragment extends BaseFragment {
     private View tvAbout;
     private TextView userLogout;
     private ImageView userInfoEditor;
+    private ImageView ivShare;
+
+
 
 
     @Override
@@ -80,6 +84,7 @@ public class FiveFragment extends BaseFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         EventBus.getDefault().register(this);
+        ivShare = (ImageView) view.findViewById(R.id.iv_share);
         ivHead = (CircularImageView) view.findViewById(R.id.iv_head);
         tvName = (TextView) view.findViewById(R.id.tv_name);
         tvId = (TextView) view.findViewById(R.id.tv_id);
@@ -136,6 +141,13 @@ public class FiveFragment extends BaseFragment {
 
     @Override
     protected void initListener() {
+
+        ivShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getmActivity()).showShareDialog(null, getmActivity(),null,null );
+            }
+        });
 
 
         ivHead.setOnClickListener(new View.OnClickListener() {

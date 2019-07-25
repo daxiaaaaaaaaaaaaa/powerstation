@@ -6,11 +6,13 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -79,7 +81,7 @@ public class BatteryDetailActivity extends BaseActivity {
     private BatteryfoDto data;
     private TextView tvSelectDate;
     private TextView tvType;
-
+    private ScrollView scrollView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +112,7 @@ public class BatteryDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
         tvType = (TextView) findViewById(R.id.tv_type);
         tvSelectDate = (TextView) findViewById(R.id.tv_select_date);
         ivHead = (ImageView) findViewById(R.id.iv_head);
@@ -127,7 +130,7 @@ public class BatteryDetailActivity extends BaseActivity {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showShareDialog(scrollView,null,null,null);
             }
         });
         lc.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {

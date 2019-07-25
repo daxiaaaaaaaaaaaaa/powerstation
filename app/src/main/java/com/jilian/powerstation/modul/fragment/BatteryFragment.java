@@ -18,6 +18,7 @@ import com.jilian.powerstation.common.dto.BatteryInfoListDto;
 import com.jilian.powerstation.common.dto.BatteryfoDto;
 import com.jilian.powerstation.listener.CustomItemClickListener;
 import com.jilian.powerstation.modul.activity.BatteryDetailActivity;
+import com.jilian.powerstation.modul.activity.MainActivity;
 import com.jilian.powerstation.modul.adapter.BatteryDataAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.EmptyUtils;
@@ -39,6 +40,9 @@ public class BatteryFragment extends BaseFragment implements CustomItemClickList
     private SmartRefreshLayout srNoData;
     private UserViewModel userViewModel;
 
+    public RecyclerView getRvList() {
+        return rvList;
+    }
 
     @Override
     protected void loadData() {

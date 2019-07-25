@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseFragment;
@@ -34,6 +35,9 @@ public class TwoFragment extends BaseFragment  {
 
     FragmentPagerAdapter adapter;
     ArrayList<Fragment> fragments = new ArrayList<>();
+    private ScrollView scrollView;
+
+
 
     @Override
     protected void loadData() {
@@ -53,6 +57,7 @@ public class TwoFragment extends BaseFragment  {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         viewPager = view.findViewById(R.id.vp_two);
         radioGroup = view.findViewById(R.id.rg_date);
         viewPager.setScanScroll(false);
@@ -60,7 +65,7 @@ public class TwoFragment extends BaseFragment  {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).showShareDialog();
+                ((MainActivity)getActivity()).showShareDialog(null,getmActivity(),null,null);
             }
         });
 

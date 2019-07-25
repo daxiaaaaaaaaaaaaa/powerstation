@@ -5,6 +5,7 @@
             android:layout_height="match_parent"
             android:background="@color/color_F2F2F2"
             android:orientation="vertical"
+            android:id="@+id/scrollView"
             tools:context=".modul.activity.BatteryDetailActivity">
 
     <LinearLayout

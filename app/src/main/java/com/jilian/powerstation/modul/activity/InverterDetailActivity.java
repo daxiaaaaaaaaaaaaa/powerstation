@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -101,6 +102,9 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     private ImageView ivHead;
     private RadioButton rbView1;
     private int dateType;
+    private NestedScrollView nestedScrollView;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,6 +130,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
 
     @Override
     public void initView() {
+        nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
         rbView1 = findViewById(R.id.rb_view1);
         dateTitle = findViewById(R.id.rg_date);
         ivHead = (ImageView) findViewById(R.id.iv_head);
@@ -160,7 +165,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showShareDialog(null,null,null,nestedScrollView);
             }
         });
 

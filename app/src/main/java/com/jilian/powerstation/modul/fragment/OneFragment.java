@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +94,8 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
     private ImageView imgPower6;
     private ImageView imgPower7;
     private ImageView imgPower8;
+    private ScrollView scrollView;
+
 
 
     @Override
@@ -121,6 +124,7 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
         tvNumber5 = (TextView) view.findViewById(R.id.tv_number_5);
         tvNumber6 = (TextView) view.findViewById(R.id.tv_number_6);
 
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         tvPowerValue1 = (TextView) view.findViewById(R.id.tv_power_value1);
         tvPowerValue2 = (TextView) view.findViewById(R.id.tv_power_value2);
         tvPowerValue3 = (TextView) view.findViewById(R.id.tv_power_value3);
@@ -144,7 +148,7 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).showShareDialog();
+                ((MainActivity)getActivity()).showShareDialog(scrollView,null,null,null);
             }
         });
 
