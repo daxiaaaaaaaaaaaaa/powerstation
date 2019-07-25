@@ -16,6 +16,28 @@ import java.util.List;
  * Details：
  */
 public class CharDateManager {
+
+
+    /**
+     * @param time
+     * @return
+     */
+    public static String getDate(List<ReportDto> list, float time, String type) {
+        int currTime = (int) time;
+        String dateStr = currTime + "";
+        if (currTime > list.size()) {
+            dateStr = "";
+        } else {
+            if ("MM".endsWith(type)) {
+                dateStr = getMonthSimple(list.get(currTime - 1).getTime());
+            } else {
+                SimpleDateFormat sf = new SimpleDateFormat(type);
+                dateStr = sf.format(new Date(list.get(currTime - 1).getTime()));
+            }
+        }
+        return dateStr;
+    }
+
     /**
      * @param time
      * @return
@@ -28,12 +50,47 @@ public class CharDateManager {
         } else {
             if ("MM".endsWith(type)) {
                 dateStr = getMonthSimple(list.get(currTime - 1).getTime());
-            }else {
+            } else {
                 SimpleDateFormat sf = new SimpleDateFormat(type);
                 dateStr = sf.format(new Date(list.get(currTime - 1).getTime()));
             }
         }
         return dateStr;
+    }
+
+    /**
+     * @param currTime
+     * @return
+     */
+    public static String getDates(long time, int currTime, String type) {
+        String dateStr = currTime + "";
+        if (time == -1) {
+            return "";
+        } else {
+            if ("MM".endsWith(type)) {
+                dateStr = getMonthSimple(time);
+            } else {
+                SimpleDateFormat sf = new SimpleDateFormat(type);
+                dateStr = sf.format(new Date(time));
+            }
+        }
+        return dateStr;
+    }
+
+    public static int getIndex(float time, int size) {
+        int currTime = (int) time;
+        if (currTime < 1 || currTime > size) {
+            return -1;
+        }
+        return currTime - 1;
+    }
+
+    public static int getValueIndex(float time, int size) {
+        int currTime = (int) time;
+        if (currTime < 0 || currTime >= size) {
+            return -1;
+        }
+        return currTime;
     }
 
     /**

@@ -10,29 +10,38 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.IMarker;
+import com.github.mikephil.charting.data.BarLineScatterCandleBubbleData;
+import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
+import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
+import com.google.gson.Gson;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.manege.CharDateManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 public class CostomMarket implements IMarker {
-
+    LineChart lineChart;
     private HashMap<String, List<Entry>> entryMap;
     private Entry mEntry;
     private HashMap<String, Integer> colorMap;
     private HashMap<String, String> valueMap;
     private List<MarkerInfo> markerInfos;
+    private HashMap<String, Highlight> mHighlightMap;
+    private List<Highlight> mHighlights;
     private float width, height;
     private Context context;
     private String title = "";
@@ -44,7 +53,7 @@ public class CostomMarket implements IMarker {
     private int type = -1; //X轴的数据类型
     private int bgColor;
     private int strokerColor;
-    private  int textColor;
+    private int textColor;
     private float groupSpace = 0;
 
 
@@ -56,20 +65,21 @@ public class CostomMarket implements IMarker {
         entryMap = new HashMap<>();
         colorMap = new HashMap<>();
         valueMap = new HashMap<>();
+        mHighlightMap = new HashMap<>();
+        mHighlights = new ArrayList<>();
         markerInfos = new ArrayList<>();
+
         init();
     }
 
     public CostomMarket(Context context, float width, float height, int type) {
-        this.width = width;
-        this.height = height;
+        this(context, width, height);
         this.type = type;
-        this.context = context.getApplicationContext();
-        entryMap = new HashMap<>();
-        colorMap = new HashMap<>();
-        valueMap = new HashMap<>();
-        markerInfos = new ArrayList<>();
-        init();
+    }
+
+    public CostomMarket(Context context, LineChart lineChart, float width, float height, int type) {
+        this(context, width, height, type);
+        this.lineChart = lineChart;
     }
 
     private void init() {
@@ -91,6 +101,11 @@ public class CostomMarket implements IMarker {
         rect.bottom = height - Utils.convertDpToPixel(100);
     }
 
+    public void clear() {
+        entryMap.clear();
+        colorMap.clear();
+    }
+
     public void putValue(String key, List<Entry> value, int color) {
         entryMap.put(key, value);
         colorMap.put(key, color);
@@ -109,13 +124,83 @@ public class CostomMarket implements IMarker {
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         this.mEntry = e;
+        if (lineChart != null) {
+            mHighlights = getHighlightsAtXValue(e.getX(), highlight.getYPx(), highlight.getYPx());
+        }
         markerInfos = getEntrys(mEntry);
         title = CharDateManager.getDateForm(type, mEntry.getX());
     }
 
 
+    protected List<Highlight> mHighlightBuffer = new ArrayList<Highlight>();
+
+    protected List<Highlight> getHighlightsAtXValue(float xVal, float x, float y) {
+
+        mHighlightBuffer.clear();
+
+        BarLineScatterCandleBubbleData data = lineChart.getData();
+
+        if (data == null)
+            return mHighlightBuffer;
+
+        for (int i = 0, dataSetCount = data.getDataSetCount(); i < dataSetCount; i++) {
+
+            IDataSet dataSet = data.getDataSetByIndex(i);
+
+            // don't include DataSets that cannot be highlighted
+            if (!dataSet.isHighlightEnabled())
+                continue;
+
+            mHighlightBuffer.addAll(buildHighlights(dataSet, i, xVal, DataSet.Rounding.CLOSEST));
+        }
+
+        return mHighlightBuffer;
+    }
+
+    /**
+     * An array of `Highlight` objects corresponding to the selected xValue and dataSetIndex.
+     *
+     * @param set
+     * @param dataSetIndex
+     * @param xVal
+     * @param rounding
+     * @return
+     */
+    protected List<Highlight> buildHighlights(IDataSet set, int dataSetIndex, float xVal, DataSet.Rounding rounding) {
+
+        ArrayList<Highlight> highlights = new ArrayList<>();
+
+        //noinspection unchecked
+        List<Entry> entries = set.getEntriesForXValue(xVal);
+        if (entries.size() == 0) {
+            // Try to find closest x-value and take all entries for that x-value
+            final Entry closest = set.getEntryForXValue(xVal, Float.NaN, rounding);
+            if (closest != null) {
+                //noinspection unchecked
+                entries = set.getEntriesForXValue(closest.getX());
+            }
+        }
+
+        if (entries.size() == 0)
+            return highlights;
+
+        for (Entry e : entries) {
+            MPPointD pixels = lineChart.getTransformer(
+                    set.getAxisDependency()).getPixelForValues(e.getX(), e.getY());
+
+            highlights.add(new Highlight(
+                    e.getX(), e.getY(),
+                    (float) pixels.x, (float) pixels.y,
+                    dataSetIndex, set.getAxisDependency()));
+        }
+
+        return highlights;
+    }
+
+
     @Override
     public void draw(Canvas canvas, float posX, float posY) {
+
         Set<String> keys = colorMap.keySet();
         int len = keys.size();
         //文字区域上下距离 8dp 文字一行是20dp
@@ -131,7 +216,6 @@ public class CostomMarket implements IMarker {
         paint.setAlpha(120);
         canvas.drawRect(rect, paint);
 
-        Log.e("TAG_LLLL","------------>"+groupSpace);
         paint.reset();
         paint.setColor(Color.RED);
         rect1.left = 0;
@@ -156,7 +240,12 @@ public class CostomMarket implements IMarker {
         int position = 0;
         for (String key : keys) {
             int color = colorMap.get(key);
-            setCircle(canvas, posX, color, len - position);
+            if (lineChart != null) {
+                setCircle(canvas, key, posX, color, len - position);
+            } else {
+                setCircle(canvas, posX, color, len - position);
+            }
+
             if (TextUtils.isEmpty(title)) {
                 setNumberCircle(canvas, color, len - position - 1);
                 setText(canvas, key, position);
@@ -186,6 +275,23 @@ public class CostomMarket implements IMarker {
         paint.reset();
         paint.setColor(color);
         canvas.drawCircle(posX, y, Utils.convertDpToPixel(6), paint);
+    }
+
+    /**
+     * @param canvas
+     * @param color
+     * @param position
+     */
+    private void setCircle(Canvas canvas, String key, float posX, int color, int position) {
+        paint.setColor(color);
+        paint.setAlpha(95);
+        Log.e("TAG_LLLL", "Gson------------>4" + key);
+        Highlight highlights = mHighlightMap.get(key);
+        float y = height - Utils.convertDpToPixel(42) - Utils.convertDpToPixel(22) * position;
+        canvas.drawCircle(posX, highlights.getYPx(), Utils.convertDpToPixel(10), paint);
+        paint.reset();
+        paint.setColor(color);
+        canvas.drawCircle(posX, highlights.getYPx(), Utils.convertDpToPixel(6), paint);
     }
 
     /**
@@ -223,6 +329,8 @@ public class CostomMarket implements IMarker {
     }
 
     public List<MarkerInfo> getEntrys(Entry mEntry) {
+        mHighlightMap.clear();
+        valueMap.clear();
         List<MarkerInfo> markerInfos = new ArrayList<>();
         Set<String> kays = entryMap.keySet();
         for (String key : kays) {
@@ -230,13 +338,34 @@ public class CostomMarket implements IMarker {
             if (entries == null || entries.isEmpty()) {
                 continue;
             }
-            valueMap.put(key, key + ": " + 0 + "kWh");
-            for (Entry entry : entries) {
-                if (entry.getX() == mEntry.getX()) {
-                    valueMap.put(key, key + ": " + entry.getY() + "kWh");
-                    markerInfos.add(new MarkerInfo(key, entry.getY() + "kWh", colorMap.get(key)));
+
+            if (lineChart != null && mHighlights != null) {
+                for (Highlight highlight : mHighlights) {
+                    for (Entry entry : entries) {
+                        if (entry.getX() == mEntry.getX()) {
+                            if (entry.getX() == highlight.getX() && entry.getY() == highlight.getY()) {
+                                mHighlightMap.put(key, highlight);
+                            }
+                            valueMap.put(key, key + ": " + entry.getY() + "kWh");
+                            MarkerInfo info = new MarkerInfo(key, entry.getY() + "kWh", colorMap.get(key), entry.getX(), entry.getY());
+                            markerInfos.add(info);
+                        }
+
+                    }
+
+                }
+            } else {
+                for (Entry entry : entries) {
+                    if (entry.getX() == mEntry.getX()) {
+                        valueMap.put(key, key + ": " + entry.getY() + "kWh");
+
+                        MarkerInfo info = new MarkerInfo(key, entry.getY() + "kWh", colorMap.get(key), entry.getX(), entry.getY());
+                        markerInfos.add(info);
+                    }
                 }
             }
+
+            Log.e("TAG_LLLL", "Gson------------>3" + new Gson().toJson(mHighlightMap));
         }
         return markerInfos;
     }
@@ -246,16 +375,20 @@ public class CostomMarket implements IMarker {
     class MarkerInfo {
         private String name = "";
         private String value = "0";
+        private float mValueX = 0f;
+        private float mValueY = 0f;
         private int color = 0;
 
-        public MarkerInfo(String name, String value, int color) {
+        public MarkerInfo(String name, String value, int color, float mValueX, float mValueY) {
             this.name = name == null ? "" : name;
             this.value = value == null ? "" : value;
             this.color = color;
+            this.mValueX = mValueX;
+            this.mValueY = mValueY;
         }
     }
 
-    public void getGroupSpace(float groupSpace){
+    public void getGroupSpace(float groupSpace) {
         this.groupSpace = groupSpace;
     }
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:background="@color/color_background"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:orientation="vertical">
 
     <include layout="@layout/layout_title" />
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/sr_has_data"
         android:layout_width="match_parent"
@@ -17,433 +18,514 @@
         app:srlEnableLoadMore="true"
         app:srlPrimaryColor="@color/color_main_title">
 
-    <com.scwang.smartrefresh.header.WaterDropHeader
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <com.scwang.smartrefresh.header.WaterDropHeader
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_size_250"
-                android:layout_margin="15dp"
-                android:background="@drawable/share_main_bg"
-                android:padding="@dimen/widget_size_12">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/iv_wether"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:src="@drawable/image_station_11"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Good air"
-                        android:textColor="#222222"
-                        android:textSize="@dimen/font_size_10" />
-
-                    <TextView
-                        android:id="@+id/tv_good_air"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Good air"
-                        android:textColor="#222222"
-                        android:textSize="@dimen/font_size_10" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/widget_size_16"
-                    android:paddingRight="@dimen/widget_size_16">
-
-                    <ImageView
-                        android:id="@+id/img_station_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/image_station_1" />
-
-                    <ImageView
-                        android:id="@+id/img_station_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/image_station_2" />
-
-                    <ImageView
-                        android:id="@+id/img_station_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/image_station_3" />
-
-                    <ImageView
-                        android:id="@+id/img_station_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/image_station_4" />
-
-                    <ImageView
-                        android:id="@+id/img_station_5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/img_station_4"
-                        android:layout_marginRight="@dimen/widget_size_16"
-                        android:layout_marginBottom="@dimen/widget_size_16"
-                        android:layout_toRightOf="@+id/img_station_3"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_station_5" />
-
-                    <ImageView
-                        android:id="@+id/img_station_6"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/img_station_2"
-                        android:layout_marginLeft="@dimen/widget_size_16"
-                        android:layout_marginBottom="@dimen/widget_size_16"
-                        android:layout_toLeftOf="@+id/img_station_1"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_station_6" />
-
-                    <ImageView
-                        android:id="@+id/img_station_7"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_above="@+id/img_station_1"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="@dimen/widget_size_16"
-                        android:layout_marginTop="@dimen/widget_size_16"
-                        android:layout_marginRight="@dimen/widget_size_16"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/image_station_7" />
-
-                    <ImageView
-                        android:id="@+id/img_station_8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/img_station_1"
-                        android:layout_toRightOf="@+id/img_station_2"
-                        android:src="@drawable/image_station_8" />
-
-                    <ImageView
-                        android:id="@+id/img_station_9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/img_station_4"
-                        android:layout_toRightOf="@+id/img_station_1"
-                        android:src="@drawable/image_station_9" />
-
-                    <ImageView
-                        android:id="@+id/img_station_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/img_station_3"
-                        android:layout_below="@+id/img_station_1"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/image_station_10" />
-                </RelativeLayout>
-
-            </RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/share_main_bg"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/widget_size_100"
-                    android:layout_weight="1">
+                    android:layout_height="@dimen/widget_size_250"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/share_main_bg"
+                    android:padding="@dimen/widget_size_12">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
                         android:orientation="vertical">
 
+                        <ImageView
+                            android:id="@+id/iv_wether"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:src="@drawable/image_station_11" />
+
                         <TextView
-                            style="@style/StationItemTitle"
-                            android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day self-consumption" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Good air"
+                            android:textColor="#222222"
+                            android:textSize="@dimen/font_size_10" />
+
+                        <TextView
+                            android:id="@+id/tv_good_air"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#222222"
+                            android:textSize="@dimen/font_size_10"
+                            tools:text="Good air" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="@dimen/widget_size_16"
+                        android:paddingRight="@dimen/widget_size_16">
+
+                        <ImageView
+                            android:id="@+id/img_station_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/image_station_1" />
+
+                        <ImageView
+                            android:id="@+id/img_station_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/image_station_2" />
+
+                        <ImageView
+                            android:id="@+id/img_station_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/image_station_3_0" />
+
+                        <ImageView
+                            android:id="@+id/img_station_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/image_station_4" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/img_station_4"
+                            android:layout_marginRight="@dimen/widget_size_16"
+                            android:layout_marginBottom="@dimen/widget_size_16"
+                            android:layout_toRightOf="@+id/img_station_3">
 
                             <TextView
-                                android:id="@+id/tv_number_1"
+                                android:id="@+id/tv_power_value3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:layout_margin="3dp"
-                                android:text="93"
-                                android:textColor="#ff222222"
-                                android:textSize="28sp" />
+                                android:rotation="-45"
+                                android:textColor="#999999"
+                                android:textSize="@dimen/font_size_13" />
+
+                            <ImageView
+                                android:id="@+id/img_station_5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/image_station_5" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/img_station_2"
+                            android:layout_marginLeft="@dimen/widget_size_16"
+                            android:layout_marginBottom="@dimen/widget_size_16"
+                            android:layout_toLeftOf="@+id/img_station_1">
+
+                            <ImageView
+                                android:id="@+id/img_station_6"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/image_station_6" />
 
                             <TextView
+                                android:id="@+id/tv_power_value2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/tv_number_1"
-                                android:layout_marginBottom="6dp"
-                                android:layout_toRightOf="@+id/tv_number_1"
-                                android:text="kWh"
-                                android:textColor="#ff222222"
-                                android:textSize="11sp" />
+                                android:layout_centerInParent="true"
+                                android:rotation="45"
+                                android:text=""
+                                android:textColor="#999999"
+                                android:textSize="@dimen/font_size_13" />
                         </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/tv_power_value1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/img_station_7"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/widget_size_12"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/font_size_13" />
+
+                        <ImageView
+                            android:id="@+id/img_station_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/img_station_1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/widget_size_16"
+                            android:layout_marginTop="@dimen/widget_size_16"
+                            android:layout_marginRight="@dimen/widget_size_16"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/image_station_7" />
+
+                        <ImageView
+                            android:id="@+id/img_station_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/img_station_1"
+                            android:layout_toRightOf="@+id/img_station_2"
+                            android:src="@drawable/image_station_8" />
+
+                        <TextView
+                            android:id="@+id/tv_power_value4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/img_station_8"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/widget_size_6"
+                            android:layout_toLeftOf="@+id/img_station_1"
+                            android:layout_toRightOf="@+id/img_station_2"
+                            android:gravity="center_horizontal"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/font_size_13" />
+
+                        <ImageView
+                            android:id="@+id/img_station_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/img_station_4"
+                            android:layout_toRightOf="@+id/img_station_1"
+                            android:src="@drawable/image_station_9" />
+
+
+                        <TextView
+                            android:id="@+id/tv_power_value5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/img_station_9"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="@dimen/widget_size_6"
+                            android:layout_toLeftOf="@+id/img_station_4"
+                            android:layout_toRightOf="@+id/img_station_1"
+                            android:gravity="center_horizontal"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/font_size_13" />
+
+                        <TextView
+                            android:id="@+id/tv_power_value6"
+                            android:layout_width="100dp"
+                            android:layout_height="20dp"
+                            android:layout_above="@+id/img_station_3"
+                            android:layout_below="@+id/img_station_1"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:singleLine="true"
+                            android:rotation="90"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/font_size_13" />
+
+                        <ImageView
+                            android:id="@+id/img_station_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/img_station_3"
+                            android:layout_below="@+id/img_station_1"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/image_station_10" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/share_main_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/widget_size_100"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/StationItemTitle"
+                                android:drawableLeft="@drawable/ic_station_produce"
+                                android:text="Day self-consumption" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/tv_number_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_margin="3dp"
+                                    android:text="93"
+                                    android:textColor="#ff222222"
+                                    android:textSize="28sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/tv_number_1"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_toRightOf="@+id/tv_number_1"
+                                    android:text="kWh"
+                                    android:textColor="#ff222222"
+                                    android:textSize="11sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <View
+                            style="@style/LineVertical"
+                            android:layout_marginTop="@dimen/widget_size_12" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/StationItemTitle"
+                                android:drawableLeft="@drawable/ic_station_produce"
+                                android:text="Day connected device" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/tv_number_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_margin="3dp"
+                                    android:text="93"
+                                    android:textColor="#ff222222"
+                                    android:textSize="28sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/tv_number_2"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_toRightOf="@+id/tv_number_2"
+                                    android:text="kWh"
+                                    android:textColor="#ff222222"
+                                    android:textSize="11sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <View
-                        style="@style/LineVertical"
-                        android:layout_marginTop="@dimen/widget_size_12" />
+                        style="@style/LineHorizontal"
+                        android:layout_marginLeft="@dimen/widget_size_12"
+                        android:layout_marginRight="@dimen/widget_size_12" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/widget_size_100"
+                        android:layout_weight="1">
 
-                        <TextView
-                            style="@style/StationItemTitle"
-                            android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Day connected device" />
-
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_number_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_margin="3dp"
-                                android:text="93"
-                                android:textColor="#ff222222"
-                                android:textSize="28sp" />
+                                style="@style/StationItemTitle"
+                                android:drawableLeft="@drawable/ic_station_produce"
+                                android:text="Lifetime PV product" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/tv_number_2"
-                                android:layout_marginBottom="6dp"
-                                android:layout_toRightOf="@+id/tv_number_2"
-                                android:text="kWh"
-                                android:textColor="#ff222222"
-                                android:textSize="11sp" />
-                        </RelativeLayout>
-                    </LinearLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tv_number_3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_margin="3dp"
+                                    android:text="93"
+                                    android:textColor="#ff222222"
+                                    android:textSize="28sp" />
 
-                <View
-                    style="@style/LineHorizontal"
-                    android:layout_marginLeft="@dimen/widget_size_12"
-                    android:layout_marginRight="@dimen/widget_size_12" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/tv_number_3"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_toRightOf="@+id/tv_number_3"
+                                    android:text="%"
+                                    android:textColor="#ff222222"
+                                    android:textSize="11sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/widget_size_100"
-                    android:layout_weight="1">
+                        <View style="@style/LineVertical" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/StationItemTitle"
-                            android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Lifetime PV product" />
-
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_number_3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_margin="3dp"
-                                android:text="93"
-                                android:textColor="#ff222222"
-                                android:textSize="28sp" />
+                                style="@style/StationItemTitle"
+                                android:drawableLeft="@drawable/ic_station_produce"
+                                android:text="Lifetime consumption" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/tv_number_3"
-                                android:layout_marginBottom="6dp"
-                                android:layout_toRightOf="@+id/tv_number_3"
-                                android:text="%"
-                                android:textColor="#ff222222"
-                                android:textSize="11sp" />
-                        </RelativeLayout>
-                    </LinearLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                    <View style="@style/LineVertical" />
+                                <TextView
+                                    android:id="@+id/tv_number_4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_margin="3dp"
+                                    android:text="93"
+                                    android:textColor="#ff222222"
+                                    android:textSize="28sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/tv_number_4"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_toRightOf="@+id/tv_number_4"
+                                    android:text="kWh"
+                                    android:textColor="#ff222222"
+                                    android:textSize="11sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
 
-                        <TextView
-                            style="@style/StationItemTitle"
-                            android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Lifetime consumption" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/tv_number_4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_margin="3dp"
-                                android:text="93"
-                                android:textColor="#ff222222"
-                                android:textSize="28sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/tv_number_4"
-                                android:layout_marginBottom="6dp"
-                                android:layout_toRightOf="@+id/tv_number_4"
-                                android:text="kWh"
-                                android:textColor="#ff222222"
-                                android:textSize="11sp" />
-                        </RelativeLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    style="@style/LineHorizontal"
-                    android:layout_marginLeft="@dimen/widget_size_12"
-                    android:layout_marginRight="@dimen/widget_size_12" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/widget_size_100"
-                    android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/StationItemTitle"
-                            android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Lifetime bill saved" />
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/tv_number_5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_margin="3dp"
-                                android:text="93"
-                                android:textColor="#ff222222"
-                                android:textSize="28sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/tv_number_5"
-                                android:layout_marginBottom="6dp"
-                                android:layout_toRightOf="@+id/tv_number_5"
-                                android:text="$"
-                                android:textColor="#ff222222"
-                                android:textSize="11sp" />
-                        </RelativeLayout>
                     </LinearLayout>
 
                     <View
-                        style="@style/LineVertical"
-                        android:layout_marginBottom="@dimen/widget_size_12" />
+                        style="@style/LineHorizontal"
+                        android:layout_marginLeft="@dimen/widget_size_12"
+                        android:layout_marginRight="@dimen/widget_size_12" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/widget_size_100"
+                        android:layout_weight="1">
 
-                        <TextView
-                            style="@style/StationItemTitle"
-                            android:drawableLeft="@drawable/ic_station_produce"
-                            android:text="Lifetime CO2 reduced" />
-
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_number_6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:layout_margin="3dp"
-                                android:text="93"
-                                android:textColor="#ff222222"
-                                android:textSize="28sp" />
+                                style="@style/StationItemTitle"
+                                android:drawableLeft="@drawable/ic_station_produce"
+                                android:text="Lifetime bill saved" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/tv_number_5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_margin="3dp"
+                                    android:text="93"
+                                    android:textColor="#ff222222"
+                                    android:textSize="28sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/tv_number_5"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_toRightOf="@+id/tv_number_5"
+                                    android:text="$"
+                                    android:textColor="#ff222222"
+                                    android:textSize="11sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <View
+                            style="@style/LineVertical"
+                            android:layout_marginBottom="@dimen/widget_size_12" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignBottom="@+id/tv_number_6"
-                                android:layout_marginBottom="6dp"
-                                android:layout_toRightOf="@+id/tv_number_6"
-                                android:text="kg"
-                                android:textColor="#ff222222"
-                                android:textSize="11sp" />
-                        </RelativeLayout>
+                                style="@style/StationItemTitle"
+                                android:drawableLeft="@drawable/ic_station_produce"
+                                android:text="Lifetime CO2 reduced" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/tv_number_6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_margin="3dp"
+                                    android:text="93"
+                                    android:textColor="#ff222222"
+                                    android:textSize="28sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/tv_number_6"
+                                    android:layout_marginBottom="6dp"
+                                    android:layout_toRightOf="@+id/tv_number_6"
+                                    android:text="kg"
+                                    android:textColor="#ff222222"
+                                    android:textSize="11sp" />
+                            </RelativeLayout>
+                        </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>
