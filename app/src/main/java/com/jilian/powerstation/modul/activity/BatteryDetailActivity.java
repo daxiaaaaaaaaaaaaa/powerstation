@@ -279,6 +279,7 @@ public class BatteryDetailActivity extends BaseActivity implements IAxisValueFor
 
             }
             tMarket.setEnable(true);
+            lineData.setHighlightEnabled(true);
             switch (type){
                 case 0:
                     lineData.addDataSet(charManager.setChartData("Voltage", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
@@ -288,6 +289,7 @@ public class BatteryDetailActivity extends BaseActivity implements IAxisValueFor
                     break;
                 case 2:
                     tMarket.setEnable(false);
+                    lineData.setHighlightEnabled(false);
                     lineData.addDataSet(charManager.setChartData("Average temperature", yVals1, R.color.color_chart_four, R.drawable.bg_color4));
                     lineData.addDataSet(charManager.setChartData("Maximum temperature", yVals2, R.color.color_chart_one, R.drawable.bg_color1));
                     break;
@@ -339,7 +341,7 @@ public class BatteryDetailActivity extends BaseActivity implements IAxisValueFor
             @Override
             public String onBackCall(int position) {
                 if (Utils.isInBound(mDataDto, position)) {
-                    SimpleDateFormat format = new SimpleDateFormat("HH-mm");
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
                     return format.format(new Date(mDataDto.get(position).getTime()));
                 }
                 return "";

@@ -128,7 +128,7 @@ public class CostomBarMarket extends BaseMarket {
             if (onMarketBackCall!=null){
                 title = (String) onMarketBackCall.onBackCall((int) mEntry.getX());
             }
-            if (barChart.getData().getDataSets().size()>1){
+            if (mTitleList.size()>1){
                 barSpace = 0.05f;
             }
             rect = getBarRect(mEntry, highlight);

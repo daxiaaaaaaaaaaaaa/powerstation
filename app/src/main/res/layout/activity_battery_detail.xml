@@ -148,57 +148,66 @@
         <include layout="@layout/layout_linechar" />
 
         <LinearLayout
-            android:id="@+id/ll_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/widget_size_16"
-            android:background="@color/white"
-            android:paddingTop="@dimen/widget_size_28"
-            android:paddingBottom="@dimen/widget_size_28"
-            android:paddingRight="@dimen/widget_size_16">
+            android:background="@color/white">
+
+
             <LinearLayout
-                android:id="@+id/ll_desc3"
+                android:id="@+id/ll_desc"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_size_15"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/widget_size_16"
+                android:visibility="invisible"
+                android:paddingTop="@dimen/widget_size_28"
+                android:paddingRight="@dimen/widget_size_16"
+                android:paddingBottom="@dimen/widget_size_28">
 
-                <View
-                    android:layout_width="@dimen/widget_size_8"
-                    android:layout_height="@dimen/font_size_8"
-                    android:background="@drawable/share_cricle_4" />
+                <LinearLayout
+                    android:id="@+id/ll_desc3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/widget_size_15"
+                    android:layout_weight="1"
+                    android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tv_desc3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/widget_size_8"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
-                    android:text="Average temperature"
-                    android:textColor="@color/color_222222" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/ll_desc4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_size_15"
-                android:layout_weight="1"
-                android:gravity="center">
+                    <View
+                        android:layout_width="@dimen/widget_size_8"
+                        android:layout_height="@dimen/font_size_8"
+                        android:background="@drawable/share_cricle_4" />
 
-                <View
-                    android:layout_width="@dimen/widget_size_8"
-                    android:layout_height="@dimen/font_size_8"
-                    android:background="@drawable/share_cricle_1" />
+                    <TextView
+                        android:id="@+id/tv_desc3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/widget_size_8"
+                        android:gravity="center_vertical"
+                        android:text="Average temperature"
+                        android:textColor="@color/color_222222"
+                        android:textSize="@dimen/font_size_11" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_desc4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/widget_size_8"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
-                    android:text="Maximum temperature"
-                    android:textColor="@color/color_222222" />
+                <LinearLayout
+                    android:id="@+id/ll_desc4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/widget_size_15"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="@dimen/widget_size_8"
+                        android:layout_height="@dimen/font_size_8"
+                        android:background="@drawable/share_cricle_1" />
+
+                    <TextView
+                        android:id="@+id/tv_desc4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/widget_size_8"
+                        android:gravity="center_vertical"
+                        android:text="Maximum temperature"
+                        android:textColor="@color/color_222222"
+                        android:textSize="@dimen/font_size_11" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

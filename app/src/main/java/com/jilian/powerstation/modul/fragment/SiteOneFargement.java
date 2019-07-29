@@ -178,7 +178,7 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
             @Override
             public String onBackCall(int position) {
                 if (Utils.isInBound(mReportDto, position)) {
-                    SimpleDateFormat format = new SimpleDateFormat("HH-mm");
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
                     return format.format(new Date(mReportDto.get(position).getTime()));
                 }
                 return "";

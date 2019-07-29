@@ -395,7 +395,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
             @Override
             public String onBackCall(int position) {
                 if (Utils.isInBound(mDataDto, position)) {
-                    SimpleDateFormat format = new SimpleDateFormat("HH-mm");
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
                     return format.format(new Date(mDataDto.get(position).getTime()));
                 }
                 return "";
@@ -465,6 +465,10 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
 
     //显示2条柱状图
     private void showBarChartMore(List<PcsHistoryDataDto> rows) {
+        mCharBarManage.removeAll();
+        if (Utils.isEmpty(rows)){
+            return;
+        }
         List<Float> xAxisValues = new ArrayList<>();
         List<List<Float>> yAxisValues = new ArrayList<>();
         List<String> labels = new ArrayList<>();
