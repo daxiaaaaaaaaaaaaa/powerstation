@@ -32,14 +32,19 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ReportDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
+import com.jilian.powerstation.manege.BaseMarket;
 import com.jilian.powerstation.manege.CharBarManage;
+import com.jilian.powerstation.manege.CharBarManage1;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.utils.Utils;
+import com.jilian.powerstation.views.CostomBarMarket;
 import com.jilian.powerstation.views.CostomMarket;
 import com.jilian.powerstation.views.TMarket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,10 +63,9 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
     private String sn;
     private Date currDate;
     private ReportViewModel reportViewModel;
-
+    private CostomBarMarket tMarket;
+    private CharBarManage1 barManage1;
     private BarChart barChart;
-    private CostomMarket tMarket;
-    private CharBarManage charManager;
     private List<ReportDto> mReportDto;
 
     @Override
@@ -89,16 +93,14 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
         barChart = view.findViewById(R.id.lineChart);
 
-        tMarket = new CostomMarket(getContext(), DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
-        charManager = new CharBarManage(barChart, tMarket, getContext());
+        tMarket = new CostomBarMarket(getContext(), barChart);
+        barManage1 = new CharBarManage1(barChart, tMarket);
+
         initCustomTimePicker();
     }
 
     @Override
     protected void initData() {
-        // 设置上下左右偏移量
-        charManager.setLegend(); // 设置图例
-        setXAxis(); // 设置X轴
         sn = getActivity().getIntent().getStringExtra("sn");
         loadDatas(System.currentTimeMillis());
     }
@@ -115,7 +117,7 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
                 if (reportListDtoBaseDto != null && reportListDtoBaseDto.getData() != null) {
-                    setData(reportListDtoBaseDto.getData().getRows());
+                    showBarChartMore(reportListDtoBaseDto.getData().getRows());
                     setTotalData(reportListDtoBaseDto.getData());
                 }
             }
@@ -136,16 +138,6 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
 
     @Override
     protected void initListener() {
-        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, Highlight h) {
-                tMarket.refreshContent(e, h);
-            }
-
-            @Override
-            public void onNothingSelected() {
-            }
-        });
         tvCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,78 +148,71 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
         tvLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadDatas(DateUtil.getBeforeDay(currDate).getTime());
+                loadDatas(DateUtil.getBeforeYear(currDate).getTime());
             }
         });
 
         tvRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadDatas(DateUtil.getAfterDay(currDate).getTime());
+                loadDatas(DateUtil.getAfterYear(currDate).getTime());
+            }
+        });
+
+        tMarket.setOnMarketBackCall(new BaseMarket.OnMarketBackCall() {
+            @Override
+            public String onBackCall(int position) {
+                if (Utils.isInBound(mReportDto, position)) {
+                    SimpleDateFormat format = new SimpleDateFormat("MM");
+                    String dateStr = format.format(new Date(mReportDto.get(position).getTime()));
+                    return CharDateManager.getMonth(Integer.parseInt(dateStr)) ;
+                }
+                return "";
             }
         });
     }
 
     private void loadDatas(long currTime) {
         currDate = new Date(currTime);
-        tvCenter.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_DATE, currDate));
+        tvRight.setVisibility(DateUtil.isBeforCurrentDate(currDate, 1) ? View.VISIBLE : View.INVISIBLE);
+        tvCenter.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_YEAR, currDate));
         getData();
     }
 
-
-    public void setData(List<ReportDto> rows) {
-        BarData barData = new BarData();
-        charManager.removeAll();
-        if (rows != null && !rows.isEmpty()) {
-            mReportDto = rows;
-            charManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
-            List<BarEntry> yVals1 = new ArrayList<>();
-            List<BarEntry> yVals3 = new ArrayList<>();
-            int maxValue = 0;
-            int minValue = 0;
-            for (int index = 0, len = rows.size(); index < len; index++) {
-                ReportDto dto = rows.get(index);
-                int value1 = charManager.getIntValue(dto.getPvProduction());
-                int value3 = charManager.getIntValue(dto.getLoadProduction());
-
-                yVals1.add(new BarEntry(index + 1, value1));
-                yVals3.add(new BarEntry(index + 1, value3));
-
-                maxValue = maxValue > value1 ? maxValue : value1;
-                maxValue = maxValue > value3 ? maxValue : value3;
-
-
-                minValue = minValue < value1 ? minValue : value1;
-                minValue = minValue < value3 ? minValue : value3;
-            }
-            barData.addDataSet(charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color4));
-            barData.addDataSet(charManager.setChartData("Load", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
-            charManager.setYAxis(maxValue * 2, minValue, (maxValue - minValue) / 10); // 设置Y轴
-            charManager.setData(barData);
-
+    //显示2条柱状图
+    private void showBarChartMore(List<ReportDto> rows) {
+        barManage1.removeAll();
+        if (Utils.isEmpty(rows)) {
+            return;
         }
+        List<Float> xAxisValues = new ArrayList<>();
+        List<List<Float>> yAxisValues = new ArrayList<>();
+        List<String> labels = new ArrayList<>();
+        List<Integer> colours = new ArrayList<>();
 
-    }
+        List<Float> yVals1 = new ArrayList<>();
+        List<Float> yVals2 = new ArrayList<>();
+        mReportDto = rows;
+        for (int index = 0, len = rows.size(); index < len; index++) {
+            ReportDto dto = rows.get(index);
+            xAxisValues.add((float) index);
+            float value1 = barManage1.getFloatValue(dto.getPvProduction());
+            float value2 = barManage1.getFloatValue(dto.getLoadProduction());
 
-    private void setXAxis() {
-        // X轴
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 在底部
-        xAxis.setDrawGridLines(false); // 不绘制网格线
-        xAxis.setLabelCount(7); // 设置标签数量
-        xAxis.setTextColor(Color.BLACK); // 文本颜色为灰色
-        xAxis.setTextSize(12f); // 文本大小为12dp
-        xAxis.setGranularity(2f); // 设置间隔尺寸
-        xAxis.setAxisMinimum(0f); // 设置X轴最小值
-        xAxis.setAxisMaximum(14f); // 设置X轴最大值
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            public String getFormattedValue(float value, AxisBase axis) {
-                return "" + value;
-            }
-        });
-        //是否展示网格线
-        xAxis.setDrawGridLines(false);
-
+            yVals1.add(value1);
+            yVals2.add(value2);
+        }
+        xAxisValues.add((float) xAxisValues.size());
+        yAxisValues.add(yVals1);
+        yAxisValues.add(yVals2);
+        labels.add("PV");
+        labels.add("Grid");
+        colours.add(getResources().getColor(R.color.color_chart_four));
+        colours.add(getResources().getColor(R.color.color_chart_one));
+        barManage1.showMoreBarChart("kwh",xAxisValues, yAxisValues, labels, colours, this)
+                .setXAxis(xAxisValues.size() - 1, 0, xAxisValues.size())
+                .invalidate()
+                .setScalX(mReportDto.size());
     }
 
     /**
@@ -295,6 +280,12 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return CharDateManager.getDates(mReportDto, value, "YYYY");
+        int currItem = (int) value;
+        if (currItem >= 0 && currItem < mReportDto.size()) {
+            SimpleDateFormat format = new SimpleDateFormat("MM");
+            return format.format(new Date(mReportDto.get(currItem).getTime()));
+        } else {
+            return "";
+        }
     }
 }

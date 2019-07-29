@@ -31,16 +31,19 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ReportDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
+import com.jilian.powerstation.manege.BaseMarket;
 import com.jilian.powerstation.manege.CharBarManage;
 import com.jilian.powerstation.manege.CharBarManage1;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.utils.Utils;
 import com.jilian.powerstation.views.CostomBarMarket;
 import com.jilian.powerstation.views.CostomMarket;
 import com.jilian.powerstation.views.TMarket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,8 +65,8 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
 
     private BarChart barChart;
     private CostomBarMarket tMarket;
-    private List<ReportDto> mReportDto;
     private CharBarManage1 barManage1;
+    private List<ReportDto> mReportDto;
 
     @Override
     protected void loadData() {
@@ -89,22 +92,8 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         tvRight = (TextView) view.findViewById(R.id.tv_right);
         barChart = view.findViewById(R.id.lineChart);
 
-        tMarket = new CostomBarMarket(getContext(), barChart, DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
-        barManage1 = new CharBarManage1(barChart);
-        barChart.setMarker(tMarket);
-        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, Highlight h) {
-                if (tMarket != null) {
-                    Log.e("TAG_LLLL", "Gson------------>Highlight" + (new Gson().toJson(h)));
-                    tMarket.refreshContent(e, h);
-                }
-            }
-
-            @Override
-            public void onNothingSelected() {
-            }
-        });
+        tMarket = new CostomBarMarket(getContext(), barChart);
+        barManage1 = new CharBarManage1(barChart, tMarket);
 
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
         initCustomTimePicker();
@@ -119,6 +108,10 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
 
     //显示2条柱状图
     private void showBarChartMore(List<ReportDto> rows) {
+        if (Utils.isEmpty(rows)) {
+            barManage1.removeAll();
+            return;
+        }
         List<Float> xAxisValues = new ArrayList<>();
         List<List<Float>> yAxisValues = new ArrayList<>();
         List<String> labels = new ArrayList<>();
@@ -130,12 +123,12 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         List<Float> yVals2 = new ArrayList<>();
         List<Float> yVals3 = new ArrayList<>();
         List<Float> yVals4 = new ArrayList<>();
+        mReportDto = rows;
         for (int index = 0, len = rows.size(); index < len; index++) {
-            mReportDto = rows;
             ReportDto dto = rows.get(index);
             xAxisValues.add((float) index);
-            float value1 = barManage1.getIntValue(dto.getPvProduction());
-            float value2 = barManage1.getIntValue(dto.getLoadProduction());
+            float value1 = barManage1.getFloatValue(dto.getPvProduction());
+            float value2 = barManage1.getFloatValue(dto.getLoadProduction());
 
             yVals1.add(value1);
             yVals2.add(value2);
@@ -144,17 +137,14 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         xAxisValues.add((float) xAxisValues.size());
         yAxisValues.add(yVals1);
         yAxisValues.add(yVals2);
-        yAxisValues.add(yVals3);
-        labels.add("PV");
-        labels.add("Grid");
-        labels.add("Grid1");
-        colours.add(getResources().getColor(R.color.color_chart_three));
-        colours.add(getResources().getColor(R.color.color_chart_two));
+        labels.add("photovoltaic");
+        labels.add("load");
         colours.add(getResources().getColor(R.color.color_chart_four));
-        barManage1.showMoreBarChart(xAxisValues, yAxisValues, labels, colours, this)
+        colours.add(getResources().getColor(R.color.color_chart_one));
+        barManage1.showMoreBarChart("kwh", xAxisValues, yAxisValues, labels, colours, this)
                 .setXAxis(xAxisValues.size() - 1, 0, xAxisValues.size())
                 .invalidate()
-                .setScalX();
+                .setScalX(mReportDto.size());
     }
 
     /**
@@ -164,7 +154,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         if (sn == null) return;
         String startTime = DateUtil.getDayBegin(currDate.getTime());
         String endTime = DateUtil.getDayEnd(currDate.getTime());
-        reportViewModel.addReportData(sn, startTime, endTime, 3);
+        reportViewModel.addReportData(sn, startTime, endTime, 0);
         reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
@@ -190,16 +180,6 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
 
     @Override
     protected void initListener() {
-        barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry e, Highlight h) {
-                tMarket.refreshContent(e, h);
-            }
-
-            @Override
-            public void onNothingSelected() {
-            }
-        });
         tvCenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,6 +197,17 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
             @Override
             public void onClick(View v) {
                 loadDatas(DateUtil.getAfterDay(currDate).getTime());
+            }
+        });
+
+        tMarket.setOnMarketBackCall(new BaseMarket.OnMarketBackCall() {
+            @Override
+            public String onBackCall(int position) {
+                if (Utils.isInBound(mReportDto, position)) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy");
+                    return format.format(new Date(mReportDto.get(position).getTime()));
+                }
+                return "";
             }
         });
     }
@@ -293,9 +284,12 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        if (value < 0 || value > barChart.getBarData().getDataSets().size()) {
+        int currItem = (int) value;
+        if (currItem >= 0 && currItem < mReportDto.size()) {
+            SimpleDateFormat format = new SimpleDateFormat("YYYY");
+            return format.format(new Date(mReportDto.get(currItem).getTime()));
+        } else {
             return "";
         }
-        return CharDateManager.getDates(mReportDto, value + 1, "MM");
     }
 }

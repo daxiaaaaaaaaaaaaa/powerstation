@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.baidu.mapapi.map.Marker;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
@@ -56,8 +57,7 @@ public class CharManager extends BaseChar {
     }
 
     private void setLineChar() {
-        lc.setExtraOffsets(24f, 0f, 24f, 0f);
-        lc.animateXY(3000, 3000); // XY动画
+        lc.setExtraOffsets(14f, 0f, 14f, 0f);
         lc.setDrawBorders(false);
         //不绘制左右的Y
         lc.getAxisLeft().setDrawAxisLine(false);
@@ -75,7 +75,6 @@ public class CharManager extends BaseChar {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 if (tMarket != null) {
-                    Log.e("TAG_LLLL","Gson------------>Highlight"+(new Gson().toJson(h)));
                     tMarket.refreshContent(e, h);
 //                    lc.getHighlightByTouchPoint(e)
                 }
@@ -186,11 +185,14 @@ public class CharManager extends BaseChar {
         return lineDataSet1;
     }
 
-    public void setData(LineData lineData) {
+    public void setData(LineData lineData,String mUnit,int size) {
+        if (tMarket!=null){
+            tMarket.setmUnit(mUnit);
+        }
         lineData.setDrawValues(false);
         lc.setData(lineData);
         Matrix m = new Matrix();
-        m.postScale(scaleNum(lc.getXAxis().getLabelCount() - 1), 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        m.postScale(scaleNum(size), 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
         lc.getViewPortHandler().refresh(m, lc, false);//将图表动画显示之前进行缩放
         lc.invalidate();
     }

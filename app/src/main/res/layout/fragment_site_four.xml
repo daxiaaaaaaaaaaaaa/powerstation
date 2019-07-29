@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/color_F2F2F2"
+            android:visibility="gone"
             android:paddingRight="@dimen/widget_size_16">
 
             <TextView
@@ -50,7 +51,7 @@
             android:layout_marginTop="@dimen/widget_size_12"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Voltage (V)" />
+            android:text="Energy (kWh)" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/lineChart"
@@ -165,20 +166,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_101"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:paddingLeft="@dimen/widget_size_12"
             android:paddingTop="@dimen/widget_size_21"
             android:paddingRight="@dimen/widget_size_12">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/widget_size_3"
-                android:layout_weight="1"
-                android:background="@drawable/share_main_bg"
-                android:gravity="center"
-                android:orientation="vertical">
+                style="@style/SitrItem">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,13 +189,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/widget_size_3"
-                android:layout_weight="1"
-                android:background="@drawable/share_main_bg"
-                android:gravity="center"
-                android:orientation="vertical">
+                style="@style/SitrItem">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -217,19 +206,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_80"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
             android:paddingLeft="@dimen/widget_size_12"
-            android:paddingRight="@dimen/widget_size_12"
-            android:visibility="visible">
+            android:paddingRight="@dimen/widget_size_12">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/widget_size_3"
-                android:layout_weight="1"
-                android:background="@drawable/share_main_bg"
-                android:gravity="center"
-                android:orientation="vertical">
+                style="@style/SitrItem">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -244,14 +227,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/widget_size_3"
-                android:singleLine="true"
-                android:layout_weight="1"
-                android:background="@drawable/share_main_bg"
-                android:gravity="center"
-                android:orientation="vertical">
+                style="@style/SitrItem">
 
                 <TextView
                     android:layout_width="wrap_content"

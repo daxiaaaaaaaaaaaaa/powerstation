@@ -3,7 +3,11 @@ package com.jilian.powerstation.manege;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -20,8 +24,10 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.gson.Gson;
+import com.jilian.powerstation.views.CostomBarMarket;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -39,12 +45,14 @@ public class CharBarManage1 extends BaseChar {
     private XAxis xAxis;
     private DecimalFormat mFormat;
 
+    private CostomBarMarket mBarMarket;
     private float mYAxisTextSize = 12f;
     private float mXAxisTextSize = 12f;
 
 
-    public CharBarManage1(BarChart barChart) {
+    public CharBarManage1(BarChart barChart, CostomBarMarket mBarMarket) {
         this.mBarChart = barChart;
+        this.mBarMarket = mBarMarket;
         leftAxis = mBarChart.getAxisLeft();
         rightAxis = mBarChart.getAxisRight();
         xAxis = mBarChart.getXAxis();
@@ -54,6 +62,8 @@ public class CharBarManage1 extends BaseChar {
      * 初始化LineChart
      */
     private void initLineChart() {
+        mBarChart.setExtraOffsets(14f, 0f, 14f, 0f);
+
         mFormat = new DecimalFormat("#,###.##");
         //背景颜色
         mBarChart.setBackgroundColor(Color.WHITE);
@@ -61,6 +71,7 @@ public class CharBarManage1 extends BaseChar {
         mBarChart.setDrawGridBackground(false);
         //显示每条背景阴影
         mBarChart.setDrawBarShadow(false);
+
 
         //设置图标边框的颜色
         mBarChart.setBorderColor(Color.parseColor("#ff0000"));
@@ -93,7 +104,10 @@ public class CharBarManage1 extends BaseChar {
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
+        legend.setEnabled(false);
         //XY轴的设置
+
+
         //X轴设置显示位置在底部
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 //      X轴最小间距
@@ -101,27 +115,90 @@ public class CharBarManage1 extends BaseChar {
 //      不绘制网格线
         xAxis.setDrawGridLines(false);
 //      X轴字体样式
-        xAxis.setTypeface(Typeface.DEFAULT_BOLD);
+//        xAxis.setTypeface(Typeface.DEFAULT_BOLD);
 //      设置X轴文字剧中对齐
         xAxis.setCenterAxisLabels(true);
-//
+        // 文本颜色为灰色
+        xAxis.setTextColor(Color.BLACK);
+// 文本大小为12dp
+        xAxis.setTextSize(mXAxisTextSize);
+
+
 //       保证Y轴从0开始，不然会上移一点
-        leftAxis.setDrawGridLines(false);
-        rightAxis.setAxisMinimum(0f);
-        leftAxis.setAxisMinimum(0f);
-        leftAxis.setTextColor(Color.parseColor("#d5d5d5"));
-//        // 线跟数据都不显示
+//        leftAxis.setDrawGridLines(false);
+        // 线跟数据都不显示
         rightAxis.setEnabled(false); //右侧Y轴不显示
+        rightAxis.setAxisMinimum(0f);
+
+        leftAxis.setAxisMinimum(0f);
+        leftAxis.setTextSize(mYAxisTextSize); // 文本大小为12dp
+        leftAxis.setTextColor(Color.BLACK); // 文本颜色为灰色
+
+
+        //不绘制左右的Y
+        leftAxis.setDrawAxisLine(false);
+        rightAxis.setDrawAxisLine(false);
+        //是否展示网格线
+        mBarChart.setDrawGridBackground(false);
+        rightAxis.setDrawGridLines(false);
+        leftAxis.setDrawGridLines(true);
+        //设置X Y轴网格线为虚线（实体线长度、间隔距离、偏移量：通常使用 0）
+        mBarChart.getAxisLeft().enableGridDashedLine(5f, 10f, 0f);
+
+
+        if (mBarMarket != null) {
+            mBarChart.setMarker(mBarMarket);
+            mBarChart.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                            x = event.getX();
+                            y = event.getY();
+                            mBarMarket.setIsClear();
+                            break;
+                        case MotionEvent.ACTION_MOVE:
+                            if (Math.abs(x - event.getX()) > 15) {
+                                mBarMarket.refreshContent();
+                            }
+                            break;
+                        case MotionEvent.ACTION_UP:
+
+                            break;
+                    }
+
+                    return false;
+                }
+            });
+            mBarChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                @Override
+                public void onValueSelected(Entry e, Highlight h) {
+                    mBarMarket.refreshContent(e, h);
+                }
+
+                @Override
+                public void onNothingSelected() {
+                }
+            });
+        }
     }
+
+    float x;
+    float y;
 
     /**
      * 展示柱状图(一条)
      */
-    public void showBarChart(List<BarEntry> yVals, String label, int color) {
+    public void showBarChart(String value, final List<Float> xAxisValues, List<Float> yAxisValues, String label, int color) {
         initLineChart();
 
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        for (int j = 0; j < yAxisValues.size(); j++) {
+            entries.add(new BarEntry(xAxisValues.get(j), yAxisValues.get(j)));
+        }
         // 每一个BarDataSet代表一类柱状图
-        BarDataSet barDataSet = new BarDataSet(yVals, label);
+        BarDataSet barDataSet = new BarDataSet(entries, label);
         barDataSet.setColor(color);
         //是否显示顶部的值
         barDataSet.setDrawValues(false);
@@ -135,17 +212,10 @@ public class CharBarManage1 extends BaseChar {
         BarData data = new BarData(dataSets);
 //      设置宽度
         data.setBarWidth(0.3f);
-        //设置X轴的刻度数
-        String[] xValues = {"东城", "西城", "朝阳", "丰台", "石景山", "海淀区", "海淀区"};
-        String[] yValues = {"91%", "92%", "93%", "94%", "95%", "96%"};
-        xAxis.setLabelCount(yVals.size() + 1, true);
+        xAxis.setLabelCount(xAxisValues.size(), true);
         xAxis.setDrawLabels(true);
-        IAxisValueFormatter xAxisFormatter = new XAxisValueFormatter(xValues);
-        xAxis.setValueFormatter(xAxisFormatter);
         xAxis.setTextColor(Color.parseColor("#d5d5d5"));
         xAxis.setAxisLineColor(Color.parseColor("#d5d5d5"));
-        IAxisValueFormatter custom = new MyYAxisValueFormatter(yValues);
-        leftAxis.setValueFormatter(custom);
 //        leftAxis.setLabelCount(yValues.length + 1, false);
         leftAxis.setAxisLineColor(Color.parseColor("#d5d5d5"));
 //        设置Y轴的最小值和最大值
@@ -196,16 +266,23 @@ public class CharBarManage1 extends BaseChar {
      * @param labels
      * @param colours
      */
-    public CharBarManage1 showMoreBarChart(final List<Float> xAxisValues, List<List<Float>> yAxisValues, List<String> labels, List<Integer> colours, IAxisValueFormatter iAxisValueFormatter) {
+    public CharBarManage1 showMoreBarChart(String value, final List<Float> xAxisValues, List<List<Float>> yAxisValues, List<String> labels, List<Integer> colours, IAxisValueFormatter iAxisValueFormatter) {
         initLineChart();
         BarData data = new BarData();
+        if (mBarMarket != null) {
+            mBarMarket.clear();
+            mBarMarket.setmUnit(value);
+        }
         for (int i = 0; i < yAxisValues.size(); i++) {
             ArrayList<BarEntry> entries = new ArrayList<>();
             for (int j = 0; j < yAxisValues.get(i).size(); j++) {
                 entries.add(new BarEntry(xAxisValues.get(j), yAxisValues.get(i).get(j)));
             }
             BarDataSet barDataSet = new BarDataSet(entries, labels.get(i));
-
+            if (mBarMarket != null) {
+                mBarMarket.putValue(labels.get(i), entries, colours.get(i));
+            }
+            barDataSet.setDrawValues(false);
             barDataSet.setColor(colours.get(i));
             barDataSet.setValueTextColor(colours.get(i));
             barDataSet.setValueTextSize(10f);
@@ -215,19 +292,22 @@ public class CharBarManage1 extends BaseChar {
         int amount = yAxisValues.size();
         int barAmount = yAxisValues.size(); //需要显示柱状图的类别 数量
 
-        //设置组间距占比30% 每条柱状图宽度占比 70% /barAmount  柱状图间距占比 0%
-        float groupSpace = 0.2f; //柱状图组之间的间距
-        float barSpace = 0.05f;
-        float barWidth = ((1f - groupSpace) / barAmount) - (barSpace * (barAmount - 1));
-        //设置柱状图宽度
-        data.setBarWidth(barWidth);
-        //(起始点、柱状图组间距、柱状图之间间距)
-        data.groupBars(0f, groupSpace, barSpace);
-
-        // (0.2 + 0.02) * 4 + 0.08 = 1.00 -> interval per "group"
+        if (barAmount > 1) {
+            //设置组间距占比30% 每条柱状图宽度占比 70% /barAmount  柱状图间距占比 0%
+            float groupSpace = 0.2f; //柱状图组之间的间距
+            float barSpace = 0.05f;
+            float barWidth = (1f - groupSpace) / amount - barSpace;
+            //设置柱状图宽度
+            data.setBarWidth(barWidth);
+            //(起始点、柱状图组间距、柱状图之间间距)
+            data.groupBars(0f, groupSpace, barSpace);
+            xAxis.setCenterAxisLabels(true);
+        }else {
+            //      设置宽度
+            data.setBarWidth(0.3f);
+            xAxis.setCenterAxisLabels(false);
+        }
         xAxis.setLabelCount(xAxisValues.size() - 1, false);
-        xAxis.setCenterAxisLabels(true);
-        data.setBarWidth(barWidth);
         xAxis.setValueFormatter(iAxisValueFormatter);
         mBarChart.setData(data);
         return this;
@@ -265,12 +345,15 @@ public class CharBarManage1 extends BaseChar {
      * @param labelCount
      */
     public CharBarManage1 setXAxis(float max, float min, int labelCount) {
-        int size = mBarChart.getBarData().getDataSets().size()/2;
-        float maxValue = max < 5 - size ? 5 - size : max;
-        float minValue = max < 5 - size ? (max + size - 6) / 2 : min;
-        xAxis.setAxisMaximum(maxValue);
-        xAxis.setAxisMinimum(minValue);
-        xAxis.setLabelCount(labelCount, false);
+        int value = 0;
+        if (labelCount <= 3) {
+            value = 2;
+        } else if (labelCount <= 5) {
+            value = 1;
+        }
+        xAxis.setAxisMaximum(max + value);
+        xAxis.setAxisMinimum(min - value);
+        xAxis.setLabelCount(labelCount + value * 2, false);
         xAxis.setTextColor(Color.BLACK); // 文本颜色为灰色
         xAxis.setTextSize(mXAxisTextSize); // 文本大小为12dp
 
@@ -329,6 +412,9 @@ public class CharBarManage1 extends BaseChar {
      * 刷新
      */
     public CharBarManage1 invalidate() {
+        if (mBarMarket != null) {
+            mBarMarket.refreshContent();
+        }
         mBarChart.invalidate();
         return this;
     }
@@ -340,10 +426,17 @@ public class CharBarManage1 extends BaseChar {
         mBarChart.clear();
     }
 
-    public void setScalX() {
+    public void setScalX(int size) {
         Matrix m = new Matrix();
-        m.postScale(scaleNum(xAxis.getLabelCount() - 1), 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
+        m.postScale(scaleNum(size), 1f);//两个参数分别是x,y轴的缩放比例。例如：将x轴的数据放大为之前的1.5倍
         mBarChart.getViewPortHandler().refresh(m, mBarChart, false);//将图表动画显示之前进行缩放
+        mBarChart.invalidate();
+    }
+
+
+    public void removeAll() {
+        mBarChart.clear();
+        mBarChart.notifyDataSetChanged();
         mBarChart.invalidate();
     }
 }

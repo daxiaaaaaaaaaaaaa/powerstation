@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_F2F2F2"
-            android:orientation="vertical"
-            android:id="@+id/scrollView"
-            tools:context=".modul.activity.BatteryDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".modul.activity.BatteryDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_F2F2F2"
         android:orientation="vertical">
 
         <include layout="@layout/layout_title" />
@@ -36,16 +37,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_head"
-                tools:text="name"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/font_size_18" />
+                android:textSize="@dimen/font_size_18"
+                tools:text="name" />
 
             <TextView
                 android:id="@+id/detail_updata_time_key"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/widget_size_17"
-                android:layout_marginTop="@dimen/widget_size_8"
                 android:layout_below="@+id/tv_name"
+                android:layout_marginTop="@dimen/widget_size_8"
                 android:layout_toRightOf="@+id/iv_head"
                 android:text="Updata time:"
                 android:textSize="@dimen/font_size_10" />
@@ -54,22 +55,22 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/widget_size_17"
-                android:layout_marginTop="@dimen/widget_size_8"
                 android:layout_below="@+id/tv_name"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="@dimen/widget_size_8"
                 android:layout_toRightOf="@+id/detail_updata_time_key"
-                tools:text="2014.09.02"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/font_size_10" />
+                android:textSize="@dimen/font_size_10"
+                tools:text="2014.09.02" />
         </RelativeLayout>
 
         <RelativeLayout
             style="@style/DetalItemBackground"
-            android:paddingLeft="@dimen/widget_size_20"
             android:layout_marginLeft="@dimen/widget_size_8"
             android:layout_marginTop="@dimen/widget_size_13"
             android:layout_marginRight="@dimen/widget_size_8"
-            android:layout_marginBottom="@dimen/widget_size_12">
+            android:layout_marginBottom="@dimen/widget_size_12"
+            android:paddingLeft="@dimen/widget_size_20">
 
             <TextView
                 style="@style/DetalItemLeft11"
@@ -145,5 +146,60 @@
         </RelativeLayout>
 
         <include layout="@layout/layout_linechar" />
+
+        <LinearLayout
+            android:id="@+id/ll_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/widget_size_16"
+            android:background="@color/white"
+            android:paddingTop="@dimen/widget_size_28"
+            android:paddingBottom="@dimen/widget_size_28"
+            android:paddingRight="@dimen/widget_size_16">
+            <LinearLayout
+                android:id="@+id/ll_desc3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_15"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/widget_size_8"
+                    android:layout_height="@dimen/font_size_8"
+                    android:background="@drawable/share_cricle_4" />
+
+                <TextView
+                    android:id="@+id/tv_desc3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/widget_size_8"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/font_size_11"
+                    android:text="Average temperature"
+                    android:textColor="@color/color_222222" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_desc4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_15"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/widget_size_8"
+                    android:layout_height="@dimen/font_size_8"
+                    android:background="@drawable/share_cricle_1" />
+
+                <TextView
+                    android:id="@+id/tv_desc4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/widget_size_8"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/font_size_11"
+                    android:text="Maximum temperature"
+                    android:textColor="@color/color_222222" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
