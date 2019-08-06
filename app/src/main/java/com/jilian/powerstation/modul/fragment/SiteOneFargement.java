@@ -23,13 +23,16 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
 import com.jilian.powerstation.common.dto.ReportDto;
 import com.jilian.powerstation.common.dto.ReportListDto;
+import com.jilian.powerstation.manege.BaseMarket;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.manege.CharManager;
 import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
+import com.jilian.powerstation.utils.Utils;
 import com.jilian.powerstation.views.CostomMarket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -81,22 +84,24 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
         tvCenter = (TextView) view.findViewById(R.id.tv_center);
         tvLeft = (TextView) view.findViewById(R.id.tv_left);
         tvRight = (TextView) view.findViewById(R.id.tv_right);
-        tMarket = new CostomMarket(getContext(), lc,DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
+        tMarket = new CostomMarket(getContext(), lc, DisplayUtil.getScreenWidth(getContext()), getContext().getResources().getDimension(R.dimen.widget_size_250), 0);
         lc.setMarker(tMarket);
+        // 设置上下左右偏移量
+        charManager = new CharManager(lc, tMarket, getContext());
+        charManager.setLegend(); // 设置图例
         initCustomTimePicker();
     }
 
     @Override
     protected void initData() {
-        // 设置上下左右偏移量
-        charManager = new CharManager(lc, tMarket, getContext());
-        charManager.setLegend(); // 设置图例
+
         sn = getActivity().getIntent().getStringExtra("sn");
         loadDatas(System.currentTimeMillis());
     }
 
     private void loadDatas(long currTime) {
         currDate = new Date(currTime);
+        tvRight.setVisibility(DateUtil.isBeforCurrentDate(currDate, 3) ? View.VISIBLE : View.INVISIBLE);
         tvCenter.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_DATE, currDate));
         getData();
     }
@@ -168,6 +173,17 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
                 loadDatas(DateUtil.getAfterDay(currDate).getTime());
             }
         });
+
+        tMarket.setOnMarketBackCall(new BaseMarket.OnMarketBackCall() {
+            @Override
+            public String onBackCall(int position) {
+                if (Utils.isInBound(mReportDto, position)) {
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+                    return format.format(new Date(mReportDto.get(position).getTime()));
+                }
+                return "";
+            }
+        });
     }
 
     public void setData(List<ReportDto> rows) {
@@ -180,7 +196,7 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
             List<Entry> yVals2 = new ArrayList<>();
             List<Entry> yVals3 = new ArrayList<>();
             List<Entry> yVals4 = new ArrayList<>();
-            int maxValue = 50;
+            int maxValue = 5000;
             int minValue = 0;
             for (int index = 0, len = rows.size(); index < len; index++) {
                 ReportDto dto = rows.get(index);
@@ -194,24 +210,13 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
                 yVals3.add(new Entry(index + 1, value3));
                 yVals4.add(new Entry(index + 1, value4));
 
-                maxValue = maxValue > value1 ? maxValue : value1;
-                maxValue = maxValue > value2 ? maxValue : value2;
-                maxValue = maxValue > value3 ? maxValue : value3;
-                maxValue = maxValue > value4 ? maxValue : value4;
-
-
-                minValue = minValue < value1 ? minValue : value1;
-                minValue = minValue < value2 ? minValue : value2;
-                minValue = minValue < value3 ? minValue : value3;
-                minValue = minValue < value4 ? minValue : value4;
-
             }
             lineData.addDataSet(charManager.setChartData("PV", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
             lineData.addDataSet(charManager.setChartData("Grid", yVals2, R.color.color_chart_two, R.drawable.bg_color2));
             lineData.addDataSet(charManager.setChartData("Load", yVals3, R.color.color_chart_one, R.drawable.bg_color1));
             lineData.addDataSet(charManager.setChartData("Battery", yVals4, R.color.color_chart_four, R.drawable.bg_color4));
-            charManager.setYAxis(maxValue * 2, minValue, (maxValue - minValue) / 10); // 设置Y轴
-            charManager.setData(lineData);
+            charManager.setYAxis(mReportDto.size() - 1, 0, mReportDto.size()); // 设置Y轴
+            charManager.setData(lineData, "kw", mReportDto.size());
 
         }
 
@@ -285,6 +290,12 @@ public class SiteOneFargement extends BaseFragment implements IAxisValueFormatte
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return CharDateManager.getDates(mReportDto, value, "HH:mm");
+        int currItem = (int) value;
+        if (currItem >= 0 && currItem < mReportDto.size()) {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            return format.format(new Date(mReportDto.get(currItem).getTime()));
+        } else {
+            return "";
+        }
     }
 }

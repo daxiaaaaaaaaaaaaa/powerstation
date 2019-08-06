@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-
 /**
  * 时间格式化工具类
  *
@@ -287,10 +286,11 @@ public class DateUtil {
 
     /**
      * 获取当前时间的前一天时间
+     *
      * @return
      */
-    public static Date getBeforeDay(Date date){
-        Calendar cal=Calendar.getInstance();
+    public static Date getBeforeDay(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         //使用roll方法进行向前回滚
         //cl.roll(Calendar.DATE, -1);
@@ -301,10 +301,11 @@ public class DateUtil {
 
     /**
      * 获取当前时间的后一天时间
+     *
      * @return
      */
-    public static Date getAfterDay(Date date){
-        Calendar cal=Calendar.getInstance();
+    public static Date getAfterDay(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         //使用roll方法进行回滚到后一天的时间
         //cl.roll(Calendar.DATE, 1);
@@ -316,10 +317,11 @@ public class DateUtil {
 
     /**
      * 获取当前时间的前一月时间
+     *
      * @return
      */
-    public static Date getBeforeMonth(Date date){
-        Calendar cal=Calendar.getInstance();
+    public static Date getBeforeMonth(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         //使用roll方法进行向前回滚
         //cl.roll(Calendar.DATE, -1);
@@ -330,10 +332,11 @@ public class DateUtil {
 
     /**
      * 获取当前时间的后一月时间
+     *
      * @return
      */
-    public static Date getAfterMonth(Date date){
-        Calendar cal=Calendar.getInstance();
+    public static Date getAfterMonth(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         //使用roll方法进行回滚到后一天的时间
         //cl.roll(Calendar.DATE, 1);
@@ -344,10 +347,11 @@ public class DateUtil {
 
     /**
      * 获取当前时间的前一月时间
+     *
      * @return
      */
-    public static Date getBeforeYear(Date date){
-        Calendar cal=Calendar.getInstance();
+    public static Date getBeforeYear(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         //使用roll方法进行向前回滚
         //cl.roll(Calendar.DATE, -1);
@@ -358,10 +362,11 @@ public class DateUtil {
 
     /**
      * 获取当前时间的后一月时间
+     *
      * @return
      */
-    public static Date getAfterYear(Date date){
-        Calendar cal=Calendar.getInstance();
+    public static Date getAfterYear(Date date) {
+        Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         //使用roll方法进行回滚到后一天的时间
         //cl.roll(Calendar.DATE, 1);
@@ -370,5 +375,75 @@ public class DateUtil {
         return cal.getTime();
     }
 
+    /**
+     * 是否是过去时间
+     * @param date
+     * @param type 1 年  2 月 3 天
+     * @return
+     */
+    public static boolean isBeforCurrentDate(Date date, int type) {
+        Calendar currCalendar = Calendar.getInstance();
+        currCalendar.setTime(date);
+        int currYear = currCalendar.get(Calendar.YEAR);
+        int currMonth = currCalendar.get(Calendar.MONTH);
+        int currDay = currCalendar.get(Calendar.DAY_OF_MONTH);
+
+        Calendar SystemCalendar = Calendar.getInstance();
+        SystemCalendar.setTime(new Date(System.currentTimeMillis()));
+        int systemYear = SystemCalendar.get(Calendar.YEAR);
+        int systemMonth = SystemCalendar.get(Calendar.MONTH);
+        int systemDay = SystemCalendar.get(Calendar.DAY_OF_MONTH);
+
+        switch (type) {
+            case 1:
+                return currYear < systemYear;
+            case 2:
+                if (currYear < systemYear){
+                    return true;
+                }else  if (currYear == systemYear){
+                    return currMonth < systemMonth;
+                }else {
+                    return false;
+                }
+           default:
+               if (currYear < systemYear){
+                   return true;
+               }else  if (currYear == systemYear){
+                   if (currMonth < systemMonth){
+                       return true;
+                   }else if(currMonth == systemMonth){
+                       return currDay < systemDay;
+                   }else {
+                       return false;
+                   }
+               }else {
+                   return false;
+               }
+        }
+    }
+
+    public static boolean isCurrentDay(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date currDate = new Date(System.currentTimeMillis());
+        String currTime = format.format(currDate);
+        String mTime = format.format(date);
+        return currTime.equals(mTime);
+    }
+
+    public static boolean isCurrentMonth(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        Date currDate = new Date(System.currentTimeMillis());
+        String currTime = format.format(currDate);
+        String mTime = format.format(date);
+        return currTime.equals(mTime);
+    }
+
+    public static boolean isCurrentYear(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+        Date currDate = new Date(System.currentTimeMillis());
+        String currTime = format.format(currDate);
+        String mTime = format.format(date);
+        return currTime.equals(mTime);
+    }
 
 }

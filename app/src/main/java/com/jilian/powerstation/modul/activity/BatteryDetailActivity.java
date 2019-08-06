@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.contrarywind.view.WheelView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -32,7 +34,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.Utils;
 import com.jilian.powerstation.MyApplication;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseActivity;
@@ -42,17 +43,24 @@ import com.jilian.powerstation.common.dto.BatteryDataListDto;
 import com.jilian.powerstation.common.dto.BatteryDetailDto;
 import com.jilian.powerstation.common.dto.BatteryfoDto;
 import com.jilian.powerstation.common.dto.PcsHistoryDataListDto;
+import com.jilian.powerstation.common.dto.ReportDto;
 import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
+import com.jilian.powerstation.manege.BaseMarket;
+import com.jilian.powerstation.manege.CharManager;
 import com.jilian.powerstation.modul.adapter.WheelAdapter;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.DateUtil;
+import com.jilian.powerstation.utils.DisplayUtil;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.ToastUitl;
+import com.jilian.powerstation.utils.Utils;
+import com.jilian.powerstation.views.CostomMarket;
 import com.jilian.powerstation.views.TMarket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -63,12 +71,12 @@ import lombok.ToString;
 /**
  * 电池详情
  */
-public class BatteryDetailActivity extends BaseActivity {
+public class BatteryDetailActivity extends BaseActivity implements IAxisValueFormatter {
 
     private UserViewModel userViewModel;
 
     private LineChart lc;
-    TMarket tMarket = new TMarket();
+    private LinearLayout llDesc;
     private ImageView ivHead;
     private TextView tvName;
     private TextView tvDate;
@@ -80,8 +88,17 @@ public class BatteryDetailActivity extends BaseActivity {
     private TextView tvSix;
     private BatteryfoDto data;
     private TextView tvSelectDate;
+    private TextView tvLeft;
+    private TextView tvRight;
     private TextView tvType;
+    private TextView tvCenterTitle;
     private ScrollView scrollView;
+
+    private CostomMarket tMarket;
+    private CharManager charManager;
+
+    private List<BatteryDataDto> mDataDto;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +131,11 @@ public class BatteryDetailActivity extends BaseActivity {
     public void initView() {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         tvType = (TextView) findViewById(R.id.tv_type);
+        llDesc = findViewById(R.id.ll_desc);
+        tvCenterTitle = (TextView) findViewById(R.id.tv_center_title);
         tvSelectDate = (TextView) findViewById(R.id.tv_select_date);
+        tvLeft = (TextView) findViewById(R.id.tv_left);
+        tvRight = (TextView) findViewById(R.id.tv_right);
         ivHead = (ImageView) findViewById(R.id.iv_head);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvDate = (TextView) findViewById(R.id.tv_date);
@@ -143,6 +164,14 @@ public class BatteryDetailActivity extends BaseActivity {
             public void onNothingSelected() {
             }
         });
+
+        tMarket = new CostomMarket(this, lc, DisplayUtil.getScreenWidth(this), getResources().getDimension(R.dimen.widget_size_250), 0);
+        lc.setMarker(tMarket);
+        // 设置上下左右偏移量
+        charManager = new CharManager(lc, tMarket, this);
+        charManager.setLegend(); // 设置图例
+
+
         data = (BatteryfoDto) getIntent().getSerializableExtra("data");
         tvName.setText("battery" + data.getId());
 
@@ -152,7 +181,6 @@ public class BatteryDetailActivity extends BaseActivity {
 
         tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(data.getTime())));
         initCustomTimePicker();
-        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, new Date()));
     }
 
     @Override
@@ -162,19 +190,18 @@ public class BatteryDetailActivity extends BaseActivity {
         typeList.add("PV input power");
         typeList.add("Glid output voltage");
         typeList.add("Glid output frequency");
-        // 设置上下左右偏移量
-        lc.setExtraOffsets(24f, 24f, 24f, 0f);
-        lc.animateXY(3000, 3000); // XY动画
-        setLegend(); // 设置图例
-        setYAxis(); // 设置Y轴
-        setXAxis(); // 设置X轴
-        setData();
         //获取电池详情
         getBatteryInfo();
         //获取电池历史数据
+        loadDatas( new Date());
+
+    }
+    private Date currDate;
+    private void loadDatas(Date currTime) {
+        currDate = currTime;
+        tvRight.setVisibility(DateUtil.isBeforCurrentDate(currDate, 3) ? View.VISIBLE : View.INVISIBLE);
+        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
         getBatteryData();
-
-
     }
 
     /**
@@ -216,149 +243,68 @@ public class BatteryDetailActivity extends BaseActivity {
         tvSix.setText(detailDto.getSoc());//电池电量
     }
 
-    private void setLegend() {
-        Legend legend = lc.getLegend();
-        legend.setForm(Legend.LegendForm.LINE); // 图形：线
-        legend.setFormSize(14f); // 图形大小
-        legend.setFormLineWidth(9f); // 线宽小于如下大小绘制出平躺长方形
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT); // 图例在水平线上的对齐方式：右对齐
-        legend.setTextColor(Color.WHITE);
-    }
-
-
-    private void setYAxis() {
-        // 左边Y轴
-        final YAxis yAxisLeft = lc.getAxisLeft();
-        yAxisLeft.setAxisMaximum(25.5f); // 设置Y轴最大值
-        yAxisLeft.setAxisMinimum(2); // 设置Y轴最小值
-        yAxisLeft.setGranularity(2f); // 设置间隔尺寸
-        yAxisLeft.setTextSize(12f); // 文本大小为12dp
-        yAxisLeft.setTextColor(Color.BLACK); // 文本颜色为灰色
-        yAxisLeft.setDrawGridLines(false); // 不绘制网格线
-//        yAxisLeft.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value, AxisBase axis) {
-//                return value == yAxisLeft.getAxisMinimum() ? (int) value + "" : (int) value + "";
-//            }
-//        });
-        // 右侧Y轴
-        lc.getAxisRight().setEnabled(false); // 不启用
-        //是否展示网格线
-        lc.setDrawGridBackground(false);
-        lc.getAxisRight().setDrawGridLines(false);
-        lc.getAxisLeft().setDrawGridLines(true);
-        //设置X Y轴网格线为虚线（实体线长度、间隔距离、偏移量：通常使用 0）
-        lc.getAxisLeft().enableGridDashedLine(10f, 10f, 0f);
-    }
-
-    private void setXAxis() {
-        // X轴
-        XAxis xAxis = lc.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // 在底部
-        xAxis.setDrawGridLines(false); // 不绘制网格线
-        xAxis.setLabelCount(20); // 设置标签数量
-        xAxis.setTextColor(Color.BLACK); // 文本颜色为灰色
-        xAxis.setTextSize(12f); // 文本大小为12dp
-        xAxis.setGranularity(6f); // 设置间隔尺寸
-        xAxis.setAxisMinimum(0f); // 设置X轴最小值
-        xAxis.setAxisMaximum(30f); // 设置X轴最大值
-        // 设置标签的显示格式
-//        xAxis.setValueFormatter(new IndexAxisValueFormatter(){});
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            public String getFormattedValue(float value, AxisBase axis) {
-                return "9:" + value;
-            }
-        });
-        //是否展示网格线
-        xAxis.setDrawGridLines(false);
-
-    }
-
-    public void setData() {
-        float[] ys1 = new float[]{
-                0f, 9f, 9f, 7f, 6f, 7f, 9f,
-                1f, 1f, 4f, 0f};
+    public void setData(List<BatteryDataDto> rows) {
         LineData lineData = new LineData();
-        for (int i = 0; i < 4; i++) {
+        charManager.removeAll();
+        if (rows != null && !rows.isEmpty()) {
+            mDataDto = rows;
+            charManager.setXAxis(rows.size(), 0, 1, rows.size(), this); // 设置X轴
             List<Entry> yVals1 = new ArrayList<>();
-            LineDataSet lineDataSet = null;
-            switch (i) {
-                case 0:
-                    yVals1.add(new Entry(0f, 0f));
-                    yVals1.add(new Entry(8f, 6f));
-                    yVals1.add(new Entry(13f, 16f));
-                    yVals1.add(new Entry(23f, 3f));
-                    yVals1.add(new Entry(28f, 11f));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("123", yVals1, R.color.color_chart_three, R.drawable.bg_color3); // 设置图标数据
+            List<Entry> yVals2 = new ArrayList<>();
+            tMarket.clear();
+            for (int index = 0, len = rows.size(); index < len; index++) {
+                BatteryDataDto dto = rows.get(index);
+                int value1 = 0;
+                int value2 = 0;
+                switch (type){
+                    case 0:
+                        value1 = charManager.getIntValue(dto.getVolt());
+                        break;
+                    case 1:
+                        value1 = charManager.getIntValue(dto.getCurrent());
+                        break;
+                    case 2:
+                        value1 = charManager.getIntValue(dto.getAvgTemp());
+                        value2 = charManager.getIntValue(dto.getMaxTemp());
+                        break;
+                    case 3:
+                        value1 = charManager.getIntValue(dto.getPower());
+                        break;
+                    case 4:
+                        value1 = charManager.getIntValue(dto.getSoc());
+                        break;
+                }
+                yVals1.add(new Entry(index, value1));
+                yVals2.add(new Entry(index, value2));
 
+            }
+            tMarket.setEnable(true);
+            lineData.setHighlightEnabled(true);
+            switch (type){
+                case 0:
+                    lineData.addDataSet(charManager.setChartData("Voltage", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
                     break;
                 case 1:
-                    yVals1.add(new Entry(17f, 0f));
-                    yVals1.add(new Entry(18f, 13f));
-                    yVals1.add(new Entry(20f, 16f));
-                    yVals1.add(new Entry(23f, 3f));
-                    yVals1.add(new Entry(28f, 13f));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("1233", yVals1, R.color.color_chart_one, R.drawable.bg_color1); // 设置图标数据
+                    lineData.addDataSet(charManager.setChartData("Frequency", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
                     break;
                 case 2:
-                    yVals1.add(new Entry(20f, 0f));
-                    yVals1.add(new Entry(22f, 13f));
-                    yVals1.add(new Entry(26f, 22));
-                    yVals1.add(new Entry(28f, 5f));
-                    yVals1.add(new Entry(29f, 22));
-                    yVals1.add(new Entry(30f, 0f));
-                    lineDataSet = setChartData("12223", yVals1, R.color.color_chart_two, R.drawable.bg_color2); // 设置图标数据
+                    tMarket.setEnable(false);
+                    lineData.setHighlightEnabled(false);
+                    lineData.addDataSet(charManager.setChartData("Average temperature", yVals1, R.color.color_chart_four, R.drawable.bg_color4));
+                    lineData.addDataSet(charManager.setChartData("Maximum temperature", yVals2, R.color.color_chart_one, R.drawable.bg_color1));
                     break;
                 case 3:
-                    yVals1.add(new Entry(0f, 0f));
-                    yVals1.add(new Entry(3f, 4f));
-                    yVals1.add(new Entry(5f, 2f));
-                    yVals1.add(new Entry(8f, 5f));
-                    yVals1.add(new Entry(10f, 0f));
-                    yVals1.add(new Entry(20f, 4f));
-                    yVals1.add(new Entry(24f, 3f));
-                    yVals1.add(new Entry(26f, 0f));
-                    lineDataSet = setChartData("我认为", yVals1, R.color.color_chart_four, R.drawable.bg_color4); // 设置图标数据
+                    lineData.addDataSet(charManager.setChartData("Power", yVals1, R.color.color_chart_four, R.drawable.bg_color4));
+                    break;
+                case 4:
+                    lineData.addDataSet(charManager.setChartData("Power", yVals1, R.color.color_chart_three, R.drawable.bg_color3));
                     break;
             }
-            lineData.addDataSet(lineDataSet);
-            // 3.将每一组折线数据集添加到折线数据中
-            lineData.setDrawValues(false);
-            // 4.将折线数据设置给图表
+
+            charManager.setYAxis(mDataDto.size()-1,0, mDataDto.size()); // 设置Y轴
+            charManager.setData(lineData, "kw", mDataDto.size());
+
         }
-        lc.setData(lineData);
-        lc.invalidate();
-    }
-
-    public LineDataSet setChartData(String name, List<Entry> yVals1, int color, int fillColor) {
-        // 1.获取一或多组Entry对象集合的数据
-        // 模拟数据1
-
-        // 2.分别通过每一组Entry对象集合的数据创建折线数据集
-        LineDataSet lineDataSet1 = new LineDataSet(yVals1, name);
-        lineDataSet1.setDrawCircles(false);// 不绘制圆点
-        lineDataSet1.setDrawCircleHole(false); // 不绘制圆洞，即为实心圆点
-        lineDataSet1.setColor(getResources().getColor(color)); // 设置为红色
-        lineDataSet1.setMode(LineDataSet.Mode.CUBIC_BEZIER); // 设置为贝塞尔曲线
-        lineDataSet1.setCubicIntensity(0.15f); // 强度
-        lineDataSet1.setCircleColor(Color.RED); // 设置圆点为颜色
-        lineDataSet1.setCircleRadius(0f);
-        lineDataSet1.setLineWidth(2f); // 设置线宽为2
-
-        lineDataSet1.setDrawFilled(true); // 启用填充
-        lineDataSet1.setFillAlpha(95); // 透明度
-        //设置曲线图渐填充渐变色
-        if (Utils.getSDKInt() >= 18) {
-            // fill drawable only supported on api level 18 and above
-            Drawable drawable = ContextCompat.getDrawable(this, fillColor);
-            drawable.setAlpha(160);
-            lineDataSet1.setFillDrawable(drawable);
-        } else {
-            lineDataSet1.setFillColor(Color.WHITE);
-        }
-        return lineDataSet1;
 
 
     }
@@ -375,6 +321,30 @@ public class BatteryDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 pvCustomTime.show();
+            }
+        });
+        tvLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDatas(DateUtil.getBeforeDay(currDate));
+            }
+        });
+
+        tvRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDatas(DateUtil.getAfterDay(currDate));
+            }
+        });
+
+        tMarket.setOnMarketBackCall(new BaseMarket.OnMarketBackCall() {
+            @Override
+            public String onBackCall(int position) {
+                if (Utils.isInBound(mDataDto, position)) {
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+                    return format.format(new Date(mDataDto.get(position).getTime()));
+                }
+                return "";
             }
         });
     }
@@ -404,8 +374,27 @@ public class BatteryDetailActivity extends BaseActivity {
                             public void onClick(View view) {
                                 tvType.setText(typeList.get(wheelview.getCurrentItem()));
                                 type = wheelview.getCurrentItem();
+                                llDesc.setVisibility(View.INVISIBLE);
+                                switch (type){
+                                    case 0:
+                                        tvCenterTitle.setText("Voltage（V）");
+                                        break;
+                                    case 1:
+                                        tvCenterTitle.setText("Current（A）");
+                                        break;
+                                    case 2:
+                                        llDesc.setVisibility(View.VISIBLE);
+                                        tvCenterTitle.setText("Temperature（℃）");
+                                        break;
+                                    case 3:
+                                        tvCenterTitle.setText("Power（W）");
+                                        break;
+                                    case 4:
+                                        tvCenterTitle.setText("Percentage（%）");
+                                        break;
+                                }
                                 dialog.dismiss();
-                                getBatteryData();
+                                loadDatas(currDate);
 
                             }
                         });
@@ -446,8 +435,7 @@ public class BatteryDetailActivity extends BaseActivity {
         pvCustomTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
-                tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, date));
-                getBatteryData();
+                loadDatas(date);
             }
         })
                 .setDate(selectedDate)
@@ -519,6 +507,7 @@ public class BatteryDetailActivity extends BaseActivity {
      * 没数据的时候
      */
     private void initNodataView() {
+        setData(null);
     }
 
     /**
@@ -528,6 +517,17 @@ public class BatteryDetailActivity extends BaseActivity {
      */
     private void initDataView(List<BatteryDataDto> rows) {
         Log.e(TAG, "initDataView: " + rows.size());
+        setData(rows);
     }
 
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        int currItem = (int) value;
+        if (currItem >= 0 && currItem < mDataDto.size()) {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            return format.format(new Date(mDataDto.get(currItem).getTime()));
+        } else {
+            return "";
+        }
+    }
 }

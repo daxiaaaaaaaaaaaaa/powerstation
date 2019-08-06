@@ -37,12 +37,14 @@
         android:layout_height="42dp" />
 
     <RelativeLayout
+        android:id="@+id/rl_select_data"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:paddingLeft="@dimen/widget_size_16"
         android:paddingRight="@dimen/widget_size_16">
 
         <TextView
+            android:id="@+id/tv_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_left_blue"
@@ -61,6 +63,7 @@
             tools:text="07/04/2019" />
 
         <TextView
+            android:id="@+id/tv_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -69,6 +72,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/tv_center_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

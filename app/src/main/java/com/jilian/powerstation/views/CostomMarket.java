@@ -22,6 +22,7 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 import com.google.gson.Gson;
 import com.jilian.powerstation.R;
+import com.jilian.powerstation.manege.BaseMarket;
 import com.jilian.powerstation.manege.CharDateManager;
 
 import java.util.ArrayList;
@@ -33,8 +34,8 @@ import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-public class CostomMarket implements IMarker {
-    LineChart lineChart;
+public class CostomMarket extends BaseMarket {
+    private LineChart lineChart;
     private HashMap<String, List<Entry>> entryMap;
     private Entry mEntry;
     private HashMap<String, Integer> colorMap;
@@ -44,7 +45,7 @@ public class CostomMarket implements IMarker {
     private List<Highlight> mHighlights;
     private float width, height;
     private Context context;
-    private String title = "";
+    private String title = "title";
     private Paint textPaint;
     private Paint paint;
     private RectF rect;
@@ -55,6 +56,7 @@ public class CostomMarket implements IMarker {
     private int strokerColor;
     private int textColor;
     private float groupSpace = 0;
+    private String mUnit = "";
 
 
     public CostomMarket(Context context, float width, float height) {
@@ -106,6 +108,11 @@ public class CostomMarket implements IMarker {
         colorMap.clear();
     }
 
+
+    public void setmUnit(String mUnit) {
+        this.mUnit = mUnit;
+    }
+
     public void putValue(String key, List<Entry> value, int color) {
         entryMap.put(key, value);
         colorMap.put(key, color);
@@ -123,12 +130,70 @@ public class CostomMarket implements IMarker {
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        this.mEntry = e;
-        if (lineChart != null) {
-            mHighlights = getHighlightsAtXValue(e.getX(), highlight.getYPx(), highlight.getYPx());
+        if (isEnable) {
+            this.mEntry = e;
+            if (lineChart != null) {
+                if (onMarketBackCall != null) {
+                    title = (String) onMarketBackCall.onBackCall((int) mEntry.getX());
+                }
+                mHighlights = getHighlightsAtXValue(e.getX(), highlight.getYPx(), highlight.getYPx());
+            }
+            markerInfos = getEntrys(mEntry);
         }
-        markerInfos = getEntrys(mEntry);
-        title = CharDateManager.getDateForm(type, mEntry.getX());
+    }
+
+
+    @Override
+    public void draw(Canvas canvas, float posX, float posY) {
+        if (isEnable) {
+            Set<String> keys = colorMap.keySet();
+            int len = keys.size();
+            //文字区域上下距离 8dp 文字一行是20dp
+            float textHeight = 0;
+            if (TextUtils.isEmpty(title)) {
+                textHeight = Utils.convertDpToPixel(8) * 2 + Utils.convertDpToPixel(20) * len;
+            } else {
+                textHeight = Utils.convertDpToPixel(8) * 2 + Utils.convertDpToPixel(20) * (len + 1);
+            }
+            rect.bottom = height / 2 + textHeight / 2;
+            rect.top = height / 2 - textHeight / 2;
+            paint.setColor(bgColor);
+            paint.setAlpha(120);
+            canvas.drawRect(rect, paint);
+
+            if (!TextUtils.isEmpty(title)) {
+                textPaint.setColor(context.getResources().getColor(R.color.color_838383));
+                setText(canvas, "", 0);
+            }
+            textPaint.setColor(textColor);
+
+            paint.reset();
+            paint.setStrokeWidth(5);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(strokerColor);
+            canvas.drawRect(rect, paint);
+
+            paint.reset();
+            int position = 0;
+            for (String key : keys) {
+                int color = colorMap.get(key);
+                if (lineChart != null) {
+                    setCircle(canvas, key, posX, color, len - position);
+                } else {
+                    setCircle(canvas, posX, color, len - position);
+                }
+
+                if (TextUtils.isEmpty(title)) {
+                    setNumberCircle(canvas, color, len - position - 1);
+                    setText(canvas, key, position);
+                } else {
+                    setNumberCircle(canvas, color, len - position);
+                    setText(canvas, key, position + 1);
+                }
+
+                position++;
+            }
+        }
     }
 
 
@@ -198,68 +263,6 @@ public class CostomMarket implements IMarker {
     }
 
 
-    @Override
-    public void draw(Canvas canvas, float posX, float posY) {
-
-        Set<String> keys = colorMap.keySet();
-        int len = keys.size();
-        //文字区域上下距离 8dp 文字一行是20dp
-        float textHeight = 0;
-        if (TextUtils.isEmpty(title)) {
-            textHeight = Utils.convertDpToPixel(8) * 2 + Utils.convertDpToPixel(20) * len;
-        } else {
-            textHeight = Utils.convertDpToPixel(8) * 2 + Utils.convertDpToPixel(20) * (len + 1);
-        }
-        rect.bottom = height / 2 + textHeight / 2;
-        rect.top = height / 2 - textHeight / 2;
-        paint.setColor(bgColor);
-        paint.setAlpha(120);
-        canvas.drawRect(rect, paint);
-
-        paint.reset();
-        paint.setColor(Color.RED);
-        rect1.left = 0;
-        rect1.top = 0;
-        rect1.right = groupSpace;
-        rect1.bottom = height;
-        canvas.drawRect(rect1, paint);
-
-        if (!TextUtils.isEmpty(title)) {
-            textPaint.setColor(context.getResources().getColor(R.color.color_838383));
-            setText(canvas, "", 0);
-        }
-        textPaint.setColor(textColor);
-
-        paint.reset();
-        paint.setStrokeWidth(5);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(strokerColor);
-        canvas.drawRect(rect, paint);
-
-        paint.reset();
-        int position = 0;
-        for (String key : keys) {
-            int color = colorMap.get(key);
-            if (lineChart != null) {
-                setCircle(canvas, key, posX, color, len - position);
-            } else {
-                setCircle(canvas, posX, color, len - position);
-            }
-
-            if (TextUtils.isEmpty(title)) {
-                setNumberCircle(canvas, color, len - position - 1);
-                setText(canvas, key, position);
-            } else {
-                setNumberCircle(canvas, color, len - position);
-                setText(canvas, key, position + 1);
-            }
-
-            position++;
-        }
-
-    }
-
-
     /**
      * @param canvas
      * @param posX
@@ -287,6 +290,9 @@ public class CostomMarket implements IMarker {
         paint.setAlpha(95);
         Log.e("TAG_LLLL", "Gson------------>4" + key);
         Highlight highlights = mHighlightMap.get(key);
+        if (highlights==null){
+            return;
+        }
         float y = height - Utils.convertDpToPixel(42) - Utils.convertDpToPixel(22) * position;
         canvas.drawCircle(posX, highlights.getYPx(), Utils.convertDpToPixel(10), paint);
         paint.reset();
@@ -323,7 +329,7 @@ public class CostomMarket implements IMarker {
             value = title;
             x = rect.left + Utils.convertDpToPixel(10);
         } else if (TextUtils.isEmpty(value)) {
-            value = "0kWh";
+            value = "0" + mUnit;
         }
         canvas.drawText(value, x, y, textPaint);
     }
@@ -364,7 +370,6 @@ public class CostomMarket implements IMarker {
                     }
                 }
             }
-
             Log.e("TAG_LLLL", "Gson------------>3" + new Gson().toJson(mHighlightMap));
         }
         return markerInfos;

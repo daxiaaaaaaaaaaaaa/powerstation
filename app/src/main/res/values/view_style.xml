@@ -185,5 +185,16 @@
         <item name="android:gravity">center_vertical|right</item>
         <item name="android:textSize">@dimen/font_size_15</item>
     </style>
+    <style name="SitrItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/widget_size_80</item>
+        <item name="android:layout_margin">@dimen/widget_size_3</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/share_main_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/widget_size_5</item>
+    </style>
+
 
 </resources>

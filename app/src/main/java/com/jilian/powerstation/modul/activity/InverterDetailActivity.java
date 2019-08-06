@@ -8,8 +8,10 @@ import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -37,6 +39,7 @@ import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
+import com.jilian.powerstation.manege.BaseMarket;
 import com.jilian.powerstation.manege.CharBarManage1;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.manege.CharManager;
@@ -46,9 +49,11 @@ import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
 import com.jilian.powerstation.utils.EmptyUtils;
 import com.jilian.powerstation.utils.ToastUitl;
+import com.jilian.powerstation.utils.Utils;
 import com.jilian.powerstation.views.CostomBarMarket;
 import com.jilian.powerstation.views.CostomMarket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -94,16 +99,31 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     private TextView detailConsumeFrequnc;//电网频率
     private TextView detailConsumePower;//电网功率
     private TextView detailLoadPower;//负载用电功率
+
+    private TextView tvDesc1;//绿色
+    private TextView tvDesc2;//黄色
+    private TextView tvDesc3;//红色
+    private TextView tvDesc4;//蓝色
+
+    private LinearLayout llDesc1;//绿色
+    private LinearLayout llDesc2;//黄色
+    private LinearLayout llDesc3;//红色
+    private LinearLayout llDesc4;//蓝色
+
+    private RelativeLayout rlSelectData;//
+
+    private TextView tvCenterTitle;
     private TextView tvName;
     private TextView tvDate;
     private PcsInfoDto data;
     private TextView tvType;
+    private TextView tvLeft;
+    private TextView tvRight;
     private TextView tvSelectDate;
     private ImageView ivHead;
     private RadioButton rbView1;
     private int dateType;
     private NestedScrollView nestedScrollView;
-
 
 
     @Override
@@ -136,6 +156,20 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         ivHead = (ImageView) findViewById(R.id.iv_head);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvDate = (TextView) findViewById(R.id.tv_date);
+
+        tvDesc1 = (TextView) findViewById(R.id.tv_desc1);
+        tvDesc2 = (TextView) findViewById(R.id.tv_desc2);
+        tvDesc3 = (TextView) findViewById(R.id.tv_desc3);
+        tvDesc4 = (TextView) findViewById(R.id.tv_desc4);
+
+        llDesc1 = findViewById(R.id.ll_desc1);
+        llDesc2 = findViewById(R.id.ll_desc2);
+        llDesc3 = findViewById(R.id.ll_desc3);
+        llDesc4 = findViewById(R.id.ll_desc4);
+
+        rlSelectData = findViewById(R.id.rl_select_data);
+
+        tvCenterTitle = (TextView) findViewById(R.id.tv_center_title);
         tvSelectDate = (TextView) findViewById(R.id.tv_select_date);
         detailVoltage1 = (TextView) findViewById(R.id.detail_voltage1);
         detailCurrent1 = (TextView) findViewById(R.id.detail_current1);
@@ -158,6 +192,8 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         detailConsumePower = (TextView) findViewById(R.id.detail_consume_power);
         detailLoadPower = (TextView) findViewById(R.id.detail_load_power);
         tvType = (TextView) findViewById(R.id.tv_type);
+        tvLeft = (TextView) findViewById(R.id.tv_left);
+        tvRight = (TextView) findViewById(R.id.tv_right);
         lineChart = findViewById(R.id.lineChart);
         barChart = findViewById(R.id.barChart);
 
@@ -165,7 +201,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showShareDialog(null,null,null,nestedScrollView);
+                showShareDialog(null, null, null, nestedScrollView);
             }
         });
 
@@ -173,9 +209,8 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         mCharManager = new CharManager(lineChart, mLineMarket, this);
         mCharManager.setLegend(); // 设置图例
 
-        mBarMarket = new CostomBarMarket(this, barChart, DisplayUtil.getScreenWidth(this), getResources().getDimension(R.dimen.widget_size_250), 0);
-        mCharBarManage = new CharBarManage1(barChart);
-        barChart.setMarker(mBarMarket);
+        mBarMarket = new CostomBarMarket(this, barChart);
+        mCharBarManage = new CharBarManage1(barChart, mBarMarket);
 
         data = (PcsInfoDto) getIntent().getSerializableExtra("data");
         tvName.setText("inverter" + data.getId());
@@ -184,9 +219,10 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 load(data.getPcsPhoto())
                 .into(ivHead);//在RequestBuilder 中使用自定义的ImageViewTarge
 
+        currDate = new Date();
         tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(data.getTime())));
         initCustomTimePicker();
-        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, new Date()));
+        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
     }
 
 
@@ -311,6 +347,21 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 showTypeDialog();
             }
         });
+        tvLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDatas(DateUtil.getBeforeDay(currDate));
+
+            }
+        });
+
+        tvRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPcsHistoryData();
+                loadDatas(DateUtil.getAfterDay(currDate));
+            }
+        });
         tvSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -333,28 +384,99 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                         break;
                     case R.id.rb_view4:
                         dateType = 3;
+                        rlSelectData.setVisibility(View.GONE);
                         break;
                 }
+                loadDatas(currDate);
+            }
+        });
 
+        mLineMarket.setOnMarketBackCall(new BaseMarket.OnMarketBackCall() {
+            @Override
+            public String onBackCall(int position) {
+                if (Utils.isInBound(mDataDto, position)) {
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+                    return format.format(new Date(mDataDto.get(position).getTime()));
+                }
+                return "";
+            }
+        });
+        mBarMarket.setOnMarketBackCall(new BaseMarket.OnMarketBackCall() {
+            @Override
+            public String onBackCall(int position) {
+                if (Utils.isInBound(mDataDto, position)) {
+                    if (dateType == 1) {
+                        SimpleDateFormat format = new SimpleDateFormat("dd");
+                        return format.format(new Date(mDataDto.get(position).getTime())) + "day";
+                    } else if (dateType == 2) {
+                        SimpleDateFormat format = new SimpleDateFormat("MM");
+                        String dateStr = format.format(new Date(mDataDto.get(position).getTime()));
+                        return CharDateManager.getMonth(Integer.parseInt(dateStr));
+                    } else if (dateType == 3) {
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy");
+                        return format.format(new Date(mDataDto.get(position).getTime()));
+                    }
+
+                }
+                return "";
             }
         });
 
     }
 
+    /**
+     * 请求
+     */
+    private Date currDate;
+
+    private void loadDatas(Date date) {
+        currDate = date;
+        tvRight.setVisibility(DateUtil.isBeforCurrentDate(currDate, 3) ? View.VISIBLE : View.INVISIBLE);
+        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
+        getPcsHistoryData();
+    }
+
+    public void showDesc(String desc1, String desc2, String desc3, String desc4) {
+        if (desc1 == null) {
+            llDesc1.setVisibility(View.GONE);
+        } else {
+            llDesc1.setVisibility(View.VISIBLE);
+            tvDesc1.setText(desc1);
+        }
+        if (desc2 == null) {
+            llDesc2.setVisibility(View.GONE);
+        } else {
+            llDesc1.setVisibility(View.VISIBLE);
+            tvDesc2.setText(desc2);
+        }
+        if (desc3 == null) {
+            llDesc3.setVisibility(View.GONE);
+        } else {
+            llDesc3.setVisibility(View.VISIBLE);
+            tvDesc3.setText(desc3);
+        }
+        if (desc4 == null) {
+            llDesc4.setVisibility(View.GONE);
+        } else {
+            llDesc4.setVisibility(View.VISIBLE);
+            tvDesc4.setText(desc4);
+        }
+    }
 
     //显示2条柱状图
     private void showBarChartMore(List<PcsHistoryDataDto> rows) {
+        mCharBarManage.removeAll();
+        if (Utils.isEmpty(rows)){
+            return;
+        }
         List<Float> xAxisValues = new ArrayList<>();
         List<List<Float>> yAxisValues = new ArrayList<>();
         List<String> labels = new ArrayList<>();
         List<Integer> colours = new ArrayList<>();
-        List<Float> x1 = new ArrayList<>();
-        List<Float> x2 = new ArrayList<>();
 
         List<Float> yVals1 = new ArrayList<>();
         List<Float> yVals2 = new ArrayList<>();
         List<Float> yVals3 = new ArrayList<>();
-        List<BarEntry> yVals4 = new ArrayList<>();
         float maxValue = 0;
         float minValue = 0;
         for (int index = 0, len = rows.size(); index < len; index++) {
@@ -366,29 +488,25 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
             float value3 = 0;
             switch (type) {
                 case 7:
-                    value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
-                    value2 = mCharBarManage.getIntValue(dto.getInputCurrPv2());
-                    value3 = mCharBarManage.getIntValue(dto.getInputEneryPv());
+                    value1 = mCharBarManage.getFloatValue(dto.getInputCurrPv1());
+                    value2 = mCharBarManage.getFloatValue(dto.getInputCurrPv2());
+                    value3 = mCharBarManage.getFloatValue(dto.getInputEneryPv());
                     yVals1.add(value1);
                     yVals2.add(value2);
                     yVals3.add(value3);
-                    maxValue = maxValue > value1 ? maxValue : value1;
-                    maxValue = maxValue > value2 ? maxValue : value2;
-                    maxValue = maxValue > value3 ? maxValue : value3;
-                    minValue = minValue < value1 ? minValue : value1;
-                    minValue = minValue < value2 ? minValue : value2;
-                    minValue = minValue < value3 ? minValue : value3;
                     break;
                 case 8:
-                    value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
+                case 9:
+                case 10:
+                case 11:
+                    value1 = mCharBarManage.getFloatValue(dto.getInputCurrPv1());
                     yVals1.add(value1);
                     yVals2.add(value2);
                     yVals3.add(value3);
-                    maxValue = maxValue > value1 ? maxValue : value1;
-                    minValue = minValue < value1 ? minValue : value1;
             }
 
         }
+        String mUntil = "";
         switch (type) {
             case 7:
                 yAxisValues.add(yVals1);
@@ -438,10 +556,11 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 break;
         }
         xAxisValues.add((float) xAxisValues.size());
-        mCharBarManage.showMoreBarChart(xAxisValues, yAxisValues, labels, colours, this)
-                .setXAxis(xAxisValues.get(xAxisValues.size() - 1) + 1, xAxisValues.get(0), xAxisValues.size() + 2)
+        mCharBarManage.showMoreBarChart(mUntil, xAxisValues, yAxisValues, labels, colours, this)
+                .setXAxis(xAxisValues.size() - 1, 0, xAxisValues.size())
                 .invalidate()
-                .setScalX();
+                .setScalX(mDataDto.size());
+
     }
 
     /**
@@ -456,132 +575,88 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
             List<Entry> yVals1 = new ArrayList<>();
             List<Entry> yVals2 = new ArrayList<>();
             List<Entry> yVals3 = new ArrayList<>();
-            List<Entry> yVals4 = new ArrayList<>();
-            int maxValue = 0;
-            int minValue = 0;
             mLineMarket.clear();
             for (int index = 0, len = rows.size(); index < len; index++) {
                 PcsHistoryDataDto dto = rows.get(index);
-                int value1 = 0;
-                int value2 = 0;
-                int value3 = 0;
-                int value4 = 0;
+                float value1 = 0;
+                float value2 = 0;
+                float value3 = 0;
 
                 switch (type) {
                     case 0:
-                        value1 = mCharBarManage.getIntValue(dto.getInputVoltPv1());
-                        value2 = mCharBarManage.getIntValue(dto.getInputVoltPv2());
+                        value1 = mCharBarManage.getFloatValue(dto.getInputVoltPv1());
+                        value2 = mCharBarManage.getFloatValue(dto.getInputVoltPv2());
                         yVals1.add(new Entry(index, value1));
                         yVals2.add(new Entry(index, value2));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        maxValue = maxValue > value2 ? maxValue : value2;
-                        minValue = minValue < value1 ? minValue : value1;
-                        minValue = minValue < value2 ? minValue : value2;
                         break;
                     case 1:
-                        value1 = mCharBarManage.getIntValue(dto.getInputPowerPv1());
-                        value2 = mCharBarManage.getIntValue(dto.getInputPowerPv2());
+                        value1 = mCharBarManage.getFloatValue(dto.getInputPowerPv1());
+                        value2 = mCharBarManage.getFloatValue(dto.getInputPowerPv2());
                         yVals1.add(new Entry(index, value1));
                         yVals2.add(new Entry(index, value2));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        maxValue = maxValue > value2 ? maxValue : value2;
-                        minValue = minValue < value1 ? minValue : value1;
-                        minValue = minValue < value2 ? minValue : value2;
                         break;
                     case 2:
-                        value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
-                        value2 = mCharBarManage.getIntValue(dto.getInputCurrPv2());
+                        value1 = mCharBarManage.getFloatValue(dto.getInputCurrPv1());
+                        value2 = mCharBarManage.getFloatValue(dto.getInputCurrPv2());
                         yVals1.add(new Entry(index, value1));
                         yVals2.add(new Entry(index, value2));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        maxValue = maxValue > value2 ? maxValue : value2;
-                        minValue = minValue < value1 ? minValue : value1;
-                        minValue = minValue < value2 ? minValue : value2;
                         break;
                     case 3:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 4:
-                        value1 = mCharBarManage.getIntValue(dto.getGridFreq());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridFreq());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 5:
-                        value1 = mCharBarManage.getIntValue(dto.getGridCurr());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridCurr());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 6:
-                        value1 = mCharBarManage.getIntValue(dto.getGridPower());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridPower());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 7:
-                        value1 = mCharBarManage.getIntValue(dto.getInputCurrPv1());
-                        value2 = mCharBarManage.getIntValue(dto.getInputCurrPv2());
-                        value3 = mCharBarManage.getIntValue(dto.getInputEneryPv());
+                        value1 = mCharBarManage.getFloatValue(dto.getInputCurrPv1());
+                        value2 = mCharBarManage.getFloatValue(dto.getInputCurrPv2());
+                        value3 = mCharBarManage.getFloatValue(dto.getInputEneryPv());
                         yVals1.add(new Entry(index, value1));
                         yVals2.add(new Entry(index, value2));
                         yVals3.add(new Entry(index, value3));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        maxValue = maxValue > value2 ? maxValue : value2;
-                        maxValue = maxValue > value3 ? maxValue : value3;
-                        minValue = minValue < value1 ? minValue : value1;
-                        minValue = minValue < value2 ? minValue : value2;
-                        minValue = minValue < value3 ? minValue : value3;
                         break;
                     case 8:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 9:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 10:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 11:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 12:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 13:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                     case 14:
-                        value1 = mCharBarManage.getIntValue(dto.getGridVolt());
+                        value1 = mCharBarManage.getFloatValue(dto.getGridVolt());
                         yVals1.add(new Entry(index, value1));
-                        maxValue = maxValue > value1 ? maxValue : value1;
-                        minValue = minValue < value1 ? minValue : value1;
                         break;
                 }
 
             }
-
+            String mUntil = "";
             switch (type) {
                 case 0:
                 case 1:
@@ -628,8 +703,9 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                     lineData.addDataSet(mCharManager.setChartData("Power", yVals1, R.color.color_chart_one, R.drawable.bg_color1));
                     break;
             }
-            mCharManager.setYAxis(maxValue, minValue, (maxValue - minValue) / 10); // 设置Y轴
-            mCharManager.setData(lineData);
+            Log.e(TAG, "initDataView: " + yVals1.size() + "-" + yVals2.size() + "-" + yVals3.size());
+            mCharManager.setYAxis(mDataDto.size() - 1, 0, mDataDto.size()); // 设置Y轴
+            mCharManager.setData(lineData, mUntil, mDataDto.size());
 
         }
     }
@@ -661,10 +737,11 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                                 tvType.setText(typeList.get(wheelview.getCurrentItem()));
                                 type = wheelview.getCurrentItem();
                                 rbView1.setChecked(true);
+                                setCenterTitle();
                                 dateType = 0;
+                                rlSelectData.setVisibility(View.VISIBLE);
                                 dialog.dismiss();
-                                getPcsHistoryData();
-
+                                loadDatas(currDate);
                             }
                         });
                         tvCancel.setOnClickListener(new View.OnClickListener() {
@@ -678,6 +755,56 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 })
                 .setShowBottom(true)
                 .show(getSupportFragmentManager());
+    }
+
+    public void setCenterTitle() {
+        switch (type) {
+            case 0:
+                tvCenterTitle.setText("Voltage（A）");
+                showDesc(null, null, "PV1", "PV2");
+                break;
+            case 1:
+                tvCenterTitle.setText("Current（A）");
+                showDesc(null, null, "PV1", "PV2");
+                break;
+            case 2:
+                tvCenterTitle.setText("Power（W）");
+                showDesc(null, null, "PV1", "PV2");
+                break;
+            case 3:
+                tvCenterTitle.setText("Voltage（A）");
+                showDesc(null, null, null, null);
+                break;
+            case 4:
+                tvCenterTitle.setText("Frequency（Hz）");
+                showDesc(null, null, null, null);
+                break;
+            case 5:
+                tvCenterTitle.setText("Current（A）");
+                showDesc(null, null, null, null);
+                break;
+            case 6:
+                tvCenterTitle.setText("Power（W）");
+                showDesc("PV1", null, "PV2", "Total");
+                break;
+            case 7:
+                tvCenterTitle.setText("Power（W）");
+                showDesc(null, null, null, null);
+                break;
+            case 8:
+                tvCenterTitle.setText("Capacity（kWh）");
+                showDesc(null, null, null, "Feed network capacit");
+                break;
+            case 9:
+                tvCenterTitle.setText("Capacity（kWh）");
+                showDesc(null, null, null, "Feed network capacit");
+                break;
+            case 10:
+                tvCenterTitle.setText("Power（W）");
+                showDesc(null, null, null, "Electricity consumption in power grid");
+                break;
+
+        }
     }
 
     private TimePickerView pvCustomTime;
@@ -705,7 +832,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, date));
-                getPcsHistoryData();
+                loadDatas(date);
             }
         })
                 .setDate(selectedDate)
@@ -790,7 +917,6 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
      */
     private void initDataView(List<PcsHistoryDataDto> rows) {
         Log.e(TAG, "initDataView: " + rows.size());
-        dateTitle.setVisibility(View.GONE);
         switch (type) {
             case 7:
             case 8:
@@ -802,12 +928,14 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                     barChart.setVisibility(View.GONE);
                     setLineData(rows);
                 } else {
+                    dateTitle.setVisibility(View.VISIBLE);
                     lineChart.setVisibility(View.GONE);
                     barChart.setVisibility(View.VISIBLE);
                     showBarChartMore(rows);
                 }
                 break;
             default:
+                dateTitle.setVisibility(View.GONE);
                 lineChart.setVisibility(View.VISIBLE);
                 barChart.setVisibility(View.GONE);
                 setLineData(rows);
@@ -815,14 +943,29 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         }
     }
 
+
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        int index = -1;
-        index = CharDateManager.getValueIndex(value, mDataDto == null ? 0 : mDataDto.size());
-        if (index == -1) {
-            return "";
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        int currItem = (int) value;
+        switch (dateType) {
+            case 0:
+                format = new SimpleDateFormat("HH:mm");
+                break;
+            case 1:
+                format = new SimpleDateFormat("dd");
+                break;
+            case 2:
+                format = new SimpleDateFormat("MM");
+                break;
+            case 3:
+                format = new SimpleDateFormat("yyyy");
+                break;
+        }
+        if (currItem >= 0 && currItem < mDataDto.size()) {
+            return format.format(new Date(mDataDto.get(currItem).getTime()));
         } else {
-            return CharDateManager.getDates(mDataDto.get(index).getTime(), index, "HH:mm");
+            return "";
         }
     }
 

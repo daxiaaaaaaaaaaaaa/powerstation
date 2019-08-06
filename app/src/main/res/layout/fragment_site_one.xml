@@ -61,8 +61,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/widget_size_16"
             android:background="@color/white"
+            android:paddingLeft="@dimen/widget_size_16"
             android:paddingTop="@dimen/widget_size_28"
             android:paddingRight="@dimen/widget_size_16">
 
@@ -82,9 +82,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
                     android:text="PV"
-                    android:textColor="@color/color_222222" />
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/font_size_11" />
             </LinearLayout>
 
             <LinearLayout
@@ -103,17 +103,17 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
                     android:text="Grid"
-                    android:textColor="@color/color_222222" />
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/font_size_11" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/widget_size_16"
             android:background="@color/white"
+            android:paddingLeft="@dimen/widget_size_16"
             android:paddingTop="@dimen/widget_size_13"
             android:paddingRight="@dimen/widget_size_16">
 
@@ -133,9 +133,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
                     android:text="Load"
-                    android:textColor="@color/color_222222" />
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/font_size_11" />
             </LinearLayout>
 
             <LinearLayout
@@ -154,34 +154,27 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
                     android:text="Battery"
-                    android:textColor="@color/color_222222" />
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/font_size_11" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingTop="@dimen/widget_size_21"
-            android:layout_height="@dimen/widget_size_101"
             android:paddingLeft="@dimen/widget_size_12"
+            android:paddingTop="@dimen/widget_size_21"
             android:paddingRight="@dimen/widget_size_12">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/widget_size_3"
-                android:layout_weight="1"
-                android:background="@drawable/share_main_bg"
-                android:gravity="center"
-                android:orientation="vertical">
+            <LinearLayout style="@style/SitrItem">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_222222"
-                    android:text="Day PV production (kwh)" />
+                    android:text="Day PV production (kwh)"
+                    android:textColor="@color/color_222222" />
 
                 <TextView
                     android:id="@+id/tv_total_1"
@@ -189,14 +182,7 @@
                     android:text="30" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/widget_size_3"
-                android:layout_weight="1"
-                android:background="@drawable/share_main_bg"
-                android:gravity="center"
-                android:orientation="vertical">
+            <LinearLayout style="@style/SitrItem">
 
                 <TextView
                     android:layout_width="wrap_content"
