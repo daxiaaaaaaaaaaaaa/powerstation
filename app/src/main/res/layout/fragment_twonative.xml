@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE LinearLayout [
+    <!ELEMENT LinearLayout (include|View|LinearLayout|TextView)*>
+    <!ATTLIST LinearLayout
+        android:background CDATA #IMPLIED
+        android:layout_height CDATA #REQUIRED
+        android:layout_marginTop CDATA #IMPLIED
+        android:layout_width CDATA #REQUIRED
+        android:orientation CDATA #REQUIRED
+        xmlns:android CDATA #IMPLIED>
+    <!ELEMENT include (#PCDATA)>
+    <!ATTLIST include
+        layout CDATA #REQUIRED>
+    <!ELEMENT View (#PCDATA)>
+    <!ATTLIST View
+        android:background CDATA #IMPLIED
+        android:id CDATA #IMPLIED
+        android:layout_height CDATA #IMPLIED
+        android:layout_marginLeft CDATA #IMPLIED
+        android:layout_marginRight CDATA #IMPLIED
+        android:layout_width CDATA #IMPLIED
+        style CDATA #IMPLIED>
+    <!ELEMENT TextView (#PCDATA)>
+    <!ATTLIST TextView
+        android:id CDATA #REQUIRED
+        android:text CDATA #REQUIRED
+        style CDATA #REQUIRED>
+    ]>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
+    >
+
+
+    <include layout="@layout/layout_title"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_10"
+        android:background="@color/color_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_size_10"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_one"
+            style="@style/UserInfoText"
+            android:text="Basic setting"/>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_16"
+            android:layout_marginRight="@dimen/widget_size_16"/>
+
+        <TextView
+            android:id="@+id/tv_two"
+            style="@style/UserInfoText"
+            android:text="Advanced setting"/>
+
+        <View
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_16"
+            android:layout_marginRight="@dimen/widget_size_16"/>
+
+        <TextView
+            android:id="@+id/tv_three"
+            style="@style/UserInfoText"
+            android:text="Monitoring window"/>
+
+        <View
+            android:id="@+id/v_about"
+            style="@style/LineHorizontal"
+            android:layout_marginLeft="@dimen/widget_size_16"
+            android:layout_marginRight="@dimen/widget_size_16"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

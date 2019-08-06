@@ -1,12 +1,6 @@
-package com.jilian.powerstation.modul.fragment;
+package com.jilian.powerstation.modul.natives;
 
-import android.Manifest;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,31 +10,18 @@ import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.jilian.powerstation.R;
-import com.jilian.powerstation.base.BaseDto;
-import com.jilian.powerstation.base.BaseFragment;
-import com.jilian.powerstation.common.dto.BaseResultDto;
+import com.jilian.powerstation.base.BaseActivity;
 import com.jilian.powerstation.common.dto.ConfigInfoDto;
 import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
-import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.DateUtil;
-import com.jilian.powerstation.utils.EmptyUtils;
-import com.jilian.powerstation.utils.PermissionsObserver;
-import com.jilian.powerstation.utils.ToastUitl;
-import com.jilian.powerstation.utils.selectphoto.SelectPhotoUtils;
-import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by cxz on 2019/6/2
- * <p>
- * Discrebe: 电站设置
- */
-public class SiteSettingFragment extends BaseFragment {
+public class SiteSettingActivity extends BaseActivity {
     private TextView tvSiteValue;
     private View viewLint;
     private LinearLayout llSite;
@@ -64,75 +45,66 @@ public class SiteSettingFragment extends BaseFragment {
     private EditText etSiteValue4;
     private TextView tvSiteStartime4;
     private TextView tvSiteEndtime4;
-    private TextView tvSave;
-
-
-    @Override
-    protected void loadData() {
-
-    }
 
     @Override
     protected void createViewModel() {
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
     }
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_site_setting;
+    public int intiLayout() {
+        return R.layout.activity_site_setting;
     }
 
     @Override
-    protected void initView(View view, Bundle savedInstanceState) {
-        tvSiteValue = (TextView) view.findViewById(R.id.tv_site_value);
-        viewLint = (View) view.findViewById(R.id.view_lint);
-        llSite = (LinearLayout) view.findViewById(R.id.ll_site);
-        etSoc = (EditText) view.findViewById(R.id.et_soc);
-        llOne = (LinearLayout) view.findViewById(R.id.ll_one);
-        siteTitle1 = (TextView) view.findViewById(R.id.site_title1);
-        llSite1 = (LinearLayout) view.findViewById(R.id.ll_site1);
-        etSiteValue1 = (EditText) view.findViewById(R.id.et_site_value1);
-        tvSiteStartime1 = (TextView) view.findViewById(R.id.tv_site_startime1);
-        tvSiteEndtime1 = (TextView) view.findViewById(R.id.tv_site_endtime1);
-        llSite2 = (LinearLayout) view.findViewById(R.id.ll_site2);
-        etSiteValue2 = (EditText) view.findViewById(R.id.et_site_value2);
-        tvSiteStartime2 = (TextView) view.findViewById(R.id.tv_site_startime2);
-        tvSiteEndtime2 = (TextView) view.findViewById(R.id.tv_site_endtime2);
-        siteTitle2 = (TextView) view.findViewById(R.id.site_title2);
-        llSite3 = (LinearLayout) view.findViewById(R.id.ll_site3);
-        etSiteValue3 = (EditText) view.findViewById(R.id.et_site_value3);
-        tvSiteStartime3 = (TextView) view.findViewById(R.id.tv_site_startime3);
-        tvSiteEndtime3 = (TextView) view.findViewById(R.id.tv_site_endtime3);
-        llSite4 = (LinearLayout) view.findViewById(R.id.ll_site4);
-        etSiteValue4 = (EditText) view.findViewById(R.id.et_site_value4);
-        tvSiteStartime4 = (TextView) view.findViewById(R.id.tv_site_startime4);
-        tvSiteEndtime4 = (TextView) view.findViewById(R.id.tv_site_endtime4);
-        tvSave = (TextView) view.findViewById(R.id.tv_save);
+    public void initView() {
+        setNormalTitle("SiteSetting", v -> finish());
+        setrightTitle("Submit", "#3298db", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        tvSiteValue = (TextView) findViewById(R.id.tv_site_value);
+        viewLint = (View) findViewById(R.id.view_lint);
+        llSite = (LinearLayout) findViewById(R.id.ll_site);
+        etSoc = (EditText) findViewById(R.id.et_soc);
+        llOne = (LinearLayout) findViewById(R.id.ll_one);
+        siteTitle1 = (TextView) findViewById(R.id.site_title1);
+        llSite1 = (LinearLayout) findViewById(R.id.ll_site1);
+        etSiteValue1 = (EditText) findViewById(R.id.et_site_value1);
+        tvSiteStartime1 = (TextView) findViewById(R.id.tv_site_startime1);
+        tvSiteEndtime1 = (TextView) findViewById(R.id.tv_site_endtime1);
+        llSite2 = (LinearLayout) findViewById(R.id.ll_site2);
+        etSiteValue2 = (EditText) findViewById(R.id.et_site_value2);
+        tvSiteStartime2 = (TextView) findViewById(R.id.tv_site_startime2);
+        tvSiteEndtime2 = (TextView) findViewById(R.id.tv_site_endtime2);
+        siteTitle2 = (TextView) findViewById(R.id.site_title2);
+        llSite3 = (LinearLayout) findViewById(R.id.ll_site3);
+        etSiteValue3 = (EditText) findViewById(R.id.et_site_value3);
+        tvSiteStartime3 = (TextView) findViewById(R.id.tv_site_startime3);
+        tvSiteEndtime3 = (TextView) findViewById(R.id.tv_site_endtime3);
+        llSite4 = (LinearLayout) findViewById(R.id.ll_site4);
+        etSiteValue4 = (EditText) findViewById(R.id.et_site_value4);
+        tvSiteStartime4 = (TextView) findViewById(R.id.tv_site_startime4);
+        tvSiteEndtime4 = (TextView) findViewById(R.id.tv_site_endtime4);
     }
 
-    private UserViewModel userViewModel;
-    private int timeType;//时间类型
-
     @Override
-    protected void initData() {
+    public void initData() {
         initCustomTimePicker();
-        getConfigInfo();
     }
-
+    private int timeType;//时间类型
+    private TimePickerView pvCustomTime;
     @Override
-    protected void initListener() {
+    public void initListener() {
         tvSiteValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showSelectSettingTypeDialog();
             }
         });
-        tvSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                savePowerSetting();
-            }
-        });
+
 
         tvSiteStartime1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,143 +173,9 @@ public class SiteSettingFragment extends BaseFragment {
             }
         });
 
-
     }
 
-    /**
-     * 保存
-     */
-    private void savePowerSetting() {
-        showLoadingDialog();
-        userViewModel.savePowerSetting
-                (
-                        getActivity().getIntent().getStringExtra("sn"),
-                        WorkingType, etSoc.getText().toString(),
-
-                        etSiteValue1.getText().toString(),
-                        etSiteValue2.getText().toString(),
-                        etSiteValue3.getText().toString(),
-                        etSiteValue4.getText().toString(),
-
-                        tvSiteStartime1.getText().toString(),
-                        tvSiteEndtime1.getText().toString(),
-                        tvSiteStartime2.getText().toString(),
-                        tvSiteEndtime2.getText().toString(),
-
-
-                        tvSiteStartime3.getText().toString(),
-                        tvSiteEndtime3.getText().toString(),
-                        tvSiteStartime4.getText().toString(),
-                        tvSiteEndtime4.getText().toString());
-        userViewModel.getSaveliveData().observe(this, new Observer<BaseDto<BaseResultDto>>() {
-            @Override
-            public void onChanged(@Nullable BaseDto<BaseResultDto> resultDtoBaseDto) {
-                hideLoadingDialog();
-                if (resultDtoBaseDto.isSuccess()) {
-                    BaseResultDto dto = resultDtoBaseDto.getData();
-                    if (EmptyUtils.isNotEmpty(dto)) {
-                        String result = dto.getResult();
-                        if ("0".equals(result)) {
-                            ToastUitl.showImageToastTips("save successe");
-                            getConfigInfo();
-                        } else {
-                            ToastUitl.showImageToastTips("save failuer");
-                        }
-                    } else {
-                        ToastUitl.showImageToastTips("save failuer");
-                    }
-                } else {
-                    ToastUitl.showImageToastTips(resultDtoBaseDto.getMsg());
-                }
-            }
-        });
-    }
-
-    /**
-     * :配置-获取电站设置信息
-     */
-    private void getConfigInfo() {
-        userViewModel.getConfigInfo(getActivity().getIntent().getStringExtra("sn"));
-        userViewModel.getConfigliveData().observe(this, new Observer<BaseDto<ConfigInfoDto>>() {
-            @Override
-            public void onChanged(@Nullable BaseDto<ConfigInfoDto> configInfoDtoBaseDto) {
-                hideLoadingDialog();
-                if (configInfoDtoBaseDto.isSuccess()) {
-                    if (EmptyUtils.isNotEmpty(configInfoDtoBaseDto.getData())) {
-                        initConfigView(configInfoDtoBaseDto.getData());
-                    }
-                } else {
-                    ToastUitl.showImageToastTips(configInfoDtoBaseDto.getMsg());
-                }
-
-            }
-        });
-    }
-
-    private int WorkingType;//	True	Number		电站工作模式（2:自发自用，3:错峰用电，4:应急电源）
-
-    /**
-     * 初始化设置的界面
-     *
-     * @param dto
-     */
-    private void initConfigView(ConfigInfoDto dto) {
-        WorkingType = dto.getWorkingType();
-        //（2:自发自用，3:错峰用电，4:应急电源）
-        if (WorkingType == 2) {
-            llSite.setVisibility(View.VISIBLE);
-            llOne.setVisibility(View.GONE);
-            tvSiteValue.setText("self-use");
-            //并网截止soc
-            etSoc.setText(dto.getSoc());
-
-        }
-        if (WorkingType == 3) {
-            llSite.setVisibility(View.GONE);
-            llOne.setVisibility(View.VISIBLE);
-            tvSiteValue.setText("Off-peak power consumption");
-            //并网截止soc
-            etSoc.setText(dto.getSoc());
-            //充电功率一
-            etSiteValue1.setText(dto.getRechargePower_One());
-            //放电功率一
-            etSiteValue2.setText(dto.getDischargePower_One());
-            //充电功率二
-            etSiteValue3.setText(dto.getRechargePower_Two());
-            //放电功率三
-            etSiteValue4.setText(dto.getDischargePower_Two());
-
-            //充电开始时间1
-            tvSiteStartime1.setText(dto.getRechargeStartTime_One());
-            //充电结束时间1
-            tvSiteEndtime1.setText(dto.getRechargeEndTime_One());
-
-            //放电开始时间1
-            tvSiteStartime2.setText(dto.getDischargeStartTime_One());
-            //放电结束时间1
-            tvSiteEndtime2.setText(dto.getDischargeEndTime_One());
-
-
-            //充电开始时间2
-            tvSiteStartime3.setText(dto.getRechargeStartTime_Two());
-            //充电结束时间2
-            tvSiteEndtime3.setText(dto.getRechargeEndTime_Two());
-
-            //放电开始时间2
-            tvSiteStartime4.setText(dto.getDischargeStartTime_Two());
-            //放电结束时间2
-            tvSiteEndtime4.setText(dto.getDischargeEndTime_Two());
-
-        }
-
-        if (WorkingType == 4) {
-            llSite.setVisibility(View.GONE);
-            llOne.setVisibility(View.GONE);
-            tvSiteValue.setText("Emergency power supply");
-        }
-
-
-    }
+    private int WorkingType;
 
     /**
      * 选择设置配置类型对话框
@@ -367,7 +205,7 @@ public class SiteSettingFragment extends BaseFragment {
                             public void onClick(View v) {
                                 WorkingType = 2;
                                 dialog.dismiss();
-                                savePowerSetting();
+                                initConfigView(null);
 
                             }
                         });
@@ -376,7 +214,7 @@ public class SiteSettingFragment extends BaseFragment {
                             public void onClick(View v) {
                                 WorkingType = 3;
                                 dialog.dismiss();
-                                savePowerSetting();
+                                initConfigView(null);
 
                             }
                         });
@@ -386,7 +224,7 @@ public class SiteSettingFragment extends BaseFragment {
                             public void onClick(View v) {
                                 WorkingType = 4;
                                 dialog.dismiss();
-                                savePowerSetting();
+                                initConfigView(null);
 
                             }
                         });
@@ -395,10 +233,70 @@ public class SiteSettingFragment extends BaseFragment {
                     }
                 })
                 .setShowBottom(true)
-                .show(getActivity().getSupportFragmentManager());
+                .show(getSupportFragmentManager());
     }
 
-    private TimePickerView pvCustomTime;
+    /**
+     * 初始化设置的界面
+     *
+     * @param dto
+     */
+    private void initConfigView(ConfigInfoDto dto) {
+
+       // WorkingType = dto.getWorkingType();
+        //（2:自发自用，3:错峰用电，4:应急电源）
+        if (WorkingType == 2) {
+            llSite.setVisibility(View.VISIBLE);
+            llOne.setVisibility(View.GONE);
+            tvSiteValue.setText("self-use");
+            //并网截止soc
+           // etSoc.setText(dto.getSoc());
+
+        }
+        if (WorkingType == 3) {
+            llSite.setVisibility(View.GONE);
+            llOne.setVisibility(View.VISIBLE);
+            tvSiteValue.setText("Off-peak power consumption");
+//            //并网截止soc
+//            etSoc.setText(dto.getSoc());
+//            //充电功率一
+//            etSiteValue1.setText(dto.getRechargePower_One());
+//            //放电功率一
+//            etSiteValue2.setText(dto.getDischargePower_One());
+//            //充电功率二
+//            etSiteValue3.setText(dto.getRechargePower_Two());
+//            //放电功率三
+//            etSiteValue4.setText(dto.getDischargePower_Two());
+//
+//            //充电开始时间1
+//            tvSiteStartime1.setText(dto.getRechargeStartTime_One());
+//            //充电结束时间1
+//            tvSiteEndtime1.setText(dto.getRechargeEndTime_One());
+//
+//            //放电开始时间1
+//            tvSiteStartime2.setText(dto.getDischargeStartTime_One());
+//            //放电结束时间1
+//            tvSiteEndtime2.setText(dto.getDischargeEndTime_One());
+//
+//
+//            //充电开始时间2
+//            tvSiteStartime3.setText(dto.getRechargeStartTime_Two());
+//            //充电结束时间2
+//            tvSiteEndtime3.setText(dto.getRechargeEndTime_Two());
+//
+//            //放电开始时间2
+//            tvSiteStartime4.setText(dto.getDischargeStartTime_Two());
+//            //放电结束时间2
+//            tvSiteEndtime4.setText(dto.getDischargeEndTime_Two());
+
+        }
+
+        if (WorkingType == 4) {
+            llSite.setVisibility(View.GONE);
+            llOne.setVisibility(View.GONE);
+           tvSiteValue.setText("Emergency power supply");
+        }
+    }
 
 
     /**
@@ -420,7 +318,7 @@ public class SiteSettingFragment extends BaseFragment {
         Calendar endDate = Calendar.getInstance();
         endDate.set(2029, 01, 01);
         //时间选择器 ，自定义布局
-        pvCustomTime = new TimePickerBuilder(getmActivity(), new OnTimeSelectListener() {
+        pvCustomTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 String dateStr = DateUtil.dateToString("HH:mm", date);

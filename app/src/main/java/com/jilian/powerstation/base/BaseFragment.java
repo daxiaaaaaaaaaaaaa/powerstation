@@ -348,6 +348,9 @@ public abstract class BaseFragment extends Fragment {
      * 电站详情 获取警告
      */
     private void getPowerAlarmInfo() {
+        if(getClass().getSimpleName().equals("OneNativeFragment")||getClass().getSimpleName().equals("TwoNativeFragment")){
+        return;
+        }
         showLoadingDialog();
         userViewModel.getPowerAlarmInfo(getActivity().getIntent().getStringExtra("sn"));
         userViewModel.getAlarmliveData().observe(this, new Observer<BaseDto<AlarmInfoDto>>() {

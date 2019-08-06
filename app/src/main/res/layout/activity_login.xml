@@ -54,7 +54,7 @@
             style="@style/LoginDefult"
             android:hint="@string/login_password"
             android:layout_height="@dimen/widget_size_49"
-            android:text="12345678"
+            android:text="123456"
             android:inputType="textPassword" />
 
         <RelativeLayout

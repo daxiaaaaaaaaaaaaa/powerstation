@@ -121,7 +121,13 @@
         <activity android:name=".modul.activity.AboutActivity"/>
         <activity android:name=".modul.activity.UpdateUerActivity"/>
         <activity android:name=".modul.activity.MyInfoActivity"/>
-
+        <activity android:name=".modul.natives.NativeMainActivity"/>
+        <activity android:name=".modul.natives.BaseSettingActivity"/>
+        <activity android:name=".modul.natives.SiteSettingActivity"/>
+        <activity android:name=".modul.natives.AdvancedSettingActivity"/>
+        <activity android:name=".modul.natives.VoltResponseModeActivity"/>
+        <activity android:name=".modul.natives.ManualOperationActivity"/>
+        <activity android:name=".modul.natives.WindowActivity"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jilian.powerstation.fileprovider"

@@ -24,6 +24,8 @@ import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.CommonActivity;
 import com.jilian.powerstation.common.dto.LoginDto;
 import com.jilian.powerstation.factory.Factoty;
+import com.jilian.powerstation.modul.natives.BaseNativeMainActivity;
+import com.jilian.powerstation.modul.natives.NativeMainActivity;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.SPUtil;
 import com.jilian.powerstation.utils.ToastUitl;
@@ -46,6 +48,9 @@ public class LoginActivity extends BaseActivity {
     private TextView tvLogin;
     private boolean mbDisplayFlg;
     private UserViewModel userViewModel;
+    private TextView loginLocalMode;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        loginLocalMode = (TextView) findViewById(R.id.login_local_mode);
         rlCancel = (RelativeLayout) findViewById(R.id.rl_cancel);
         etMail = (ClearEditText) findViewById(R.id.et_mail);
         etPwd = (ClearEditText) findViewById(R.id.et_pwd);
@@ -95,6 +101,13 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+
+        loginLocalMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, NativeMainActivity.class));
+            }
+        });
         rlCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

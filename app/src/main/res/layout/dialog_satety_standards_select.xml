@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/widget_size_8"
+            android:layout_marginRight="@dimen/widget_size_8"
+            android:background="@drawable/shape_btn_white12"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/btn_one"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/widget_size_58"
+                android:gravity="center"
+                android:text="America"
+                android:textColor="#3298db"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/color_line"/>
+
+            <TextView
+                android:id="@+id/btn_two"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/widget_size_58"
+                android:gravity="center"
+                android:text="New Zealand"
+                android:textColor="#3298db"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/color_line"/>
+
+            <TextView
+                android:id="@+id/btn_three"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/widget_size_58"
+                android:gravity="center"
+                android:text="Australia"
+                android:textColor="#3298db"
+                android:textSize="16sp"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/widget_size_58"
+            android:layout_marginLeft="@dimen/widget_size_8"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="@dimen/widget_size_8"
+            android:layout_marginBottom="@dimen/widget_size_42"
+            android:background="@drawable/shape_btn_white12"
+            android:gravity="center"
+            android:text="Cance"
+            android:textColor="#3298db"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</RelativeLayout>

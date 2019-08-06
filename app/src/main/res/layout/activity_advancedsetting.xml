@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_line"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:paddingBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="BatChrgVoltMax"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_01"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="200～500"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="V"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="BatChrgCurrMax"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_02"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="0～12"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="A"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="BatDisChrgCurrMax"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_03"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="0～12"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="A"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_one"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="Manual Mode"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <TextView
+                    android:id="@+id/tv_04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_15"
+                    android:drawableRight="@drawable/image_right"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:gravity="right"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_16"/>
+            </LinearLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="Data upload interval"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_05"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint=""
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="S"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll_two"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="Satety Standards"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <TextView
+                    android:id="@+id/tv_06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_15"
+                    android:drawableRight="@drawable/image_right"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:gravity="right"
+                    android:text="America"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_16"/>
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/ll_three"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="VoltResponseMode"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <TextView
+                    android:id="@+id/tv_07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_15"
+                    android:drawableRight="@drawable/image_right"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:gravity="right"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_16"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll_four"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="Power factor"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_08"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="-0.8～0.8"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="GridChrgGrad"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_09"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="16.67～100"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="%"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="GridDisChrgGrad"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_10"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="35dp"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="16.67～100"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="%"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="Frestop"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+                    android:id="@+id/tv_11"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="51～52"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="Hz"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="Frestop-CH"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="51～52"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="Hz"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="VoltResponse2"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="51～52"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="Vac"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="VoltResponse3"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="51～52"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="Vac"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="VoltResponse4"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="51～52"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="Vac"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size_50"
+                android:layout_marginTop="1px"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/widget_size_16"
+                    android:text="GridVoltAvgFor10Min"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/font_size_14"/>
+
+                <EditText
+
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_30"
+                    android:background="@null"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:hint="51～52"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/widget_size_12"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/widget_size_10"
+                    android:drawablePadding="@dimen/widget_size_10"
+                    android:text="Vac"
+                    android:textColor="@color/color_text"
+                    android:textSize="@dimen/widget_size_16"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
