@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:visibility="gone"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_04_reverse"
+              android:orientation="vertical">
+
+
+
+
+        <TextView
+            style="@style/StationItemTitle"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/ic_station_produce"
+            android:text="Lifetime consumption"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_number_4_reverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="3dp"
+                tools:text="93"
+                android:textColor="#ff222222"
+                android:textSize="28sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tv_number_4_reverse"
+                android:layout_marginBottom="6dp"
+                android:layout_toRightOf="@+id/tv_number_4_reverse"
+                android:text="kWh"
+                android:textColor="#ff222222"
+                android:textSize="11sp"/>
+        </RelativeLayout>
+    </LinearLayout>

@@ -11,6 +11,7 @@ import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
 import com.jilian.powerstation.dialog.nicedialog.ViewHolder;
+import com.jilian.powerstation.http.SocketUtils;
 
 public class OneNativeFragment extends BaseFragment {
     private LinearLayout llTop;
@@ -49,7 +50,7 @@ public class OneNativeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        SocketUtils.sandMessage("1122");
     }
 
     private void showSelectSettingTypeDialog() {
