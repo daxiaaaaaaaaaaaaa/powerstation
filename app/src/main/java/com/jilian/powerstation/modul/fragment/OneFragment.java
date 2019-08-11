@@ -288,19 +288,19 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
 
 
 
-        rl02.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ll02Reverse.setVisibility(View.VISIBLE);
-                if(b_02){
-                    flipCard(ll02Positive,ll02Reverse,false);
-                }
-                else{
-                    flipCard(ll02Positive,ll02Reverse,true);
-                }
-                b_02 =!b_02;
-            }
-        });
+//        rl02.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ll02Reverse.setVisibility(View.VISIBLE);
+//                if(b_02){
+//                    flipCard(ll02Positive,ll02Reverse,false);
+//                }
+//                else{
+//                    flipCard(ll02Positive,ll02Reverse,true);
+//                }
+//                b_02 =!b_02;
+//            }
+//        });
 
 
 
@@ -339,34 +339,34 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
 
 
 
-        rl05.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ll05Reverse.setVisibility(View.VISIBLE);
-                if(b_05){
-                    flipCard(ll05Positive,ll05Reverse,false);
-                }
-                else{
-                    flipCard(ll05Positive,ll05Reverse,true);
-                }
-                b_05 =!b_05;
-            }
-        });
-
-
-        rl06.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ll06Reverse.setVisibility(View.VISIBLE);
-                if(b_06){
-                    flipCard(ll06Positive,ll06Reverse,false);
-                }
-                else{
-                    flipCard(ll06Positive,ll06Reverse,true);
-                }
-                b_06 =!b_06;
-            }
-        });
+//        rl05.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ll05Reverse.setVisibility(View.VISIBLE);
+//                if(b_05){
+//                    flipCard(ll05Positive,ll05Reverse,false);
+//                }
+//                else{
+//                    flipCard(ll05Positive,ll05Reverse,true);
+//                }
+//                b_05 =!b_05;
+//            }
+//        });
+//
+//
+//        rl06.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ll06Reverse.setVisibility(View.VISIBLE);
+//                if(b_06){
+//                    flipCard(ll06Positive,ll06Reverse,false);
+//                }
+//                else{
+//                    flipCard(ll06Positive,ll06Reverse,true);
+//                }
+//                b_06 =!b_06;
+//            }
+//        });
 
 
 
@@ -466,12 +466,17 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
      */
     private void initDetailView(PowerInfoDetailDto data) {
         Log.e(TAG, "initDetailView: " + data.toString());
-        tvNumber1.setText(data.getToday_pv_production());
-        tvNumber2.setText(data.getToday_consumption());
-        tvNumber3.setText(data.getToday_own_consumption_rate());
-        tvNumber4.setText(data.getToday_own_consumption());
-        tvNumber5.setText(data.getHistory_estimated_refund());
-        tvNumber6.setText(data.getHistory_carbon_offset());
+        tvNumber1.setText(data.getToday_own_consumption_rate());//当日自发自用率
+        tvNumber2.setText("0");//设备运行数量(没字段，感觉)
+        tvNumber3.setText(data.getToday_pv_production() );//当天发电量
+        tvNumber4.setText(data.getToday_consumption());//当天用电
+        tvNumber5.setText(data.getHistory_estimated_refund());//当天收益(没字段，感觉)
+        tvNumber6.setText(data.getHistory_carbon_offset());//当天二氧化碳(没字段，感觉)
+
+        tvNumber1Reverse.setText(data.getToday_own_consumption());//
+        tvNumber3Reverse.setText(data.getHistory_pv_production());//总发电
+        tvNumber4Reverse.setText(data.getHistory_consumption());//总用电
+
         setPowerView(data.getPv2GRID(), tvPowerValue1, imgPower1, R.drawable.image_station_7, R.drawable.image_station_7, R.drawable.image_station_7);
         setPowerView(data.getPv2BAT(), tvPowerValue2, imgPower2, R.drawable.image_station_6, R.drawable.image_station_6, R.drawable.image_station_6);
         setPowerView(data.getBat2GRID(), tvPowerValue3, imgPower3, R.drawable.image_station_7, R.drawable.image_station_7, R.drawable.image_station_5);

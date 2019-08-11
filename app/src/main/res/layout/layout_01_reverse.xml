@@ -11,7 +11,7 @@
     <TextView
         style="@style/StationItemTitle"
         android:layout_gravity="center_horizontal"
-        android:drawableLeft="@drawable/ic_station_produce"
+        android:drawableLeft="@drawable/img_one_1"
         android:text="Day self-consumption"/>
 
     <RelativeLayout

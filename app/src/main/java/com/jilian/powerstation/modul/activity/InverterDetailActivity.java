@@ -35,6 +35,7 @@ import com.jilian.powerstation.common.dto.PcsHistoryDataDto;
 import com.jilian.powerstation.common.dto.PcsHistoryDataListDto;
 import com.jilian.powerstation.common.dto.PcsInfoDetailDto;
 import com.jilian.powerstation.common.dto.PcsInfoDto;
+import com.jilian.powerstation.common.dto.ReportListDto;
 import com.jilian.powerstation.dialog.nicedialog.BaseNiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.NiceDialog;
 import com.jilian.powerstation.dialog.nicedialog.ViewConvertListener;
@@ -44,6 +45,7 @@ import com.jilian.powerstation.manege.CharBarManage1;
 import com.jilian.powerstation.manege.CharDateManager;
 import com.jilian.powerstation.manege.CharManager;
 import com.jilian.powerstation.modul.adapter.WheelAdapter;
+import com.jilian.powerstation.modul.viewmodel.ReportViewModel;
 import com.jilian.powerstation.modul.viewmodel.UserViewModel;
 import com.jilian.powerstation.utils.DateUtil;
 import com.jilian.powerstation.utils.DisplayUtil;
@@ -66,6 +68,8 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     private LineChart lineChart;
     private BarChart barChart;
     private UserViewModel userViewModel;
+    private ReportViewModel reportViewModel;
+
     private CharManager mCharManager;
     private CharBarManage1 mCharBarManage;
     private CostomMarket mLineMarket;
@@ -125,6 +129,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     private int dateType;
     private NestedScrollView nestedScrollView;
 
+    private String sn = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,6 +146,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     @Override
     protected void createViewModel() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        reportViewModel = ViewModelProviders.of(this).get(ReportViewModel.class);
     }
 
     @Override
@@ -222,12 +228,13 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         currDate = new Date();
         tvDate.setText(DateUtil.dateToString("yyyy/MM/dd HH:mm:ss", new Date(data.getTime())));
         initCustomTimePicker();
-        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
+        tvSelectDate.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_DATE, currDate));
     }
 
 
     @Override
     public void initData() {
+        sn = getIntent().getStringExtra("sn");
         typeList.add("PV input voltage");
         typeList.add("PV input current");
         typeList.add("PV input power");
@@ -253,6 +260,35 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
 
     public void initTab() {
     }
+
+
+    /**
+     * 获取有年月日区分的
+     */
+    public void getReportData() {
+        if (sn == null) return;
+        String startTime = DateUtil.getDayBegin(currDate.getTime());
+        String endTime = DateUtil.getDayEnd(currDate.getTime());
+        reportViewModel.addReportData(sn, startTime, endTime, dateType);
+        reportViewModel.getReportData().observe(this, new Observer<BaseDto<ReportListDto>>() {
+            @Override
+            public void onChanged(@Nullable BaseDto<ReportListDto> reportListDtoBaseDto) {
+
+                hideLoadingDialog();
+                if (reportListDtoBaseDto.isSuccess()) {
+                    if (EmptyUtils.isNotEmpty(reportListDtoBaseDto)) {
+//                        showBarChartMore(reportListDtoBaseDto.getData().getRows());
+                    } else {
+                        initNodataView();
+                    }
+                } else {
+                    initNodataView();
+                    ToastUitl.showImageToastTips(reportListDtoBaseDto.getMsg());
+                }
+            }
+        });
+    }
+
 
     private void getPcsInfo() {
         showLoadingDialog();
@@ -432,8 +468,28 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     private void loadDatas(Date date) {
         currDate = date;
         tvRight.setVisibility(DateUtil.isBeforCurrentDate(currDate, 3) ? View.VISIBLE : View.INVISIBLE);
-        tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
-        getPcsHistoryData();
+        switch (dateType) {
+            case 0:
+                tvSelectDate.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_DATE, currDate));
+                break;
+            case 1:
+                tvSelectDate.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_MONTH, currDate));
+                break;
+            case 2:
+                tvSelectDate.setText(DateUtil.dateToString(DateUtil.EPARK_DATE_FORMATER_YEAR, currDate));
+                break;
+        }
+        if (dateType == 0) {
+            tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
+        } else {
+            tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
+        }
+
+        if (type > 6 && type < 11) {// 7\8\9\10
+            getReportData();
+        } else {
+            getPcsHistoryData();
+        }
     }
 
     public void showDesc(String desc1, String desc2, String desc3, String desc4) {
@@ -466,7 +522,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     //显示2条柱状图
     private void showBarChartMore(List<PcsHistoryDataDto> rows) {
         mCharBarManage.removeAll();
-        if (Utils.isEmpty(rows)){
+        if (Utils.isEmpty(rows)) {
             return;
         }
         List<Float> xAxisValues = new ArrayList<>();
@@ -878,7 +934,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
      */
     private void getPcsHistoryData() {
         showLoadingDialog();
-        userViewModel.getPcsHistoryData(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"), type, tvSelectDate.getText().toString());
+        userViewModel.getPcsHistoryData(getIntent().getStringExtra("sn"), getIntent().getStringExtra("id"), type, DateUtil.dateToString(DateUtil.DATE_FORMAT, currDate));
         userViewModel.getPcsHistoryData().observe(this, new Observer<BaseDto<PcsHistoryDataListDto>>() {
             @Override
             public void onChanged(@Nullable BaseDto<PcsHistoryDataListDto> dtoBaseDto) {

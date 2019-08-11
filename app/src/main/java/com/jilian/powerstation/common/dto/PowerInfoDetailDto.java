@@ -9,14 +9,15 @@ public class PowerInfoDetailDto implements Serializable {
    private String pv_output_power	;//false	number		光伏功率
    private String run_power	;//false	number		电池功率
    private String today_pv_production	;//false	number		当天发电量
-   private String history_pv_production;//	false	number		总发电量
    private String today_consumption	;//false	number		当天用电量
-   private String history_consumption	;//false	number		总用电量
-   private String today_own_consumption_rate;//	false	number		当日自发自用率
-   private String today_own_consumption	;//false	number		当日自发自用电量
-   private String totalEquipment	;//false	number	暂无值	智能设备运行数量
+    private String today_own_consumption_rate;//	false	number		当日自发自用率
+    private String today_own_consumption	;//false	number		当日自发自用电量
+
+    private String history_consumption	;//false	number		总用电量
+    private String history_pv_production;//	false	number		总发电量
    private String history_estimated_refund;//	false	number		收益估值
-   private String history_carbon_offset;//	false	number		总计二氧化碳减排
+    private String history_carbon_offset;//	false	number		总计二氧化碳减排
+    private String totalEquipment	;//false	number	暂无值	智能设备运行数量
     private int pv2GRID;//1
     private int pv2BAT;//2
     private int bat2GRID;//3
