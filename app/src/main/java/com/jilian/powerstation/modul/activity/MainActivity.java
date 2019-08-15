@@ -19,10 +19,6 @@ public class MainActivity extends BaseMainActivity  {
     protected void createViewModel() {
     }
 
-
-
-
-
     @Override
     protected void init() {
         data = (PowerDto) getIntent().getSerializableExtra("data");

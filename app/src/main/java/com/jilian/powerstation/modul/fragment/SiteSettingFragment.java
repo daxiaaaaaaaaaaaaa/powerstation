@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.google.gson.Gson;
 import com.jilian.powerstation.R;
 import com.jilian.powerstation.base.BaseDto;
 import com.jilian.powerstation.base.BaseFragment;
@@ -237,7 +239,7 @@ public class SiteSettingFragment extends BaseFragment {
                     BaseResultDto dto = resultDtoBaseDto.getData();
                     if (EmptyUtils.isNotEmpty(dto)) {
                         String result = dto.getResult();
-                        if ("0".equals(result)) {
+                        if ("1".equals(result)) {
                             ToastUitl.showImageToastTips("save successe");
                             getConfigInfo();
                         } else {
@@ -282,6 +284,7 @@ public class SiteSettingFragment extends BaseFragment {
      * @param dto
      */
     private void initConfigView(ConfigInfoDto dto) {
+        Log.e("initConfigView",new Gson().toJson(dto));
         WorkingType = dto.getWorkingType();
         //（2:自发自用，3:错峰用电，4:应急电源）
         if (WorkingType == 2) {
@@ -335,7 +338,6 @@ public class SiteSettingFragment extends BaseFragment {
             llOne.setVisibility(View.GONE);
             tvSiteValue.setText("Emergency power supply");
         }
-
 
     }
 

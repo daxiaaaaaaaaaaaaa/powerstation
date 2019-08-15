@@ -59,6 +59,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
     private TextView tvRight;
 
     private TimePickerView pvCustomTime;
+    private TimePickerBuilder timePickerBuilder;
     private String sn;
     private Date currDate;
     private ReportViewModel reportViewModel;
@@ -141,7 +142,7 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         labels.add("load");
         colours.add(getResources().getColor(R.color.color_chart_four));
         colours.add(getResources().getColor(R.color.color_chart_one));
-        barManage1.showMoreBarChart("kwh", xAxisValues, yAxisValues, labels, colours, this)
+        barManage1.showMoreBarChart("kWh", xAxisValues, yAxisValues, labels, colours, this)
                 .setXAxis(xAxisValues.size() - 1, 0, xAxisValues.size())
                 .invalidate()
                 .setScalX(mReportDto.size());
@@ -238,13 +239,13 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
         Calendar endDate = Calendar.getInstance();
         endDate.set(2029, 01, 01);
         //时间选择器 ，自定义布局
-        pvCustomTime = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
+        timePickerBuilder = new TimePickerBuilder(getContext(), new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 loadDatas(date.getTime());
             }
-        })
-                .setDate(selectedDate)
+        });
+        timePickerBuilder.setDate(selectedDate)
                 .setRangDate(startDate, endDate)
                 .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
 
@@ -278,8 +279,8 @@ public class SiteFourFargement extends BaseFragment implements IAxisValueFormatt
                 .setDividerColor(0xFFe0e0e0)
                 .setLineSpacingMultiplier(2f)
                 .setSubmitColor(0xFFe0e0e0)
-                .setCancelColor(getResources().getColor(R.color.color_text_dark))
-                .build();
+                .setCancelColor(getResources().getColor(R.color.color_text_dark));
+        pvCustomTime = timePickerBuilder.setType(new boolean[]{true, true, true, false, false, false}).build();
     }
 
     @Override

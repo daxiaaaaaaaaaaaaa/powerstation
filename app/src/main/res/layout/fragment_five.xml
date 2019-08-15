@@ -39,7 +39,7 @@
                     android:layout_height="@dimen/widget_size_80"
                     android:layout_centerInParent="true"
                     android:layout_marginBottom="@dimen/font_size_8"
-                    tools:src="@mipmap/ic_launcher" />
+                    tools:src="@drawable/img_head" />
 
 
                 <TextView

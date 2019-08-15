@@ -61,7 +61,7 @@ public class TwoFragment extends BaseFragment  {
         viewPager = view.findViewById(R.id.vp_two);
         radioGroup = view.findViewById(R.id.rg_date);
         viewPager.setScanScroll(false);
-        setNormalTitle(getActivity().getIntent().getStringExtra("name"), v -> getActivity().finish());
+        seNoBackTitle(getActivity().getIntent().getStringExtra("name"), v -> getActivity().finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

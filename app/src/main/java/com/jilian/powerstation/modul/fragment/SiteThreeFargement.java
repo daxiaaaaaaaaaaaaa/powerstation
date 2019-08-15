@@ -206,10 +206,10 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
         yAxisValues.add(yVals1);
         yAxisValues.add(yVals2);
         labels.add("PV");
-        labels.add("Grid");
+        labels.add("Load");
         colours.add(getResources().getColor(R.color.color_chart_four));
         colours.add(getResources().getColor(R.color.color_chart_one));
-        barManage1.showMoreBarChart("kwh",xAxisValues, yAxisValues, labels, colours, this)
+        barManage1.showMoreBarChart("kWh",xAxisValues, yAxisValues, labels, colours, this)
                 .setXAxis(xAxisValues.size() - 1, 0, xAxisValues.size())
                 .invalidate()
                 .setScalX(mReportDto.size());
@@ -265,7 +265,7 @@ public class SiteThreeFargement extends BaseFragment implements IAxisValueFormat
                 })
                 .setContentTextSize(18)
                 //各个部分是否显示
-                .setType(new boolean[]{true, true, true, false, false, false})
+                .setType(new boolean[]{true, false, false, false, false, false})
                 //时间格式
                 .setLabel("", "", "", ":00", "分", "秒")
                 .setLineSpacingMultiplier(1.2f)

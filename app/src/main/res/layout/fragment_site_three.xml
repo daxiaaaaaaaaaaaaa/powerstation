@@ -104,7 +104,7 @@
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
                     android:textSize="@dimen/font_size_11"
-                    android:text="Grid"
+                    android:text="Load"
                     android:textColor="@color/color_222222" />
             </LinearLayout>
         </LinearLayout>

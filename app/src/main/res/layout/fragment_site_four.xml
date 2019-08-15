@@ -85,7 +85,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:text="PV"
+                    android:text="photovoltaic"
                     android:textColor="@color/color_222222"
                     android:textSize="@dimen/font_size_11" />
             </LinearLayout>
@@ -106,7 +106,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:text="Grid"
+                    android:text="load"
                     android:textColor="@color/color_222222"
                     android:textSize="@dimen/font_size_11" />
             </LinearLayout>

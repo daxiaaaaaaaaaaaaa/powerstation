@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ import com.jilian.powerstation.views.CircularImageView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.w3c.dom.Text;
 
 
 public class FiveFragment extends BaseFragment {
@@ -53,8 +55,6 @@ public class FiveFragment extends BaseFragment {
     private TextView userLogout;
     private ImageView userInfoEditor;
     private ImageView ivShare;
-
-
 
 
     @Override
@@ -112,6 +112,8 @@ public class FiveFragment extends BaseFragment {
                         Glide.with(getmActivity()).load(userInfoDto.getPhotopath())
                                 .skipMemoryCache(true) // 不使用内存缓存
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)//// 不使用磁盘缓存
+                                .error(R.drawable.img_head)
+                                .placeholder(R.drawable.img_head)
                                 .into(ivHead);
                         tvName.setText(userInfoDto.getUser_cname());
                         tvId.setText(userInfoDto.getUser_email());
@@ -145,7 +147,7 @@ public class FiveFragment extends BaseFragment {
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getmActivity()).showShareDialog(null, getmActivity(),null,null );
+                ((MainActivity) getmActivity()).showShareDialog(null, getmActivity(), null, null);
             }
         });
 
@@ -160,8 +162,7 @@ public class FiveFragment extends BaseFragment {
         userInfoEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getmActivity(), UpdateUerActivity.class);
-                intent.putExtra("name", tvName.getText().toString());
+                Intent intent = new Intent(getmActivity(), MyInfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -175,6 +176,7 @@ public class FiveFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getmActivity(), EssListActivity.class));
+                getActivity().finish();
             }
         });
         tvChangePwd.setOnClickListener(new View.OnClickListener() {

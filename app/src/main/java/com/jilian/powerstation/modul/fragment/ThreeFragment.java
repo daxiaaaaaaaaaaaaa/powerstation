@@ -53,7 +53,7 @@ public class ThreeFragment extends BaseFragment {
         activity = (MainActivity) getmActivity();
         viewPager = view.findViewById(R.id.vp_three);
         radioGroup = view.findViewById(R.id.rg_three_title);
-        setNormalTitle(activity.getData().getProductName(), v -> getActivity().finish());
+        seNoBackTitle(activity.getData().getProductName(), v -> getActivity().finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

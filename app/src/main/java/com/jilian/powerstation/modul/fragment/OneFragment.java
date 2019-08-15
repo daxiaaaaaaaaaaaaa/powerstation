@@ -209,7 +209,7 @@ public class OneFragment extends BaseFragment implements BDLocationListener {
             }
         });
 
-        setNormalTitle(activity.getData().getProductName(), v -> getActivity().finish());
+        seNoBackTitle(activity.getData().getProductName(), v -> getActivity().finish());
         srHasData.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {

@@ -194,12 +194,12 @@ public class SiteTwoFargement extends BaseFragment implements IAxisValueFormatte
         }
         yAxisValues.add(yVals1);
         yAxisValues.add(yVals2);
-        labels.add("PV1");
-        labels.add("PV2");
+        labels.add("PV");
+        labels.add("Load");
         colours.add(getActivity().getResources().getColor(R.color.color_chart_four));
         colours.add(getActivity().getResources().getColor(R.color.color_chart_one));
         xAxisValues.add((float) xAxisValues.size());
-        mCharBarManage.showMoreBarChart("kwh",xAxisValues, yAxisValues, labels, colours, this)
+        mCharBarManage.showMoreBarChart("kWh",xAxisValues, yAxisValues, labels, colours, this)
                 .setXAxis(xAxisValues.size(), 0, xAxisValues.size())
                 .invalidate()
                 .setScalX(mReportDto.size());
@@ -255,7 +255,7 @@ public class SiteTwoFargement extends BaseFragment implements IAxisValueFormatte
                 })
                 .setContentTextSize(18)
                 //各个部分是否显示
-                .setType(new boolean[]{true, true, true, false, false, false})
+                .setType(new boolean[]{true, true, false, false, false, false})
                 //时间格式
                 .setLabel("", "", "", ":00", "分", "秒")
                 .setLineSpacingMultiplier(1.2f)

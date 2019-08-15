@@ -103,6 +103,12 @@ public abstract class BaseFragment extends Fragment {
         setTitleBg(R.color.white);
     }
 
+    public void seNoBackTitle(String title, View.OnClickListener backListener) {
+        setCenterTitle(title, "#000000");
+        setTitleBg(R.color.white);
+    }
+
+
     /**
      * 设置背景图片
      **/

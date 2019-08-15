@@ -103,9 +103,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/widget_size_8"
                     android:gravity="center_vertical"
-                    android:textSize="@dimen/font_size_11"
-                    android:text="Grid"
-                    android:textColor="@color/color_222222" />
+                    android:text="Load"
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/font_size_11" />
             </LinearLayout>
         </LinearLayout>
 

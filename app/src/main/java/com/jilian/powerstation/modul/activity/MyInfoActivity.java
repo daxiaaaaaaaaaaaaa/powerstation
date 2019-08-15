@@ -131,6 +131,8 @@ public class MyInfoActivity extends BaseActivity {
                         Glide.with(MyInfoActivity.this).load(userInfoDto.getPhotopath())
                                 .skipMemoryCache(true) // 不使用内存缓存
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)//// 不使用磁盘缓存
+                                .error(R.drawable.img_head)
+                                .placeholder(R.drawable.img_head)
                                 .into(ivHead);
                         tvName.setText(userInfoDto.getUser_cname());
                         tvUserName.setText(userInfoDto.getUser_email());

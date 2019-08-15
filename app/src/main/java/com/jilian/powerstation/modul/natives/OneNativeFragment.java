@@ -39,7 +39,7 @@ public class OneNativeFragment extends BaseFragment {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        setNormalTitle("Real-time flow graph", v -> getActivity().finish());
+        seNoBackTitle("Real-time flow graph", v -> getActivity().finish());
         llTop = (LinearLayout) view.findViewById(R.id.ll_top);
         llCenter = (LinearLayout)  view.findViewById(R.id.ll_center);
         llLeft = (LinearLayout)  view.findViewById(R.id.ll_left);

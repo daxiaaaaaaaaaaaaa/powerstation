@@ -27,11 +27,6 @@ MobSDK {
                 appSecret "ae36f4ee3946e1cbb98d6965b0b2ff5c"
                 callbackUri "http://www.sharesdk.cn"
             }
-            Facebook {
-                appKey "2556552034365805"
-                appSecret "0ab0a731cae7f1c86550f8b90c13f3cb"
-                callbackUri "https://mob.com"
-            }
             Twitter {
                 appKey "LRBM0H75rWrU9gNHvlEAA2aOy"
                 appSecret "gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
@@ -51,7 +46,11 @@ MobSDK {
                 appId "107704292745179"
             }
             WhatsApp {}
-
+            Facebook {
+                appKey "1412473428822331"
+                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+                callbackUri "https://mob.com"
+            }
             WechatMoments {
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"
@@ -291,8 +290,6 @@ dependencies {
 
     // 此处以JCore 2.0.0 版本为例。
 
-
-    compile 'cn.yipianfengye.android:zxing-library:2.2'
     //图表mp
     compile  'com.github.PhilJay:MPAndroidChart:v3.0.2'
     //天气

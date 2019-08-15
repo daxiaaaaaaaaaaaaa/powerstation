@@ -277,6 +277,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 hideLoadingDialog();
                 if (reportListDtoBaseDto.isSuccess()) {
                     if (EmptyUtils.isNotEmpty(reportListDtoBaseDto)) {
+                        initDataView(new ArrayList<>());
 //                        showBarChartMore(reportListDtoBaseDto.getData().getRows());
                     } else {
                         initNodataView();
@@ -401,6 +402,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         tvSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pvCustomTime = timePickerView.setType(new boolean[]{dateType < 3, dateType < 2, dateType < 1, false, false, false}).build();
                 pvCustomTime.show();
             }
         });
@@ -416,13 +418,14 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                         dateType = 1;
                         break;
                     case R.id.rb_view3:
+
                         dateType = 2;
                         break;
                     case R.id.rb_view4:
                         dateType = 3;
-                        rlSelectData.setVisibility(View.GONE);
                         break;
                 }
+                rlSelectData.setVisibility(dateType == 3 ? View.GONE : View.VISIBLE);
                 loadDatas(currDate);
             }
         });
@@ -864,6 +867,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
     }
 
     private TimePickerView pvCustomTime;
+    private TimePickerBuilder timePickerView;
 
     /**
      * 初始化时间数据
@@ -884,14 +888,14 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
         Calendar endDate = Calendar.getInstance();
         endDate.set(2029, 01, 01);
         //时间选择器 ，自定义布局
-        pvCustomTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
+        timePickerView = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
                 tvSelectDate.setText(DateUtil.dateToString(DateUtil.DATE_FORMAT, date));
                 loadDatas(date);
             }
-        })
-                .setDate(selectedDate)
+        });
+        timePickerView.setDate(selectedDate)
                 .setRangDate(startDate, endDate)
                 .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
 
@@ -916,7 +920,7 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 })
                 .setContentTextSize(18)
                 //各个部分是否显示
-                .setType(new boolean[]{true, true, true, false, false, false})
+
                 //时间格式
                 .setLabel("", "", "", ":00", "分", "秒")
                 .setLineSpacingMultiplier(1.2f)
@@ -925,8 +929,9 @@ public class InverterDetailActivity extends BaseActivity implements IAxisValueFo
                 .setDividerColor(0xFFe0e0e0)
                 .setLineSpacingMultiplier(2f)
                 .setSubmitColor(0xFFe0e0e0)
-                .setCancelColor(getResources().getColor(R.color.color_text_dark))
-                .build();
+                .setCancelColor(getResources().getColor(R.color.color_text_dark));
+
+        pvCustomTime = timePickerView.setType(new boolean[]{true, true, true, false, false, false}).build();
     }
 
     /**

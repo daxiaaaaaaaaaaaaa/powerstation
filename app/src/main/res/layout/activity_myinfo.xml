@@ -19,7 +19,7 @@
             android:layout_height="@dimen/widget_size_120"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/widget_size_30"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/img_head"/>
 
         <TextView
             android:id="@+id/tv_edit"

@@ -465,7 +465,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .setConvertListener(new ViewConvertListener() {
                     @Override
                     public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
-                        dialog.setOutCancel(false);
+                        dialog.setOutCancel(true);
 
 
                         LinearLayout llOne = (LinearLayout) holder.getView(R.id.ll_one);

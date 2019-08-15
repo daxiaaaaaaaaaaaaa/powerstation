@@ -57,7 +57,7 @@ public class FourFragment extends BaseFragment {
         viewPager = view.findViewById(R.id.four_viewPager);
         initTab();
         initViewpage();
-        setNormalTitle(getActivity().getIntent().getStringExtra("name"), v -> getActivity().finish());
+        seNoBackTitle(getActivity().getIntent().getStringExtra("name"), v -> getActivity().finish());
         setrightImageOne(R.drawable.image_right_one, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
