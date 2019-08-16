@@ -48,6 +48,6 @@
         android:background="@drawable/selector_radiobutton_bg"
         android:button="@null"
         android:gravity="center"
-        android:text="Lifeting"
+        android:text="Lifetime"
         android:textColor="@color/color_radiobutton_text" />
 </RadioGroup>
